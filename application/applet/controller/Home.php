@@ -85,7 +85,7 @@ class Home extends Applet
         }
 
         $config = tpCache('web');
-        $config['happly_switch']=0;
+        $config['happly_switch']=1;
         $config['logo'] = imgurlToAbsolute( $config['logo']);
 
         $returndata = array(
@@ -181,7 +181,7 @@ class Home extends Applet
     {
 
         $config['share_tips']="保存至相册可以分享到朋友圈";
-        $config['share_btn_switch']=0;
+        $config['share_btn_switch']=1;
         $returndata = array(
             'config' => $config,
         );
