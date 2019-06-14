@@ -1,0 +1,220 @@
+{extend name="public/left"/}
+
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(common_obj.form_submit);
+</script>
+
+<section class="wrapper" style="margin-top:0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="form">
+                        <form class="cmxform form-horizontal tasi-form" id="data-form">
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">订单编号</label>
+                                <div class="col-lg-6">
+                                    <p class="form-control-static">{$data.order_number}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">下单时间</label>
+                                <div class="col-lg-6">
+                                    <p class="form-control-static">{$data.create_time|date="Y-m-d H:i:s",###}</p>
+                                </div>
+                            </div>
+
+                            {if condition="$data.is_pay == 1"}
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">付款时间</label>
+                                <div class="col-lg-6">
+                                    <p class="form-control-static">{$data.pay_time|date="Y-m-d H:i:s",###}</p>
+                                </div>
+                            </div>
+                            {/if}
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">昵称</label>
+                                <div class="col-lg-6">
+                                    <p class="form-control-static">{$data.nickname}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">总数量</label>
+                                <div class="col-lg-6">
+                                    <p class="form-control-static">{$data.total_number}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">总价钱</label>
+                                <div class="col-lg-6">
+                                    <p class="form-control-static">{$data.total_price}元</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">实际付款</label>
+                                <div class="col-lg-6">
+                                    <p class="form-control-static">{$data.pay_money}元</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">状态</label>
+                                <div class="col-lg-6">
+                                    <select class="form-control m-bot15"  disabled  name="status" required="required">
+                                        <option value="0" {eq name="data.status" value="0" }selected="selected" {/eq}>待付款</option>
+                                        <option value="1" {eq name="data.status" value="1" }selected="selected" {/eq}>待发货</option>
+                                        <option value="2" {eq name="data.status" value="2" }selected="selected" {/eq}>已发货</option>
+                                        <option value="3" {eq name="data.status" value="3" }selected="selected" {/eq}>已完成</option>
+                                        <option value="-1" {eq name="data.status" value="-1" }selected="selected" {/eq}>已取消</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">快递名称</label>
+                                <div class="col-lg-6">
+                                    <select class="form-control m-bot15" disabled  name="express_id" >
+                                        <option value="" >请选择物流公司</option>
+                                        {volist name="expressList" id="vo"}
+                                        <option value="{$vo.id}" {eq name="data.express_id" value="$vo.id" }selected="selected"{/eq} >{$vo.express_name}</option>
+                                        {/volist}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">快递单号</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" type="text" readonly name="express_number" value="{$data.express_number}" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">联系人</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" type="text" readonly name="linkman" value="{$data.linkman}"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">联系电话</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" type="text" readonly name="linktel" value="{$data.linktel}"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">联系地址</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" type="text" readonly name="address" value="{$data.address}"/>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">备注</label>
+                                <div class="col-lg-6">
+                                    <textarea class="form-control" cols="60" rows="3" readonly  name="remark">{$data.remark}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">订单详情</label>
+                                <div class="col-lg-10">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>名称</th>
+                                            <th>封面图</th>
+                                            <th>价钱</th>
+                                            <th>数量</th>
+                                            <th>总价钱</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {volist name="data.orderlog" id="v"}
+                                        <tr>
+                                            <td width="5%">{$key+1}</td>
+                                            <td width="25%">{$v.goods_name}</td>
+                                            <td width="8%"><img  width="80" height="80" src="{$v.coverimg}" alt=""></td>
+                                            <td width="10%">{$v.goods_price}</td>
+                                            <td width="10%">{$v.buy_num}</td>
+                                            <td >{$v.total_price}</td>
+                                        </tr>
+                                        {/volist}
+                                        <tr style="color:red">
+                                            <td>合计</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{$data.total_number}</td>
+                                            <td>{$data.total_price}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">订单操作日志</label>
+                                <div class="col-lg-10">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>操作人</th>
+                                            <th>操作时间</th>
+                                            <th>操作动作</th>
+                                            <th>操作备注</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {volist name="orderactionlog" id="v"}
+                                        <tr>
+                                            <td width="5%">{$key+1}</td>
+                                            <td width="15%">{if condition="$v.action_user eq 0"}管理员{else/}{$v.nickname}{/if}</td>
+                                            <td width="10%">{$v.create_time|date="Y-m-d H:i:s",###}</td>
+                                            <td width="15%">{$v.status_desc}</td>
+                                            <td width="10%">{$v.action_note}</td>
+                                        </tr>
+                                        {/volist}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">操作</label>
+                                <div class="col-lg-4">
+                                    <select class="form-control m-bot15" name="operation" required="required">
+                                        <option value="" >请选择</option>
+                                        <option value="1" >同意退款</option>
+                                        <option value="2" >拒绝退款</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <input class="btn btn-danger" type="submit" value="提交保存">
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="id" value="{$data.id}">
+                        </form>
+                        <input type="hidden" id="do_action" value="{:url('Mall/order_handle')}"/>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+{/block}

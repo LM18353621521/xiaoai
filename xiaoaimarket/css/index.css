@@ -1,0 +1,502 @@
+
+body {
+    background: #f8f9fb;
+}
+
+.wrap {
+    margin: 0 auto;
+    width: 100%;
+    min-width: 1200px;
+    overflow: hidden;
+}
+
+.banner-wrapper {
+    margin: 0 auto;
+    width: 100%;
+    min-width: 1200px;
+    position: relative;
+    height: 442px;
+}
+
+.banner-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    max-width: 100%;
+    height: 442px;
+    z-index: -1;
+}
+
+.banner-content {
+    margin: 0 auto;
+    width: 1200px;
+    height: 442px;
+    overflow: hidden;
+}
+
+.banner-right {
+    width: 166px;
+    float: right;
+    overflow: hidden;
+}
+
+.banner-right-one {
+    margin-top: 12px;
+    background: rgba(255, 255, 255, .7);
+    overflow: hidden;
+    padding-top: 22px;
+    height: 205px;
+    width: 100%;
+}
+
+.head {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+}
+
+.banner-right-one p {
+    height: 28px;
+    line-height: 28px;
+    font-size: 12px;
+    color: #676262;
+    overflow: hidden;
+    text-align: center;
+}
+
+.banner-right-one div {
+    width: 74px;
+    height: 25px;
+    line-height: 25px;
+    margin: 30px auto;
+    font-size: 14px;
+    color: var(--theme);
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid var(--theme);
+}
+
+.banner-right-two {
+    margin-top: 7px;
+    background: rgba(255, 255, 255, .7);
+    overflow: hidden;
+    padding-top: 30px;
+    height: 205px;
+    width: 100%;
+}
+
+.banner-right-two p {
+    line-height: 30px;
+    font-size: 16px;
+    color: #676262;
+    overflow: hidden;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.banner-right-two .money {
+    width: 95px;
+    height: 52px;
+    display: block;
+    margin: 0 auto;
+}
+
+/**/
+.second-wrapper {
+    width: 1200px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.second-sale-wrapper {
+    float: left;
+    width: 230px;
+    height: 294px;
+    overflow: hidden;
+    position: relative;
+}
+
+.second-sale-wrapper img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.second-sale-wrapper p {
+    line-height: 50px;
+    font-size: 36px;
+    color: #fff;
+    overflow: hidden;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.countdown {
+    overflow: hidden;
+    width: 160px;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 12px;
+    left: 25px;
+}
+
+.countdown-num {
+    float: left;
+    width: 41px;
+    height: 41px;
+    background: rgba(0, 0, 0, .5);
+    border-radius: 5px;
+    text-align: center;
+    overflow: hidden;
+    line-height: 41px;
+    font-size: 28px;
+    color: #fff;
+}
+
+.countdown-str {
+    float: left;
+    width: 18px;
+    height: 41px;
+    text-align: center;
+    overflow: hidden;
+    line-height: 41px;
+    font-size: 28px;
+    color: #4f1010;
+}
+
+.swiper {
+    float: left;
+    background: #fff;
+    overflow: hidden;
+    width: 970px;
+    position: relative;
+}
+
+.swiper-containera.swiper-container {
+    width: 926px;
+    margin-left: 44px;
+}
+
+.swiper-containera .swiper-wrapper {
+
+}
+
+.swiper-containera .swiper-slide {
+    width: 926px;
+}
+
+.item {
+    width: 190px;
+    overflow: hidden;
+    float: left;
+    margin-right: 40px;
+    padding: 30px 0 5px;
+}
+
+.item img {
+    width: 190px;
+    height: 190px;
+}
+
+.name {
+    height: 41px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 30px;
+    height: 30px;
+    font-size: 16px;
+    color: #676262;
+    margin-top: 10px;
+}
+
+.money-num {
+    height: 41px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 30px;
+    height: 30px;
+    font-size: 24px;
+    color: #b730b0;
+}
+
+.left {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -23px;
+}
+
+.right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -23px;
+}
+
+/**/
+.new-wrapper {
+    width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.new-list {
+    width: 253px;
+    height: 115px;
+    line-height: 115px;
+    font-size: 24px;
+    color: #2c1e21;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.new-list span {
+    display: inline-block;
+    width: 8px;
+    height: 22px;
+    background: #b730b0;
+    margin-right: 15px;
+    vertical-align: middle;
+    margin-top: -5px;
+}
+
+.swiper-containerb {
+    width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding-bottom: 20px;
+}
+
+.swiper-containerb .swiper-wrapper {
+
+}
+
+.swiper-containerb .swiper-slide {
+    overflow: hidden;
+}
+
+.swiper-item {
+    float: left;
+    width: 253px;
+    height: 148px;
+    margin-right: 7px;
+    margin-bottom: 7px;
+    overflow: hidden;
+    background: #fff;
+    padding: 19px;
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+
+.swiper-item:hover {
+    border: 1px solid #b730b0;
+}
+
+.swiper-item img {
+    width: 123px;
+    height: 146px;
+    float: left;
+}
+
+.new-box {
+    float: left;
+    width: 130px;
+    float: left;
+    overflow: hidden;
+    padding-top: 20px;
+}
+
+.new-info {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    color: #676262;
+    text-align: right;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.new-money {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 18px;
+    color: #676262;
+    text-align: right;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.swiper-containerb .swiper-pagination {
+    bottom: 2px;
+    left: 0;
+    width: 100%;
+}
+
+.swiper-containerb .swiper-pagination-bullet-active {
+    background: #b730b0;
+}
+
+.swiper-containerb .swiper-pagination-bullet {
+
+}
+
+.like {
+    width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.like-item {
+    width: 218px;
+    display: block;
+    overflow: hidden;
+    float: left;
+    margin-right: 27px;
+    background: #fff;
+}
+
+.like-item:last-child {
+    margin-right: 0;
+}
+
+.like-item img {
+    width: 218px;
+    height: 294px;
+}
+
+.like-box {
+    padding: 0 13px;
+    overflow: hidden;
+}
+
+.like-info {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-height: 20px;
+    font-size: 14px;
+    color: #676262;
+    padding: 9px 0 0;
+}
+
+.like-money {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 30px;
+    height: 30px;
+    font-size: 14px;
+    color: #2e2e2e;
+}
+
+/*咨询*/
+.refer-box {
+    position: fixed;
+    right: 130px;
+    top: 15%;
+    width: 160px;
+    background: var(--theme);
+    overflow: hidden;
+    padding: 30px 20px 40px;
+    border-radius: 9px;
+    z-index: 999;
+}
+
+.online-refer {
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    color: #fefefe;
+    overflow: hidden;
+    text-align: center;
+}
+
+.online-tel {
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    color: #fefefe;
+    overflow: hidden;
+    text-align: center;
+}
+
+.refer-wrapper {
+    overflow: hidden;
+    border-radius: 9px;
+    margin-top: 20px;
+    padding: 20px 12px;
+    background: rgba(255, 255, 255, .7);
+}
+
+.icon-text {
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.icon-text img {
+    float: left;
+    width: 40px;
+    height: 40px;
+}
+
+.right-text {
+    margin-left: 20px;
+    overflow: hidden;
+}
+
+.text-font {
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    color: #fefefe;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/*.text-fonta{
+	height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    color: #fefefe;
+    margin-bottom: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}*/
+.refer-code {
+    overflow: hidden;
+}
+
+.refer-code img {
+    width: 135px;
+    height: 135px;
+    display: block;
+    margin: 0 auto;
+}
+
+.refer-code p {
+    height: 40px;
+    line-height: 40px;
+    font-size: 12px;
+    color: #fefefe;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

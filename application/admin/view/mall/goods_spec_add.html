@@ -1,0 +1,59 @@
+{extend name="public/left"/}
+
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(common_obj.form_submit);
+</script>
+
+<section class="wrapper" style="margin-top:0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+
+                <div class="panel-body">
+                    <div class="form">
+                        <form class="cmxform form-horizontal tasi-form" id="data-form">
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">名称</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" type="text" name="name" required="required" value="{$data.name}"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">所属模型</label>
+                                <div class="col-lg-6">
+                                    <select class="form-control m-bot15" name="type_id" required="required">
+                                        <option value="" >请选择模型</option>
+                                        {volist name="goods_type" id="vo"}
+                                        <option value="{$vo.id}"  {eq name="data.type_id" value="$vo.id" }selected="selected" {/eq}>{$vo.name}</option>
+                                        {/volist}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">规格项</label>
+                                <div class="col-lg-6">
+                                    <textarea  class="form-control"   name="items" id="" cols="30" rows="10">{$data.items}</textarea>
+                                    <span class="help-block">一行为一个规格项，多个规格项按"回车键"换行输入</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <input class="btn btn-danger" type="submit" value="提交保存">
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="id" value="{$data.id}">
+                        </form>
+                        <input type="hidden" id="do_action" value="{:url('Mall/goods_spec_add')}"/>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+{/block}

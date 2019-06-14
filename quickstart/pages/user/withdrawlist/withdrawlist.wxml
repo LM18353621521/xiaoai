@@ -1,0 +1,74 @@
+<view class='top-banner'>
+  <image class="uybg" src="../../../images/center-bg.jpg" />
+  <view class="uycenter_head2">
+    <image class="head" src="{{vip.headimg}}" />
+    <view class="uylmenu">
+      <view class="uylmenu11">{{vip.nickname}}</view>
+      <view class="uylmenu12">{{vip.mobilephone}}</view>
+      <view class="uylmenu12">账户余额
+        <text>(元)</text>
+      </view>
+      <view class="uylmenu11">{{vip.income}}
+        <text bindtap="show">提现</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="top">
+    <view>提现时间</view>
+    <view>提现金额(元)</view>
+    <view>提现状态</view>
+  </view>
+</view>
+
+<view class="list">
+  <view class="bn">
+    <block wx:for="{{list}}">
+      <view class="sub_list {{index%2==1?'':'odd'}}">
+        <view>{{item.create_time}}</view>
+        <view class='red-color'>￥{{item.money}}</view>
+        <view wx:if="{{item.status==0}}" class='black-color'>审核中</view>
+        <view wx:if="{{item.status==1}}">已完成</view>
+        <view wx:if="{{item.status==-1}}" class='red-color'>失败</view>
+      </view>
+    </block>
+<!-- 
+    <view class="sub_list">
+      <view>2017-06-01 14:00:00</view>
+      <view class='red-color'>￥200</view>
+      <view class='red-color'>失败</view>
+    </view>
+    <view class="sub_list odd">
+      <view>2017-06-01 14:00:00</view>
+      <view class='red-color'>￥200</view>
+      <view class='black-color'>审核中</view>
+    </view> -->
+    <view class="more"><image mode='widthFix' src="../../../images/jiazai.png"/>{{more_tips}}</view>
+  </view>
+</view>
+
+<!--提现浮层  -->
+<view class="fuceng {{fuhide==0? 'hidden':''}}">
+   <view class="fuer" bindtap="close"></view>
+   <view class="fucengbox">
+      <image class="img-head" mode="widthFix" src="{{vip.headimg}}" />
+      <image class="img-close" bindtap="close" src="../../../images/close.png" />
+      <view class="tit-info">
+        <view class="tit-name">{{vip.nickname}}</view>
+        <!-- <view class="tit-name">{{vip.income}}</view> -->
+      </view>
+      <view class="box-fu">
+        <view class="box-info">可提现金额</view>
+        <view class="box-money">{{vip.income}}</view>
+      </view>
+      <view class='fu-leftright'>
+        <view class='fu-left'>提现金额:</view>
+        <input class="fu-right" type="digit" value='{{money}}' bindinput='set_money' placeholder="￥0.00（元）" placeholder-style="color:#ccc;" />
+      </view>
+      <view class='gray-backgound'>
+        <view class="fu-info">{{config.withdraw_tips}}</view>
+        <view class="fu-btn" bindtap="withdraw_do">提现</view>
+        
+      </view>
+   </view>
+</view>

@@ -1,0 +1,74 @@
+{if condition ="strtolower(request()->controller()) == 'order' && strtolower(request()->action()) == 'myorder'"}
+<!--订单列表-->
+{volist name="dataList" id="vo"}
+<div class='li' order_id="{$vo.id}">
+    <div class='code-leftright'>
+        <div class='code-left'>订单编号：{$vo.order_number}</div>
+        {if condition="$vo.status eq 0"}
+        <div class='code-right'>未付款</div>
+        {elseif condition="$vo.status eq 1"/}
+        <div class='code-right'>已付款</div>
+        {elseif condition="$vo.status eq 2"/}
+        <div class='code-right'>已发货</div>
+        {elseif condition="$vo.status eq 3&&$vo.is_comment eq 0"/}
+        <div class='code-right'>待评价</div>
+        {elseif condition="$vo.status eq 3&&$vo.is_comment eq 1"/}
+        <div class='code-right'>已评价</div>
+        {elseif condition="$vo.status eq -1"/}
+        <div class='code-right'>已取消</div>
+        {elseif condition="$vo.status eq -2"/}
+        <div class='code-right'>申请退款</div>
+        {elseif condition="$vo.status eq -3"/}
+        <div class='code-right'>已退款</div>
+        {/if}
+    </div>
+    <div class='lists'>
+        {foreach name="vo.orderlog" item="vos"}
+        <div class='item'>
+            <div class="lt">
+                <image src="{$vos.coverimg}"/>
+            </div>
+            <div class="rt">
+                <div class='first'>
+                    <div class='first-left'>{$vos.goods_name}</div>
+                    <div class='first-right'>￥{$vos.goods_price}</div>
+                </div>
+                <div class='sec'>
+                    <div class='sec-left'><span>{$vos.key_name}</span> </div>
+                    <div class='sec-right'>x{$vos.buy_num}</div>
+                </div>
+            </div>
+        </div>
+        {/foreach}
+    </div>
+    <div class="gongji">共计{$vo.total_number}件商品 合计：<span>￥{$vo.total_price}元</span></div>
+    <div class="yunfei">含运费：￥{$vo.express_fee}元</div>
+    <div class="datebox1">
+        {if condition="$vo.status eq 0"}
+        <div class='date00 pink-active pay_do'>去付款</div>
+        <div class="date00 gray-active cancel_do">取消订单</div>
+        {elseif condition="$vo.status eq 1"/}
+        <div class="date00 gray-active">申请退款</div>
+        {elseif condition="$vo.status eq 2"/}
+        <div class="date00 pink-active confirm_do">确认收货</div>
+        <div class="date00 pink-active express_do">查看物流</div>
+        <div class='date00  gray-active refund_do'>申请退款</div>
+        {elseif condition="$vo.status eq 3&&$vo.is_comment eq 0"/}
+        <div class="date00 pink-active comment_do">去评价</div>
+        {elseif condition="$vo.status eq 3&&$vo.is_comment eq 1"/}
+        <div class='date00  gray-active del_do'>删除订单</div>
+        {elseif condition="$vo.status eq -1"/}
+        <div class='date00  gray-active del_do'>删除订单</div>
+        {elseif condition="$vo.status eq -2"/}
+        <div class="date00 gray-active express_do">查看物流</div>
+        {elseif condition="$vo.status eq -3"/}
+        <div class="date00 pink-active express_do">查看物流</div>
+        <div class="date00 gray-active del_do">删除订单</div>
+        {/if}
+        <!--<div class="date00 pink-active">取消订单</div>-->
+        <!--<div class="date00 gray-active">确认付款</div>-->
+    </div>
+</div>
+{/volist}
+{/if}
+

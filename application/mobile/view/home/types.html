@@ -1,0 +1,61 @@
+{extend name="public/base"/ }
+
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(home_obj.types);
+</script>
+<body>
+<div class="content">
+    <form action="{:url('Home/goodlist')}">
+        <a href="{:url('Home/search')}" class="search">
+        <input class="search" readonly name="keyword"  type="text" placeholder="请输入关键词称">
+        </a>
+        <!--<button class="searimg" >搜索</button>-->
+    </form>
+
+    <div class="tablej">
+        <div class="tableleftj">
+            {foreach name="cateList" item="vo" key="k"}
+            <div cate_id="{$vo.id}" class="menuboxp1 {eq name='k' value='0'}leftsel{/eq}">
+                <img class="menuimgp" src="{$vo.icon}">
+                <div class="fontp">{$vo.name}</div>
+            </div>
+            {/foreach}
+            <!--<div class="menuboxp1">-->
+            <!--<img class="menuimgp" src="__STATIC__/mobile/home/images/typeb.png">-->
+            <!--<div class="fontp">女性用品</div>-->
+            <!--</div>-->
+        </div>
+        <div class="tablerightj">
+            <img class="ad" src="__STATIC__/mobile/home/images/ad.jpg">
+            <nav>
+                <div class="hidden">
+                    <input type="hidden" name="page" value="1"/>
+                    <input type="hidden" name="url" value="{:url('Home/categoryChild')}"/>
+                </div>
+                <div class="list content">
+                </div>
+                <div style="clear: both"></div>
+            </nav>
+            <form id="form_ajax">
+                <input type="hidden" name="pid" value="{$cateList[0]['id']}"/>
+            </form>
+            {assign name="nodata" value="nothing_img"}
+            {include file="public/nodata" text="暂无数据" /}
+        </div>
+    </div>
+</div>
+
+<!--底部导航   s-->
+{include file="public/foot_nav"/}
+<!--底部导航   e-->
+
+
+<!--登录浮层   s-->
+{include file="public/login_layer"/}
+
+<script type="text/javascript">
+
+</script>
+
+{/block}

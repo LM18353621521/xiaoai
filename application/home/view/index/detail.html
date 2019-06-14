@@ -1,0 +1,408 @@
+{include file="public/header" title="商品详情"}
+<link rel="stylesheet" type="text/css" href="__STATIC__/home/common/css/page.css" />
+<body>
+<script>
+    $(document).ready(function () {
+        $(".shangqiao").click(function (event) {
+            if ($('#nb_invite_ok').length > 0) {
+                $('#nb_invite_ok').click();
+            }
+        });
+    });
+</script>
+<div class="wrap">
+    {include file="public/top_nav"}
+    <div class="banner">
+        <!--  关键词搜索 -->
+        {include file="public/search"}
+        {include file="public/category_nav"}
+    </div>
+    <style>
+        .collect{
+            margin: 0 50px;
+            display: inline-block;
+        }
+        .collect img{
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+    <div class="goods-wrapper">
+        <div class="goods-content">
+            <div class="goods-left">
+                <div class="swiper-box">
+                    <div id="vertical" class="bigImg">
+                        <img src="{$goodsInfo.imgpath[0]}" id="midimg"/>
+                        <div id="winSelector"></div>
+                    </div>
+                    <div class="smallImg">
+                        <!-- <div</div> -->
+                        <img class="scrollbutton smallImgUp disabled" src="__STATIC__/home/common/images/lefta.png">
+                        <div id="imageMenu">
+                            <ul>
+                                {volist name="goodsInfo.imgpath" id="vo"}
+                                {if condition="$vo neq ''"}
+                                <li {eq name="key" value="$key" } id="onlickImg" {/eq}><img src="{$vo}"></li>
+                                {/if}
+                                {/volist}
+                            </ul>
+                        </div>
+                        <img class="scrollbutton smallImgDown" src="__STATIC__/home/common/images/righta.png">
+                    </div>
+                    <div id="bigView"><img width="800" height="800" alt="" src=""/></div>
+                    <p style="clear: left">
+                        <div class="collect">
+                            <a href="javascript:;">
+                                {if condition="$has_collect eq 1"}
+                                <img src="__STATIC__/home/common/images/icon_like_02.png" alt="">
+                                {else/}
+                                <img src="__STATIC__/home/common/images/icon_like_01.png" alt="">
+                                {/if}
+                                &nbsp;关注商品</a>
+                            (<span id="collect_num">{$collect_num}</span>人气)
+                        </div>
+                    </p>
+                </div>
+                <div class="swiper-info">
+                    <p class="swiper-name">{$goodsInfo.name}</p>
+                    <div class="second-theme"  id="activity_show" style="display: none">
+                        <div class="count-coupon">限时抢购</div>
+                        <div class="count-wrap">
+                            <div class="count-text">距离结束：</div>
+                            <div class="count-box">
+                                <div class="count-num day_show" style="display: none">00</div>
+                                <div class="count-str">&nbsp;&nbsp;</div>
+                                <div class="count-num hour_show">00</div>
+                                <div class="count-str">:</div>
+                                <div class="count-num minute_show">00</div>
+                                <div class="count-str">:</div>
+                                <div class="count-num second_show">00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-wrap">
+                        <p class="swiper-price">价格：<span>￥<em id="cur_price">{$goodsInfo.price}</em></span> </p>
+                        <p class="swiper-price old_price" style="display: none">原价：<span style="text-decoration:line-through;font-size: 18px;color: #999;">￥<em></em></span> </p>
+                        <p class="swiper-discuss">
+                            已售<span class="active">{$goodsInfo.sales}</span>件
+                            <span class="info-right">评价<span class="active">{$goodsInfo.comment_count}</span>人</span>
+                        </p>
+                        <!--<p class="swiper-conpou">店铺优惠：<span class="bold">满两件立减5元</span></p>-->
+                    </div>
+                    <div class="peisong">
+                        <!--<p class="info-for">配送至</p>-->
+                        <!--<select>-->
+                        <!--<option>广东深圳</option>-->
+                        <!--<option>广东深圳2</option>-->
+                        <!--<option>广东深圳3</option>-->
+                        <!--<option>广东深圳4</option>-->
+                        <!--</select>-->
+                        <!--<p class="info-huo">有货</p>-->
+                    </div>
+                    {foreach name="filter_spec" item="vo" key="k"}
+                    <div class="taocan">
+                        <p class="taocan-tit">{$k}</p>
+                        <div class="taocan-box tc goods_spec_list">
+                            {foreach name="vo" item="vos" key="ks"}
+                            <p goods_spec="{$vos.item_id}" class="taocan-item fftuop11 {if condition=" $ks eq 0 "}active{/if}">{$vos.item} <span></span></p>
+                            {/foreach}
+                        </div>
+                    </div>
+                    {/foreach}
+                    <!--<div class="taocan">-->
+                    <!--<p class="taocan-tit">尺寸</p>-->
+                    <!--<div class="taocan-box cc">-->
+                    <!--<p class="taocan-item">加热震动经典款(不发声) <span>￥299</span></p>-->
+                    <!--<p class="taocan-item">加热震动经典款(不发声) <span>￥299</span></p>-->
+                    <!--<p class="taocan-item">加热震动经典款(不发声) <span>￥299</span></p>-->
+                    <!--<p class="taocan-item">加热震动经典款(不发声) <span>￥299</span></p>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="taocan">-->
+                    <!--<p class="taocan-tit">尺寸</p>-->
+                    <!--<div class="taocan-box cc">-->
+                    <!--<div class="taocan-img active"><img src="__STATIC__/home/common/images/big-img.jpg"></div>-->
+                    <!--<div class="taocan-img"><img src="__STATIC__/home/common/images/big-img.jpg"></div>-->
+                    <!--<div class="taocan-img"><img src="__STATIC__/home/common/images/big-img.jpg"></div>-->
+                    <!--<div class="taocan-img"><img src="__STATIC__/home/common/images/big-img.jpg"></div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <div class="swiper-btn">
+                        <div style="display: none"><span id="cur_stock"></span></div>
+                        <div class="swiper-btna">
+                            <div class="swiper-btna1" id="goods_num">1</div>
+                            <div class="swiper-btna2">
+                                <div class="swiper-btn1">+</div>
+                                <div class="swiper-btn2">-</div>
+                            </div>
+                        </div>
+                        <div class="swiper-btnb" id="cart_add">加入购物车</div>
+                        <div class="swiper-btnc" id="buy_now">立即购买</div>
+                    </div>
+                    <p class="taocan-tips">温馨提示:不支持7天无理由退换货</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="goods-right">
+                <div class="goods-see">
+                    <span>看了又看</span>
+                    <a href="javascript:;" onclick="replace_look();">
+                        <span><img src="__STATIC__/home/common/images/update.png">换一换</span>
+                    </a>
+                </div>
+                <ul class="goods-slide-list" id="see_and_see">
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="goods-detail">
+        <div class="goods-detail-left">
+            <div class="detail-tit">
+                <p class="detail-title active">商品介绍</p>
+                <p class="detail-title">商品评论({$comment.total_text})</p>
+                <!--<p class="detail-title">产品规格</p>-->
+                <!--<p class="detail-cart">加入购物车</p>-->
+            </div>
+            <div class="detail-tab">
+                <!-- 商品介绍 -->
+                <div class="tab-item" style="display: block">
+                    <!--<div class="detail-box">-->
+                    <!--<p class="info-title">品牌： 韩色</p>-->
+                    <!--<div class="detail-info">-->
+                    <!--<p class="detail-item">商品名称：韩色少女名器</p>-->
+                    <!--<p class="detail-item">商品编号：3315624</p>-->
+                    <!--<p class="detail-item">商品毛重：280.00g</p>-->
+                    <!--<p class="detail-item">商品产地：广东深圳</p>-->
+                    <!--</div>-->
+                    <!--<div class="detail-info">-->
+                    <!--<p class="detail-item">国产/进口：国产</p>-->
+                    <!--<p class="detail-item">分类：阴臀</p>-->
+                    <!--<p class="detail-item">特点：便携</p>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <div class="detail-content">
+                        {$goodsInfo.description}
+                    </div>
+                </div>
+                <!-- 商品评论 -->
+                <div class="tab-item" style="display: none;">
+                    <div class="good-discuss">
+                        <div class="left-discuss">
+                            <p class="good-chinese">好评度</p>
+                            <p class="good-number"><span>{$comment.good_rate}</span>%</p>
+                        </div>
+                        <div class="right-discuss">
+                            <!--<span class="active">体感舒适(14)</span>-->
+                            <!--<span>超级好用(14)</span>-->
+                            <!--<span>分量十足(14)</span>-->
+                            <!--<span>质感一流(14)</span>-->
+                            <!--<span>简单方便(14)</span>-->
+                            <!--<span>做工精湛(14)</span>-->
+                            <!--<span>毫无异味(14)</span>-->
+                            <!--<span>颜色漂亮(14)</span>-->
+                            <!--<span>结构巧妙(14)</span>-->
+                            <!--<span>精准度佳(14)</span>-->
+                            <!--<span>体感舒适(14)</span>-->
+                            <!--<span>弹性十足(14)</span>-->
+                        </div>
+                    </div>
+                    <ul class="discuss-menu">
+                        <li class="active" commentType="0">全部评价（{$comment.total_text}）</li>
+                        <li commentType="1">好评（{$comment.good_text}）</li>
+                        <li commentType="2">中评（{$comment.medium_text}）</li>
+                        <li commentType="3">差评（{$comment.bad_text}）</li>
+                    </ul>
+                    <ul class="discuss-content" id="ajax_comment_list">
+                        {foreach name="commentList" item="vo"}
+                        <li>
+                            <div class="discuss-head"><img src="{$vo.headimg|default='__STATIC__/home/common/images/head.png'}">{if condition="$vo.is_anonymous eq 1"}匿名{else/}{$vo.nickname}{/if}</div>
+                            <div class="discuss-info">
+                                <div class="discuss-star">
+                                    {for start="0" end="$vo.star" name="star"}
+                                    <img src="__STATIC__/home/common/images/stara-yes.png">
+                                    {/for}
+                                </div>
+                                <p class="discuss-text">{$vo.content}</p>
+                                <div class="discuss-img">
+                                    {foreach name="vo.imgpath" item="img"}
+                                    <div><img src="{$img}"></div>
+                                    {/foreach}
+                                </div>
+                                <p class="discuss-type">
+                                    <!--飞机杯-256号--><span>{$vo.create_time|date="Y-m-d H:i:s",###}</span>
+                                </p>
+                            </div>
+                        </li>
+                        {/foreach}
+                    </ul>
+                </div>
+                <!-- 产品规格 -->
+                <div class="tab-item">
+
+                </div>
+            </div>
+        </div>
+        <div class="goods-detail-right">
+            <p class="detail-right-tit">商品热销排行TOP5</p>
+            <ul class="detail-list">
+                {foreach name="hot_sale" item="hot" key="k"}
+                <li>
+                    <a href="{:url('Index/detail',array('goods_id'=>$hot.id))}">
+                    <img src="{$hot.coverimg}">
+                    <div class="info-wrapper">
+                        <p class="detail-name"><span>{$k+1}</span>已售出{$hot.sales}件</p>
+                        <p class="detail-price">￥{$hot.price}</p>
+                    </div>
+                    </a>
+                </li>
+                {/foreach}
+            </ul>
+        </div>
+    </div>
+    <!--右边导航s-->
+    {include file="public/right_nav"}
+    <!--右边导航e-->
+    <!--右边导航s-->
+    {include file="public/kf_layer"}
+    <!--右边导航e-->
+    {include file="public/footer"}
+
+    <!-- 登录/注册浮层 -->
+    {include file="public/login_layer"}
+    <!--看了又看-s-->
+    <div style="display: none" id="look_see">
+        {foreach name="look_see" item="look" key="k"}
+        <li>
+            <a href="{:url('Index/detail',array('goods_id'=>$hot.id))}">
+            <img src="{$look.coverimg}">
+            <p class="name">{$look.name}</p>
+            <p class="price">￥{$look.price}</p>
+            </a>
+        </li>
+        {/foreach}
+        <!--看了又看-s-->
+    </div>
+</div>
+<script type="text/javascript" src="__STATIC__/home/common/js/big-img.js"></script>
+<script src="__STATIC__/home/common/js/main.js"></script>
+<script>
+    can_click = 1;
+    has_collect = {$has_collect};
+    goods_id = {$goodsInfo.id};
+    stock = {$goodsInfo.stock};
+    buy_limit = {$goodsInfo.stock};
+    item_id = 0;
+    price = {$goodsInfo.price};
+    prom_type = {$goodsInfo.prom_type};
+    goods_spec_price = {$goods_spec_price|default='null'};//规格库存价格
+    $(document).ready(function (){
+        home_obj.detail();
+        ajaxComment(1, 1);
+    });
+    //看了又看切换
+    var tmpindex = 0;
+    var look_see_length = $('#look_see').children().length;
+
+    function replace_look() {
+        var listr = '';
+        if (tmpindex * 2 >= look_see_length) tmpindex = 0;
+        $('#look_see').children().each(function (i, o) {
+            if ((i >= tmpindex * 2) && (i < (tmpindex + 1) * 2)) {
+                console.log($(o).html());
+                listr += '<div class="tjhot-shoplist type-bot">' + $(o).html() + '</div>';
+            }
+        });
+        tmpindex++;
+        $('#see_and_see').empty().append(listr);
+    }
+
+    $(function () {
+        replace_look();
+    })
+</script>
+
+
+<script type="text/javascript">
+    $(function () {
+        var mySwipera = new Swiper('.swiper-containera', {
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            slidesPerView: 5,
+            centeredSlides: false,
+            paginationClickable: true,
+            spaceBetween: 20,
+        })
+
+        // 选择套餐
+        $(".taocan-img").click(function () {
+            $(this).addClass("active").siblings(".taocan-img").removeClass("active");
+        })
+
+
+        // 评价
+        $(".right-discuss span").click(function () {
+            $(this).addClass("active").siblings("span").removeClass("active");
+        })
+
+        // 详情tab切换
+        $(".detail-title").click(function () {
+            $(this).addClass("active").siblings(".detail-title").removeClass("active");
+            var _index = $(this).index();
+            $(".tab-item").eq(_index).show().siblings().hide();
+        })
+        // 评价切换
+        $(".discuss-menu li").click(function () {
+            $(this).addClass("active").siblings("li").removeClass("active");
+            var commentType= $(this).attr('commentType');
+            ajaxComment(1, 1);
+        })
+    })
+
+
+    function timer(intDiff) {
+        window.setInterval(function () {
+            var day = 0,
+                hour = 0,
+                minute = 0,
+                second = 0;//时间默认值
+            if (intDiff > 0) {
+                day = Math.floor(intDiff / (60 * 60 * 24));
+                hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+                minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+                second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+            }
+            if (hour <= 9) hour = '0' + hour;
+            if (minute <= 9) minute = '0' + minute;
+            if (second <= 9) second = '0' + second;
+            if(day>0){
+                $('.day_show').html(day+"天").show();
+            }else{
+                $('.day_show').hide();
+            }
+
+            $('.hour_show').html(hour);
+            $('.minute_show').html(minute);
+            $('.second_show').html(second);
+            intDiff--;
+        }, 1000);
+    }
+
+
+    /**
+     * 加载更多评论
+     */
+    function ajaxComment(commentType,page){
+        var commentType= $(".discuss-menu .active").attr('commentType');
+        $.ajax({
+            type : "POST",
+            url:"/Home/Index/ajaxComment/goods_id/"+goods_id+"/commentType/"+commentType+"/p/"+page,//+tab,
+            success: function(data){
+                $("#ajax_comment_list").empty().html(data);
+            }
+        });
+    }
+
+</script>
+
+</body>
+</html>

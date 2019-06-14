@@ -1,0 +1,46 @@
+{extend name="public/base"/}
+{block name="body"}
+<script type="text/javascript">
+    $("title").text('添加地址');
+    $(document).ready(vip_obj.addressadd);
+</script>
+
+<form id="data-form">
+    <div class="list">
+        <ul>
+            <li>
+                <span>联系人</span>
+                <input type="text" name="linkman" value="{$data.linkman}" notnull notice="请输入联系人">
+            </li>
+            <li>
+                <span>联系电话</span>
+                <input type="number" name="linktel" value="{$data.linktel}" notnull notice="请输入您的联系电话">
+            </li>
+            <li>
+                <span>所在地区</span>
+                <div id="address" class="select-area">{$data.pca}</div>
+                {assign name="tool" value="address_pca" /}
+                {include file="public/tool"/}
+            </li>
+            <li>
+                <textarea placeholder="详细地址" rows="3" name="address" notnull notice="请输入您的详细地址">{$data.address}</textarea>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mo">
+        <div class="add">
+            {if condition="$data['is_default'] eq 0"}
+            <p class="bg"><input type="radio" name="is_default" value="1"/></p>
+            {else/}
+            <p class="bg bg1"><input type="radio" name="is_default" value="1" checked="checked"/></p>
+            {/if}
+        </div>
+        <div class="addrt">设为默认地址</div>
+    </div>
+
+    <input type="hidden" name="id" value="{$data.id}">
+    <input type="submit" class="footer5" value="保存">
+</form>
+<input type="hidden" id="do_action" value="{:url('Vip/addressadd')}">
+{/block}

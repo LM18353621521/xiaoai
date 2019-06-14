@@ -1,0 +1,185 @@
+{extend name="public/base"/ }
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(function(){
+        can_click=1;
+    });
+    $(document).ready(order_obj.myorder);
+</script>
+<body>
+
+    <div class="bt">
+        {if condition="!$vip.mobile"}
+        <div class="ktitle">
+            <div class="ktitle11">找不到订单？绑定手机号试试</div>
+            <div class="ktitle12"><div class="tab bind_do">绑定</div></div>
+        </div>
+        {/if}
+        {foreach name="order_tab" item="vo" key="k"}
+        <div class="bt1">
+            <div status="{$k}" class='bt2 {eq name="k" value="$status"}color01{/eq}'>{$vo}</div>
+        </div>
+        {/foreach}
+
+        <!--<div class="bt1">-->
+            <!--<div class="bt2">段子</div>-->
+        <!--</div>-->
+    </div>
+
+    <div class="lists">
+        <div class="hidden">
+            <input type="hidden" name="page" value="1"/>
+            <input type="hidden" name="url" value="{:url('Order/myorder')}"/>
+        </div>
+        <ul class="tab-content-item content" style="display: block">
+            <!--<li>-->
+            <!--<p class="title">夫妻搞笑视频</p>-->
+            <!--<video class="video" controls>-->
+            <!--<source src="http://www.html5videoplayer.net/videos/madagascar3.mp4" type="video/mp4">-->
+            <!--</video>-->
+            <!--<p class="time">3小时前发布</p>-->
+            <!--</li>-->
+        </ul>
+        <form id="form_ajax">
+            <input type="hidden" name="status" value="{$status}"/>
+            <input type="hidden" name="keyword" value=""/>
+            <input type="hidden" name="sort" value="create_time"/>
+            <input type="hidden" name="asc" value="desc"/>
+        </form>
+        {assign name="nodata" value="nothing_img"}
+        {include file="public/nodata"/  text="亲，暂无订单数据~"}
+    </div>
+    <!--<div class='li'>-->
+        <!--<div class='code-leftright'>-->
+          <!--<div class='code-left'>订单编号：343242342423</div>-->
+          <!--<div class='code-right'>等待买家付款</div>-->
+        <!--</div>-->
+          <!--<div class='lists'>-->
+                <!--<div class='item'>-->
+                      <!--<div class="lt">-->
+                          <!--<image src="__STATIC__/mobile/home/images/product-list.jpg"/>-->
+                      <!--</div>-->
+                      <!--<div class="rt">-->
+                          <!--<div class='first'>-->
+                                <!--<div class='first-left'>VR飞机杯真实体验真人3D环VR飞机杯真实体验真人3D环VR飞机杯真实体验真人3D环</div>-->
+                                <!--<div class='first-right'>￥55</div>-->
+                          <!--</div>-->
+                          <!--<div class='sec'>-->
+                                <!--<div class='sec-left'><span>颜色：白色</span> 尺寸：<span>大号</span></div>-->
+                                <!--<div class='sec-right'>x6</div>-->
+                          <!--</div>-->
+                      <!--</div>-->
+                <!--</div> -->
+                <!--<div class='item'>-->
+                      <!--<div class="lt">-->
+                          <!--<image src="__STATIC__/mobile/home/images/product-list.jpg"/>-->
+                      <!--</div>-->
+                      <!--<div class="rt">-->
+                          <!--<div class='first'>-->
+                                <!--<div class='first-left'>VR飞机杯真实体验真人3D环VR飞机杯真实体验真人3D环VR飞机杯真实体验真人3D环</div>-->
+                                <!--<div class='first-right'>￥55</div>-->
+                          <!--</div>-->
+                          <!--<div class='sec'>-->
+                                <!--<div class='sec-left'><span>颜色：白色</span> 尺寸：<span>大号</span></div>-->
+                                <!--<div class='sec-right'>x6</div>-->
+                          <!--</div>-->
+                      <!--</div>-->
+                <!--</div>   -->
+          <!--</div>   -->
+          <!--<div class="gongji">共计1件商品 合计：<span>￥100.00元</span></div>-->
+          <!--<div class="yunfei">含运费：￥0元</div>-->
+            <!--<div class="datebox1">-->
+              <!--<div class="date00 pink-active">取消订单</div>-->
+              <!--<div class="date00 gray-active">确认付款</div>-->
+            <!--</div>-->
+    <!--</div>-->
+    <!--<div class='li'>-->
+        <!--<div class='code-leftright'>-->
+          <!--<div class='code-left'>订单编号：343242342423</div>-->
+          <!--<div class='code-right'>等待买家付款</div>-->
+        <!--</div>-->
+        <!--<div class='lists'>-->
+            <!--<div class='item'>-->
+                  <!--<div class="lt">-->
+                      <!--<image src="__STATIC__/mobile/home/images/product-list.jpg"/>-->
+                  <!--</div>-->
+                  <!--<div class="rt">-->
+                      <!--<div class='first'>-->
+                            <!--<div class='first-left'>VR飞机杯真实体验真人3D环VR飞机杯真实体验真人3D环VR飞机杯真实体验真人3D环</div>-->
+                            <!--<div class='first-right'>￥55</div>-->
+                      <!--</div>-->
+                      <!--<div class='sec'>-->
+                            <!--<div class='sec-left'><span>颜色：白色</span> 尺寸：<span>大号</span></div>-->
+                            <!--<div class='sec-right'>x6</div>-->
+                      <!--</div>-->
+                  <!--</div>-->
+            <!--</div> -->
+            <!--<div class='item'>-->
+                  <!--<div class="lt">-->
+                      <!--<image src="__STATIC__/mobile/home/images/product-list.jpg"/>-->
+                  <!--</div>-->
+                  <!--<div class="rt">-->
+                      <!--<div class='first'>-->
+                            <!--<div class='first-left'>VR飞机杯真实体验真人3D环VR飞机杯真实体验真人3D环VR飞机杯真实体验真人3D环</div>-->
+                            <!--<div class='first-right'>￥55</div>-->
+                      <!--</div>-->
+                      <!--<div class='sec'>-->
+                            <!--<div class='sec-left'><span>颜色：白色</span> 尺寸：<span>大号</span></div>-->
+                            <!--<div class='sec-right'>x6</div>-->
+                      <!--</div>-->
+                  <!--</div>-->
+            <!--</div>   -->
+      <!--</div>   -->
+          <!--<div class="gongji">共计1件商品 合计：<span>￥100.00元</span></div>-->
+          <!--<div class="yunfei">含运费：￥0元</div>-->
+            <!--<div class="datebox1">-->
+              <!--<div class="date00 pink-active">取消订单</div>-->
+              <!--<div class="date00 gray-active">确认付款</div>-->
+            <!--</div>-->
+    <!--</div>-->
+
+
+    <!--<div class="jiazai">没有更多了</div>-->
+
+
+    <!--绑定浮层  -->
+    <div class='fuceng bind_fu'>
+        <div class="fuer"></div>
+        <div class='baibga'>
+            <div class='login-title'>绑定手机号<img src="__STATIC__/mobile/home/images/my-close.jpg" /></div>
+            <div class="formbox">
+                <div class="form1 phone-bg">
+                    <div class="box1">
+                        <input type="text" placeholder="请输入您的手机号" />
+                    </div>
+                    <div class="box1">
+                        <input class='code-yan' type="text" placeholder="请输入验证码"/>
+                        <div class="get">发送验证码</div>
+                    </div>
+                    <div class="btnbtna">绑定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        $(function(){
+            $(".bt2").click(function(){
+                $(".bt2").removeClass("color01");
+                $(this).addClass("color01");
+            });
+        });
+
+        $(".login-title img,.btnbtna,.btnbtn").click(function(){
+            $(".fuceng").hide();
+        })
+
+        //显示绑定浮层
+        $('.bind_do').click(function(){
+            $(".bind_fu").show();
+        })
+
+    </script>
+
+{/block}

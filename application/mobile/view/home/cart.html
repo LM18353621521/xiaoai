@@ -1,0 +1,202 @@
+{extend name="public/base"/ }
+
+{block name="body"}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        can_click=1;
+    });
+    $(document).ready(home_obj.detail);
+
+
+</script>
+<body>
+    <div class="way">
+        <div class="add"> 
+            <p class="bg"><input type="checkbox" name="a" /></p>   
+            <div class="detail">
+                <div class="mid">
+                    <div class="list">
+                        <div class="lt"><img src="__STATIC__/mobile/home/images/product.jpg" /></div>
+                        <div class="rt">
+                            <p><span>南通延安路速达加油站南通延安路速达加油站</span></p>
+                            <p><span>￥</span><span class="danjia">300</span><span class="nmpc"><span class="mit">－</span><span class="number">1</span><span class="plus">+</span></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>          
+        </div> 
+      <div class="add"> 
+            <p class="bg"><input type="checkbox" name="a" /></p>   
+            <div class="detail">
+                <div class="mid">
+                    <div class="list">
+                        <div class="lt"><img src="__STATIC__/mobile/home/images/product.jpg" /></div>
+                        <div class="rt">
+                            <p><span>南通延安路速达加油站南通延安路速达加油站</span></p>
+                            <p><span>￥</span><span class="danjia">300</span><span class="nmpc"><span class="mit">－</span><span class="number">1</span><span class="plus">+</span></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>          
+        </div>
+      <div class="add"> 
+            <p class="bg"><input type="checkbox" name="a" /></p>   
+            <div class="detail">
+                <div class="mid">
+                    <div class="list">
+                        <div class="lt"><img src="__STATIC__/mobile/home/images/product.jpg" /></div>
+                        <div class="rt">
+                            <p><span>南通延安路速达加油站南通延安路速达加油站</span></p>
+                            <p><span>￥</span><span class="danjia">300</span><span class="nmpc"><span class="mit">－</span><span class="number">1</span><span class="plus">+</span></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>          
+        </div>        
+    </div>  
+    <!--all-->
+    <div class="all">
+          <div class="lt ss"><span class="allcheck"></span>全选</div>
+          <div class="lt ee"><span style="margin-left: 5%;">总计：<span style="color:#FF4A8A; font-size:1.8rem; margin-left:0.5rem;">¥<span class="ji">380</span></span></div>
+         <div class="rt">立即付款<span class="buy-num"></span></div>
+    </div>
+
+
+    <div class="bt_bottom">
+        <div class="bt_bottom1">
+            <img class="btimg0" src="__STATIC__/mobile/home/images/footera.png">
+            <div class="fot1">首页</div>
+        </div>
+        <div class="bt_bottom1">
+            <img class="btimg0" src="__STATIC__/mobile/home/images/footerb.png">
+            <div class="fot1">分类</div>
+        </div>
+        <div class="bt_bottom1">
+            <img class="btimg0" src="__STATIC__/mobile/home/images/footerc.png">
+            <div class="fot1">赚奖金</div>
+        </div>
+        <div class="bt_bottom1">
+            <img class="btimg0" src="__STATIC__/mobile/home/images/footerd-active.png">
+            <div class="fot1 color_style1">购物车</div>
+        </div>
+        <div class="bt_bottom1">
+            <img class="btimg0" src="__STATIC__/mobile/home/images/footere.png">
+            <div class="fot1">我的</div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script type="text/javascript">
+        $(function(){
+            function accMul(arg1,arg2){ 
+                var m=0,s1=arg1.toString(),s2=arg2.toString(); 
+                try{m+=s1.split(".")[1].length}catch(e){} 
+                try{m+=s2.split(".")[1].length}catch(e){} 
+                return Number(s1.replace(".",""))*Number(s2.replace(".",""))/Math.pow(10,m) 
+            } 
+            //给Number类型增加一个mul方法，调用起来更加方便。 
+            Number.prototype.mul = function (arg){ 
+                return accMul(arg, this); 
+            }
+
+
+            // 算总钱数
+            function suan(){
+                var qianzong=0;
+                var qian1=0;
+                var danjia=0;
+                var shuliang=0;
+                var shuliangzong=0;
+                $(".bg.bg1").each(function(){
+                    danjia = $(this).next(".detail").find(".danjia").text();
+                    shuliang = $(this).next(".detail").find(".number").text();
+                    qian1 =accMul(danjia,shuliang);
+                    qianzong +=qian1;
+                    shuliangzong += parseInt(shuliang);
+                });
+                $(".buy-num").text("("+shuliangzong+")");
+                $(".ji").text(qianzong);
+            }
+
+
+
+            // 单选
+            $(".add .bg").click(function(){
+                $(this).toggleClass("bg1")
+
+                if( $(this).next(".detail").find(".mid .list .lt div").hasClass("down")){
+                    $(this).removeClass("bg1")      
+                }
+                var las=$(".bg").length;
+                var ras=$(".way .bg1").length;
+                var no=$(".way .down").length;
+
+              
+                if(ras<(las-no)){
+                    $(".all .ss").find(".allcheck").removeClass("bg1");
+                }else{
+                    $(".all .ss").find(".allcheck").addClass("bg1");
+                }
+                suan();
+            });
+
+
+            // 全选
+            $(".all .ss").click(function(){
+                $(this).find(".allcheck").toggleClass("bg1")
+                if($(this).find(".allcheck").hasClass("bg1")){
+                    $(".bg").each(function(){
+          
+                        if(!$(this).hasClass("bg1")){
+                            $(this).addClass("bg1")
+                            $(this).find("input:checkbox").attr("checked","true");
+                        }
+                        if( $(this).next(".detail").find(".mid .list .lt div").hasClass("down")){
+                            $(this).removeClass("bg1")
+                            $(this).find("input:checkbox").attr("checked","false")
+                        }
+                    });
+                }else{
+                    $(".bg").each(function(){
+                        if($(this).hasClass("bg1")){
+                            $(this).removeClass("bg1")
+                            $(this).find("input:checkbox").attr("checked","false")
+                        } 
+                        if( $(this).next(".detail").find(".mid .list .lt div").hasClass("down")){
+                            $(this).removeClass("bg1")
+                            $(this).find("input:checkbox").attr("checked","false")
+                        }
+                    })
+                }
+                suan();
+            })
+
+             // 点击减号
+            $(".mit").click(function(){
+                var num=$(this).parents(".add").find(".number").text();
+                if(num>1){
+                    num--;
+                    $(this).parents(".add").find(".number").text(num);
+                }
+                suan();
+            })
+            // 点击加号
+            $(".plus").click(function(){
+                var num=$(this).parents(".add").find(".number").text();
+                num++;
+                $(this).parents(".add").find(".number").text(num);  
+                suan();
+            })
+
+
+
+
+        });
+    </script>
+
+    {/block}

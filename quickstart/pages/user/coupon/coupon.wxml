@@ -1,0 +1,25 @@
+<view class="header-ul flex">
+  <block wx:for="{{headerArray}}">
+    <view data-idx='{{index}}' class='header-li {{_active==index?"active":""}}' bindtap='headertap'>{{item}}</view>
+  </block>
+</view>
+<view class='coupon-ul'>
+  <block wx:for="{{list}}">
+    <view class='coupon-li flex {{(item.status==1||item.status==2)?"coupon-use":""}}'>
+      <view class='coupon-text {{(!item.status)?"use-text":""}}'>
+        <view class='coupon-term'>满{{item.limit}}元使用</view>
+        <view class='coupon-time'>{{item.use_stime}}至{{item.use_etime}}使用</view>
+      </view>
+      <view class='coupon-text2'>
+        <view class='coupon-money'>￥
+          <text class='coupon-num'>{{item.money}}</text>
+        </view>
+        <view class='coupon-but {{(item.has==1)?"coupon-use":""}}' wx:if="{{item.has==1}}">已领取</view>
+        <view bindtap='getcoupon' data-index="{{index}}" class='coupon-but {{(item.has==0)?"use-text":""}}' wx:if="{{item.has==0}}">立即领取</view>
+      </view>
+      <!-- <view class='{{item.status==0?"coupon-new":""}}'></view> -->
+    </view>
+  </block>
+</view>
+<view class="more">
+  <image mode='widthFix' src="../../../images/jiazai.png" />{{more_tips}}</view>

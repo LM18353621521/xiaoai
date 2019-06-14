@@ -1,0 +1,60 @@
+﻿{extend name="public/left"/}
+
+{block name="body"}
+<section class="wrapper" style="margin-top:60px">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="tittab">个人信息</div>
+                    <div class="titcontent">
+                        <div class="titcontent0">
+                            <div class="contentl1">用户名</div>
+                            <div class="contentr1">{$loginer.username}</div>
+                        </div>
+                        <div class="titcontent0">
+                            <div class="contentl1">上次登录时间</div>
+                            <div class="contentr1">{$loginer.last_login_time|date="Y-m-d H:i",###}</div>
+                        </div>
+                        <div class="titcontent0">
+                            <div class="contentl1">上次登录IP</div>
+                            <div class="contentr1">{$loginer.last_login_ip}</div>
+                        </div>
+                        <div class="titcontent0">
+                            <div class="contentl1">状态</div>
+                            <div class="contentr1">正常</div>
+                        </div>
+                    </div>
+
+                    <div class="tittab">系统信息</div>
+                    <div class="titcontent">
+                        <div class="titcontent0">
+                            <div class="contentl1">操作系统</div>
+                            <div class="contentr1">Linux</div>
+                        </div>
+                        <div class="titcontent0">
+                            <div class="contentl1">浏览器信息</div>
+                            <div class="contentr1">{$Request.server.HTTP_USER_AGENT}</div>
+                        </div>
+                        <div class="titcontent0">
+                            <div class="contentl1">服务器环境</div>
+                            <div class="contentr1">{$Request.server.SERVER_SOFTWARE}</div>
+                        </div>
+                        <div class="titcontent0">
+                            <div class="contentl1">PHP版本</div>
+                            <div class="contentr1">{:phpversion()}</div>
+                        </div>
+                        <div class="titcontent0">
+                            <div class="contentl1">MYSQL版本</div>
+                            <div class="contentr1">5.6</div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <div id="page"></div>
+        </div>
+    </div>
+</section>
+
+{/block}

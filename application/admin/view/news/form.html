@@ -1,0 +1,82 @@
+{if condition ="strtolower(request()->action()) == 'category'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td>
+        <input name="sort" data-id="{$vo.id}" type="text" size="1" class="form-control col-lg-1 data-sort" value="{$vo.sort}">
+    </td>
+    <td>{$vo.name}</td>
+    <td data-pid="{$vo.id}">
+        <a href="{:url('News/categoryadd',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-pencil"></i></button>
+        </a>
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="news_category" data-fieldname="is_hidden" data-value="1" title="删除"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}
+
+
+{if condition ="strtolower(request()->action()) == 'news'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><input type="checkbox" name="id" value="{$vo.id}"></td>
+    <td><a href="#">{$key+1}</a></td>
+    <td>{$vo.category_name}</td>
+    <td>{$vo.title}</td>
+    <td>{$vo.create_time|date="Y-m-d H:i",###}</td>
+    <td data-pid="{$vo.id}">
+        {if condition="$vo.is_publish == 0"}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="news" data-fieldname="is_publish" data-value="1">
+            <i class="icon-remove" title="未发布"></i>
+        </a>
+        {elseif condition="$vo.is_publish == 1"/}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="news" data-fieldname="is_publish" data-value="0">
+            <i class="icon-ok" title="已发布"></i>
+        </a>
+        {/if}
+
+        {if condition="$vo.is_top == 0"}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="news" data-fieldname="is_top" data-value="1">
+            <i class="icon-long-arrow-down" title="未置顶"></i>
+        </a>
+        {elseif condition="$vo.is_top == 1"/}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="news" data-fieldname="is_top" data-value="0">
+            <i class="icon-long-arrow-up" title="已置顶"></i>
+        </a>
+        {/if}
+    </td>
+    <td data-pid="{$vo.id}">
+        <a href="{:url('News/newsadd',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-pencil"></i></button>
+        </a>
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="news" data-fieldname="is_hidden" data-value="1"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}
+
+
+{if condition ="strtolower(request()->action()) == 'review'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><input type="checkbox" name="id" value="{$vo.id}"></td>
+    <td><a href="#">{$key+1}</a></td>
+    <td>{$vo.nickname}</td>
+    <td>{$vo.news_title}</td>
+    <td>{$vo.content}</td>
+    <td>{$vo.create_time|date="Y-m-d H:i",###}</td>
+    <td data-pid="{$vo.id}">
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="news_review" data-fieldname="is_hidden" data-value="1"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}

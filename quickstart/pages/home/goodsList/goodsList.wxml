@@ -1,0 +1,42 @@
+<!--搜索  -->
+<input class="lenright" type="text" name="keyword" value='{{keyword}}' bindconfirm="search_do" placeholder="商品搜索" placeholder-style="color:#ccc;" />
+<image src="../../../images/search.png" class="search" />
+
+<!--tab切换  -->
+<scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll">
+  <view class="scroll-view-item_H" wx:for="{{titarr}}">
+    <view class="title {{tabcurrent == index ? 'titlesel':''}}" bindtap="singelbtn" wx:for="{{item}}" data-sort="{{sonitem.sort}}" data-index="{{index}}" wx:for-item="sonitem">{{sonitem.tit}}</view>
+  </view>
+</scroll-view>
+
+<!--列表  -->
+<view class='lists'>
+<block wx:for="{{list}}" data-id='{{item.id}}'>
+  <navigator url='/pages/home/detail/detail?id={{item.id}}' hover-class='none'>
+    <view class='item'>
+      <view class="lt">
+        <image src="{{item.coverimg}}" />
+      </view>
+      <view class="rt">
+        <view>{{item.name}}</view>
+        <view class='money'>￥{{item.price}}</view>
+        <view class='person'>{{item.sales}}人付款</view>
+      </view>
+    </view>
+  </navigator>
+  </block>
+  <view class="more">
+    <image mode='widthFix' src="../../../images/jiazai.png" /> {{more_tips}}
+  </view>
+  <!-- <view class='more'></view> -->
+  <!-- <view class='item'>
+    <view class="lt">
+        <image src="../../../images/product-list.jpg"/>
+    </view>
+    <view class="rt">
+        <view>VR飞机杯真实体验真人3D环绕声叫爽翻VR飞机杯真实体验真人3D环绕声叫爽翻VR飞机杯真实体验真人3D环绕声叫爽翻</view>
+        <view class='money'>￥159</view>
+        <view class='person'>7895人付款</view>
+    </view>
+  </view> -->
+</view>

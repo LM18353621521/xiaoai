@@ -1,0 +1,188 @@
+<view class="top-banner">
+  <block wx:if="{{order.status==0}}">
+    <view class="top-bannera">订单状态：待付款
+      <text>剩余支付时间：{{countDownHour}}时{{countDownMinute}}分{{countDownSecond}}秒</text>
+    </view>
+  </block>
+  <block wx:if="{{order.status==1}}">
+    <view class="top-bannera">订单状态：买家已付款</view>
+    <view class="top-bannerb">物流状态：买家发货中</view>
+    <image class='payed' src="../../../images/payed.png" />
+  </block>
+  <block wx:if="{{order.status==2}}">
+    <view class="top-bannera">订单状态：已发货
+      <text>(订单将于{{order.confirm_subday}}天后自动确认收货)</text>
+    </view>
+    <!-- <view class="top-bannerb">物流状态：等待快递上门揽件</view> -->
+  </block>
+  <block wx:if="{{order.status==3}}">
+    <view class="top-bannera">订单状态：已收货</view>
+    <view class="top-bannerb">物流状态：已签收-本人签收</view>
+  </block>
+  <block wx:if="{{order.status==-1}}">
+    <view class="top-bannera">订单状态：已取消</view>
+    <!-- <view class="top-bannerb">物流状态：已签收-本人签收</view> -->
+  </block>
+  <block wx:if="{{order.status==-2}}">
+    <view class="top-bannera">订单状态：申请退款</view>
+    <!-- <view class="top-bannerb">物流状态：已签收-本人签收</view> -->
+  </block>
+
+  <block wx:if="{{order.status==-3}}">
+    <view class="top-bannera">订单状态：已退款</view>
+    <!-- <view class="top-bannerb">物流状态：已签收-本人签收</view> -->
+  </block>
+
+</view>
+
+<view class='order-addr'>
+  <image class='addr' src="../../../images/addr.png" />
+  <image class='toright' src="../../../images/toright.png" />
+  <view class='addr-box'>
+    <view class='addr-name'>收货人：{{order.linkman}}
+      <text>{{order.linktel}} </text>
+    </view>
+    <view class='addr-info'>收货地址：{{order.address}} </view>
+  </view>
+</view>
+
+
+<view class='lists'>
+  <view class='item' wx:for="{{order.orderlog}}">
+    <view class="lt">
+      <image src="{{item.coverimg}}" />
+    </view>
+    <view class="rt">
+      <view class='list-name'>{{item.goods_name}}</view>
+      <view class='list-info'>
+        <text>{{item.key_name}}</text>
+      </view>
+      <view class='list-money'>
+        <text class='aa'>￥<text>{{item.goods_price}}</text></text>
+        <text class='bb'>x{{item.buy_num}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+<!-- <view class='view-input'>
+  <view class='view-input-left'>买家留言</view>
+  <input class="view-input-right" type="text" placeholder="买家请留言" placeholder-style="color:#ccc;" />
+</view> -->
+<view class='view-input'>
+  <view class='view-input-left'>买家留言</view>
+  <view class='view-input-right'>{{order.remark}}</view>
+</view>
+
+
+
+<view class='order-box'>
+  <view class='order-left small-fontSize'>共{{order.total_number}}件商品 合计</view>
+  <view class='order-right'>￥{{order.goods_price}}</view>
+</view>
+<view class='order-box'>
+  <view class='order-left'>运费</view>
+  <view class='order-right order-gray'>￥{{order.express_fee}}</view>
+</view>
+<view class='order-box'>
+  <view class='order-left'>优惠金额</view>
+  <view class='order-right'>￥{{order.coupon_money}}</view>
+</view>
+<view class='order-box'>
+  <view class='order-left'>实付款</view>
+  <view class='order-right'>￥{{order.pay_money}}</view>
+</view>
+<view class='order-box'>
+  <view class='ordera-left'>支付方式：</view>
+  <view class='ordera-right'>{{order.pay_type_desc}}</view>
+</view>
+
+<block wx:if="{{order.status>=2}}">
+  <view class='order-box'>
+    <view class='ordera-left'>配送方式：</view>
+    <view class='ordera-right'>{{order.shipping_name}}</view>
+  </view>
+  <view class='order-box'>
+    <view class='ordera-left'>物流单号</view>
+    <view class='ordera-right'>
+      <text class='order-code'>{{order.shipping_sn}}</text>
+      <!-- <text class='order-copy' bindtap='copyCode'>复制</text> -->
+    </view>
+  </view>
+</block>
+
+
+
+
+<view class='order-box'>
+  <view class='ordera-left'>订单编号：</view>
+  <view class='ordera-right'>{{order.order_number}}</view>
+</view>
+<view class='order-box' wx:if="{{order.create_time}}">
+  <view class='ordera-left'>下单时间：</view>
+  <view class='ordera-right'>{{order.create_time_desc}}</view>
+</view>
+<view class='order-box' wx:if="{{order.pay_time}}">
+  <view class='ordera-left'>付款时间：</view>
+  <view class='ordera-right'>{{order.pay_time_desc}}</view>
+</view>
+<view class='order-box' wx:if="{{order.shipping_time}}">
+  <view class='ordera-left'>发货时间：</view>
+  <view class='ordera-right'>{{order.shipping_time_desc}}</view>
+</view>
+<view class='order-box' wx:if="{{order.confirm_time}}">
+  <view class='ordera-left'>收货时间：</view>
+  <view class='ordera-right'>{{order.confirm_time_desc}}</view>
+</view>
+<view class='order-box' wx:if="{{order.cancel_time}}">
+  <view class='ordera-left'>取消时间：</view>
+  <view class='ordera-right'>{{order.cancel_time_desc}}</view>
+</view>
+
+<view class="ss">
+  <view class="ke">
+    <navigator open-type='switchTab' url='/pages/home/index/index' hover-class='none'>
+      <image class="keimg" src="../../../images/footer-home.png" />
+      <view class="kefont">首页</view>
+    </navigator>
+  </view>
+  <view class="ke">
+    <button open-type="contact">
+      <image class="keimg" src="../../../images/footer-ear.png" />
+      <view class="kefont">客服</view>
+    </button>
+  </view>
+  <block wx:if="{{order.status==0}}">
+    <view class="s2" bindtap='cancel_do'>取消订单</view>
+    <view class="s3" bindtap='pay_do'>立即支付</view>
+  </block>
+  <block wx:if="{{order.status==1}}">
+    <view class="s2" bindtap='refund_do'>申请退款</view>
+    <view class="s3">提醒发货</view>
+  </block>
+  <block wx:if="{{order.status==2}}">
+    <view class="s2" bindtap='refund_do'>申请退款</view>
+    <view class="s3" bindtap='confirm_do'>确认收货</view>
+  </block>
+  <block wx:if="{{order.status==3&&order.is_comment==0}}">
+    <view class="s2" bindtap='express_do'>查看物流</view>
+    <view class="s3" bindtap='comment_do'>去评价</view>
+  </block>
+  <block wx:if="{{order.status==3&&order.is_comment==1}}">
+    <view class="s2" bindtap='del_do'>删除订单</view>
+    <view class="s3" bindtap='express_do'>查看物流</view>
+  </block>
+  <block wx:if="{{order.status==-1}}">
+    <view class="s1" bindtap='del_do'>删除订单</view>
+    <!-- <view class="s3" bindtap='express_do'></view> -->
+  </block>
+  <block wx:if="{{order.status==-2}}">
+    <view class="s1">申请退款中</view>
+    <!-- <view class="s3" bindtap='express_do'></view> -->
+  </block>
+  <block wx:if="{{order.status==-3}}">
+    <view class="s1" bindtap='del_do'>删除订单</view>
+  </block>
+</view>

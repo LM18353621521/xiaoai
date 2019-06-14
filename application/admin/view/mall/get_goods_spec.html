@@ -1,0 +1,22 @@
+<label class="control-label col-lg-2">商品规格</label>
+<div class="col-lg-10">
+    <table class="table table-striped" id="goods_spec_table">
+        <tbody>
+        {volist name="goods_spec" id="vo"}
+        <tr>
+            <td>{$vo.name}</td>
+            <td>
+                {foreach name="vo['spec_item']" id="v" key="k2"}
+                    <button type="button"  data-spec_id='{$vo.id}' data-item_id='{$k2}'    class='btn goods_spec_btn {in name="k2" value="$items_ids"}btn-success{else/}btn-default{/in}'>{$v}</button>
+                {/foreach}
+            </td>
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+</div>
+<script>
+</script>
+
+
+

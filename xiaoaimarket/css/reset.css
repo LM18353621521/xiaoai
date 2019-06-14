@@ -1,0 +1,187 @@
+@charset "utf-8";
+
+/****************************************/
+/*	Name: PUBLISHING GUIDE
+/*	PART: RESET STYLE
+/*	Version: 1.0
+/*	Author: 김미선
+/****************************************/
+
+/* reset css */
+body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, thead, tbody, tr, th, td, form, fieldset, legend, input, textarea, button {margin:0; padding:0;}
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {display:block}
+body{font-family:'微软雅黑','sans-serif'; font-size:12px; line-height:20px; color:#666; background-color:#fff;}
+body, input, select, div, textarea, table, button {font-size:12px; font-family:'微软雅黑'; color:#666;}
+
+table {width:100%; border:0; border-spacing:0px;}
+/* body.ie10 table {border-collapse: separate; border-spacing:0px;} ie10 border-collapse:collapse bug */
+
+legend, caption {width:1px; height:0; font-size:0; line-height:0; visibility:hidden; overflow:hidden;}
+img, fieldset, button {vertical-align:middle; border:0;}
+ul, ol, li {list-style:none;}
+em, address {font-style:normal;}
+hr {display:none; visibility:hidden;}
+input, textarea, button {line-height: 1.2; vertical-align:middle;}
+/* input::-ms-clear {display:none;} input ie x 삭제*/
+/* input::-ms-reveal {display:none;} input password ie x 삭제*/
+
+input[type="checkbox"],input[type="radio"] {margin:0; padding:0; vertical-align:-1px; width:13px; height:13px; line-height:13px;}
+	body.ie8 input[type="checkbox"], body.ie8 input[type="radio"]{vertical-align:-2px;}
+	body.chrome input[type="checkbox"], body.chrome input[type="radio"],
+	body.firefox input[type="checkbox"], body.firefox input[type="radio"],
+	body.safari input[type="checkbox"], body.safari input[type="radio"] {vertical-align:middle;}
+input[type="radio"]  {border:none}
+/* input[readonly=readonly] {cursor:none;} */
+/*
+input[type=text] {border:1px solid #bbb; padding:5px 4px 6px 4px;}
+.msie input[type=text] {padding:7px 4px 4px 4px;}
+*/
+
+.chrome input[type=text], .firefox input[type=text], .safari input[type=text], .opera input[type=text]   {padding:5px 4px 6px 4px;}
+.chrome input[type=password], .firefox input[type=password], .safari input[type=password], .opera input[type=password] {padding:5px 4px 6px 4px;}
+
+input[type=text].c {text-indent:0;}
+label {cursor:pointer; vertical-align:middle;}
+a {text-decoration:none; color:#444;}
+button {border:0; vertical-align:middle; cursor:pointer; overflow:visible; background:transparent;}
+button::-moz-focus-inner {border:0; padding:0;}
+
+
+/****************************/
+/* Common Style             */
+/****************************/
+.clfix{*zoom:1;}
+.clfix:before,.clfix:after{display:table; line-height:0; content:"";}
+.clfix:after{clear:both;}
+
+/* HIDDEN */
+.hide {display:block; position:absolute; height: 0; width: 0; font-size: 0; line-height: 0; margin: 0; padding: 0; overflow:hidden;}
+.blind {text-indent:100%; white-space:nowrap; overflow:hidden;}
+
+/* placeHolder */
+.overlay_wrap {position:relative;}
+.overlay_guide, .overlay_guide.exception {position:absolute; top:8px; left:10px; font-size:12px; color:#888; display:inline-block;}
+.overlay {width:100%; height:auto; padding:0; text-indent:5px; border:0;}
+.overlay_guide.exception + .overlay {text-indent:0;} 
+
+/* ALIGN */
+.c {text-align:center !important;}
+.l {text-align:left !important;}
+.r {text-align:right !important;}
+
+.vm {vertical-align:middle !important;}
+.vt {vertical-align:top !important;}
+.vb {vertical-align:bottom !important;}
+
+.posR {position:relative;}
+.posA {position:absolute;}
+
+.fl {float:left;}
+.fr {float:right;}
+.fn {float:none;}
+
+.pointOr {color:#F36910;}
+.pointRed, .errorTxt {color:#F00 !important;}
+.pointBlue {color:#0059a6 !important;}
+
+
+*{
+	margin:0;
+	padding:0;
+	outline: none;
+	font-family:'微软雅黑','sans-serif';
+}
+
+.hidden{
+	display: none;
+}
+body{
+	background: #fff;
+}
+
+
+
+::-webkit-input-placeholder { /* WebKit browsers */ 
+color: #c0c3c5; 
+} 
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+color: #c0c3c5; 
+} 
+::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+color: #c0c3c5; 
+} 
+:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+color: #c0c3c5; 
+}
+
+.theme{
+	color: #ec6f2d;
+}
+
+
+
+/*
+
+	input-box---border-box
+*/
+
+
+
+.base{
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+	font-size: 14px;
+	color: #333;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	background: #fff;
+
+	
+	overflow:hidden; 
+	text-overflow:ellipsis;
+	display:-webkit-box; 
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:2;
+
+	border:1px solid #f2f2f2;
+	border-radius: 5px;
+
+
+	float: left;
+
+	width: 50px;
+	height: 50px;
+	vertical-align: middle;
+	margin-right: 5px;
+	margin-top:-2px;
+
+
+
+	width: 52px;
+	height: 52px;
+	display: block;
+	margin:0 auto;
+
+
+
+	margin:0 auto;
+	width: 100%;
+	min-width: 1200px;
+	overflow: hidden;
+
+	margin:0 auto;
+	width: 1200px;
+	overflow: hidden;
+}
+
+:root {
+  --themeColor: #a15fbc;
+  --theme:#b730b0;
+  --borderColor:#f2f2f2;
+}
+.clear{
+	clear: both;
+}

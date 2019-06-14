@@ -1,0 +1,309 @@
+body {
+	background: #f8f9fb;
+	padding-bottom: 45px;
+}
+
+.wrap {
+	margin: 0 auto;
+	width: 100%;
+	min-width: 1200px;
+	overflow: hidden;
+}
+
+.volume-wrapper {
+	margin: 0 auto;
+	width: 100%;
+	min-width: 1200px;
+	position: relative;
+	border-top: solid;
+	border-width: 1px;
+	border-top-color: #a15fbc;
+}
+
+.volume-wrapper-content {
+	margin: 0 auto;
+	width: 1200px;
+	margin-top: 20px;
+}
+
+.volume-content-top {
+	margin: 0 auto;
+	padding:15px 40px 0;
+	box-shadow: 2px 2px 10px #909090;
+}
+
+.user-info {
+	height: 70px;
+	line-height: 70px;
+	font-size: 14px;
+	color: #333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.user-info img{
+	width: 70px;
+	height: 70px;
+	vertical-align: middle;
+	margin-right: 10px;
+	margin-top:-2px;
+}
+
+.navbar-nav{
+	overflow: hidden;
+	margin-top: 20px;
+}
+.nav-item{
+	width: 90px;
+	float: left;
+	height: 60px;
+	line-height: 60px;
+	font-size: 16px;
+	text-align: center;
+	color: #2e2e2e;
+	margin-right: 20px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	border-bottom: 3px solid #fff;
+	cursor: pointer;
+}
+.nav-item.active{
+	border-bottom: 3px solid var(--theme);
+	color: var(--theme);
+}
+
+
+.add-addr{
+	margin:35px 0 30px;
+	overflow: hidden;
+	display: flex;
+}
+.add-btn{
+	width: 120px;
+	flex: 0 0 120px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;    
+    color: #2e2e2e;
+    background: #e9c0e7;
+	border:1px solid var(--theme);
+	border-radius: 3px;
+	font-weight: 500;
+}
+
+.add-tip{
+	flex: 1;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 15px;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;    
+    color: #757575;
+
+}
+.add-tip span{
+	color: var(--theme);
+}
+
+
+.addr-list{
+	overflow: hidden;
+}
+.addr-list li{
+	overflow: hidden;
+	position: relative;
+	padding:20px;
+	border:1px solid #ddd;
+	margin-bottom: 20px;
+}
+.close{
+	position: absolute;
+	right: 20px;
+	top:20px;
+	width:17px;
+	height:17px;
+	cursor: pointer;
+}
+.name{
+	height: 30px;
+	line-height: 30px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #4c4c4c;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	margin-bottom: 20px;
+}
+.name span{
+	display: inline-block;
+	width: 50px;
+    height: 20px;
+    margin-left: 30px;
+    line-height: 20px;
+    position: relative;
+    top:5px;
+    font-size: 12px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    color: #fff;
+    background: #ffaa45;
+    border-radius: 3px;
+    display: none;
+}
+.addr-wrap{
+	overflow: hidden;
+	display: flex;
+}
+.addr-left{
+	width: 80px;
+	flex: 0 0 80px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    text-align: right;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #999999;
+}
+.addr-right{
+	flex: 1;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;  
+    color: #666666;
+}
+.addr-function{
+	position: absolute;
+	right:20px;
+	bottom:20px;
+	overflow: hidden;
+}
+.addr-default{
+	float: right;
+	width: 80px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 13px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #37b3e6;
+    cursor: pointer;
+}
+.addr-edit{
+	float: right;
+	width: 80px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 13px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #37b3e6;
+    cursor: pointer;
+}
+
+
+
+/*fuceng*/
+.login-layer-content{
+	padding:0;
+	height: 550px;
+	margin-top:-275px;
+}
+.layer-close{
+	right: 10px;
+    top: 8px;
+}
+.layer-tit{
+	height:30px;
+	line-height:30px;
+	background: #f2f2f2;
+	padding:0 20px;
+	font-size: 14px;
+	color: #333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.input-box{
+	overflow: hidden;
+	margin:20px 55px 0;
+}
+.input-tit{	
+	height:25px;
+	line-height:25px;
+	font-size: 12px;
+	color: #333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.input-tit span{
+	color: #f00;
+}
+.input-box input{
+	width: 260px;
+	height:30px;
+	line-height:30px;
+	border:1px solid #f2f2f2;
+	padding:0 10px;
+	font-size: 14px;
+	color: #333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	background-color: #fff;
+}
+.slect-box{
+	overflow: hidden;
+}
+.slect-box select{	
+	width: 100px;
+	height:30px;
+	line-height:30px;
+	border:1px solid #f2f2f2;
+	padding:0 10px;
+	font-size: 14px;
+	color: #333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	float: left;
+	margin-right: 10px;
+}
+.layer-btn{
+	width: 120px;
+	height: 35px;
+	line-height: 35px;
+	font-size: 14px;
+	color: #fff;
+	border-radius: 5px;
+	margin-left: 50px;
+	margin-top: 50px;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	background-color: var(--theme);
+	cursor: pointer;
+}

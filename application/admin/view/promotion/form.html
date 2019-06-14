@@ -1,0 +1,41 @@
+{if condition ="strtolower(request()->action()) == 'seckill'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><input type="checkbox" name="id" value="{$vo.id}"></td>
+    <!--<td><a href="#">{$vo.id}</a></td>-->
+    <td>{$vo.title}</td>
+    <td style="max-width: 200px;">{$vo.goods_name}</td>
+    <td>{$vo.price}</td>
+    <td>{$vo.goods_num}</td>
+    <td>{$vo.start_time|date="Y-m-d H:i",###}</td>
+    <td>{$vo.end_time|date="Y-m-d H:i",###}</td>
+    <td>{$vo.buy_num}</td>
+    <td>{$vo.order_num}</td>
+    <td data-pid="{$vo.id}">
+        {if condition="$vo.is_publish == 0"}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="flash_sale" data-fieldname="is_publish" data-value="1">
+            <i class="icon-remove-circle" title="否">否</i>
+        </a>
+        {elseif condition="$vo.is_publish == 1"/}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="flash_sale" data-fieldname="is_publish" data-value="0">
+            <i class="icon-ok-sign" title="是">是</i>
+        </a>
+        {/if}
+    </td>
+    <td data-pid="{$vo.id}">
+        <a href="{:url('Promotion/seckill_detail',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-pencil"></i></button>
+        </a>
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="flash_sale" data-fieldname="is_hidden" data-value="1"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}
+
+{if condition ="strtolower(request()->action()) == 'search_goods'"}
+
+{/if}
+

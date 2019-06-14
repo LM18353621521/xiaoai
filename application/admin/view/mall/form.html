@@ -1,0 +1,402 @@
+
+{if condition ="strtolower(request()->action()) == 'goods_type'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><input type="checkbox" name="id" value="{$vo.id}"></td>
+    <td><a href="#">{$key+1}</a></td>
+    <td>{$vo.name}</td>
+    <td data-pid="{$vo.id}">
+        <a href="{:url('Mall/goods_type_add',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-pencil"></i></button>
+        </a>
+        <a href="#deal" data-url="{:url('Mall/delGoodsType')}" data-tablename="goods_spec" data-fieldname="is_hidden" data-value="1" title="删除"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+        <a href="{:url('Mall/goods_spec',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-eye-open">查看规格</i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}
+
+{if condition ="strtolower(request()->action()) == 'goods_spec'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><input type="checkbox" name="id" value="{$vo.id}"></td>
+    <td>
+        <input name="sort" data-id="{$vo.id}" type="text" size="1" class="form-control col-lg-1 data-sort" value="{$vo.sort}">
+    </td>
+    <td>
+        {$vo.name}
+    </td>
+    <td>
+        {$vo.goods_type}
+    </td>
+    <td>
+        <div style="width:450px;  text-overflow: ellipsis;  white-space: nowrap;   overflow: hidden;">
+          {$vo.spec_item}
+        </div>
+    </td>
+    <td data-pid="{$vo.id}">
+        <a href="{:url('Mall/goods_spec_add',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-pencil"></i></button>
+        </a>
+        <a href="#deal" data-url="{:url('Mall/goods_spec_del')}" data-tablename="goods_spec" data-fieldname="is_hidden" data-value="1" title="删除"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}
+
+
+{if condition ="strtolower(request()->action()) == 'category'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td>
+        <input name="sort" data-id="{$vo.id}" type="text" size="1" class="form-control col-lg-1 data-sort" value="{$vo.sort}">
+    </td>
+    <td>
+        {$vo.name}
+    </td>
+    <td>
+        <a  data-toggle="modal" href="#layer_image" data-image="{$vo.coverimg}">&nbsp;
+            <img width="60" height="60" src="{$vo.coverimg}" onerror=src="__STATIC__/common/images/nopic.png" alt="">
+        </a>
+    </td>
+    <td>
+        <a  data-toggle="modal" href="#layer_image" data-image="{$vo.icon}">&nbsp;
+            <img width="60" height="60" src="{$vo.icon}" onerror=src="__STATIC__/common/images/nopic.png" alt="">
+        </a>
+    </td>
+
+    <td data-pid="{$vo.id}">
+        {if condition="$vo.is_recommend == 0"}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="mall_category" data-fieldname="is_recommend" data-value="1">
+            <i class="icon-remove-circle" title="否">否</i>
+        </a>
+        {elseif condition="$vo.is_recommend == 1"/}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="mall_category" data-fieldname="is_recommend" data-value="0">
+            <i class="icon-ok-sign" title="是">是</i>
+        </a>
+        {/if}
+    </td>
+
+    <td data-pid="{$vo.id}">
+        <a href="{:url('Mall/categoryadd',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-pencil"></i></button>
+        </a>
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="mall_category" data-fieldname="is_hidden" data-value="1" title="删除"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{if condition="isset($vo._child)"}
+{volist name="vo._child" id="v"}
+<tr>
+    <td style="padding-left: 20px">
+        ├─
+        <input name="sort" data-id="{$v.id}" type="text" size="1" class="form-control col-lg-1 data-sort" value="{$v.sort}">
+    </td>
+    <td>
+        ├─
+        {$v.name}
+    </td>
+    <td>
+        <a  data-toggle="modal" href="#layer_image" data-image="{$vo.coverimg}">&nbsp;
+            <img width="60" height="60" src="{$v.coverimg}" onerror=src="__STATIC__/common/images/nopic.png" alt="">
+        </a>
+    </td>
+
+    <td>
+        <a  data-toggle="modal" href="#layer_image" data-image="{$vo.icon}">&nbsp;
+            <img width="60" height="60" src="{$v.icon}" onerror=src="__STATIC__/common/images/nopic.png" alt="">
+        </a>
+    </td>
+
+    <td data-pid="{$vo.id}">
+        <a href="javascript:;" data-url="{:url('Member/updatefield')}" data-tablename="mall_category" data-fieldname="is_recommend" data-value="1">
+            <i class="" title="否">否</i>
+        </a>
+    </td>
+    <td data-pid="{$v.id}">
+        <a href="{:url('Mall/categoryadd',array('id'=>$v['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-pencil"></i></button>
+        </a>
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="mall_category" data-fieldname="is_hidden" data-value="1" title="删除"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}
+{/volist}
+{/if}
+
+{if condition ="strtolower(request()->action()) == 'product'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><input type="checkbox" name="id" value="{$vo.id}"></td>
+    <td><a href="#">{$vo.id}</a></td>
+    <td>
+        <a  data-toggle="modal" href="#layer_image" data-image="{$vo.coverimg}">&nbsp;
+            <img width="60" height="60" src="{$vo.coverimg}" onerror=src="__STATIC__/common/images/nopic.png" alt="">
+        </a>
+    </td>
+    <td>{$vo.name}</td>
+    <td>{$vo.category_name}</td>
+    <td>{$vo.price}</td>
+    <td>{$vo.price}</td>
+
+    <td>{$vo.create_time|date="Y-m-d H:i",###}</td>
+
+    <td data-pid="{$vo.id}">
+        {if condition="$vo.is_hot == 0"}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="mall_product" data-fieldname="is_hot" data-value="1">
+            <i class="icon-remove-circle" title="否">否</i>
+        </a>
+        {elseif condition="$vo.is_hot == 1"/}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="mall_product" data-fieldname="is_hot" data-value="0">
+            <i class="icon-ok-sign" title="是">是</i>
+        </a>
+        {/if}
+    </td>
+
+    <td data-pid="{$vo.id}">
+        {if condition="$vo.is_recommend == 0"}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="mall_product" data-fieldname="is_recommend" data-value="1">
+            <i class="icon-remove-circle" title="否">否</i>
+        </a>
+        {elseif condition="$vo.is_recommend == 1"/}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="mall_product" data-fieldname="is_recommend" data-value="0">
+            <i class="icon-ok-sign" title="是">是</i>
+        </a>
+        {/if}
+    </td>
+
+    <td data-pid="{$vo.id}">
+        {if condition="$vo.is_new == 0"}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="mall_product" data-fieldname="is_new" data-value="1">
+            <i class="icon-remove-circle" title="否">否</i>
+        </a>
+        {elseif condition="$vo.is_new == 1"/}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="mall_product" data-fieldname="is_new" data-value="0">
+            <i class="icon-ok-sign" title="是">是</i>
+        </a>
+        {/if}
+    </td>
+
+    <td data-pid="{$vo.id}">
+        {if condition="$vo.is_publish == 0"}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="mall_product" data-fieldname="is_publish" data-value="1">
+            <i class="icon-remove-circle" title="否">否</i>
+        </a>
+        {elseif condition="$vo.is_publish == 1"/}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="mall_product" data-fieldname="is_publish" data-value="0">
+            <i class="icon-ok-sign" title="是">是</i>
+        </a>
+        {/if}
+    </td>
+
+    <td data-pid="{$vo.id}">
+        <a href="{:url('Mall/productadd',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-pencil"></i></button>
+        </a>
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="mall_product" data-fieldname="is_hidden" data-value="1"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}
+
+{if condition ="strtolower(request()->action()) == 'order'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><input type="checkbox" name="id" value="{$vo.id}"></td>
+    <!--<td><a href="#">{$key+1}</a></td>-->
+    <td>{$vo.order_number}</td>
+    <td>{$vo.nickname}</td>
+    <td><div>{$vo.linkman}  {$vo.linktel}</div> {$vo.address}</td>
+    <td>{$vo.total_number}</td>
+    <td>{$vo.total_price}</td>
+    <td>{$vo.pay_money}</td>
+    <td>{$vo.create_time|date="Y-m-d H:i",###}</td>
+    <td>{$order_source[$vo.order_source]}</td>
+    <td>{$pay_type[$vo.pay_type]|default='其他'}</td>
+    <td>{$expressList[$vo.express_id]|default="&nbsp;"}</td>
+    <td>
+        {if condition="$vo.status == 0"}
+        <span class="label label-warning">待付款</span>
+        {elseif condition="$vo.status == 1"/}
+        <span class="label label-success">待发货</span>
+        {elseif condition="$vo.status == 2"/}
+        <span class="label label-primary">已发货</span>
+        {elseif condition="$vo.status == 3"/}
+        <span class="label label-info">已完成</span>
+        {elseif condition="$vo.status == -1"/}
+        <span class="label label-danger">已取消</span>
+        {/if}
+    </td>
+    <td data-pid="{$vo.id}">
+        <a href="{:url('Mall/orderdetail',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-pencil"></i></button>
+        </a>
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="mall_order" data-fieldname="is_hidden" data-value="1"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}
+
+{if condition ="strtolower(request()->action()) == 'order_refund'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><input type="checkbox" name="id" value="{$vo.id}"></td>
+    <!--<td><a href="#">{$key+1}</a></td>-->
+    <td>{$vo.order_number}</td>
+    <td>{$vo.nickname}</td>
+    <td><div>{$vo.linkman}  {$vo.linktel}</div> {$vo.address}</td>
+    <td>{$vo.total_number}</td>
+    <td>{$vo.total_price}</td>
+    <td>{$vo.pay_money}</td>
+    <td>{$vo.create_time|date="Y-m-d H:i",###}</td>
+    <td>{$order_source[$vo.order_source]}</td>
+    <td>{$pay_type[$vo.pay_type]}</td>
+    <td>{$expressList[$vo.express_id]|default="&nbsp;"}</td>
+    <td>
+        {if condition="$vo.status == -2"}
+        <span class="label label-warning">待审核</span>
+        {elseif condition="$vo.status == -3"/}
+        <span class="label label-danger">已退款</span>
+        {/if}
+    </td>
+
+    <td data-pid="{$vo.id}">
+        <a href="{:url('Mall/order_refund_detail',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="查看"><i class="icon-pencil"></i></button>
+        </a>
+        <!--<a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="mall_order" data-fieldname="is_hidden" data-value="1"-->
+        <!--data-text="确定删除吗？删除后将不可恢复">-->
+        <!--<button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>-->
+        <!--</a>-->
+    </td>
+</tr>
+{/volist}
+{/if}
+
+
+
+{if condition ="strtolower(request()->action()) == 'comment'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><input type="checkbox" name="id" value="{$vo.id}"></td>
+    <td><a href="#">{$key+1}</a></td>
+    <td>{$vo.nickname}</td>
+    <td>{$vo.product_name}</td>
+    <td>{$vo.star}</td>
+    <td>{$vo.create_time|date="Y-m-d H:i",###}</td>
+    <td data-pid="{$vo.id}">
+        {if condition="$vo.is_show == 0"}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="mall_comment" data-fieldname="is_show" data-value="1">
+            <i class="icon-remove-circle" title="否">否</i>
+        </a>
+        {elseif condition="$vo.is_show == 1"/}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="mall_comment" data-fieldname="is_show" data-value="0">
+            <i class="alert-success icon-ok-sign" title="是">是</i>
+        </a>
+        {/if}
+    </td>
+    <td>
+        {if condition="$vo.status == 0"}
+        <span class="label label-warning">未审核</span>
+        {elseif condition="$vo.status == 1"/}
+        <span class="label label-success">审核通过</span>
+        {elseif condition="$vo.status == -1"/}
+        <span class="label label-info">审核未通过</span>
+        {/if}
+    </td>
+    <td data-pid="{$vo.id}">
+        <a href="{:url('Mall/commentdetail',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="查看"><i class="icon-eye-open"></i></button>
+        </a>
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="mall_comment" data-fieldname="is_hidden" data-value="1"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}
+
+{if condition ="strtolower(request()->action()) == 'store'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><input type="checkbox" name="id" value="{$vo.id}"></td>
+    <td><a href="#">{$key+1}</a></td>
+    <td>{$vo.name}</td>
+    <td>{$vo.address}</td>
+    <td>{$vo.linktel}</td>
+    <td>{$vo.create_time|date="Y-m-d H:i",###}</td>
+    <td data-pid="{$vo.id}">
+        {if condition="$vo.is_publish == 0"}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="mall_store" data-fieldname="is_publish" data-value="1">
+            <i class="icon-remove" title="未发布"></i>
+        </a>
+        {elseif condition="$vo.is_publish == 1"/}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="mall_store" data-fieldname="is_publish" data-value="0">
+            <i class="icon-ok" title="已发布"></i>
+        </a>
+        {/if}
+    </td>
+    <td data-pid="{$vo.id}">
+        <a href="{:url('Mall/storeadd',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-pencil"></i></button>
+        </a>
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="mall_store" data-fieldname="is_hidden" data-value="1"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}
+
+
+{if condition ="strtolower(request()->action()) == 'brandlist'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><input type="checkbox" name="id" value="{$vo.id}"></td>
+    <td>
+        <input name="sort" data-id="{$vo.id}" type="text" size="1" class="form-control col-lg-1 data-sort" value="{$vo.sort}">
+    </td>
+    <td>{$vo.name}</td>
+    <td>
+        {if condition="$vo.logo"}
+        <a  data-toggle="modal" href="#layer_image" data-image="{$vo.logo}">
+            <img width="60" height="60" src="{$vo.logo}" alt="">
+        </a>
+        {/if}
+    </td>
+    <td style="max-width: 200px;">{$vo.desc}</td>
+    <td>{$vo.create_time|date="Y-m-d H:i",###}</td>
+    <td data-pid="{$vo.id}">
+        <a href="{:url('Mall/brand_add',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-pencil"></i></button>
+        </a>
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="goods_brand" data-fieldname="is_hidden" data-value="1"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}

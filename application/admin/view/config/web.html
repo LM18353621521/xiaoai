@@ -1,0 +1,137 @@
+{extend name="public/left"/}
+
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(function () {
+        UM.getEditor('editor');
+        load_one_img_init();
+    });
+    $(document).ready(common_obj.form_submit);
+</script>
+
+<section class="wrapper" style="margin-top:0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <form class="cmxform form-horizontal tasi-form" id="data-form">
+                    <header class="panel-heading tab-bg-dark-navy-blue">
+                        <ul class="nav nav-tabs nav-justified ">
+                            {foreach name="inc_type_list" item="vo" key="k"}
+                            <li {eq name="k" value="$inc_type"}class="active"{/eq}>
+                            <a href="{:url('Config/config',array('inc_type'=>$k))}">
+                                {$vo}
+                            </a>
+                            </li>
+                            {/foreach}
+                        </ul>
+
+                    </header>
+                    <div class="panel-body">
+                        <div class="tab-content tasi-tab">
+                            <!--  网站配置  s  -->
+                            <div class="tab-pane active" id="web">
+                                <div class="form">
+
+                                    <div class="form-group one-img">
+                                        <label class="control-label col-lg-2">LOGO</label>
+                                        <div class="col-lg-10">
+                                            <div id="picker3" class="webuploader-picker">选择文件</div>
+                                            <p class="help-block">图片大小建议：120*120像素</p>
+                                            <input type="hidden" name="logo" value="{$data.logo}" notnull
+                                                   placeholder="请上传LOGO">
+                                        </div>
+
+                                        <div class="col-lg-10 col-lg-offset-2 img">
+                                            {if condition="$data.logo"}
+                                            <a href="{$data.logo}" target="_blank">
+                                                <img src="{$data.logo}">
+                                            </a>
+                                            {/if}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">网站口号</label>
+                                        <div class="col-lg-6">
+                                            <input class="form-control" type="text" name="slogen"  value="{$data.slogen}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">网站名称</label>
+                                        <div class="col-lg-6">
+                                            <input class="form-control" type="text" name="web_name"  value="{$data.web_name}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">网站标题</label>
+                                        <div class="col-lg-6">
+                                            <input class="form-control" type="text" name="web_title" value="{$data.web_title}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">网站描述</label>
+                                        <div class="col-lg-6">
+                                            <input class="form-control" type="text" name="web_desc"  value="{$data.web_desc}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">网站关键词</label>
+                                        <div class="col-lg-6">
+                                            <input class="form-control" type="text" name="web_keyword" value="{$data.web_keyword}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">客服电话</label>
+                                        <div class="col-lg-6">
+                                            <input class="form-control" type="text" name="kf_tel"  value="{$data.kf_tel}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">客服QQ1</label>
+                                        <div class="col-lg-6">
+                                            <input class="form-control" type="text" name="kf_qq1"  value="{$data.kf_qq1}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">客服QQ2</label>
+                                        <div class="col-lg-6">
+                                            <input class="form-control" type="text" name="kf_qq2"  value="{$data.kf_qq2}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">首页热门搜索</label>
+                                        <div class="col-lg-6">
+                                            <input class="form-control" type="text" name=" hot_keywords"  value="{$data.hot_keywords}"/>
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+                            <!--  网站配置  e  -->
+
+                        </div>
+                    </div>
+                    <input type="hidden" name="inc_type" value="{$inc_type}">
+                    <input type="hidden" id="do_action" value="{:url('Config/config')}"/>
+                    <input type="hidden" id="do_jump" value="{:url('Config/config',array('inc_type'=>$inc_type))}"/>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <input class="btn btn-danger" type="submit" value="提交保存">
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</section>
+{/block}

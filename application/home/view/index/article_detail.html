@@ -1,0 +1,23 @@
+{include file="public/header" title="文章详情"}
+<body>
+	<div class="wrap">
+		{include file="public/top_nav"}
+		<div class="article_con">
+			<p class="article-title">{$article['title']}</p>
+			<p class="article-content">{$article.content}</p>
+
+		</div>
+
+	</div>
+	{include file="public/footer"}
+
+	<!-- 登录/注册浮层 -->
+	{include file="public/login_layer"}
+<script type="text/javascript">
+	$(function(){
+	})
+
+</script>
+
+</body>
+</html>

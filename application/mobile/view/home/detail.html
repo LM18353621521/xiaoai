@@ -1,0 +1,373 @@
+{extend name="public/base"/ }
+{block name="body"}
+<style>
+    .boxa{
+        width: 30%;
+    }
+    .baibga{
+        width: 90%;
+        left: 5%;
+        max-height: 70%;
+    }
+    .baibgscroll{
+        height: 88%;
+    }
+    .fuceng{
+        z-index: 888;
+    }
+</style>
+<style>
+    #nb_icon_wrap{
+        display: none !important;
+    }
+    .quan-item img {
+        z-index:0 !important;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        can_click=1;
+        has_collect={$has_collect};
+        goods_id={$goodsInfo.id};
+        stock ={$goodsInfo.stock};
+        item_id = 0;
+        coverimg='{$goodsInfo.coverimg}';
+        price = {$goodsInfo.price};
+        goods_spec_price = {$goods_spec_price|default='null'};//规格库存价格
+        console.log(goods_spec_price);
+        $(".shangqiao").click(function(event) {
+            if ($('#nb_invite_ok').length > 0) {
+                $('#nb_invite_ok').click();
+            }
+        });
+    });
+    $(document).ready(home_obj.detail);
+
+    var is_login = {$is_login|default=0};
+</script>
+<body>
+<div class='wrapper'>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {volist name="goodsInfo.imgpath" id="vo"}
+            {if condition="$vo neq ''"}
+            <div class="swiper-slide"><a href="javascript:;"><img src="{$vo}"/></a></div>
+            {/if}
+            {/volist}
+            <!--<div class="swiper-slide"><a href=""><img src="__STATIC__/mobile/home/images/swiper.jpg"/></a></div>-->
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class='tit'>{$goodsInfo.name}</div>
+    <div class='tit-info'>{$goodsInfo.brief}</div>
+    <div class='money-info'>￥{$goodsInfo.price}</div>
+    <div class='integral'>
+        <div class='integral1'>
+            <span>￥{$goodsInfo.price_origial}</span>
+            <span>销量：{$goodsInfo.sales}</span>
+        </div>
+        <div class='integral2'>
+            <!--<div class="like share">-->
+                <!--<img class="likeimg"  src="__STATIC__/mobile/home/images/share.png"/>-->
+                <!--<div class="likefont">分享</div>-->
+            <!--</div>-->
+            <div class="like">
+                <a target="_blank" href="mqqwpa://im/chat?chat_type=wpa&uin={$xa_config.web_kf_qq1}&version=1&src_type=web&web_src=lvlingseeds.com">
+                    <img class="likeimg" src="__STATIC__/mobile/home/images/footer-ear.png"/>
+                    <div class="likefont">客服</div>
+                </a>
+            </div>
+            <div class="like">
+                {if condition="$has_collect==0"}
+                <img class="likeimg collect"  src="__STATIC__/mobile/home/images/like.png"/>
+                {else/}
+                <img class="likeimg collect"  src="__STATIC__/mobile/home/images/like-active.png"/>
+                {/if}
+                <div class="likefont" ><span id="collect_num">{$collect_num}</span>人喜欢</div>
+            </div>
+        </div>
+    </div>
+    <!--<div class='revising-info'>运费：免运费</div>-->
+
+    <div class='quan-box'>
+        <div class='quan-tit'>领券</div>
+        <div class='quan-tab'>
+            {foreach name="couponList" item="vo" key="k"}
+            {if condition="$k lt 3"}
+            <div class='quan-item'>
+                <img src="__STATIC__/mobile/home/images/coupon-bg.png"/><span>满{$vo.limit}减{$vo.money}</span>
+            </div>
+            {/if}
+            {/foreach}
+            <!--<div class='quan-item'>-->
+            <!--<img   src="__STATIC__/mobile/home/images/coupon-bg.png"/><span>满199满199减100减100</span>-->
+            <!--</div>-->
+
+        </div>
+        <div class='quan-num'>共3张</div>
+    </div>
+    <div class='line20'></div>
+
+    <div class="le s_f1">
+        <div class="leleft">已选：<em class="cur_spec"></em> <em class="goods_num">1</em>件</div>
+        <!--<select class="leright">-->
+        <!--<option class="ption1">工作类型1</option>-->
+        <!--<option class="ption1">工作类型2</option>-->
+        <!--<option class="ption1">工作类型3</option>-->
+        <!--<option class="ption1">工作类型4</option>-->
+        <!--<option class="ption1">工作类型5</option>-->
+        <!--<option class="ption1">工作类型6</option>-->
+        <!--</select>-->
+        <img src="__STATIC__/mobile/home/images/right.png"></image>
+    </div>
+    <div class='line20'></div>
+
+    <div class="box">
+        <div class="boxa">
+            <div class="ti1 ti1active">商品详情</div>
+        </div>
+        <div class="boxa">
+            <div class="ti1">评价</div>
+        </div>
+        <div class='line1'></div>
+    </div>
+
+    <div>
+        <div class="tab">
+            <div class="rich-text">{$goodsInfo.description}</div>
+        </div>
+
+        <div class="tab">
+            <div class="discuss-wrapper">
+                <div class="discuss-item discuss-active" star="0">
+                    <div class="discuss-tita">全部</div>
+                    <div class="discuss-titb">（{$comment[0]}）</div>
+                </div>
+                <div class="discuss-item" star="1">
+                    <div class="discuss-tita">好评</div>
+                    <div class="discuss-titb">（{$comment[1]}）</div>
+                </div>
+                <div class="discuss-item" star="2">
+                    <div class="discuss-tita">中评</div>
+                    <div class="discuss-titb">（{$comment[2]}）</div>
+                </div>
+                <div class="discuss-item" star="3">
+                    <div class="discuss-tita">差评</div>
+                    <div class="discuss-titb">（{$comment[3]}）</div>
+                </div>
+            </div>
+
+            <div class="product_list_box100 lists">
+                <div class="hidden">
+                    <input type="hidden" name="page" value="1"/>
+                    <input type="hidden" name="url" value="{:url('Home/ajax_comment')}"/>
+                </div>
+                <div class="content">
+                </div>
+            </div>
+            <form id="form_ajax">
+                <input type="hidden" name="star" value="0"/>
+                <input type="hidden" name="goods_id" value="{$goodsInfo.id}"/>
+            </form>
+            {assign name="nodata" value="nothing_img"}
+            {include file="public/nodata"/  text="暂无数据~"}
+        </div>
+    </div>
+    <div class="ss">
+        <div class="ke">
+            <a href="{:url('Home/index')}">
+                <img class="keimg" src="__STATIC__/mobile/home/images/footer-home.png"/>
+                <div class="kefont" style='color:var(--purplecolor);'>首页</div>
+            </a>
+        </div>
+        <div class="ke">
+            <a href="{:url('Cart/cart')}">
+                <img class="keimg" src="__STATIC__/mobile/home/images/cart.png"/>
+                <div class="kefont" style='color:var(--pinkcolor);'>购物车</div>
+            </a>
+        </div>
+        <div class="s2 s_f1">加入购物车</div>
+        <div class="s3 s_f1">立即购买</div>
+        <div class="sub cart_num" style="display: none">0</div>
+    </div>
+</div>
+
+
+<!-- f1 -->
+<div class="fuceng f1">
+    <div class="fucenger"></div>
+    <div class="bai spec_list">
+        <img class="goods1 spec_img" src="{$goodsInfo.coverimg}"/>
+        <div class="ul1">
+            <img class="close-pink" src="__STATIC__/mobile/home/images/close-pink.jpg"/>
+            <div class="t2">{$goodsInfo.name}</div>
+            <div class="t1">￥<span class="price" id="cur_price">{$goodsInfo.price}</span></div>
+            <div class="t3">
+                <span class="t31">已选：<span class="cur_spec"></span></span>
+            </div>
+        </div>
+        {foreach name="filter_spec" item="vo" key="k"}
+        <div class="tit">{$k}：</div>
+        <div class="fftuop1 goods_spec_list">
+            {foreach name="vo" item="vos" key="ks"}
+            <div goods_spec="{$vos.item_id}" class='fftuop11 {if condition="$ks eq 0"}ffsuel{/if}' title="{$vos.item}">{$vos.item}</div>
+            {/foreach}
+        </div>
+        {/foreach}
+
+        <!--<div class="tit">尺寸：</div>-->
+        <!--<div class="fftuop1">-->
+        <!--<div class="fftuop11 ffsuel">大号</div>-->
+        <!--<div class="fftuop11">中号</div>-->
+        <!--<div class="fftuop11">小号</div>-->
+        <!--</div>-->
+        <div class="border">
+            <div class="border11">购买数量</div>
+            <div class='addbox'>
+                <div class="border12">+</div>
+                <div class="border13" id="goods_num">1</div>
+                <div class="border14">-</div>
+            </div>
+        </div>
+        <div class="other-num">剩余库存 <span id="cur_stock">{$goodsInfo.stock}</span>件</div>
+        <div class="btnp">
+            <div class='add-cart' id="cart_add">加入购物车</div>
+            <div class='buy-cart' id="buy_now">立即购买</div>
+        </div>
+    </div>
+</div>
+
+
+<!--f2  -->
+<div class='fuceng f2'>
+    <div class="fucenger"></div>
+    <div class='baibga'>
+        <div class='huitit'>优惠券<img class="close-png" src="__STATIC__/mobile/home/images/close.png"/></div>
+        <div class='baibgscroll scroll-top'>
+            {foreach name="couponList" item="vo" key="k"}
+            <div class="hui-box">
+                {if condition="$vo.has eq 1"}
+                <img class="huibg" src="__STATIC__/mobile/home/images/hui-bga.png"/>
+                {else/}
+                <img class="huibg" src="__STATIC__/mobile/home/images/hui-bgb.png"/>
+                {/if}
+                <div class="hui-left">
+                    <div class="hui-left-one">
+                        <div class="hui-types">满减券</div>
+                        <div class="hui-money">￥{$vo.money}</div>
+                        <div class="hui-allmoney">满{$vo.limit}可用</div>
+                    </div>
+                    <div class="hui-left-two">使用期限：{$vo.use_stime} - {$vo.use_etime}</div>
+                </div>
+                {if condition="$vo.has eq 1"}
+                <div class="hui-right">已领取</div>
+                {else/}
+                <div class="hui-right getcoupon" coupon_id="{$vo.id}">立即领券</div>
+                {/if}
+            </div>
+            {/foreach}
+
+
+            <!--<div class="hui-box">-->
+                <!--<img class="huibg" src="__STATIC__/mobile/home/images/hui-bga.png"/>-->
+                <!--<div class="hui-left">-->
+                    <!--<div class="hui-left-one">-->
+                        <!--<div class="hui-types">满减券</div>-->
+                        <!--<div class="hui-money">￥25</div>-->
+                        <!--<div class="hui-allmoney">满1000可用</div>-->
+                    <!--</div>-->
+                    <!--<div class="hui-left-two">使用期限：2018-02-02</div>-->
+                <!--</div>-->
+                <!--<div class="hui-right">立即领券</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class='sure'>确定</div>
+    </div>
+</div>
+</div>
+
+
+<!--f3  -->
+<div class='fuceng f3'>
+    <div class="fucenger"></div>
+    <div class='baibgb'>
+        <img class="close-img" src="__STATIC__/mobile/home/images/close-pink.jpg"/>
+        <div class="poster"><img class="poster-img" src="__STATIC__/mobile/home/images/product.jpg"/></div>
+        <div class='sure'>保存图片</div>
+        <div class='suretips'>保存至相册可以分享到朋友圈</div>
+    </div>
+</div>
+
+
+<!--f4  -->
+<div class='fuceng f4'>
+    <div class="fucenger"></div>
+    <div class='baibga'>
+        <div class="img-tab">
+            <img class="wechat" src="__STATIC__/mobile/home/images/wechats.png"/>
+            <img class="wechat posert" src="__STATIC__/mobile/home/images/codes.png"/>
+        </div>
+        <div class='sure'>关闭</div>
+    </div>
+</div>
+
+<!--登录浮层   s-->
+{include file="public/login_layer"/}
+
+<script type="text/javascript">
+    $(function () {
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            speed: 500,
+            autoplay: false,
+            loop: true,
+        })
+        $(".boxa").click(function () {
+            $(".boxa .ti1").removeClass("ti1active");
+            $(this).find(".ti1").addClass("ti1active");
+            var _index = $(this).index();
+            $(".tab").eq(_index).show().siblings(".tab").hide();
+        });
+
+
+        // f1
+        $(".fucenger,.close-pink,.btnp").click(function () {
+            $(".fuceng").hide();
+            $(".wrapper").removeClass("hidecontainer");
+            show_cur_spec();
+        })
+        $(".s_f1").click(function () {
+            $(".f1").show();
+            $(".wrapper").addClass("hidecontainer");
+        })
+
+        // f2
+        $(".fucenger,.close-png,.sure").click(function () {
+            $(".fuceng").hide();
+            $(".wrapper").removeClass("hidecontainer");
+        })
+        $(".quan-tab").click(function () {
+            $(".f2").show();
+            $(".wrapper").addClass("hidecontainer");
+        })
+        // f4 f3
+        $(".share").click(function () {
+            $(".f4").show();
+            $(".wrapper").addClass("hidecontainer");
+        })
+        $(".posert").click(function () {
+            $(".f4").hide();
+            $(".f3").show();
+        })
+        // f3
+        $(".sure,.close-img").click(function () {
+            $(".fuceng").hide();
+            $(".wrapper").removeClass("hidecontainer");
+        })
+
+    });
+</script>
+
+{/block}

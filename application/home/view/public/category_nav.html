@@ -1,0 +1,38 @@
+<div class="banner-title clear">
+    <div class="banner-tits text-center">
+        <a href="#" title="晓爱商城">情趣市场</a>
+        <div class="banner-left">
+            <ul class="banner-menu">
+                {foreach name="cateList" item="vo"}
+                <li>
+                    <p class="menu-tit">{$vo.name}</p>
+                    <ul class="menu-sec-list">
+                        {foreach name="vo.sub_cate" item="vv"}
+                        <a href="{:url('Index/goodsList',array('cate1'=>$vo.id,'cate2'=>$vv.id))}" title="晓爱商城">
+                            <li>{$vv.name}</li>
+                        </a>
+                        {/foreach}
+                    </ul>
+                </li>
+                {/foreach}
+            </ul>
+        </div>
+    </div>
+    <a href="{:url('Index/index')}" >
+        <div class="banner-div1">首页</div>
+    </a>
+    <a href="{:url('Index/flash_sale')}">
+        <div class="banner-div2" {if condition="ACTION_NAME eq 'flash_sale'"}style="color:#b730b0;"{/if}>限时秒杀</div>
+    </a>
+</div>
+<script>
+    $(function(){
+        // 出现公共的menu
+        $(".banner-tits").mouseenter(function(){
+            $(".banner-left").show();
+        })
+        $(".banner-tits").mouseleave(function(){
+            $(".banner-left").hide();
+        })
+    })
+</script>

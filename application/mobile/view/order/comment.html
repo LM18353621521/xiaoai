@@ -1,0 +1,167 @@
+{extend name="public/base"/ }
+
+{block name="body"}
+<!-- 上传照片插件 -->
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/home/css/review.css"/>
+<script type="text/javascript" src="__STATIC__/mobile/home/js/upload.js"></script>
+<script type="text/javascript" src="__STATIC__/mobile/home/js/binaryajax.js"></script>
+<script type="text/javascript" src="__STATIC__/mobile/home/js/exif.js"></script>
+<script type="text/javascript" src="__STATIC__/mobile/home/js/LocalResizeIMG.js"></script>
+<script type="text/javascript" src="__STATIC__/mobile/home/js/mobileBUGFix.mini.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        can_click=1;
+    });
+    $(document).ready(order_obj.comment);
+</script>
+<body>
+<form id="data-form">
+    <input type="hidden" name="order_id" value="{$order['id']}">
+    {foreach name="order['orderlog']" item="vo"}
+        <div class="top11">
+            <input type="hidden" name="comment[{$vo.goods_id}][goods_id]" value="{$vo.goods_id}">
+            <img class="left-img" src="{$vo.coverimg}">
+            <div class="top112">
+                <div class="top1121">请对服务进行打分</div>
+                <input type="hidden" class="star" name="comment[{$vo.goods_id}][star]" value="5">
+                <div class="top1122">
+                   <img class="img0" src="__STATIC__/mobile/home/images/star-active.png">
+                   <img class="img0" src="__STATIC__/mobile/home/images/star-active.png">
+                   <img class="img0" src="__STATIC__/mobile/home/images/star-active.png">
+                   <img class="img0" src="__STATIC__/mobile/home/images/star-active.png">
+                   <img class="img0" src="__STATIC__/mobile/home/images/star-active.png">
+                </div>
+            </div>
+        </div>
+        <textarea class="top113" name="comment[{$vo.goods_id}][content]" placeholder="说说你的购物体验吧，给其他买家一些帮助"></textarea>
+        <div class="evaluate">
+             <div class="question-img #oneupload">
+                <div class="upload_box no_img" id="upload_box1">
+                    <input name="comment[{$vo.goods_id}][imgs][]" id="ImgUpload1" type="file" accept="image/*" style="opacity: 0;"/>
+                    <div class="img" ><img  id="ImgDetailDiv1" src=""/></div>
+                    <input type="hidden" name="comment[{$vo.goods_id}][imgs][]" id="ImgPath1" value="">
+                </div>
+                <div class="upload_box no_img" id="upload_box2">
+                    <input name="comment[{$vo.goods_id}][imgs][]" id="ImgUpload2" type="file" accept="image/*" style="opacity: 0;"/>
+                    <div class="img" ><img  id="ImgDetailDiv2" src=""/></div>
+                    <input type="hidden" name="comment[{$vo.goods_id}][imgs][]" id="ImgPath2" value="">
+                </div>
+                <div class="upload_box no_img" id="upload_box3">
+                    <input name="comment[{$vo.goods_id}][imgs][]" id="ImgUpload3" type="file" accept="image/*" style="opacity: 0;"/>
+                    <div class="img" ><img  id="ImgDetailDiv3" src=""/></div>
+                    <input type="hidden" name="comment[{$vo.goods_id}][imgs][]" id="ImgPath3" value="">
+                </div>
+                <div class="upload_box no_img" id="upload_box4">
+                    <input name="comment[{$vo.goods_id}][imgs][]" id="ImgUpload4" type="file" accept="image/*" style="opacity: 0;"/>
+                    <div class="img" ><img  id="ImgDetailDiv4" src=""/></div>
+                    <input type="hidden" name="comment[{$vo.goods_id}][imgs][]" id="ImgPath4" value="">
+                </div>
+                <div class="upload_box no_img" id="upload_box5">
+                    <input name="comment[{$vo.goods_id}][imgs][]" id="ImgUpload5" type="file" accept="image/*" style="opacity: 0;"/>
+                    <div class="img" ><img  id="ImgDetailDiv5" src=""/></div>
+                    <input type="hidden" name="comment[{$vo.goods_id}][imgs][]" id="ImgPath5" value="">
+                </div>
+                <div class="upload_box no_img" id="upload_box6">
+                    <input name="comment[{$vo.goods_id}][imgs][]" id="ImgUpload6" type="file" accept="image/*" style="opacity: 0;"/>
+                    <div class="img" ><img  id="ImgDetailDiv6" src=""/></div>
+                    <input type="hidden" name="comment[{$vo.goods_id}][imgs][]" id="ImgPath6" value="">
+                </div>
+                 <div class="upload_box no_img" id="upload_box7">
+                     <input name="comment[{$vo.goods_id}][imgs][]" id="ImgUpload7" type="file" accept="image/*" style="opacity: 0;"/>
+                     <div class="img" ><img  id="ImgDetailDiv7" src=""/></div>
+                     <input type="hidden" name="comment[{$vo.goods_id}][imgs][]" id="ImgPath7" value="">
+                 </div>
+                 <div class="upload_box no_img" id="upload_box8">
+                     <input name="comment[{$vo.goods_id}][imgs][]" id="ImgUpload8" type="file" accept="image/*" style="opacity: 0;"/>
+                     <div class="img" ><img  id="ImgDetailDiv8" src=""/></div>
+                     <input type="hidden" name="comment[{$vo.goods_id}][imgs][]" id="ImgPath8" value="">
+                 </div>
+                 <div class="upload_box no_img" id="upload_box9">
+                     <input name="comment[{$vo.goods_id}][imgs][]" id="ImgUpload9" type="file" accept="image/*" style="opacity: 0;"/>
+                     <div class="img" ><img  id="ImgDetailDiv9" src=""/></div>
+                     <input type="hidden" name="comment[{$vo.goods_id}][imgs][]" id="ImgPath9" value="">
+                 </div>
+            </div>
+        </div>
+    {/foreach}
+    <div class="niming"><img src="__STATIC__/mobile/home/images/no.png"><input type="hidden"  name="is_anonymous"  value="0" name="">匿名</div>
+    <div class="title">
+        <div class="title11"><img src="__STATIC__/mobile/home/images/car.png">物流服务评价</div>
+        <div class="title12">满意请给5星哦</div>
+    </div>
+    <div class="top-box">
+        <div class="top-left">快递包装</div>
+        <input type="hidden" class="star" name="star1" value="5">
+        <div class="top-right">
+           <img src="__STATIC__/mobile/home/images/star-active.png">
+           <img src="__STATIC__/mobile/home/images/star-active.png">
+           <img src="__STATIC__/mobile/home/images/star-active.png">
+           <img src="__STATIC__/mobile/home/images/star-active.png">
+           <img src="__STATIC__/mobile/home/images/star-active.png">
+        </div>
+    </div>
+    <div class="top-box">
+        <div class="top-left">送货速度</div>
+        <input type="hidden" class="star" name="star2" value="5">
+        <div class="top-right">
+           <img src="__STATIC__/mobile/home/images/star-active.png">
+           <img src="__STATIC__/mobile/home/images/star-active.png">
+           <img src="__STATIC__/mobile/home/images/star-active.png">
+           <img src="__STATIC__/mobile/home/images/star-active.png">
+           <img src="__STATIC__/mobile/home/images/star-active.png">
+        </div>
+    </div>
+    <!--<div class="top-box">-->
+        <!--<div class="top-left">配送员服务态度</div>-->
+        <!--<input type="hidden" name="" value="5">-->
+        <!--<div class="top-right">-->
+           <!--<img src="__STATIC__/mobile/home/images/star-gray.png">-->
+           <!--<img src="__STATIC__/mobile/home/images/star-gray.png">-->
+           <!--<img src="__STATIC__/mobile/home/images/star-gray.png">-->
+           <!--<img src="__STATIC__/mobile/home/images/star-gray.png">-->
+           <!--<img src="__STATIC__/mobile/home/images/star-gray.png">-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <div class="bottom" id="submit_do">提交评价</div>
+</form>
+<input type="hidden" id="do_action" value="{:url('Vip/feedback')}">
+    <script type="text/javascript">
+        $(function(){
+            $(".top1122 img").click(function(){
+                var index = $(this).index();
+                for (var i = 0; i <= index; i++) {
+                   $(this).parent().find("img").eq(i).prop("src","__STATIC__/mobile/home/images/star-active.png")
+                }
+                for (var j = index + 1; j < $(".img0").length; j++) {
+                   $(this).parent().find("img").eq(j).prop("src","__STATIC__/mobile/home/images/star.png")
+                }
+                $(this).parents('.top112').find('.star').val(index+1);
+            })
+            $(".top-right img").click(function(){
+                var index = $(this).index();
+                for (var i = 0; i <= index; i++) {
+                   $(this).parent().find("img").eq(i).prop("src","__STATIC__/mobile/home/images/star-active.png")
+                }
+                for (var j = index + 1; j < $(".img0").length; j++) {
+                   $(this).parent().find("img").eq(j).prop("src","__STATIC__/mobile/home/images/star-gray.png")
+                }
+                $(this).parents('.top-box').find('.star').val(index+1);
+            })
+            var f=0;
+            $(".niming img").click(function(){
+                if(f==0){
+                    $(this).prop("src","__STATIC__/mobile/home/images/yesa.png");
+                    $(this).next().val(1);
+                    f=1;
+                }else{
+                    $(this).prop("src","__STATIC__/mobile/home/images/no.png");
+                    $(this).next().val(0);
+                    f=0;
+                }
+            })
+
+        });
+    </script>
+
+    {/block}

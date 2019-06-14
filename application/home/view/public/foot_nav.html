@@ -1,0 +1,58 @@
+
+<div class="bt_bottom">
+    <div class="bt_bottom1">
+        <a href="{:url('Home/index')}">
+            {if condition ="strtolower(request()->controller()) == 'home'&& strtolower(request()->action()) == 'index'"}
+            <img class="btimg0" src="__STATIC__/mobile/home/images/footera-active.png">
+            <div class="fot1 color_style1">首页</div>
+            {else/}
+            <img class="btimg0" src="__STATIC__/mobile/home/images/footera.png">
+            <div class="fot1">首页</div>
+            {/if}
+        </a>
+    </div>
+    <div class="bt_bottom1">
+        <a href="{:url('Home/types')}">
+            {if condition ="strtolower(request()->controller()) == 'home'&& strtolower(request()->action()) == 'types'""}
+            <img class="btimg0" src="__STATIC__/mobile/home/images/footerb-active.png">
+            <div class="fot1 color_style1">分类</div>
+            {else/}
+            <img class="btimg0" src="__STATIC__/mobile/home/images/footerb.png">
+            <div class="fot1">分类</div>
+            {/if}
+
+    </div>
+    <div class="bt_bottom1">
+        <a href="{:url('Home/distributgoods')}">
+        {if condition ="strtolower(request()->controller()) == 'home'&& strtolower(request()->action()) == 'distributgoods'"}
+        <img class="btimg0" src="__STATIC__/mobile/home/images/footerc-active.png">
+        <div class="fot1 color_style1">赚奖金</div>
+        {else/}
+        <img class="btimg0" src="__STATIC__/mobile/home/images/footerc.png">
+        <div class="fot1">赚奖金</div>
+        {/if}
+        </a>
+    </div>
+    <div class="bt_bottom1">
+        <a href="{:url('Cart/cart')}">
+            {if condition ="strtolower(request()->controller()) == 'cart'&& strtolower(request()->action()) == 'cart'"}
+            <img class="btimg0" src="__STATIC__/mobile/home/images/footerd-active.png">
+            <div class="fot1 color_style1">购物车</div>
+            {else/}
+            <img class="btimg0" src="__STATIC__/mobile/home/images/footerd.png">
+            <div class="fot1">购物车</div>
+            {/if}
+        </a>
+    </div>
+    <div class="bt_bottom1">
+        <a href="{:url('Vip/index')}">
+            {if condition ="strtolower(request()->controller()) == 'vip'&& strtolower(request()->action()) == 'index'"}
+            <img class="btimg0" src="__STATIC__/mobile/home/images/footere-active.png">
+            <div class="fot1 color_style1">我的</div>
+            {else/}
+            <img class="btimg0" src="__STATIC__/mobile/home/images/footere.png">
+            <div class="fot1">我的</div>
+            {/if}
+        </a>
+    </div>
+</div>

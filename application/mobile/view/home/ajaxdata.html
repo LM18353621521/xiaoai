@@ -1,0 +1,169 @@
+{if condition ="strtolower(request()->controller()) == 'home' && strtolower(request()->action()) == 'getnewgoods'"}
+<!--新闻列表-->
+{volist name="dataList" id="vo"}
+<div class="tsil1">
+    <a href="{:url('Home/detail',array('goods_id'=>$vo['id']))}">
+        <img class="tsilimg" src="{$vo.coverimg}">
+        <div class="tsilfont">{$vo.name}</div>
+        <div class="tsilfont1"><span>￥{$vo.price}</span>{$vo.sales}人付款</div>
+    </a>
+</div>
+{/volist}
+{/if}
+
+{if condition ="strtolower(request()->controller()) == 'home' && strtolower(request()->action()) == 'categorychild'"}
+<!--商品分类-->
+{volist name="dataList" id="vo"}
+<div class="menubox1">
+    <a href="{:url('Home/goodlist',array('category_id'=>$vo['id']))}">
+        <img class="menuimg" src="{$vo.coverimg}">
+        <div class="font">{$vo.name}</div>
+    </a>
+</div>
+{/volist}
+{/if}
+
+{if condition ="strtolower(request()->controller()) == 'home' && strtolower(request()->action()) == 'goodlist'"}
+<!--商品列表-->
+{volist name="dataList" id="vo"}
+<a href="{:url('Home/detail',array('goods_id'=>$vo['id']))}">
+    <div class='item'>
+        <div class="lt">
+            <img src="{$vo.coverimg}"/>
+        </div>
+        <div class="rt">
+            <div>{$vo.name}</div>
+            <div class='money'>￥{$vo.price}</div>
+            <div class='person'>{$vo.sales}人付款</div>
+        </div>
+    </div>
+</a>
+{/volist}
+{/if}
+
+
+{if condition ="strtolower(request()->controller()) == 'home' && strtolower(request()->action()) == 'happy'"}
+<!--开心一刻-->
+    {if condition="$type eq 'video'"}
+        {volist name="dataList" id="vo"}
+        <li>
+            <p class="title">{$vo.title}</p>
+            <video class="video" controls>
+                <source src="{$vo.video_url}" type="video/mp4">
+            </video>
+            <p class="time">{$vo.dayfast}发布</p>
+        </li>
+        {/volist}
+    {elseif condition="$type eq 'image'"/}
+        {volist name="dataList" id="vo"}
+        <li>
+            <p class="title">{$vo.title}</p>
+            <img class="video" src="{$vo.img_url}">
+            <p class="time">{$vo.dayfast}发布</p>
+        </li>
+        {/volist}
+    {elseif condition="$type eq 'text'"/}
+        {volist name="dataList" id="vo"}
+            <li>
+                <p class="title">{$vo.title}</p>
+                <p class="text">{$vo.content}</p>
+                <p class="time">{$vo.dayfast}发布</p>
+            </li>
+        {/volist}
+    {/if}
+{/if}
+
+{if condition ="strtolower(request()->controller()) == 'home' && strtolower(request()->action()) == 'addresslist'"}
+<!--地址列表-->
+{empty name="dataList"}
+<div class="box-item">
+    <div class='baiinfo'>您还没有自己的地址，现在添加吧！</div>
+</div>
+{else/}
+{volist name="dataList" id="vo"}
+<div class="box-item addritem" data-id="{$vo.id}">
+    <div class='addr0'>
+        <div class='addr01'><span class="linkman">{$vo.linkman}</span><span class="linktel">{$vo.linktel}</span></div>
+        <div class='addr02 address'>{$vo.province} {$vo.city} {$vo.district} {$vo.address}</div>
+    </div>
+    <div class="san" hidden>
+        <div class="san1 fontsel">
+            <img src="__STATIC__/mobile/home/images/yes.png"/><input type="hidden" value="1" name="">默认地址
+        </div>
+        <div class="san2"><img src="__STATIC__/mobile/home/images/del.png"/>删除</div>
+        <div class="san2"><img src="__STATIC__/mobile/home/images/edit.png"/>编辑</div>
+    </div>
+</div>
+{/volist}
+{/empty}
+{/if}
+
+{if condition ="strtolower(request()->controller()) == 'home' && strtolower(request()->action()) == 'distributgoods'"}
+<!--分享商品列表-->
+{volist name="dataList" id="vo"}
+<a href="{:url('Home/detail',array('goods_id'=>$vo['id']))}">
+<div class='item'>
+    <div class="lt">
+        <img src="{$vo.coverimg}"/>
+    </div>
+    <div class="rt">
+        <div>{$vo.name}</div>
+        <div class='info'>价格：<span>￥{$vo.price}</span></div>
+        <div class='info'>佣金：<span>￥{$vo.income}</span></div>
+        <div class='info'>返佣比例：<span>{{vo.first_percent}}%</span></div>
+        <button class='btn-recommend'>我要推荐</button>
+    </div>
+</div>
+</a>
+{/volist}
+{/if}
+
+
+{if condition ="strtolower(request()->controller()) == 'home' && strtolower(request()->action()) == 'ajax_comment'"}
+<!--商品列表-->
+{volist name="dataList" id="vo"}
+<div class="list2">
+    <div class="rightu11">
+        <div class="right111">
+            <span>{$vo.nickname}</span>
+            {for start="0" end="$vo.star" name="star"}
+            <img class="star1" src="__STATIC__/mobile/home/images/star.png"/>
+            {/for}
+        </div>
+        <div class="right112">{$vo.create_time_text}</div>
+    </div>
+    <div class="info">{$vo.content}</div>
+    <div class="rightuu">是大幅度沙发斯蒂芬是</div>
+    <div class="imgboxe">
+        {foreach name="$vo.imgpath" item="vv"}
+        <img src="{$vv}" class="imgpai"/>
+        {/foreach}
+    </div>
+</div>
+{/volist}
+{/if}
+
+
+
+{if condition ="strtolower(request()->controller()) == 'news' && (strtolower(request()->action()) == 'reviewlist' || strtolower(request()->action()) == 'thumb')"}
+<!--新闻详情页评价-->
+{volist name="dataList" id="vo"}
+<div class="list" data-pid="{$vo.id}">
+    <div class="listtp">
+        <span><img src="{$vo.headimgurl}"/>{$vo.nickname}</span>
+        <span>{$vo.create_time|date='Y-m-d H:i',###}</span>
+    </div>
+    <div class="listmid">
+        <p>{$vo.content}</p>
+        <p class="zan {if condition=" $vo.has_thumb !=0"}haszan{/if}">
+            {if condition="$vo.has_thumb neq 0"}
+            <img src="__STATIC__/wechat/news/images/yeszan.png">
+            {else/}
+            <img src="__STATIC__/wechat/news/images/nozan.png">
+            {/if}
+            <span>{$vo.thumb}</span>
+        </p>
+    </div>
+</div>
+{/volist}
+{/if}

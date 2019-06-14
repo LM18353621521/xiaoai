@@ -1,0 +1,118 @@
+{if condition ="strtolower(request()->action()) == 'card'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><input type="checkbox" name="id" value="{$vo.id}"></td>
+    <td>
+        <input name="sort" data-id="{$vo.id}" type="text" size="1" class="form-control col-lg-1 data-sort" value="{$vo.sort}">
+    </td>
+    <td>{$vo.name}</td>
+    <td>{$vo.price}</td>
+    <td>{$vo.give_money}</td>
+    <td>{$vo.create_time|date="Y-m-d H:i",###}</td>
+    <td data-pid="{$vo.id}">
+        {if condition="$vo.is_publish == 0"}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="money_card" data-fieldname="is_publish" data-value="1">
+            <i class="icon-remove" title="未发布"></i>
+        </a>
+        {elseif condition="$vo.is_publish == 1"/}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="money_card" data-fieldname="is_publish" data-value="0">
+            <i class="icon-ok" title="已发布"></i>
+        </a>
+        {/if}
+    </td>
+    <td data-pid="{$vo.id}">
+        <a href="{:url('Money/cardadd',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-pencil"></i></button>
+        </a>
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="money_card" data-fieldname="is_hidden" data-value="1"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}
+
+
+
+{if condition ="strtolower(request()->action()) == 'order'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><input type="checkbox" name="id" value="{$vo.id}"></td>
+    <td><a href="#">{$key+1}</a></td>
+    <td>{$vo.order_number}</td>
+    <td>{$vo.nickname}</td>
+    <td>{$vo.pay_money}</td>
+    <td>{$vo.give_money}</td>
+    <td>{$vo.create_time|date="Y-m-d H:i",###}</td>
+    <td data-pid="{$vo.id}">
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="money_order" data-fieldname="is_hidden" data-value="1"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}
+
+
+{if condition ="strtolower(request()->action()) == 'log'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><a href="#">{$key+1}</a></td>
+    <td>{$vo.nickname}</td>
+    <td>{$vo.remark}</td>
+    <td>
+        {$vo.field_change} {$vo.number}
+    </td>
+    <td>{$vo.cur_number}</td>
+    <td>{$vo.create_time|date="Y-m-d H:i",###}</td>
+</tr>
+{/volist}
+<script>
+    $("#total").text();
+</script>
+{/if}
+
+
+{if condition ="strtolower(request()->action()) == 'withdraw'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><input type="checkbox" name="id" value="{$vo.id}"></td>
+    <td><a href="#">{$key+1}</a></td>
+    <td>{$vo.nickname}</td>
+    <td>{$vo.money}</td>
+    <td>{$vo.create_time|date="Y-m-d H:i",###}</td>
+    <td  data-pid="{$vo.id}">
+        {if condition="$vo.status == 0"}
+        <a href="#deal" data-url="{:url('Money/withdrawcheck')}" data-tablename="money_withdraw" data-fieldname="status" data-value="1">
+            同意
+        </a>
+        |
+        <a href="#deal" data-url="{:url('Money/withdrawcheck')}" data-tablename="money_withdraw" data-fieldname="status" data-value="-1">
+            拒绝
+        </a>
+        {elseif condition="$vo.status == 1"/}
+        <a>
+            <i class=" icon-check" title="审核已通过"></i>
+        </a>
+        {elseif condition="$vo.status == -1"/}
+        <a>
+            <i class="icon-check-minus" title="审核未通过"></i>
+        </a>
+        {/if}
+    </td>
+    <td>
+        {if condition="$vo.status != 0"}
+        {$vo.check_time|date="Y-m-d H:i",###}
+        {/if}
+    </td>
+    <td data-pid="{$vo.id}">
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="money_withdraw" data-fieldname="is_hidden" data-value="1"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}

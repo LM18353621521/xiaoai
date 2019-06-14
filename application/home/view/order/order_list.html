@@ -1,0 +1,140 @@
+{include file="public/header" title="我的订单"}
+<script>
+    $(document).ready(order_obj.order_list);
+</script>
+<body>
+<link rel="stylesheet" type="text/css" href="__STATIC__/home/common/css/page.css" />
+<div class="wrap">
+    {include file="public/top_nav"}
+    <div class="banner">
+        {include file="public/search"}
+        {include file="public/category_nav"}
+    </div>
+    <div class="volume-wrapper">
+        <div class="volume-wrapper-content">
+            {include file="public/vip_nav" title="个人中心"}
+            <div class="volume-content-bottom">
+                <ul class="nav-content">
+                    <a href="{:url('Order/order_list',array('status'=>0))}"><li class="navs-item {if condition="$status eq 0"}active{/if}">全部订单</li></a>
+                    <a href="{:url('Order/order_list',array('status'=>1))}"><li class="navs-item {if condition="$status eq 1"}active{/if}">待付款 <span>{$count_order[0]}</span></li></a>
+                    <a href="{:url('Order/order_list',array('status'=>2))}"><li class="navs-item {if condition="$status eq 2"}active{/if}">待发货 <span>{$count_order[1]}</span></li></a>
+                    <a href="{:url('Order/order_list',array('status'=>3))}"><li class="navs-item {if condition="$status eq 3"}active{/if}">代签收 <span>{$count_order[2]}</span></li></a>
+                    <a href="{:url('Order/order_list',array('status'=>4))}"><li class="navs-item {if condition="$status eq 4"}active{/if}">待评价 <span>{$count_order[3]}</span></li></a>
+                    <a href="{:url('Order/order_list',array('status'=>5))}"><li class="navs-item {if condition="$status eq 5"}active{/if}">退款中 <span>{$count_order[4]}</span></li></a>
+                    <div class="clear"></div>
+                </ul>
+                <ul class="order-list lists ss">
+                    {foreach name="dataList" item="vo"}
+                    <li class="detail_do" order_id="{$vo.id}">
+                        <p class="order-title">订单号:{$vo.order_number} <span>{$vo.create_time|date="Y-m-d H:i:s",###}</span></p>
+                        <div class="order-box">
+                            <ul class="order-li">
+                                {foreach name="$vo.orderlog" item="vv"}
+                                <li>
+                                    <img src="{$vv.coverimg}">
+                                    <p class="order-name">{$vv.goods_name}</p>
+                                    <p class="order-moneys">￥{$vv.goods_price}</p>
+                                    <p class="order-num">x {$vv.buy_num}</p>
+                                </li>
+                                {/foreach}
+                            </ul>
+                            <div class="order-money">
+                                <p class="order-qian">￥{$vo.total_price}</p>
+                                <p class="order-yun">(含运费{$vo.express_fee})</p>
+                            </div>
+                            <div class="order-info">
+                                    {if condition="$vo.status eq 0"}
+                                <p class='order-wait'>未付款</p>
+                                {elseif condition="$vo.status eq 1"/}
+                                <p class='order-wait'>待发货</p>
+                                {elseif condition="$vo.status eq 2"/}
+                                <p class='order-wait'>已发货</p>
+                                {elseif condition="$vo.status eq 3&&$vo.is_comment eq 0"/}
+                                <p class='order-wait'>待评价</p>
+                                {elseif condition="$vo.status eq 3&&$vo.is_comment eq 1"/}
+                                <p class='order-wait'>已评价</p>
+                                {elseif condition="$vo.status eq -1"/}
+                                <p class='order-wait'>已取消</p>
+                                {elseif condition="$vo.status eq -2"/}
+                                <p class='order-wait'>申请退款中</p>
+                                {elseif condition="$vo.status eq -3"/}
+                                <p class='order-wait'>已退款</p>
+                                {/if}
+                                <a href="{:url('Order/orderdetail',array('order_id'=>$vo.id))}"><p class="order-detail">订单详情</p></a>
+                            </div>
+                            <div class="order-btn">
+                                {if condition="$vo.status eq 0"}
+                                <p class="order-pay pay_do">立即付款</p>
+                                <p class="order-cancel cancel_do">取消订单</p>
+                                {elseif condition="$vo.status eq 1"/}
+                                <p class="refund_do">申请退款</p>
+                                {elseif condition="$vo.status eq 2"/}
+                                <p class="confirm_do">确认收货</p>
+                                <!--<p class="express_do">查看物流</p>-->
+                                <p class='refund_do'>申请退款</p>
+                                {elseif condition="$vo.status eq 3&&$vo.is_comment eq 0"/}
+                                <p class="comment_do">去评价</p>
+                                <p class="del_do express_do">删除订单</p>
+                                {elseif condition="$vo.status eq 3&&$vo.is_comment eq 1"/}
+                                <p class="del_do">删除订单</p>
+                                {elseif condition="$vo.status eq -1"/}
+                                <p class="del_do">删除订单</p>
+                                {elseif condition="$vo.status eq -2"/}
+                                <!--<p class="express_do">查看物流</p>-->
+                                {elseif condition="$vo.status eq -3"/}
+                                <!--<p class="express_do">查看物流</p>-->
+                                <p class="del_do">删除订单</p>
+                                {/if}
+                            </div>
+                        </div>
+                    </li>
+                    {/foreach}
+                    {empty name="dataList"}
+                    <div style="text-align: center;">暂无该订单数据~</div>
+                    {/empty}
+                </ul>
+                <div>
+                    {$page->show()}
+                </div>
+                <!--<ul class="pagination">-->
+                    <!--<li id="example1_previous" class="paginate_button previous disabled">-->
+                        <!--<a class="prev" href="">上一页</a>-->
+                    <!--</li>-->
+                    <!--<li class="paginate_button"><a class="num" href="">1</a></li>-->
+                    <!--<li class="paginate_button"><a class="num" href="">2</a></li>-->
+                    <!--<li class="paginate_button"><a class="num" href="">3</a></li>-->
+                    <!--<li class="paginate_button"><a class="num" href="">4</a></li>-->
+                    <!--<li class="paginate_button"><a class="num" href="">5</a></li>-->
+                    <!--<li class="paginate_button active"><a tabindex="0" data-dt-idx="1" aria-controls="example1" href=" ">6</a></li>-->
+                    <!--<li class="paginate_button"><a class="num" href="">7</a></li>-->
+                    <!--<li class="paginate_button"><a class="num" href="">8</a></li>-->
+                    <!--<li class="paginate_button"><a class="num" href="">9</a></li>-->
+                    <!--<li class="paginate_button"><a class="num" href="">10</a></li>-->
+                    <!--<li class="paginate_button"><a class="num" href="">11</a></li>-->
+                    <!--<li id="example1_next" class="paginate_button next">-->
+                        <!--<a class="next" href="">下一页</a>-->
+                    <!--</li>-->
+                    <!--<li id="example1_previous" class="paginate_button previous disabled">-->
+                        <!--<a class="end" href="">尾页</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer"}
+
+<!--右边导航s-->
+{include file="public/right_nav"}
+<!--右边导航e-->
+<script type="text/javascript">
+    $(function () {
+
+        // 一级菜单切换
+        $(".navs-item").click(function () {
+            $(this).addClass("active").siblings(".navs-item").removeClass("active");
+        })
+    })
+</script>
+</body>
+</html>

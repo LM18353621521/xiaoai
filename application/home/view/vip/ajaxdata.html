@@ -1,0 +1,89 @@
+{if condition ="strtolower(request()->controller()) == 'vip' && strtolower(request()->action()) == 'mycollect'"}
+<!--我的关注-->
+{volist name="dataList" id="vo"}
+<div class='item detail_do' cid="{$vo.id}" goods_id="{$vo.goods_id}">
+    <div class="lt">
+        <img src="{$vo.coverimg}"/>
+    </div>
+    <div class="rt">
+        <div>{$vo.name}</div>
+        <div class='money'>￥{$vo.price}</div>
+        <div class='person'>{$vo.sales}人付款</div>
+    </div>
+</div>
+{/volist}
+{/if}
+{if condition ="strtolower(request()->controller()) == 'vip' && strtolower(request()->action()) == 'address_add'"}
+<!--新增地址-->
+<li address_id="{$data.id}" id="address{$data.id}">
+    <p class="tianxie-name">{$data.linkman}</p>
+    <p class="tianxie-addr">{$data.linkman} {$data.province} {$data.city} {$data.district} {$data.address}   {$data.linktel_hide}</p>
+    <div class="tianxie-btn">
+        <p class="tianxie-item tianxie-default address_default">设为默认地址</p>
+        <p class="tianxie-item tianxie-edit address_edit">编辑</p>
+        <p class="tianxie-item tianxie-del address_del">删除</p>
+    </div>
+</li>
+{/if}
+{if condition ="strtolower(request()->controller()) == 'vip' && strtolower(request()->action()) == 'addredit'"}
+    {if condition="$act eq 1"}
+    <!--新增地址-->
+    <div class="login-layer-content">
+        <img class="layer-close" src="__STATIC__/home/common/images/layer-close.png">
+        <p class="layer-tit">编辑收货地址</p>
+        <div class="input-box">
+            <p class="input-tit"><span>*</span>收货人姓名</p>
+            <input type="text" name="linkman" value="{$data.linkman}">
+        </div>
+        <div class="input-box">
+            <p class="input-tit"><span>*</span>手机号码</p>
+            <input type="text" name="linktel" value="{$data.linktel}">
+        </div>
+        <div class="input-box">
+            <p class="input-tit"><span>*</span>所在地区</p>
+            <div class="slect-box" data-toggle="distpicker">
+                <select name="province_id"  id="province" onChange="get_city(this,0)">
+                    <option value=""> 请选择 </option>
+                    {foreach name="provinceList" item="vo"}
+                    <option value="{$vo.id}" {eq name="vo.id" value="$data.province_code"}selected{/eq} > {$vo.name} </option>
+                    {/foreach}
+                </select>
+                <select name="city_id" id="city" onChange="get_area(this)">
+                    <option value="" > 请选择 </option>
+                    {foreach name="cityList" item="vo"}
+                    <option value="{$vo.id}" {eq name="vo.id" value="$data.city_code"}selected{/eq} > {$vo.name} </option>
+                    {/foreach}
+                </select>
+                <select  name="district_id" id="district">
+                    <option value=""> 请选择 </option>
+                    {foreach name="districtList" item="vo"}
+                    <option value="{$vo.id}" {eq name="vo.id" value="$data.district_code"}selected{/eq} > {$vo.name} </option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+        <div class="input-box">
+            <p class="input-tit"><span>*</span>详情地址</p>
+            <input type="text" name="address" value="{$data.address}">
+        </div>
+        <div class="input-box">
+            <p class="input-tit"><span></span>邮编地址</p>
+            <input type="text" name="postcode" value="{$data.postcode}">
+        </div>
+        <input type="hidden" name="id" value="{$data.id}">
+        <input type="hidden" name="act" value="edit">
+        <p class="layer-btn save_addredit_do">保存收货地址</p>
+    </div>
+    {else/}
+        <p class="tianxie-name">{$data.linkman}</p>
+        <p class="tianxie-addr">{$data.linkman} {$data.province} {$data.city} {$data.district} {$data.address}   {$data.linktel_hide}</p>
+        <div class="tianxie-btn">
+            {if condition="$data.is_default eq 0"}
+            <p class="tianxie-item tianxie-default address_default">设为默认地址</p>
+            {/if}
+            <p class="tianxie-item tianxie-edit address_edit">编辑</p>
+            <p class="tianxie-item tianxie-del address_del">删除</p>
+        </div>
+    {/if}
+
+{/if}

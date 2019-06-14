@@ -1,0 +1,50 @@
+{extend name="public/base"/}
+{block name="body"}
+<script type="text/javascript">
+    $("title").text('我的信息');
+    $(document).ready(vip_obj.myinfo);
+</script>
+
+<form id="data-form">
+    <nav>
+        <ul>
+            <li>
+                <span>头像</span>
+                <span style="float:right;height: 3.5rem;"><img src="{$info.headimgurl}"></span>
+            </li>
+            <li>
+                <span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</span>
+                <span><input style="float: right" type="text" name="realname" value="{$info.realname}" placeholder="请输入您的姓名" notnull notice="请输入您的姓名"></span>
+            </li>
+            <li>
+                <span>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：</span>
+                <span><input type="text" name="mobilephone" value="{$info.mobilephone}" placeholder="请输入您的电话" notnull notice="请输入您的电话"></span>
+            </li>
+            <li>
+                <span>微信帐号：</span>
+                <span><input type="text" name="wechat" value="{$info.wechat}" placeholder="请输入您的微信帐号" notnull notice="请输入您的微信帐号"></span>
+            </li>
+            <li>
+                <span>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</span>
+		        	<span>
+				      	<div class="select">
+                            <span></span>
+                            <select name="gender" notnull notice="请选择您的性别">
+                                <option value="0">请选择</option>
+                                <option value="1" {eq name="info.gender" value="1"}selected{/eq}>男</option>
+                                <option value="2" {eq name="info.gender" value="2"}selected{/eq}>女</option>
+                            </select>
+                        </div>
+					</span>
+            </li>
+            <li>
+                <span>个性签名：</span>
+                <textarea rows="2" name="sign" placeholder="请输入个性签名">{$info.sign}</textarea>
+            </li>
+        </ul>
+    </nav>
+    <input type="hidden" name="id" value="{$info.id}">
+    <input type="submit" class="footer" value="确定">
+</form>
+<input type="hidden" id="do_action" value="{:url('Vip/myinfo')}">
+{/block}

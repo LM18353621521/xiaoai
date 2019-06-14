@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>评价</title>
+    <link rel="stylesheet" type="text/css" href="../__STATIC__/wechat/home/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../__STATIC__/wechat/home/css/lj.css"/>
+    <script type="text/javascript" src="../__STATIC__/wechat/home/js/jquery-1.11.2.min.js"></script>
+    <!-- 上传照片插件 -->
+    <link rel="stylesheet" type="text/css" href="../__STATIC__/wechat/home/css/review.css"/>
+    <script type="text/javascript" src="../__STATIC__/wechat/home/js/upload.js"></script>
+    <script type="text/javascript" src="../__STATIC__/wechat/home/js/binaryajax.js"></script>
+    <script type="text/javascript" src="../__STATIC__/wechat/home/js/exif.js"></script>
+    <script type="text/javascript" src="../__STATIC__/wechat/home/js/LocalResizeIMG.js"></script>
+    <script type="text/javascript" src="../__STATIC__/wechat/home/js/mobileBUGFix.mini.js"></script>
+    <link rel="stylesheet" type="text/css" href="../__STATIC__/wechat/home/css/discuss.css"/>
+</head>
+<body>
+    <div class="top11">
+        <img class="left-img" src="../__STATIC__/wechat/home/images/product.jpg">
+        <div class="top112">
+            <div class="top1121">请对服务进行打分</div>
+            <div class="top1122">
+               <img class="img0" src="../__STATIC__/wechat/home/images/star.png">
+               <img class="img0" src="../__STATIC__/wechat/home/images/star.png">
+               <img class="img0" src="../__STATIC__/wechat/home/images/star.png">
+               <img class="img0" src="../__STATIC__/wechat/home/images/star.png">
+               <img class="img0" src="../__STATIC__/wechat/home/images/star.png">
+            </div>
+        </div>
+    </div>
+    <textarea class="top113" placeholder="说说你的购物体验吧，给其他买家一些帮助"></textarea> 
+    <div class="evaluate">  
+         <div class="question-img #oneupload">
+            <div class="upload_box no_img" id="upload_box1">
+                <input name="ImgUpload1" id="ImgUpload1" type="file" accept="image/*" style="opacity: 0;"/>
+                <div class="img" ><img  id="ImgDetailDiv1" src=""/></div>
+                <input type="hidden" name="ImgPath[]" id="ImgPath1" value="">
+            </div>
+            <div class="upload_box no_img" id="upload_box2">
+                <input name="ImgUpload2" id="ImgUpload2" type="file" accept="image/*" style="opacity: 0;"/>
+                <div class="img" ><img  id="ImgDetailDiv2" src=""/></div>
+                <input type="hidden" name="ImgPath[]" id="ImgPath2" value="">
+            </div>
+            <div class="upload_box no_img" id="upload_box3">
+                <input name="ImgUpload3" id="ImgUpload3" type="file" accept="image/*" style="opacity: 0;"/>
+                <div class="img" ><img  id="ImgDetailDiv3" src=""/></div>
+                <input type="hidden" name="ImgPath[]" id="ImgPath3" value="">
+            </div>
+            <div class="upload_box no_img" id="upload_box4">
+                <input name="ImgUpload4" id="ImgUpload4" type="file" accept="image/*" style="opacity: 0;"/>
+                <div class="img" ><img  id="ImgDetailDiv4" src=""/></div>
+                <input type="hidden" name="ImgPath[]" id="ImgPath4" value="">
+            </div>
+            <div class="upload_box no_img" id="upload_box5">
+                <input name="ImgUpload5" id="ImgUpload5" type="file" accept="image/*" style="opacity: 0;"/>
+                <div class="img" ><img  id="ImgDetailDiv5" src=""/></div>
+                <input type="hidden" name="ImgPath[]" id="ImgPath5" value="">
+            </div>
+            <div class="upload_box no_img" id="upload_box6">
+                <input name="ImgUpload6" id="ImgUpload6" type="file" accept="image/*" style="opacity: 0;"/>
+                <div class="img" ><img  id="ImgDetailDiv6" src=""/></div>
+                <input type="hidden" name="ImgPath[]" id="ImgPath6" value="">
+            </div>
+        </div>
+    </div>
+    <div class="niming"><img src="../__STATIC__/wechat/home/images/yesa.png"><input type="hidden" value="" name="">匿名</div>
+    <div class="title">
+        <div class="title11"><img src="../__STATIC__/wechat/home/images/car.png">物流服务评价</div>
+        <div class="title12">满意请给5星哦</div>
+    </div>
+    <div class="top-box">
+        <div class="top-left">快递包装</div>
+        <div class="top-right">
+           <img src="../__STATIC__/wechat/home/images/star-gray.png">
+           <img src="../__STATIC__/wechat/home/images/star-gray.png">
+           <img src="../__STATIC__/wechat/home/images/star-gray.png">
+           <img src="../__STATIC__/wechat/home/images/star-gray.png">
+           <img src="../__STATIC__/wechat/home/images/star-gray.png">
+        </div>
+    </div>
+    <div class="top-box">
+        <div class="top-left">送货速度</div>
+        <div class="top-right">
+           <img src="../__STATIC__/wechat/home/images/star-gray.png">
+           <img src="../__STATIC__/wechat/home/images/star-gray.png">
+           <img src="../__STATIC__/wechat/home/images/star-gray.png">
+           <img src="../__STATIC__/wechat/home/images/star-gray.png">
+           <img src="../__STATIC__/wechat/home/images/star-gray.png">
+        </div>
+    </div>
+    <div class="top-box">
+        <div class="top-left">配送员服务态度</div>
+        <div class="top-right">
+           <img src="../__STATIC__/wechat/home/images/star-gray.png">
+           <img src="../__STATIC__/wechat/home/images/star-gray.png">
+           <img src="../__STATIC__/wechat/home/images/star-gray.png">
+           <img src="../__STATIC__/wechat/home/images/star-gray.png">
+           <img src="../__STATIC__/wechat/home/images/star-gray.png">
+        </div>
+    </div>
+    
+    <div class="bottom">评价</div>
+
+    <script type="text/javascript">
+        $(function(){
+            $(".top1122 img").click(function(){
+                var index = $(this).index();
+                for (var i = 0; i <= index; i++) {
+                   $(this).parent().find("img").eq(i).prop("src","../__STATIC__/wechat/home/images/star-active.png")
+                }
+                for (var j = index + 1; j < $(".img0").length; j++) {
+                   $(this).parent().find("img").eq(j).prop("src","../__STATIC__/wechat/home/images/star.png")
+                }
+            })
+            $(".top-right img").click(function(){
+                var index = $(this).index();
+                for (var i = 0; i <= index; i++) {
+                   $(this).parent().find("img").eq(i).prop("src","../__STATIC__/wechat/home/images/star-active.png")
+                }
+                for (var j = index + 1; j < $(".img0").length; j++) {
+                   $(this).parent().find("img").eq(j).prop("src","../__STATIC__/wechat/home/images/star-gray.png")
+                }
+            })
+
+
+            var f=0;
+            $(".niming img").click(function(){
+                if(f==0){
+                    $(this).prop("src","../__STATIC__/wechat/home/images/yesa.png");
+                    $(this).next().val(1);
+                    f=1;
+                }else{
+                    $(this).prop("src","../__STATIC__/wechat/home/images/no.png");
+                    $(this).next().val(0);
+                    f=0;
+                }
+            })
+
+
+
+
+
+
+        });
+    </script>
+
+</body>
+</html>

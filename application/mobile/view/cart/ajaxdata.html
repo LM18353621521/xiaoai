@@ -1,0 +1,20 @@
+{if condition ="strtolower(request()->controller()) == 'cart' && strtolower(request()->action()) == 'cart'"}
+<!--购物车列表-->
+{volist name="dataList" id="vo"}
+<div class="add content">
+    <p class="bg"><input type="checkbox" name="id" value="{$vo.id}" /></p>
+    <div class="detail">
+        <div class="mid">
+            <div class="list">
+                <div class="lt"><img src="{$vo.coverimg}" /></div>
+                <div class="rt">
+                    <p><span>{$vo.name}</span></p>
+                    <p><span>￥</span><span class="danjia">{$vo.price}</span><span class="nmpc"><span class="mit">－</span><span class="number">{$vo.number}</span><span class="plus">+</span></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/volist}
+{/if}
+

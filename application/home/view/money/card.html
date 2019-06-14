@@ -1,0 +1,41 @@
+{extend name="public/base"/}
+
+{block name="body"}
+<script type="text/javascript">
+    $("title").text('余额充值');
+    $(document).ready(money_obj.card);
+</script>
+
+<header>
+    余额<span>¥{$vip.money}</span>
+    <a href="{:url('Money/index')}">
+        <div class="rule">余额明细</div>
+    </a>
+</header>
+
+<div class="recharge">
+    {volist name="cardList" id="vo"}
+    <div class="card" data-pid="{$vo.id}">
+        <p>{$vo.price}元</p>
+        <p>
+            {if condition="$vo.give_money neq 0"}
+            赠送{$vo.give_money}元
+            {else/}
+            售价：{$vo.price}元
+            {/if}
+        </p>
+    </div>
+    {/volist}
+</div>
+
+<form id="data-form">
+    <div class="money">
+        <input type="number" name="money" min="0.00" placeholder="请输入其他金额">
+    </div>
+
+    <input class="footer6" type="submit" value="立即充值">
+    <input type="hidden" name="card_id" value="0">
+</form>
+<input type="hidden" name="do_action" value="{:url('Money/card')}"/>
+{include file="public/wxpay"/}
+{/block}

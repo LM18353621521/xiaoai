@@ -1,0 +1,33 @@
+{extend name="public/base"/ }
+
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(function () {
+        can_click = 1;
+    });
+    $(document).ready(vip_obj.mycollect);
+</script>
+<body>
+<!--列表  -->
+<div class='lists'>
+    <div class="hidden">
+        <input type="hidden" name="page" value="1"/>
+        <input type="hidden" name="url" value="{:url('Vip/mycollect')}"/>
+    </div>
+    <div class="content">
+    </div>
+</div>
+<form id="form_ajax">
+    <input type="hidden" name="keyword" value=""/>
+    <input type="hidden" name="sort" value="create_time"/>
+    <input type="hidden" name="asc" value="asc"/>
+</form>
+{assign name="nodata" value="nothing_img"}
+{include file="public/nodata"/ text="亲，你还没有收藏的商品~"}
+<!--<div class="more"><img src="__STATIC__/mobile/home/images/jiazai.png"/>加载更多...</div>-->
+<script type="text/javascript">
+    $(function () {
+
+    });
+</script>
+{/block}

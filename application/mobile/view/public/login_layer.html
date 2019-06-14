@@ -1,0 +1,453 @@
+<!--登录浮层  -->
+<div class='fuceng qiehuan_fu'>
+    <div class="fuer"></div>
+    <div class='baibga'>
+        <div class='login-title'>晓爱商城<img class="close_layer" src="__STATIC__/mobile/home/images/my-close.jpg"/></div>
+        <div class="box">
+            <div class="boxa boxsel">登录</div>
+            <div class="boxa">注册</div>
+        </div>
+        <div class="formbox">
+            <div class="form1" style="padding-top: 1rem">
+                <form action="" id="login_form">
+                    <div class='login-leftright'>
+                        <div class='login-left'>账号</div>
+                        <input class="login-right" type="text" id="login_username" name="username" placeholder="输入登录账号"
+                               placeholder-style="color:#ccc;"/>
+                    </div>
+                    <div class='login-leftright'>
+                        <div class='login-left'>密码</div>
+                        <input class="login-right" id="login_password" type="password" name="password"
+                               placeholder="请输入密码"/>
+                        <!--<img class='eye' src="__STATIC__/mobile/home/images/my-eye.png" />-->
+                    </div>
+                    <div class='set-leftright'>
+                        <div class='set-left'><!--注册账号-->&nbsp;</div>
+                        <div class='set-right find-pwd'><img src="__STATIC__/mobile/home/images/my-clock.png"/>忘记密码？</div>
+                        <!--<div class='set-right'><img src="__STATIC__/mobile/home/images/my-phone.png" />手机快速登录</div>-->
+                    </div>
+                    <div class="btnbtna login_do"> 登录</div>
+                    {if condition="$user.source neq 5"}
+                    <div class='my-flex'>
+                        <div class='my-flex-line'></div>
+                        <div class='my-flex-mid'>其他方式登录</div>
+                        <div class='my-flex-line'></div>
+                    </div>
+                    <img id="qq_login" class="my-qq" src="__STATIC__/mobile/home/images/my-qq.png"/>
+                    {/if}
+                </form>
+            </div>
+            <div class="form1 phone-bg">
+                <form action="" id="form_reg">
+                    <div class="box1">
+                        <input type="number" id="reg_username" name="username" onpaste="clearNoNum(this,1,11)"
+                               onkeyup='clearNoNum(this,0,11)' placeholder="请输入您的手机号"/>
+                    </div>
+                    <div class="box1">
+                        <input class='code-yan' id="reg_code" name="code" type="text" onpaste="clearNoNum(this,0,11)"
+                               onkeyup='clearNoNum(this,0,6)' placeholder="请输入验证码"/>
+                        <div class="get" id="get_reg_code">发送验证码</div>
+                    </div>
+                    <div class="box1">
+                        <input type="password" id="reg_password" name="password" placeholder="请输入密码"/>
+                    </div>
+                    <div class="btnbtna reg_do">注册</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--绑定浮层  -->
+<div class='fuceng bind_fu'>
+    <div class="fuer"></div>
+    <div class='baibga'>
+        <div class='login-title'>绑定手机号<img src="__STATIC__/mobile/home/images/my-close.jpg"/></div>
+        <div class="formbox">
+            <div class="form1 phone-bg">
+                <div class="box1">
+                    <input type="number" id="bind_mobile" name="mobile" onpaste="clearNoNum(this,1,11)"
+                           onkeyup='clearNoNum(this,0,11)' placeholder="请输入您的手机号"/>
+                </div>
+                <div class="box1">
+                    <input class='code-yan' id="bind_code" name="code" type="text" onpaste="clearNoNum(this,0,11)"
+                           onkeyup='clearNoNum(this,0,6)' placeholder="请输入验证码"/>
+                    <div class="get" id="get_bind_code">发送验证码</div>
+                </div>
+                <div class="btnbtna" id="bind_do">绑定</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--绑定浮层  -->
+<div class='fuceng find_fu'>
+    <div class="fuer"></div>
+    <div class='baibga'>
+        <form action="" id="form_find">
+        <div class='login-title'>找回密码<img class="colse-f" src="__STATIC__/mobile/home/images/my-close.jpg"/></div>
+        <div class="formbox">
+            <div class="form1 phone-bg">
+                <div class="box1">
+                    <input type="number" id="find_mobile" name="mobile" onpaste="clearNoNum(this,1,11)"
+                           onkeyup='clearNoNum(this,0,11)' placeholder="请输入您的手机号"/>
+                </div>
+                <div class="box1">
+                    <input class='code-yan' id="find_code" name="code" type="text" onpaste="clearNoNum(this,0,11)"
+                           onkeyup='clearNoNum(this,0,6)' placeholder="请输入验证码"/>
+                    <div class="get" id="get_find_code">发送验证码</div>
+                </div>
+                <div class="box1">
+                    <input type="password" id="find_password" name="password"  placeholder="输入新密码"/>
+                </div>
+                <div class="box1">
+                    <input type="password" id="find_password1" name="password1" placeholder="确认新密码"/>
+                </div>
+                <div class="btnbtna" id="find_do">绑定</div>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    function clearNoNum(obj, point, length) {
+        if (point == 0) {
+            obj.value = obj.value.replace(/[^\d]/g, ""); //清除"数字"和"."以外的字符
+        } else {
+            obj.value = obj.value.replace(/[^\d.]/g, ""); //清除"数字"和"."以外的字符
+            obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的
+        }
+        obj.value = obj.value.replace(/^\./g, ""); //验证第一个字符是数字而不是
+        obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+        obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3'); //只能输入两个小数
+        obj.value = obj.value.substring(0, length);
+    }
+    function checkMobile(tel) {
+        var reg = /^1[0-9]{10}$/;
+        if (reg.test(tel)) {
+            return true;
+        }else{
+            return false;
+        };
+    }
+    $(function () {
+        $('.colse-f').click(function (e) {
+            $(".fuceng").hide();
+        });
+        $('.find-pwd').click(function (e) {
+            $(".fuceng").hide();
+            $(".find_fu").show();
+        })
+
+
+        $(".reg_do").click(function () {
+            if(can_click==0){return false}
+            var username = $("#reg_username").val();
+            var code = $("#reg_code").val();
+            var password = $("#reg_password").val();
+            if(username==""){
+                $.toptip('请输入账号','error');
+                return false;
+            }
+            if(code==""){
+                $.toptip('请输入验证码','error');
+                return false;
+            }
+            if(password==""){
+                $.toptip('请输入密码','error');
+                return false;
+            }
+            can_click = 0;
+            var data = $('#form_reg').serialize();
+            $.post("/Mobile/Login/register", data, function (data) {
+                if (data.ret == 1) {
+                    $.toast(data.msg,1500,function () {
+                        window.location.reload();
+                    })
+                    can_click = 1;
+                } else {
+                    $.toptip(data.msg,'error');
+                    can_click = 1;
+                }
+            });
+        });
+
+        $(".login_do").click(function () {
+            var username = $("#login_username").val();
+            var password = $("#login_password").val();
+            if(username==""){
+                $.toptip('请输入账号','error');
+                return false;
+            }
+            if(password==""){
+                $.toptip('请输入密码','error');
+                return false;
+            }
+            $.post("/mobile/Login/login", {mobile:username,password:password}, function (data) {
+                if (data.ret == 1) {
+                    $.toast(data.msg,1500,function () {
+                        window.location.reload();
+                    })
+                } else {
+                    $.toptip(data.msg,'error');
+                }
+            });
+        });
+        /**
+         * 退出登录
+         */
+        $(".login_out").click(function () {
+            $.post("/Mobile/Login/login_out", {}, function (data) {
+                if (data.ret == 1) {
+                    $.toast(data.msg,1500,function () {
+                        window.location.href="/mobile/Home/index";
+                    });
+                } else {
+                    layer.msg(data.msg,{icon:2});
+                }
+            });
+        });
+
+        //qq登录
+        $('#qq_login').click(function () {
+            window.location.href = "/mobile/Login/qq_login";
+        });
+        //获取验证码
+        $("#bind_do").click(function () {
+            var mobile = $("#bind_mobile").val();
+            var code = $("#bind_code").val();
+            if (mobile == '') {
+                $.toptip('手机号码不能为空','error');
+                return false;
+            }
+            if (!(/^1(3|4|5|7|8|9)\d{9}$/.test(mobile))) {
+                $.toptip('手机号码有误，请重新输入','error');
+                return false;
+            }
+            if (code == '') {
+                $.toptip('请输入您收到的验证码','error');
+                return false;
+            }
+            if (can_click != 1) {
+                return false;
+            }
+            can_click = 0;
+            $.post('/mobile/Vip/bind_mobile', {mobile: mobile, code: code}, function (data) {
+                if (data.ret == 1) {
+                    can_click = 1;
+                    $(".fuceng").hide();
+                    $.toast(data.msg, 1500, function () {
+                        window.location.reload();
+                    });
+                } else {
+                    can_click = 1;
+                    alert(data.msg);
+                    return false;
+                }
+            }, 'json');
+        });
+        $("#find_do").click(function () {
+            var mobile = $("#find_mobile").val();
+            var code = $("#find_code").val();
+            var password = $.trim($("#find_password").val());
+            var password1 = $("#find_password1").val();
+            if(!checkMobile(mobile)){
+                $.toptip('请输入正确的手机号码','error');
+                return;
+            }
+            if(!code){
+                $.toptip('请输入验证码','error');
+                return;
+            }
+            if(password==""){
+                $.toptip('请输入密码','error');
+                return false;
+            }
+            if(password.length<6){
+                $.toptip('请输入不小于6位的密码','error');
+                return false;
+            }
+            if(password!=password1){
+                $.toptip('两次密码输入不一致','error');
+                return false;
+            }
+            if (can_click==0){return false}
+            can_click=0;
+            var data = $('#form_find').serialize();
+            $.post("/Home/Login/find_password", data, function (data) {
+                if (data.ret == 1) {
+                    $.toast(data.msg, 1500, function () {
+                        window.location.reload();
+                    });
+                } else {
+                    alert(data.msg);
+                    can_click=1;
+                }
+            });
+        });
+
+
+
+
+        can_get_code=1;
+        //获取验证码
+        $("#get_reg_code").click(function () {
+            var that =$(this);
+            var mobile = $("#reg_username").val();
+            if (mobile == '') {
+                $.toptip('请输入手机号码','error');
+                return false;
+            }
+            if (!(/^1(3|4|5|7|8|9)\d{9}$/.test(mobile))) {
+                $.toptip('手机号码有误，请重新输入','error');
+                return false;
+            }
+            if (can_get_code != 1) {
+                return false;
+            }
+            can_get_code = 0;
+            $.post('/Home/Api/sendSmsCode', {mobile: mobile, type: 2}, function (data) {
+                if (data.ret == 1) {
+                    $.toast(data.msg, 'text');
+                    //发送成功
+                    time = 60;//秒
+                    countdown = time;
+                    var setSmsTime = function () {
+                        if (countdown == 0) {
+                            can_get_code = 1;
+                            that.css('background', '#fff').text('发送验证码');
+                            countdown = time;
+                            clearInterval(aa);
+                        } else {
+                            that.css('background', '#fff').text(countdown + 's');
+                            countdown--;
+                        }
+                    }
+                    var aa = setInterval(function () {
+                        setSmsTime()
+                    }, 1000);
+                } else {
+                    can_get_code = 1;
+                    $.toptip(data.msg,'error');
+                    return false;
+                }
+            }, 'json');
+        });
+        //获取验证码
+        $("#get_bind_code").click(function () {
+            var that =$(this);
+            var mobile = $("#bind_mobile").val();
+            if (mobile == '') {
+                alert("手机号码不能为空");
+                return false;
+            }
+            if (!(/^1(3|4|5|7|8|9)\d{9}$/.test(mobile))) {
+                alert("手机号码有误，请重新输入");
+                return false;
+            }
+            if (can_get_code != 1) {
+                return false;
+            }
+            can_get_code = 0;
+            $.post('/Home/Api/sendSmsCode', {mobile: mobile, type: 1}, function (data) {
+                console.log(data);
+                if (data.ret == 1) {
+                    $.toast(data.msg, 'text');
+                    //发送成功
+                    time = 60;//秒
+                    countdown = time;
+                    var setSmsTime = function () {
+                        if (countdown == 0) {
+                            can_get_code = 1;
+                            that.css('background', '#fff').text('发送验证码');
+                            countdown = time;
+                            clearInterval(aa);
+                        } else {
+                            that.css('background', '#fff').text(countdown + 's');
+                            countdown--;
+                        }
+                    }
+                    var aa = setInterval(function () {
+                        setSmsTime()
+                    }, 1000);
+                } else {
+                    can_get_code = 1;
+                    alert(data.msg);
+                    return false;
+                }
+            }, 'json');
+        });
+        //获取验证码
+        $("#get_find_code").click(function () {
+            var that =$(this);
+            var mobile = $("#find_mobile").val();
+            if (mobile == '') {
+                alert("手机号码不能为空");
+                return false;
+            }
+            if (!(/^1(3|4|5|7|8|9)\d{9}$/.test(mobile))) {
+                alert("手机号码有误，请重新输入");
+                return false;
+            }
+            if (can_get_code != 1) {
+                return false;
+            }
+            can_get_code = 0;
+            $.post('/Home/Api/sendSmsCode', {mobile: mobile, type: 3}, function (data) {
+                console.log(data);
+                if (data.ret == 1) {
+                    $.toast(data.msg, 'text');
+                    //发送成功
+                    time = 60;//秒
+                    countdown = time;
+                    var setSmsTime = function () {
+                        if (countdown == 0) {
+                            can_get_code = 1;
+                            that.css('background', '#fff').text('发送验证码');
+                            countdown = time;
+                            clearInterval(aa);
+                        } else {
+                            that.css('background', '#fff').text(countdown + 's');
+                            countdown--;
+                        }
+                    }
+                    var aa = setInterval(function () {
+                        setSmsTime()
+                    }, 1000);
+                } else {
+                    can_get_code = 1;
+                    alert(data.msg);
+                    return false;
+                }
+            }, 'json');
+        });
+
+
+
+
+        $(".change-account").click(function () {
+            $(".qiehuan_fu").show();
+        })
+        $(".login-title img,.btnbtn").click(function () {
+            if (is_login==0) {
+                return false;
+            }
+            $(".fuceng").hide();
+        })
+        //显示绑定浮层
+        $('.bind_do').click(function () {
+            $(".bind_fu").show();
+        })
+        $(".boxa").click(function () {
+            $(".boxa").removeClass("boxsel");
+            $(this).addClass("boxsel");
+            var _index = $(this).index();
+            $(".form1").eq(_index).show().siblings(".form1").hide();
+        });
+        $(".close_layer").click(function () {
+            $(".fuceng").hide();
+        })
+    });
+</script>

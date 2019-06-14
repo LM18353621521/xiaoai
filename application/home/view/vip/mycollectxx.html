@@ -1,0 +1,88 @@
+{include file="public/header" title="我的关注"}
+<link rel="stylesheet" type="text/css" href="__STATIC__/home/common/css/page.css" />
+<script>
+    $(document).ready(vip_obj.mycollect);
+</script>
+<body>
+<div class="wrap">
+    {include file="public/top_nav"}
+    <div class="wrap-content">
+        <div class="logo-link">
+            <img src="{$xa_config.web_logo}">
+            <div class="link-two">
+                <img src="__STATIC__/home/common/images/contact.png">
+                <p class="contact-m"> 联系客服
+                <p>
+            </div>
+            <div class="link-one">继续购物</div>
+        </div>
+        <div class="menu">
+            <p class="menu-tit">分类:</p>
+            <ul class="navbar-nav">
+                <a href="{:url('Vip/mycollect')}" ><li class="nav-item {if condition="$cate_id  eq 0"}active{/if}">全部商品</li></a>
+                {foreach name="categoryList" item="vo"}
+                <a href="{:url('Vip/mycollect',array('cate_id'=>$vo.id))}" ><li class="nav-item {if condition="$cate_id  eq $vo.id"}active{/if}">震动</li></a>
+                {/foreach}
+            </ul>
+        </div>
+        <ul class="product-list lists">
+            {foreach name="dataList" item="vo"}
+            <li class="detail_do" cid="{$vo.id}" goods_id="{$vo.goods_id}">
+                <a href="javascript:;">
+                    <div class="product-btns">
+                        <!--<p class="product-btna">置顶</p>-->
+                        <p class="product-btnb">立即购买</p>
+                        <p class="product-btna del">取消关注</p>
+                    </div>
+                    <img src="{$vo.coverimg}">
+                    <p class="price">￥{$vo.price}</p>
+                    <p class="name">{$vo.name}</p>
+                    <div class="info">
+                        <p class="salenum">热销<span>{$vo.sales}</span>笔</p>
+                        <p class="discuss">已有<span>{:comment_num_show($vo.comment_count)}</span>评价</p>
+                    </div>
+                </a>
+            </li>
+            {/foreach}
+            <!--<li>-->
+            <!--<div class="product-btns">-->
+            <!--<p class="product-btna">置顶</p>-->
+            <!--<p class="product-btnb">加入购物车</p>-->
+            <!--<p class="product-btna">取消关注</p>-->
+            <!--</div>-->
+            <!--<img src="__STATIC__/home/common/images/product-a.png">-->
+            <!--<p class="price">￥268.00</p>-->
+            <!--<p class="name">雷霆（LETEN） 飞机杯全自动男飞机杯全自动男用自慰器用自慰器成人情趣性用品加温震动防水倒模夹吸互动</p>-->
+            <!--<div class="info">-->
+            <!--<p class="salenum">热销<span>555555</span>笔</p>-->
+            <!--<p class="discuss">已有<span>5555+</span>评价</p>-->
+            <!--</div>-->
+            <!--</li>-->
+
+        </ul>
+    </div>
+    <div class="page">
+        {$page->show()}
+    </div>
+</div>
+
+<!--右边导航s-->
+{include file="public/right_nav"}
+<!--右边导航e-->
+
+<!-- 登录/注册浮层 -->
+{include file="public/login_layer"}
+
+{include file="public/footer"}
+
+<script type="text/javascript">
+    $(function () {
+        $(".nav-item").click(function () {
+            $(this).addClass("active").siblings().removeClass("active");
+        })
+
+
+    })
+</script>
+</body>
+</html>

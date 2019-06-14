@@ -1,0 +1,21 @@
+<view class='lists' wx:for="{{goodslist}}">
+    <view class='item'>
+      <view class="lt">
+          <image src="{{item.img}}"/>
+      </view>
+      <view class="rt">
+          <view>{{item.name}}</view>
+          <view>
+            <text class='aa'>￥<text>{{item.price}}</text></text>
+            <text class='bb'>x{{item.num}}</text>
+          </view>
+      </view>
+    </view>
+    <view class='money-box'>
+        <view class='money-box-left'>退款成功</view>
+        <view class='money-box-right'>查看详情</view>
+      </view>
+  </view>
+
+
+<view class="more"><image mode='widthFix' src="../../../images/jiazai.png"/>加载更多...</view>

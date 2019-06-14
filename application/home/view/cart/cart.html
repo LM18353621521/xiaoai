@@ -1,0 +1,103 @@
+{include file="public/header" title="购物车"}
+<body>
+<script type="text/javascript">
+    $(document).ready(function(){
+        total_num={$total_count.total_num};
+        total_price={$total_count.total_price};
+        can_click=1;
+    });
+    $(document).ready(cart_obj.cart);
+</script>
+<div class="wrap">
+    {include file="public/top_nav"}
+    <div class="wrap-content">
+        <div class="banner">
+            {include file="public/search"}
+        </div>
+        <div class="se-bottle">
+            <div class="se-bottle-head">
+                <p class="head-select"><img src="__STATIC__/home/common/images/no-select.png">全选</p>
+                <p class="head-shop">商品</p>
+                <p class="head-order">单价</p>
+                <p class="head-num">数量</p>
+                <p class="head-ji">小计</p>
+                <p class="head-money">操作</p>
+            </div>
+            <div class="table-order">
+                <ul class="product-list">
+                    {foreach name="cartList" item="vo"}
+                    <li class="cartList" cart_id="{$vo.id}">
+                        {if condition="$vo.selected eq 1"}
+                        <img class="single-select active" src="__STATIC__/home/common/images/selected.png">
+                        {else/}
+                        <img class="single-select" src="__STATIC__/home/common/images/no-select.png">
+                        {/if}
+                        <img class="product" src="{$vo.coverimg}">
+                        <p class="list-one">{$vo.name}</p>
+                        <div class="list-two">
+                            <p>{$vo.spec_key}</p>
+                            <!--<p>颜色分类:pink</p>-->
+                        </div>
+                        <p class="list-three">￥<em id="price{$vo.id}">{$vo.price}</em></p>
+                        <p class="list-four">
+                            <span class="mit">－</span>
+                            <span class="number" id="num{$vo.id}">{$vo.number}</span>
+                            <span class="plus">+</span>
+                        </p>
+                        <div class="list-xiaoji">
+                            <p class="xiaoji-money">￥<em id="subtotal{$vo.id}">{$vo.total_price}</em></p>
+                            <!--<p>0.93kg</p>-->
+                        </div>
+                        <div class="list-caozuo">
+                            <p class="del">删除</p>
+                            <!--<p class="collect">移入收藏夹</p>-->
+                        </div>
+                    </li>
+                    {/foreach}
+                </ul>
+                <div class="zong">
+                    <p class="head-select zong-all"><img src="__STATIC__/home/common/images/no-select.png">全选
+                        <a   href="javascript:;"><span class="del_all">删除选中的产品</span></p>
+                    <a   href="javascript:;"><p class="pay-btn check_do">去结算</p></a>
+                    <p class="qian-zong">总价：<span>￥<em id="total_price">0.00</em></span></p>
+                    <p class="pay-select-num">已选<span id="total_num">1</span>件商品</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--右边导航s-->
+    {include file="public/right_nav"}
+    <!--右边导航e-->
+    <!--右边导航s-->
+    {include file="public/kf_layer"}
+    <!--右边导航e-->
+    {include file="public/footer"}
+    <!--看了又看-s-->
+</div>
+<script type="text/javascript">
+    $(function () {
+
+
+        // 点击减号
+        $(".mit").click(function () {
+            var num = $(this).parent(".list-four").find(".number").text();
+            if (num > 1) {
+                num--;
+                $(this).parent(".list-four").find(".number").text(num);
+            }
+        })
+        // 点击加号
+        $(".plus").click(function () {
+            var num = $(this).parent(".list-four").find(".number").text();
+            num++;
+            $(this).parent(".list-four").find(".number").text(num);
+        })
+
+
+    })
+
+
+</script>
+
+</body>
+</html>

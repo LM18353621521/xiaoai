@@ -1,0 +1,83 @@
+{include file="public/header" title="订单支付"}
+<body>
+<div class="wrap">
+    <div class="wrap-content">
+        <div class="logo-link">
+            <img src="{$xa_config.web_logo}">
+            <div class="link-two">
+                <img src="__STATIC__/home/common/images/contact.png">
+                <p class="contact-m"> 联系客服
+                <p>
+            </div>
+            <div class="link-one">继续购物</div>
+        </div>
+        <div class="se-banner">
+            <div class="pay_box">
+                <p class="pay-tit">支付方式：</p>
+                <div class="pay-wrap">
+                    <p class="pay-item " pay_type="alipay">支付宝支付</p>
+                    <p class="pay-item" pay_type="wxpay">微信支付</p>
+
+                    <p class="sure_do">确认支付</p>
+                </div>
+            </div>
+            <div class="pay_box">
+                <p class="pay-tit">订单号：{$order.order_number}</p>
+                <div class="pay-wrap">
+                    <p class="pay_money">支付金额：{$order.pay_money}<span>元</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="se-bottle">
+            <div class="se-bottle-head">
+                <p class="head-shop">商品</p>
+                <p class="head-order">规格</p>
+                <p class="head-num">数量</p>
+                <p class="head-money">金额</p>
+            </div>
+            <ul class="product-list">
+                {foreach name="order.orderlog" item="vo"}
+                <li>
+                    <img src="{$vo.coverimg}">
+                    <p class="list-one">{$vo.goods_name}</p>
+                    <div class="list-two">
+                        <p>{$vo.key_name}</p>
+                    </div>
+                    <p class="list-three">{$vo.buy_num}</p>
+                    <p class="list-five">￥369.00</p>
+                </li>
+                {/foreach}
+            </ul>
+        </div>
+    </div>
+    <form action="{:url('Order/order_pay')}" id="pay_do">
+        <input type="hidden" name="pay_type" value="">
+        <input type="hidden" name="order_id" value="{$order.id}">
+    </form>
+</div>
+<script type="text/javascript">
+    $(function () {
+        // 支付方式
+        $(".pay-item").click(function () {
+            var type =$(this).attr('pay_type');
+            $(this).addClass("active").siblings(".pay-item").removeClass("active");
+            $('input[name=pay_type]').val(type);
+        })
+        $(".sure_do").click(function () {
+            if (can_click == 0) {
+                return false
+            }
+            can_click = 0;
+            var pay_type = $('input[name=pay_type]').val();
+            if(pay_type==""){
+                layer.msg("请选择付款方式",{icon:2});return false;
+            }
+            $("#pay_do").submit();
+        })
+    })
+
+
+</script>
+
+</body>
+</html>

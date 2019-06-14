@@ -1,0 +1,360 @@
+{extend name="public/base"/ }
+
+{block name="body"}
+<!-- 省市区插件 -->
+<link rel="stylesheet" type="text/css" href="__STATIC__/mobile/common/css/addr_sel.css"/>
+<script type="text/javascript" src="__STATIC__/common/js/jqweui/city-picker.js"></script>
+<script type="text/javascript">
+    can_click = 1;
+    goods_price = {$total_count.goods_price|default='0'};
+    express_fee = {$total_count.express_fee|default='0'};
+    coupon_money=0;
+</script>
+
+<form id="order_info">
+    <input type="hidden" name="express_fee" value="{$total_count.express_fee|default='0'}">
+    <input type="hidden" name="action" value="{$action}">
+    <input type="hidden" name="goods_id" value="{$goods_id}">
+    <input type="hidden" name="item_id" value="{$item_id}">
+    <input type="hidden" name="cart_ids" value="">
+    <input type="hidden" name="buy_num" value="{$total_count.total_num}">
+
+<div class='wrapper addrsel'>
+    <input type="hidden" name="address_id" id="address_id" value="{$sel_address.id|default=0}">
+    <div class='order-addrs'>
+        <img class='addrs' src="__STATIC__/mobile/home/images/addr.png"/>
+        <img class='toright' src="__STATIC__/mobile/home/images/toright.png"/>
+        {empty name="sel_address"}
+        <div class='addr'>请选择收货地址</div>
+        {else/}
+        <div class='addrs-box'>
+            <div class='addrs-name'>收货人：<a class="linkman">{$sel_address.linkman} </a><span class="linktel">{$sel_address.linktel}</span></div>
+            <div class='addrs-info'>收货地址：<span class="address">{$sel_address.province} {$sel_address.city} {$sel_address.district} {$sel_address.address}</span></div>
+        </div>
+        {/empty}
+    </div>
+
+    <div class='lists'>
+        {foreach name="cartList" item="vo"}
+        <div class='item'>
+            <div class="lt">
+                <img src="{$vo.coverimg}"/>
+            </div>
+            <div class="rt">
+                <div class='list-name'>{$vo.name}</div>
+                <div class='list-info'>
+                    <span>{$vo.key_name}</span>
+                    <!--<span>尺寸:大号</span>-->
+                </div>
+                <div class='list-money'>
+                    <span class='aa'>￥<span>{$vo.price}</span></span>
+                    <span class='bb'>x{$vo.buy_num}</span>
+                </div>
+            </div>
+        </div>
+        {/foreach}
+    </div>
+
+    <div class="two">
+        <div class="lefttwo">选择优惠券</div>
+        <input type="hidden" name="coupon_id" value="0">
+        <input type="hidden" name="coupon_money" value="0">
+        {empty name="couponList"}
+        <div class="righttwo">
+            <span  style=" color: grey !important;">暂无可用优惠券</span>
+            <img src="__STATIC__/mobile/home/images/right.png">
+        </div>
+        {else/}
+        <div class="righttwo hui">
+            <span>请选择优惠券</span>
+            <img src="__STATIC__/mobile/home/images/right.png">
+        </div>
+        {/empty}
+
+    </div>
+
+    <div class="le">
+        <div class="leleft">配送方式</div>
+        <div class="leright">
+            <span class="ption1">快递</span>
+        </div>
+        <!--<select class="leright">-->
+            <!--<option class="ption1">快递</option>-->
+        <!--</select>-->
+        <img src="__STATIC__/mobile/home/images/right.png">
+    </div>
+
+    <div class="search">
+        <div class="searchl">买家留言</div>
+        <input class="searchr" name="remark" placeholder="选填：填写内容与卖家协商"/>
+    </div>
+
+    <div class="two">
+        <div class="lefttwo">付款方式</div>
+        <input type="hidden" name="pay_type" value="alipay">
+        <div class="righttwo showf5">
+            <span>支付宝支付</span>
+            <img src="__STATIC__/mobile/home/images/right.png">
+        </div>
+    </div>
+
+    <div class="order-box">
+        <div class="order-left small-fontSize">共{$total_count.total_num}件商品 合计</div>
+        <div class="order-right">￥<span>{$total_count.goods_price}</span></div>
+    </div>
+    <div class="order-box">
+        <div class="order-left">运费</div>
+        <div class="order-right order-gray">￥<span id="express_fee">{$total_count.express_fee}</span></div>
+    </div>
+    <div class="order-box">
+        <div class="order-left">优惠金额</div>
+        <div class="order-right">￥<span id="coupon_money">0.00</span></div>
+    </div>
+
+</div>
+
+<div class="btn-page-bottom">
+    <div class='btn-left'>实付款<span>￥<span id="pay_money">{$total_count.goods_price}</span></span></div>
+    <div class='btn-right' id="pay_do">去支付</div>
+</div>
+
+</form>
+
+<!--f1  -->
+<div class='fuceng f1'>
+    <div class="fucenger"></div>
+    <div class='baibga'>
+        <div class='baibgtit color-sel'>优惠券</div>
+        <div class='baibgscroll coupon_list'>
+            {foreach name="couponList" item="vo" key="k"}
+            <div class="twob"  >
+                <div class='leftb {eq name="$k" value="0"}color-sel{/eq}' coupon_id="{$vo.id}"  coupon_money="{$vo.money}" >{$vo.name}</div>
+                <div class="rightb">
+                    {if condition="$k eq 0"}
+                    <img src="__STATIC__/mobile/home/images/radioyes.png">
+                    {else/}
+                    <img src="__STATIC__/mobile/home/images/radiono.png">
+                    {/if}
+                </div>
+            </div>
+            {/foreach}
+        </div>
+        <div class='sure sure_coupon'>确定</div>
+    </div>
+</div>
+
+
+<!--f2  -->
+<div class='fuceng f2'>
+    <div class="fucenger"></div>
+</div>
+
+<!--f3  -->
+<div class='fuceng f3'>
+    <form id="addInfo">
+        <input type="hidden" name="id" value="0">
+    <div class="fucenger"></div>
+    <div class='baibg'>
+        <div class='baitit'>填写地址信息</div>
+        <div class="len">
+            <div class="lenleft">收货人</div>
+            <input class="lenright" name="linkman" type="text"  notnull notice="请输入收货人"  placeholder="请输入收货人"/>
+        </div>
+        <div class="len">
+            <div class="lenleft">手机号</div>
+            <input class="lenright" name="linktel"   type="text" placeholder="请输入手机号码"/>
+        </div>
+        <div class="len">
+            <img class='len-right' src="__STATIC__/mobile/home/images/right.png"/>
+            <div class="lenleft">所在地区</div>
+            <input type="hidden" name="code" value="">
+            <input class="leright" id="region" name="region" type="text" value="" data-codes="" placeholder="请选择地区"/>
+            <!--<div id="address" class="leright">请选择地址</div>-->
+            <!--<input id="address_code" type="hidden" name="code" value=""/>-->
+            <!--<input id="address_pca" type="hidden" name="address_pca" value="" notnull notice="请输入您的所在地区"/>-->
+            <!--<select class="leright">-->
+                <!--<option class="ption1">快递免邮1</option>-->
+                <!--<option class="ption1">快递免邮2</option>-->
+                <!--<option class="ption1">快递免邮3</option>-->
+                <!--<option class="ption1">快递免邮4</option>-->
+                <!--<option class="ption1">快递免邮5</option>-->
+                <!--<option class="ption1">快递免邮6</option>-->
+            <!--</select>-->
+        </div>
+        <div class="len">
+            <div class="lenleft">详细地址</div>
+            <input class="lenright" name="address" type="text" placeholder="请输入详细地址"/>
+        </div>
+        <div class="anonymity">
+            <div class="anonymityleft">是否设置为默认地址</div>
+            <img class="anonymityright" src="__STATIC__/mobile/home/images/tabno.png"/>
+            <input type="hidden" name="is_default" value="0">
+        </div>
+        <div class='btn-fixed-bottom addnewaddr'>保存地址</div>
+    </div>
+    </form>
+</div>
+
+
+<!--f4  -->
+<div class='fuceng f4'>
+    <div class="fucenger"></div>
+    <div class='baibg'>
+        <div class='baitit'>管理收货地址</div>
+
+        <div class='box'>
+            <div  id="addrList"></div>
+            <!--<div class="box-item">-->
+                <!--<div class='addr0'>-->
+                    <!--<div class='addr01'>张三<span>544545124545</span></div>-->
+                    <!--<div class='addr02'>的个数杜甫是的发生大法师</div>-->
+                <!--</div>-->
+                <!--<div class="san">-->
+                    <!--<div class="san1">-->
+                        <!--<img src="__STATIC__/mobile/home/images/no.png"/><input type="hidden" value="" name="">设为默认-->
+                    <!--</div>-->
+                    <!--<div class="san2"><img src="__STATIC__/mobile/home/images/del.png"/>删除</div>-->
+                    <!--<div class="san2"><img src="__STATIC__/mobile/home/images/edit.png"/>编辑</div>-->
+                <!--</div>-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
+        <div class='btn-fixed-bottom showf3'>添加新地址</div>
+    </div>
+</div>
+
+
+<!--f5  -->
+<div class='fuceng f5'>
+    <div class="fucenger"></div>
+    <div class='baibg'>
+        <div class='baitit'>支付方式</div>
+        <div class="pay">
+            <div class="pay-item">
+                <img class="single" src="__STATIC__/mobile/home/images/radioyes.png">
+                <input type="hidden" value="1" name="">
+                <img class='wechat' src="__STATIC__/mobile/home/images/wechat.png">
+                <span>微信支付</span>
+            </div>
+            <div class="pay-item">
+                <img class="single" src="__STATIC__/mobile/home/images/radiono.png">
+                <input type="hidden" value="" name="">
+                <span>佣金支付</span>
+            </div>
+        </div>
+        <div class='btn-fixed-bottom pay-type'>确定</div>
+    </div>
+</div>
+    <script type="text/javascript" src="__STATIC__/mobile/common/js/city-picker.js"></script>
+    <!--<script>-->
+        <!--$("#start").cityPicker({-->
+            <!--title: "选择出发地",-->
+            <!--onChange: function (picker, values, displayValues) {-->
+                <!--console.log(values, displayValues);-->
+            <!--}-->
+        <!--});-->
+    <!--</script>-->
+    <script type="text/javascript">
+        $(document).ready(home_obj.orderconfirm);
+        $("#region").cityPicker({
+            title: "选择出发地",
+            onChange: function (picker, values, displayValues) {
+                console.log(values, displayValues);
+            },
+            onClose: function(e){
+                var code = $('input[name=region]').attr('data-codes');
+                $('input[name=code]').val(code);
+            }
+        });
+    </script>
+
+
+
+<script type="text/javascript">
+    $(function () {
+        // 优惠券浮层单选
+        $(".twob img").click(function () {
+            $('.twob .leftb').removeClass("color-sel");
+            $('.twob img').attr("src", "__STATIC__/mobile/home/images/radiono.png");
+            $(".twob input").val(0);
+            $(this).attr("src", "__STATIC__/mobile/home/images/radioyes.png");
+            $(this).next("input").val(1);
+            $(this).parents(".twob").find('.leftb').addClass("color-sel");
+//            huiTxt = $(this).parents(".twob").find('.leftb').text();
+//            coupon_id= $(this).parents(".twob").attr('coupon_id')
+//            coupon_money= $(this).parents(".twob").attr('coupon_money')
+        });
+
+
+        $(".hui").click(function () {
+            $(".f1").show();
+            $(".wrapper").addClass("hidecontainer");
+        })
+
+        // f2
+        $(".addaddr").click(function () {
+            $(".f2").hide();
+            $(".f3").show();
+        })
+        $(".fucenger").click(function () {
+            $(".fuceng").hide();
+            $(".wrapper").removeClass("hidecontainer");
+        })
+        $(".addr,.order-addrs").click(function () {
+            $(".f4").show();
+            $(".wrapper").addClass("hidecontainer");
+        })
+
+        // f4
+        $(".applyaddr").click(function () {
+            $(".fuceng").hide();
+            $(".wrapper").removeClass("hidecontainer");
+        })
+
+        // f5
+        $(".showf5").click(function () {
+            $(".f5").show();
+            $(".wrapper").addClass("hidecontainer");
+        })
+        $(".pay-type").click(function () {
+            $(".showf5 span").text(payTxt);
+            $(".f5").hide();
+            $(".wrapper").removeClass("hidecontainer");
+        })
+        // 设为默认地址
+        $(".san1").click(function () {
+            $('.san1').removeClass("fontsel");
+            $('.san1 img').attr("src", "__STATIC__/mobile/home/images/no.png");
+            $(".san1 input").val(0);
+            $(this).addClass("fontsel");
+            $(this).find("img").attr("src", "__STATIC__/mobile/home/images/yes.png");
+            $(this).find("input").val(1);
+        })
+        // 是否设置为默认地址
+        $(".anonymityright").click(function () {
+            if ($(this).hasClass("addr-resource")) {
+                $(this).removeClass("addr-resource");
+                $(this).attr("src", "__STATIC__/mobile/home/images/tabno.png");
+                $(this).next("input").val(0);
+            } else {
+                $(this).addClass("addr-resource");
+                $(this).attr("src", "__STATIC__/mobile/home/images/tabyes.png");
+                $(this).next("input").val(1);
+            }
+        })
+
+        // 支付方式
+        var payTxt = '';
+        $(".single").click(function () {
+            $('.single').attr("src", "__STATIC__/mobile/home/images/radiono.png");
+            $(".single").next("input").val(0);
+            $(this).attr("src", "__STATIC__/mobile/home/images/radioyes.png");
+            $(this).next("input").val(1);
+            payTxt = $(this).parent().find("span").text();
+        });
+
+
+    });
+</script>
+
+
+{/block}

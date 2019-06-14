@@ -1,0 +1,93 @@
+{extend name="public/left"/}
+
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("form").on("click", ".carousel-del", function () {
+            $(this).parents(".carousel").find("input:hidden").val('')
+                    .parents(".carousel").find(".img").html('')
+                    .parents(".carousel").find("select").val('');
+        });
+    });
+    $(document).ready(common_obj.form_submit);
+</script>
+
+<section class="wrapper" style="margin-top:0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="form">
+                        <form class="cmxform form-horizontal tasi-form" id="data-form">
+                            {for start="0" end="5"}
+                            <div class="form-group one-img carousel">
+                                <label class="control-label col-lg-2">
+                                    <span class="btn btn-danger btn-xs carousel-del" title="删除"><i class="icon-trash"></i></span>
+                                    图片{$i + 1}
+                                </label>
+
+                                <div class="col-lg-10">
+                                    <div style="margin: 10px auto">
+                                        <div id="picker{$i}" class="webuploader-picker">选择图片</div>
+                                        <input type="hidden" name="imgpath[]" required="required" value="{$data['carousel'][$i]['imgpath']}">
+                                        <div class="col-lg-12 padding0 img">
+                                            {if condition="$data['carousel'][$i]['imgpath'] != ''"}
+                                            <a href="{$data['carousel'][$i]['imgpath']}" target="_blank">
+                                                <img src="{$data['carousel'][$i]['imgpath']}">
+                                            </a>
+                                            {/if}
+                                        </div>
+                                    </div>
+                                    <div style="margin: 10px auto">
+                                        <select class="form-control m-bot15" name="url[]">
+                                            <option value="">--请选择链接页面--</option>
+                                            {foreach name="urlList" item="vo"}
+                                            <option value="{$vo.url}" {if condition="$data['carousel'][$i]['url'] == $vo.url" }selected{/if}>{$vo.name}</option>
+                                            {/foreach}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            {/for}
+
+                            <div class="form-group footer">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <input class="btn btn-danger" type="submit" value="提交保存">
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="id" value="{$data.id}">
+                            <input type="hidden" name="type" value="mall">
+                        </form>
+                        <input type="hidden" id="do_action" value="{:url('Mall/carousel')}"/>
+                        <input type="hidden" id="do_jump" value="{:url('Mall/carousel')}"/>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<div class="form-group one-img carousel-demo" style="display: none">
+    <label class="control-label col-lg-2">图片</label>
+    <p class="btn btn-danger carousel-del">删除该图片</p>
+    <div class="col-lg-10">
+        <div style="margin: 10px auto">
+            <div id="picker" class="webuploader-picker">选择图片</div>
+            <input type="hidden" name="imgpath[]" required="required">
+            <div class="col-lg-12 padding0 img">
+
+            </div>
+        </div>
+        <div style="margin: 10px auto">
+            <select class="form-control m-bot15" name="url[]">
+                <option value="">--请选择链接页面--</option>
+                {volist name="urlList" id="vo"}
+                <option value="{$vo.url}">{$vo.name}</option>
+                {/volist}
+            </select>
+        </div>
+    </div>
+</div>
+{/block}
+

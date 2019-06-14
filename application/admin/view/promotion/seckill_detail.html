@@ -1,0 +1,188 @@
+{extend name="public/left"/}
+
+{block name="body"}
+<script src="__STATIC__/common/js/layer/laydate/laydate.js"></script>
+<script language="javascript">
+    $(document).ready(function(){
+        $('#start_time').layDateHMS();
+        $('#end_time').layDateHMS();
+    })
+</script>
+<script language="javascript">
+    $(document).ready(common_obj.form_submit);
+
+    function selectGoods(){
+        var url = "{:url('Promotion/search_goods',array('tpl'=>'search_goods','prom_type'=>1,'prom_id'=>1))}";
+        layer.open({
+            type: 2,
+            title: '选择商品',
+            shadeClose: true,
+            shade: 0.2,
+            area: ['75%', '75%'],
+            content: url,
+        });
+    }
+
+    function call_back(goodsItem){
+        $('#goods_id').val(goodsItem.goods_id);
+        $('input[name=item_id]').val(''); //将规格ID重置一下
+        var html = '';
+        if(goodsItem.spec != null){
+            //有规格
+            html = '<div style="float: left;margin: 10px auto;" class="selected-group-goods"><div class="goods-thumb">' +
+                    '<br><img style="width: 162px;height: 162px" src="'+goodsItem.spec.spec_img+'"/></div> <div class="goods-name"> ' +
+                    ' <br><div class="goods-price">商城价：￥'+goodsItem.spec.price+'库存:'+goodsItem.spec.store_count+'</div> </div>';
+            $('input[name=item_id]').val(goodsItem.spec.item_id)
+            $('input[name=goods_name]').val(goodsItem.goods_name + goodsItem.spec.key_name);
+        }else{
+            html = '<div style="float: left;margin: 10px auto;" class="selected-group-goods"><div class="goods-thumb">' +
+                    '<br><img style="width: 162px;height: 162px" src="'+goodsItem.goods_image+'"/></div> <div class="goods-name"> ' +
+                    '<br> <div class="goods-price">商城价：￥'+goodsItem.goods_price+'库存:'+goodsItem.store_count+'</div> </div>';
+            $('input[name=goods_name]').val(goodsItem.goods_name);
+        }
+        $('#select_goods_button').attr('data-goods-id',goodsItem.goods_id);
+        $('#selected_group_goods').empty().html(html);
+        $('.selected-group-goods').show();
+        layer.closeAll('iframe');
+    }
+
+</script>
+
+<style>
+    .wrapper{
+        margin-top: 5px;
+    }
+
+    .table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
+        background-color: #fff;
+    }
+</style>
+
+<section class="wrapper">
+    <!-- page start-->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-10">
+                    <!--widget start-->
+                    <section class="panel">
+                        <form class="cmxform form-horizontal tasi-form" id="data-form">
+                            <header class="panel-heading tab-bg-dark-navy-blue">
+                                <ul class="nav nav-tabs nav-justified ">
+                                    <div style="line-height: 36px;color: #FFF; padding-left: 10px">添加秒杀活动</div>
+                                </ul>
+
+                            </header>
+                            <div class="panel-body">
+                                <div class="tab-content tasi-tab">
+                                    <div class="tab-pane active">
+                                        <div class="form">
+
+                                            <div class="form-group">
+                                                <label class="control-label col-lg-2">活动名称</label>
+                                                <div class="col-lg-5">
+                                                    <input  class="form-control" type="text" id="goods_name" readonly name="goods_name" value="{$data.goods_name}" class="input-txt">
+                                                    <div style="overflow: hidden" id="selected_group_goods">
+                                                        {if condition="$data['goods_id'] gt 0"}
+                                                        <div style="float: left;margin-right: 10px" class="selected-group-goods">
+                                                            <br>
+                                                            <div class="goods-thumb"><img style="width: 162px;height: 162px"  src="{$data['goods']['coverimg']}"/></div>
+                                                            <br>
+                                                            <div class="goods-price">
+                                                                {notempty name="data['specGoodsPrice']"}
+                                                                商城价：￥{$data['specGoodsPrice']['price']}库存:{$data['specGoodsPrice']['store_count']}
+                                                                {else/}
+                                                                商城价：￥{$data['goods']['price']}库存:{$data['goods']['stock']}
+                                                                {/notempty}
+                                                            </div>
+                                                        </div>
+                                                        {/if}
+                                                    </div>
+                                                                <br>
+                                                    <button type="button" class="btn btn-primary btn-xs" title="选择商品" onclick="selectGoods()"><i class=" icon-search"></i>选择商品</button>
+                                                        <!--<input class="btn btn-danger" type="button"  onclick="selectGoods()"  value="选择商品">-->
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label class="control-label col-lg-2">活动名称</label>
+                                                <div class="col-lg-5">
+                                                    <input class="form-control" type="text" name="title" required="required" value="{$data.title}"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-lg-2">活动价格</label>
+                                                <div class="col-lg-5">
+                                                    <input class="form-control" type="number" name="price" required="required" value="{$data.price}" step="0.01"
+                                                           min="0.00"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-lg-2">参加活动数量</label>
+                                                <div class="col-lg-5">
+                                                    <input class="form-control" type="number" name="goods_num" required="required" value="{$data.goods_num}"
+                                                           step="0.01" min="0.00"/>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label class="control-label col-lg-2">限购数量</label>
+                                                <div class="col-lg-5">
+                                                    <input class="form-control" type="number" name="buy_limit" required="required" value="{$data.buy_limit}"
+                                                           step="1" min="0"/>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label class="control-label col-lg-2">活动时间</label>
+                                                <div class="col-lg-5">
+                                                    开始时间
+                                                    <input id="start_time" name="start_time" class="form-control" type="text" required="required" value="{if $data.start_time}{$data.start_time|date='Y-m-d H:i:s',###}{/if}"
+                                                           step="1" min="0"/>
+                                                    <br>
+                                                    结束时间
+                                                    <input id="end_time" name="end_time" class="form-control" type="text" required="required" value="{if $data.end_time}{$data.end_time|date='Y-m-d H:i:s',###}{/if}"
+                                                           step="1" min="0"/>
+                                                </div>
+
+                                                <div class="col-lg-5">
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="id" value="{$data.id}">
+                            <input type="hidden" id="goods_id" name="goods_id" value="{$data.goods_id}">
+                            <input type="hidden" name="item_id" value="{$data.item_id}">
+
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <input class="btn btn-danger" type="submit" value="提交保存">
+                                </div>
+                            </div>
+                            <input type="hidden" id="do_action" value="{:url('Promotion/seckill_detail')}">
+                        </form>
+
+                    </section>
+                    <!--widget end-->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- page end-->
+</section>
+<!--main content end-->
+
+{/block}

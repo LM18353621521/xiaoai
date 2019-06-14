@@ -1,0 +1,68 @@
+<!--系统URL-->
+{if condition ="strtolower(request()->action()) == 'url'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><a href="#">{$key+1}</a></td>
+    <td>{$vo.name}</td>
+    <td>{$vo.url}</td>
+    <td data-pid="{$vo.id}">
+        <a href="{:url('Wechat/urladd',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-pencil"></i></button>
+        </a>
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="weixin_url" data-fieldname="is_hidden" data-value="1" title="删除"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}
+
+<!--图文素材-->
+{if condition ="strtolower(request()->action()) == 'news'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><a href="#">{$key+1}</a></td>
+    <td>{$vo.name}</td>
+    <td data-pid="{$vo.id}">
+        <a href="{:url('Wechat/newsadd',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-pencil"></i></button>
+        </a>
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="weixin_news" data-fieldname="is_hidden" data-value="1"
+           title="删除"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}
+
+<!--关键词-->
+{if condition ="strtolower(request()->action()) == 'keywords'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><a href="#">{$key+1}</a></td>
+    <td>{$vo.name}</td>
+    <td>
+        {if condition="$vo.type == 'text'"}
+        【文本消息】{$vo.content}
+        {elseif condition="$vo.type == 'news'"/}
+        【图文消息】{$vo.news_name}
+        {elseif condition="$vo.type == 'image'"/}
+        【图片消息】
+        <a class="icon-picture" data-toggle="modal" href="#layer_image" data-image="{$vo.content}"></a>
+        {/if}
+    </td>
+    <td data-pid="{$vo.id}">
+        <a href="{:url('Wechat/keywordsadd',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-pencil"></i></button>
+        </a>
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="weixin_keywords" data-fieldname="is_hidden" data-value="1" title="删除"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}

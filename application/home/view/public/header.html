@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>[title]</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="-1"/>
+    <meta http-equiv="cache-control" content="no-store"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/home/common/css/reset.css?v=1.0.2"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/home/common/css/public.css?v=1.0.2"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/home/common/css/swiper-3.4.2.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="__STATIC__/home/{$Request.controller|strtolower}/css/{$Request.action|strtolower}.css?v=1.0.2"/>
+    <script type="text/javascript" src="__STATIC__/home/common/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/home/common/js/jquery.1.4.2-min.js"></script>
+    <script> var jq142 = jQuery.noConflict(true); </script>
+    <script src="__STATIC__/home/common/js/global.js?v=1.0.2"></script>
+    <script type="text/javascript" src="__STATIC__/mobile/common/js/common.js?v=1.0.2"></script>
+    <script type="text/javascript" src="__STATIC__/home/common/js/swiper-3.4.2.min.js"></script>
+    <script type="text/javascript"
+            src="__STATIC__/home/{$Request.controller|strtolower}/js/{$Request.controller|strtolower}.js?v=1.0.2"></script>
+    <script type="text/javascript" src="__STATIC__/common/js/layer/layer.js"></script>
+</head>
+<script>
+    // 读取 cookie
+    function getCookie(c_name)
+    {
+        if (document.cookie.length>0)
+        {
+            c_start = document.cookie.indexOf(c_name + "=")
+            if (c_start!=-1)
+            {
+                c_start=c_start + c_name.length+1
+                c_end=document.cookie.indexOf(";",c_start)
+                if (c_end==-1) c_end=document.cookie.length
+                return unescape(document.cookie.substring(c_start,c_end))
+            }
+        }
+        return "";
+    }
+
+    function setCookies(name, value, time)
+    {
+        var cookieString = name + "=" + escape(value) + ";";
+        if (time != 0) {
+            var Times = new Date();
+            Times.setTime(Times.getTime() + time);
+            cookieString += "expires="+Times.toGMTString()+";"
+        }
+        document.cookie = cookieString+"path=/";
+    }
+</script>
+<style>
+    .refer-box {
+        right: 50px;
+    }
+
+    .wrap-right {
+        z-index: 999;
+    }
+
+    .logo {
+        float: left;
+        cursor: pointer;
+        width: 100px;
+        height: 100px;
+        margin: 5px 20px;
+    }
+
+    .menu-tit {
+        width: 60px;
+    }
+
+    .menu-sec-list {
+        width: 156px;
+    }
+
+    .find-btn {
+        margin-top: 110px;
+    }
+
+    .send-message {
+        padding-top: 10px;
+    }
+
+    .find_password3 {
+        margin-top: 65px;
+    }
+
+    .logo {
+        float: left;
+        cursor: pointer;
+        width: 100px;
+        height: 100px;
+
+    }
+
+    .logo-link > img {
+        width: 70px;
+        height: 70px;
+        float: left;
+        margin: 5px 20px;
+        overflow: hidden;
+    }
+
+    .banner-menu {
+        padding: 7px 10px 0;
+    }
+    .banner-menu > li {
+        overflow: hidden;
+        margin-top: 0px;
+    }
+    .menu-sec-list {
+        width: 176px;
+    }
+    .bind-account .login-layer-content{
+        position: relative;
+        width: 345px;
+        margin: 180px auto;
+        left: 0%;
+    }
+    .bind-account .bind_btn{
+        margin: 40px auto ;
+    }
+    .bind-account .layer-tab-one{
+        width: 345px;
+    }
+    .user_mobile p{
+        float: left;
+    }
+    .user_mobile .base-name{
+        width: 145px;
+    }
+    .user_mobile .bind_mobile{
+        width: 50px;
+        line-height: 34px;
+    }
+    .navbar-nav .nav-item{
+        width: auto;
+    }
+    .footer-two{
+        width: 1005px;
+    }
+    .footer-code{
+        width: 100px;
+    }
+    .footer-code img {
+        width: 70px;
+        height: 70px;
+    }
+</style>

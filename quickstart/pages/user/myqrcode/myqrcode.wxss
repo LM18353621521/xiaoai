@@ -1,0 +1,48 @@
+page{
+  background: #f2f2f2;
+}
+.white{
+  background: #fff;
+   padding:0rpx 0 70rpx;
+}
+.list{
+  overflow: hidden;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: var(--fontSize);
+  color: #5c5757;
+  width: 88%;
+  margin:0 auto;
+  padding:50rpx 0 20rpx;
+}
+.list image{
+  vertical-align: middle;
+  width: 100rpx;
+  height: 100rpx;
+  margin-right:20px;
+  margin-top:-2rpx;
+  border:2px solid #f2f2f2;
+  border-radius:50%;
+}
+
+.code{
+  width:299rpx ;
+  height:299rpx ;
+  display: block;
+  margin: 0 auto;
+}
+
+.distrbution-btn{
+  display: block;
+  width: 70%;
+  margin:70rpx auto 0;
+  height: 68rpx;
+  line-height: 68rpx;
+  font-size: var(--fontSize);
+  color: #5c5757;
+  overflow: hidden;
+  text-align: center;
+   border-radius: 30px;
+  background: linear-gradient(to right,#fffeff,#e7d9e6);
+   border:1px solid #cfcfcf;
+}

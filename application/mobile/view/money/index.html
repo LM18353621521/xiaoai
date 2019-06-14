@@ -1,0 +1,37 @@
+{extend name="public/base"/}
+
+{block name="body"}
+
+<script type="text/javascript">
+    $("title").text('余额明细');
+    $(document).ready(money_obj.index);
+</script>
+
+<header>
+	<div class="top">
+		<p>余额</p>
+		<p>{$vip.money}</p>
+	</div>
+	<a href="{:url('Money/withdraw')}">
+		<div class="rule">去提现</div>
+	</a>
+</header>
+
+<nav>
+	<div class="navmid"><span>————————</span>&nbsp;&nbsp;余额明细&nbsp;&nbsp;<span>————————</span></div>
+
+	<div class="navbn content">
+
+	</div>
+	<div class="hidden">
+		<input type="hidden" name="page" value="1"/>
+		<input type="hidden" name="url" value="{:url('Money/index')}"/>
+	</div>
+</nav>
+
+<form id="form_ajax">
+
+</form>
+{assign name="nodata" value="nothing_img"}
+{include file="public/nodata"/}
+{/block}

@@ -1,0 +1,46 @@
+{extend name="public/base"/ }
+
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(function(){
+        can_click=1;
+    });
+    $(document).ready(vip_obj.addrlist);
+</script>
+
+<body>
+    {empty name="myadressList"}
+    {assign name="nodata" value="nothing_img"}
+    {include file="public/nodata"/  text="亲，您还没添加地址哦~"}
+    <script type="text/javascript">
+        $(".nodata").show();
+    </script>
+    {else/}
+        {volist name="myadressList" id="vo"}
+        <div class="addr-box">
+            <div class="addr-box-left">{$vo.linkman}</div>
+            <div class="addr-box-mid">
+                <div class="addr-mida">{$vo.linkman}<span>{$vo.linktel}</span></div>
+                <div class="addr-midb">
+                    {if condition="$vo.is_default eq 1"}
+                    <span>默认</span>
+                    {/if}
+                    {$vo.province} {$vo.city} {$vo.district} {$vo.address}
+                </div>
+            </div>
+            <div class="addr-box-right"><a href="{:url('/mobile/Vip/addredit',array('id'=>$vo.id))}">编辑</a></div>
+        </div>
+        {/volist}
+    {/empty}
+
+    <a href="{:url('/mobile/Vip/addredit',array('id'=>0))}">
+        <div class='add'><img src="__STATIC__/mobile/home/images/add.jpg" />添加新地址</div>
+    </a>
+
+
+    <script type="span/javascript">
+        $(function(){
+        });
+    </script>
+
+{/block}

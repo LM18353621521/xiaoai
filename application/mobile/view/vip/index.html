@@ -1,0 +1,177 @@
+{extend name="public/base"/ }
+
+{block name="body"}
+<script>
+    $(document).ready(function () {
+        vip_obj.index();
+    });
+</script>
+<style>
+    .sub {
+        display: none;
+    }
+    .upload_box img {
+        width: 6rem;
+        height: 6rem;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        display: block;
+        margin: 0 auto;
+    }
+    .login_out{
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        cursor: pointer;
+    }
+    .login_out img{
+        width: 2rem;
+        height: 2rem;
+    }
+
+</style>
+<body>
+<div class="toptit">
+    <div class="login_out"><img src="__STATIC__/mobile/common/images/exit.png" alt=""></div>
+    <img class="vip-bg" src="__STATIC__/mobile/home/images/vip-bg.jpg"/>
+    <div class="upload_box no_img head" id="upload_box1">
+        <label for="ImgUpload1">
+            <input name="file" onchange="handleFiles(this)" id="ImgUpload1" type="file" accept="image/*"
+                   style="opacity: 0; position: absolute;"/>
+            <img class="head" id="ImgDetailDiv1" src="{$vip.headimgurl}"/>
+            <input type="hidden" name="file" id="ImgPath1" value="">
+        </label>
+    </div>
+
+    <!--<div class="change-account">更换账号</div>-->
+    <div class="name">{$vip.nickname}</div>
+    {if condition="!$vip.mobile"}
+    <div class="bind-text">找不到订单号？绑定手机试试 <span class="bind_do">绑定</span></div>
+    {/if}
+</div>
+
+<div class="toptita">
+    <div class="tabbox">
+        <div class="tabd">
+            <a href="{:url('Order/myorder',array('status'=>1))}">
+                <img class="tabad" src="__STATIC__/mobile/common/images/icon01.png"/>
+                <div class="tabbd">待付款</div>
+                <div class="sub order_num0">0</div>
+            </a>
+        </div>
+        <div class="tabd">
+            <a href="{:url('Order/myorder',array('status'=>2))}">
+                <img class="tabad" src="__STATIC__/mobile/common/images/icon02.png"/>
+                <div class="tabbd">待发货</div>
+                <div class="sub order_num1">0</div>
+            </a>
+        </div>
+        <div class="tabd">
+            <a href="{:url('Order/myorder',array('status'=>3))}">
+                <img class="tabad" src="__STATIC__/mobile/common/images/icon03.png"/>
+                <div class="tabbd">待收货</div>
+                <div class="sub order_num2">0</div>
+            </a>
+        </div>
+        <div class="tabd">
+            <a href="{:url('Order/myorder',array('status'=>4))}">
+                <img class="tabad" src="__STATIC__/mobile/common/images/icon04.png"/>
+                <div class="tabbd">售后|退款</div>
+                <div class="sub order_num3">0</div>
+            </a>
+        </div>
+        <div class="tabd">
+            <div class="line5s">
+            <a href="{:url('Order/myorder',array('status'=>2))}">
+                <img class="tabad" src="__STATIC__/mobile/common/images/icon05.png"/>
+                <div class="tabbd">全部订单</div>
+            </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="toptita">
+    <div class="tabbox listb">
+        <div class="tabd">
+            <a href="{:url('Vip/addrlist')}">
+                <img class="tabad" src="__STATIC__/mobile/common/images/icon06.png"/>
+                <div class="tabbd">收货地址</div>
+            </a>
+        </div>
+        <div class="tabd">
+            <a href="{:url('Vip/mycoupon')}">
+                <img class="tabad" src="__STATIC__/mobile/common/images/icon07.png"/>
+                <div class="tabbd">我的优惠券</div>
+            </a>
+        </div>
+        <div class="tabd">
+            <a href="{:url('Vip/mycollect')}">
+                <img class="tabad" src="__STATIC__/mobile/common/images/icon08.png"/>
+                <div class="tabbd">我的关注</div>
+            </a>
+        </div>
+        <div class="tabd">
+            <a target="_blank" href="mqqwpa://im/chat?chat_type=wpa&uin={$xa_config.web_kf_qq1}&version=1&src_type=web&web_src=lvlingseeds.com">
+                <img class="tabad" src="__STATIC__/mobile/common/images/icon10.png"/>
+                <div class="tabbd">联系客服</div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class='logo'><img src="{$config.logo}" alt=""></div>
+<div class='logos'>晓爱让生活拥有更多精彩</div>
+
+
+<!--底部导航   s-->
+{include file="public/foot_nav"/}
+<!--底部导航   e-->
+<!--登录浮层   s-->
+{include file="public/login_layer"/}
+
+<script type="text/javascript">
+    var is_login = "{$is_login}";
+    if (is_login==0) {
+        $(".qiehuan_fu").show();
+    }
+    function clearNoNum(obj, point, length) {
+        if (point == 0) {
+            obj.value = obj.value.replace(/[^\d]/g, ""); //清除"数字"和"."以外的字符
+        } else {
+            obj.value = obj.value.replace(/[^\d.]/g, ""); //清除"数字"和"."以外的字符
+            obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的
+        }
+        obj.value = obj.value.replace(/^\./g, ""); //验证第一个字符是数字而不是
+        obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+        obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3'); //只能输入两个小数
+        obj.value = obj.value.substring(0, length);
+    }
+
+    window.URL = window.URL || window.webkitURL;
+
+    function handleFiles(obj) {
+        var files = obj.files;
+        var reader = new FileReader();
+        reader.onload = function (e) {
+//                console.log( reader.result);  //或者 e.target.result都是一样的，都是base64码
+            $("#ImgDetailDiv1").attr('src', reader.result);
+            $("#ImgPath1").val(reader.result);
+            upload_head();
+        }
+        reader.readAsDataURL(files[0])
+    }
+
+    function upload_head() {
+        var image = $("#ImgPath1").val();
+        $.post('/mobile/Vip/update_head_pic', {image: image}, function (data) {
+            if (data.ret == 1) {
+                $.toast(data.msg, 'text');
+            } else {
+                $.toast(data.msg, 'text');
+                return false;
+            }
+        }, 'json');
+    }
+</script>
+
+{/block}

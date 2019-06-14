@@ -1,0 +1,94 @@
+{extend name="public/left"/}
+
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(function () {
+        UM.getEditor('editor');
+        load_one_img_init();
+    });
+    $(document).ready(common_obj.form_submit);
+</script>
+
+<section class="wrapper" style="margin-top:0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <form class="cmxform form-horizontal tasi-form" id="data-form">
+                    <header class="panel-heading tab-bg-dark-navy-blue">
+                        <ul class="nav nav-tabs nav-justified ">
+                            <li {eq name="type" value="pc" }class="active" {/eq}>
+                            <a href="{:url('Config/carousel',array('type'=>'pc'))}">PC首页轮播</a>
+                            </li>
+                            <li {eq name="type" value="mobile" }class="active" {/eq}>
+                            <a href="{:url('Config/carousel',array('type'=>'mobile'))}">移动首页轮播</a>
+                            </li>
+                        </ul>
+
+                    </header>
+                    <div class="panel-body">
+                        <div class="tab-content tasi-tab">
+                            <!--  基本配置  s  -->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <section class="panel">
+                                        <div class="panel-body">
+                                            <div class="form">
+                                                    {for start="0" end="5"}
+                                                    <div class="form-group one-img carousel">
+                                                        <label class="control-label col-lg-2">
+                                                            <span class="btn btn-danger btn-xs carousel-del" title="删除"><i class="icon-trash"></i></span>
+                                                            图片{$i + 1}
+                                                        </label>
+
+                                                        <div class="col-lg-10">
+                                                            <div style="margin: 10px auto">
+                                                                <div id="picker{$i}" class="webuploader-picker">选择图片 </div>
+                                                                {if condition="$type eq 'pc'"}
+                                                                <span class="help-block">建议尺寸（px）：1900*450</span>
+                                                                {else/}
+                                                                <span class="help-block">建议尺寸（px）：750*450</span>
+                                                                {/if}
+
+                                                                <input type="hidden" name="imgpath[]"
+                                                                       required="required"
+                                                                       value="{$data['carousel'][$i]['imgpath']}">
+                                                                <div class="col-lg-12 padding0 img">
+                                                                    {if condition="$data['carousel'][$i]['imgpath'] !=''"}
+                                                                    <a href="{$data['carousel'][$i]['imgpath']}" target="_blank">
+                                                                        <img src="{$data['carousel'][$i]['imgpath']}">
+                                                                    </a>
+                                                                    {/if}
+                                                                </div>
+                                                            </div>
+                                                            <div style="margin: 10px auto">
+                                                                <div class="col-lg-6">
+                                                                    <div>链接：</div>
+                                                                    <input class="form-control" type="text" name="url[]" placeholder="输入链接地址"   value="{$data['carousel'][$i]['url']}" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {/for}
+                                                    <input type="hidden" name="id" value="{$data.id}">
+                                                    <input type="hidden" name="type" value="{$type}">
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                            <!--  基本配置  e  -->
+                        </div>
+                    </div>
+                    <input type="hidden" id="do_action" value="{:url('Config/carousel')}"/>
+                    <input type="hidden" id="do_jump" value="{:url('Config/carousel',array('type'=>$type))}"/>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <input class="btn btn-danger" type="submit" value="提交保存">
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</section>
+{/block}

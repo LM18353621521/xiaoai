@@ -1,0 +1,347 @@
+{include file="public/header" title="订单结算"}
+<body>
+<script>
+    $(document).ready(cart_obj.confirmOrder);
+</script>
+<div class="wrap">
+    <div class="wrap-content">
+        <div class="logo-link">
+            <img src="{$xa_config.web_logo}">
+            <div class="link-two" title="点击打开客服" is_show="0">
+                <img src="__STATIC__/home/common/images/contact.png">
+                <p class="contact-m"> 联系客服 <p>
+                <!--右边导航s-->
+                {include file="public/kf_layer"}
+                <!--右边导航e-->
+            </div>
+            <a href="{:url('Index/index')}"><div class="link-one">继续购物</div></a>
+        </div>
+        <div class="tianxie">
+            <p class="tianxie-title"><span></span>填写并核对订单信息</p>
+            <div class="tianxie-box">
+                <div class="tianxie-tit">
+                    <p class="tianxie-info">收货人信息</p>
+                    <p class="tianxie-add addr-edit">新增收货地址</p>
+                </div>
+                <ul class="tianxie-list tianxie-list-height" >
+                    <div id="address_list">
+                        {foreach name="addressList" item="vo"}
+                        {if condition="$vo.is_default eq 1"}
+                        <li class="active" address_id="{$vo.id}" id="address{$vo.id}">
+                            <p class="tianxie-name active">{$vo.linkman}</p>
+                            <p class="tianxie-addr">{$vo.linkman} {$vo.province} {$vo.city} {$vo.district} {$vo.address}   {$vo.linktel_hide}</p>
+                            <div class="tianxie-btn">
+                                <p class="tianxie-item tianxie-default">设为默认地址</p>
+                                <p class="tianxie-item tianxie-edit address_edit">编辑</p>
+                                <p class="tianxie-item tianxie-del address_del">删除</p>
+                            </div>
+                        </li>
+                        {else/}
+                        <li  address_id="{$vo.id}" id="address{$vo.id}">
+                            <p class="tianxie-name">{$vo.linkman}</p>
+                            <p class="tianxie-addr">{$vo.linkman} {$vo.province} {$vo.city} {$vo.district} {$vo.address}   {$vo.linktel_hide}</p>
+                            <div class="tianxie-btn">
+                                <p class="tianxie-item tianxie-default">设为默认地址</p>
+                                <p class="tianxie-item tianxie-edit address_edit">编辑</p>
+                                <p class="tianxie-item tianxie-del address_del">删除</p>
+                            </div>
+                        </li>
+                        {/if}
+                        {/foreach}
+                    </div>
+                <div class="folder"><span>收起地址</span><img src="__STATIC__/home/common/images/top.png"></div>
+            </div>
+        </div>
+        <div class="pay-box">
+            <p class="pay-tit">支付方式</p>
+            <div class="pay-wrap">
+                <p class="pay-item active" pay_type="alipay">支付宝支付</p>
+                <p class="pay-item" pay_type="wxpay">微信支付</p>
+            </div>
+        </div>
+        <div class="se-bottle">
+            <div class="se-bottle-head">
+                <p class="head-shop">商品</p>
+                <p class="head-order">单价</p>
+                <p class="head-num">数量</p>
+                <p class="head-money"><!--优惠方式-->&nbsp;</p>
+                <p class="head-ji">小计</p>
+            </div>
+            <div class="table-order">
+                <ul class="product-list">
+                    {foreach name="cartList" item="vo"}
+                    <li>
+                        <img src="{$vo.coverimg}">
+                        <p class="list-one">{$vo.name}</p>
+                        <div class="list-two">
+                            <p>{$vo.key_name}</p>
+                            <!--<p>颜色分类:pink</p>-->
+                        </div>
+                        <p class="list-three">￥{$vo.price}</p>
+                        <p class="list-four">{$vo.buy_num}</p>
+                        <!--<p class="list-four-five">省10.00优惠券</p>-->
+                        <p class="list-five">￥{$vo.price*$vo.buy_num}</p>
+                    </li>
+                    {/foreach}
+                </ul>
+                <form action="" id="order_info">
+                <div class="order-xie">
+                    <div class="input-order1">
+                        <p class="order1-liu">给卖家留言</p>
+                        <input type="text" placeholder="选填：填写内容与商家协定" name="remark">
+                    </div>
+                    <div class="input-order2">
+                        <p class="order2-liu">&nbsp;</p>
+                        <p class="order2-liu">&nbsp;</p>
+                    </div>
+                    <p class="input-order3">&nbsp;</p>
+                </div>
+                    <div class="order-xie">
+                        <div class="input-order1">
+                            <p class="order1-liu">&nbsp;</p>
+                        </div>
+                        <div class="input-order2">
+                            <p class="order2-liu">运送方式 普通运送：运费￥<em class="express_fee">{$total_count.express_fee|default='0'}</em></p>
+                            <p class="order2-liu">商家发货</p>
+                        </div>
+                        <p class="input-order3">￥<em class="express_fee">{$total_count.express_fee|default='0'}</em></p>
+                    </div>
+                    <div class="order-xie">
+                        <div class="input-order1">
+                            <p class="order1-liu">&nbsp;</p>
+                        </div>
+                        <div class="input-order2">
+                            <p class="order2-liu select-a">选择优惠券<em class="coupon_sel"></em></p>
+                        </div>
+                        <p class="input-order3">-￥<em class="coupon_money">0.00</em></p>
+                    </div>
+                <div class="zong">
+                    <input type="hidden" name="express_fee" value="{$total_count.express_fee|default='0'}">
+                    <input type="hidden" name="action" value="{$action}">
+                    <input type="hidden" name="goods_id" value="{$goods_id}">
+                    <input type="hidden" name="item_id" value="{$item_id}">
+                    <input type="hidden" name="cart_ids" value="">
+                    <input type="hidden" name="coupon_id" value="0">
+                    <input type="hidden" name="pay_type" value="alipay">
+                    <input type="hidden" name="buy_num" value="{$total_count.total_num}">
+                    <input type="hidden" name="address_id" value="0">
+                    <p class="pay-btn" id="pay_do">提交订单</p>
+                    <p class="qian-zong">实付款：<span>￥ <em id="pay_money">{$total_count.goods_price}</em></span></p>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <!--右边导航e-->
+    {include file="public/footer"}
+    <!-- 添加地址浮层 -->
+    <div class="login-layer address_add_layer">
+    <form action="" id="form_address">
+        <div class="login-layer-content">
+            <img class="layer-close" src="__STATIC__/home/common/images/layer-close.png">
+            <p class="layer-tit">增加收货地址</p>
+            <div class="input-box">
+                <p class="input-tit"><span>*</span>收货人姓名</p>
+                <input type="text" name="linkman">
+            </div>
+            <div class="input-box">
+                <p class="input-tit"><span>*</span>手机号码</p>
+                <input type="text" name="linktel">
+            </div>
+            <div class="input-box">
+                <p class="input-tit"><span>*</span>所在地区</p>
+                <div class="slect-box" data-toggle="distpicker">
+                    <select name="province_id"  id="province" onChange="get_city(this,0)">
+                        <option value=""> 请选择 </option>
+                        {foreach name="provinceList" item="vo"}
+                        <option value="{$vo.id}"> {$vo.name} </option>
+                        {/foreach}
+                    </select>
+                    <select name="city_id" id="city" onChange="get_area(this)">
+                        <option value=""> 请选择 </option>
+                    </select>
+                    <select  name="district_id" id="district">
+                        <option value=""> 请选择 </option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-box">
+                <p class="input-tit"><span>*</span>详情地址</p>
+                <input type="text" name="address">
+            </div>
+            <div class="input-box">
+                <p class="input-tit"><span></span>邮编地址</p>
+                <input type="text" name="postcode">
+            </div>
+            <input type="hidden" name="id" value="">
+            <p class="layer-btn save_addr_do">保存收货地址</p>
+        </div>
+    </form>
+    </div>
+
+    <div class="login-layer address_edit_layer">
+        <form action="" id="form_address_edit">
+        </form>
+    </div>
+
+    <!-- 选择优惠券浮层 -->
+    <div class="login-layer">
+        <div class="coupon-layer-content">
+            <img class="layer-close" src="images/layer-close.png">
+            <ul class="tab-content">
+                {foreach name="couponList" item="vo"}
+                <li coupon_id="{$vo.id}" money="{$vo.money}" coupon_name="{$vo.name}">
+                    <div class="coupon-img come">
+                        <p class="coupon-money">￥{$vo.money}</p>
+                        <p class="coupon-dateline">使用期限</p>
+                        <p class="coupon-date">{$vo.use_stime}-{$vo.use_etime}</p>
+                    </div>
+                    <p class="coupon-useing coupon-use">确定使用</p>
+                </li>
+                {/foreach}
+            </ul>
+            <div class="layer-btn-wrap">
+                <p class="layer-btn-cancel coupon-cancal">取消</p>
+                <p class="layer-btn-sure">确定</p>
+            </div>
+
+        </div>
+    </div>
+
+    <style>
+        .link-two{
+            cursor: pointer;
+        }
+        .wrap-right{
+            overflow: visible;
+        }
+        .online-tel{
+            text-align: left !important;
+            font-size: 13px !important;
+        }
+        .kf_btn{
+            position: relative;
+        }
+        .kf_layer{
+            position: absolute;
+            display: none;
+            right: 24px;
+            top: 15%;
+            padding: 0 4px;
+        }
+        .kf_con{
+            width: 160px;
+            background: var(--theme);
+            overflow: hidden;
+            padding: 30px 20px 40px;
+            border-radius: 9px;
+
+        }
+        .kf_btn:hover .kf_layer{
+            display: block;
+        }
+        .refer-box {
+            right: 32px;
+        }
+        .text-font{
+            margin-top: 0px !important;
+            line-height: 18px !important;
+            text-align: left !important;
+        }
+        .select-a{
+            cursor: pointer;
+            color: #b730b0;
+        }
+        .coupon_sel{
+            color: #989898;
+        }
+    </style>
+
+</div>
+<script type="text/javascript">
+    var address_dom = $("#form_address").html();
+    $("#form_address").empty();
+    goods_price = {$total_count.goods_price|default='0'};
+    express_fee = {$total_count.express_fee|default='0'};
+    coupon_money=0;
+
+    // 浮沉隐藏
+    $(".layer-close,.layer-btn-wrap .coupon-cancal").click(function(){
+        $(".login-layer").hide();
+    })
+
+    var  coupon_num="{:count($couponList)}";
+    // 浮层出现
+    $(".select-a").click(function(){
+        if(coupon_num<=0){
+            layer.alert('暂无可用优惠券', {title:'提示',icon: 2});
+            return false;
+        }
+        $(".login-layer").show();
+    });
+
+    // 设为默认
+    $(".addr-default").click(function(){
+        $(".name span").css("display",'none');
+        $(this).parents("li").find(".name span").css("display",'inline-block');
+    })
+
+    // 浮沉隐藏
+    $(document).on("click",".layer-close",function () {
+        $("#form_address").empty();
+        $("#form_address_edit").empty();
+        $(".login-layer").hide();
+    })
+
+    // 浮层出现
+    $(".addr-edit").click(function(){
+        $("#form_address").empty().html(address_dom);
+        $(".address_add_layer").show();
+    })
+    $(function () {
+        // 支付方式
+        $(".pay-item").click(function () {
+            $(this).addClass("active").siblings(".pay-item").removeClass("active");
+            var type =$(this).attr('pay_type');
+            $('input[name=pay_type]').val(type);
+        })
+        // 收起地址
+        $(".folder").click(function () {
+            if ($(".tianxie-list").hasClass("tianxie-list-height")) {
+                $(".tianxie-list").removeClass("tianxie-list-height");
+                $(this).find("span").text("展开地址");
+            } else {
+                $(".tianxie-list").addClass("tianxie-list-height");
+                $(this).find("span").text("收起地址");
+            }
+        })
+        // 设置默认地址
+        $(".tianxie-default").click(function () {
+            $(".tianxie-name").removeClass("active");
+            $(this).parents("li").find(".tianxie-name").addClass("active");
+            $(".tianxie-list li").removeClass("active");
+            $(this).parents("li").addClass("active");
+        });
+        
+        $(".link-two").click(function () {
+            var is_show = $(this).attr('is_show');
+            if(is_show==0){
+                $(".kf_layer").show();
+                $(this).attr('is_show',1);
+                $(this).attr('title','点击关闭客服');
+            }else{
+                $(".kf_layer").hide();
+                $(this).attr('is_show',0);
+                $(this).attr('title','点击打开客服');
+            }
+        })
+    })
+
+
+</script>
+
+</body>
+</html>

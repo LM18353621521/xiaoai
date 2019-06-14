@@ -1,0 +1,79 @@
+{extend name="public/base"/ }
+
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(home_obj.happy);
+</script>
+
+<body>
+    <div class="bt">
+        <div class="bt1">
+            <div type="video" class="bt2 color01">视频</div>
+        </div>
+        <div class="bt1">
+            <div type="image" class="bt2">漫画</div>
+        </div>
+        <div class="bt1">
+            <div type="text" class="bt2">段子</div>
+        </div>
+    </div>
+    <div class="tab-content lists">
+        <div class="hidden">
+            <input type="hidden" name="page" value="1"/>
+            <input type="hidden" name="url" value="{:url('Home/happy')}"/>
+        </div>
+        <ul class="tab-content-item content" style="display: block">
+            <!--<li>-->
+                <!--<p class="title">夫妻搞笑视频</p>-->
+                <!--<video class="video" controls>-->
+                    <!--<source src="http://www.html5videoplayer.net/videos/madagascar3.mp4" type="video/mp4">-->
+                <!--</video>-->
+                <!--<p class="time">3小时前发布</p>-->
+            <!--</li>-->
+        </ul>
+
+
+        <form id="form_ajax">
+            <input type="hidden" name="type" value="video"/>
+        </form>
+        {assign name="nodata" value="nothing_img"}
+        {include file="public/nodata"/  text="亲，暂无数据~"}
+
+        <ul class="tab-content-item">
+            <li>
+                <p class="title">夫妻搞笑视频</p>
+                <img class="video" src="../__STATIC__/wechat/home/images/media.jpg">
+                <p class="time">3小时前发布</p>
+            </li>
+            <li>
+                <p class="title">夫妻搞笑视频</p>
+                <img class="video" src="../__STATIC__/wechat/home/images/media.jpg">
+                <p class="time">3小时前发布</p>
+            </li>
+            <li>
+                <p class="title">夫妻搞笑视频</p>
+                <img class="video" src="../__STATIC__/wechat/home/images/media.jpg">
+                <p class="time">3小时前发布</p>
+            </li>
+        </ul>
+        <!--<ul class="tab-content-item">-->
+            <!--<li>-->
+                <!--<p class="title">夫妻搞笑视频</p>-->
+                <!--<p class="text">3小时前发布</p>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<p class="title">夫妻搞笑视频</p>-->
+                <!--<p class="text">3小时前发布</p>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<p class="title">夫妻搞笑视频</p>-->
+                <!--<p class="text">3小时前发布</p>-->
+            <!--</li>-->
+        <!--</ul>-->
+    </div>
+
+    <script type="text/javascript">
+
+    </script>
+
+    {/block}

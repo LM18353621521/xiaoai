@@ -1,0 +1,64 @@
+{include file="public/header" title="微信支付"}
+	<body>
+		<div class="wrap">
+			{include file="public/top_nav"}
+		<div class="wrap-content">
+			<div class="logo-link">
+				<img src="{$xa_config.web_logo}">
+				<div class="link-two">
+					<img src="__STATIC__/home/common/images/contact.png">
+					<p class="contact-m"> 联系客服<p>
+				</div>
+				<div class="link-one">继续购物</div>
+			</div>
+			<div class="qr-content">
+				<div class="qrcode">
+					<img src="{:url('Order/wx_qrcode',array('order_id'=>$order['id']))}" alt="">
+				</div>
+				<div class="tips">
+					<i></i>
+					<p>请使用微信“扫一扫”</p>
+					<p>扫描二维码支付</p>
+				</div>
+				<div class="vip-wechat-pay-cost">￥{$order.pay_money}</div>
+			</div>
+			<input type="hidden" name="order_sn" value="{$order.order_number}">
+		</div>
+	</div>
+		<script>
+			$(function () {
+                check_pay();
+
+                if (window.history && window.history.pushState) {
+                    $(window).on('popstate', function () {
+                        /// 当点击浏览器的 后退和前进按钮 时才会被触发，
+                        window.history.pushState('forward', null, '');
+                        window.history.forward(1);
+                    });
+                }
+                //
+                window.history.pushState('forward', null, '');  //在IE中必须得有这两行
+                window.history.forward(1);
+            })
+
+			function check_pay() {
+			    var order_sn = $('input[name=order_sn]').val();
+                $.post('/Home/Order/check_wxpay', {order_sn: order_sn}, function (data) {
+                    if (data.ret == 1) {
+                        window.location.href= data.url;
+                    } else {
+                        setTimeout(function () {
+                            check_pay();
+                        },1000)
+                    }
+                })
+            }
+
+		</script>
+		<style>
+			.qrcode img{
+				border: 1px solid gainsboro;
+			}
+		</style>
+	</body>
+</html>

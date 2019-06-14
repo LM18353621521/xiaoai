@@ -1,0 +1,150 @@
+{extend name="public/left"/}
+
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(common_obj.form_submit);
+</script>
+
+<section class="wrapper" style="margin-top:0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="form">
+                        <form class="cmxform form-horizontal tasi-form" id="data-form">
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">订单编号</label>
+                                <div class="col-lg-10">
+                                    <p class="form-control-static">{$data.order_number}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">下单时间</label>
+                                <div class="col-lg-10">
+                                    <p class="form-control-static">{$data.create_time|date="Y-m-d H:i:s",###}</p>
+                                </div>
+                            </div>
+    
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">支付方式</label>
+                                <div class="col-lg-10">
+                                    {if condition="$data.pay eq 0"}
+                                    <p class="form-control-static">花费积分:{$data.pay_integral}</p>
+                                    {elseif condition="$data.pay eq 1"/}
+                                    <p class="form-control-static">积分:{$data.pay_integral} + 金额:{$data.pay_money}元</p>
+                                    {elseif condition="$data.pay eq 2"/}
+                                    <p class="form-control-static">余额:{$data.pay_money}元 + 积分:{$data.pay_integral}</p>
+                                    {/if}
+                                </div>
+                            </div>
+
+                            {if condition="$data.is_pay == 1"}
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">付款时间</label>
+                                <div class="col-lg-10">
+                                    <p class="form-control-static">{$data.pay_time|date="Y-m-d H:i:s",###}</p>
+                                </div>
+                            </div>
+                            {/if}
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">昵称</label>
+                                <div class="col-lg-10">
+                                    <p class="form-control-static">{$data.nickname}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">总价钱</label>
+                                <div class="col-lg-10">
+                                    <p class="form-control-static">{$data.pay_integral}积分+{$data.pay_money}元</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">状态</label>
+                                <div class="col-lg-10">
+                                    <select class="form-control m-bot15" name="status" required="required">
+                                        <option value="0" {eq name="data.status" value="0" }selected="selected" {/eq}>待付款</option>
+                                        <option value="1" {eq name="data.status" value="1" }selected="selected" {/eq}>待发货</option>
+                                        <option value="2" {eq name="data.status" value="2" }selected="selected" {/eq}>已发货</option>
+                                        <option value="3" {eq name="data.status" value="3" }selected="selected" {/eq}>已完成</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">联系人</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" type="text" name="linkman" value="{$data.linkman}" required="required"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">联系电话</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" type="text" name="linktel" value="{$data.linktel}" required="required"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">联系地址</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" type="text" name="address" value="{$data.address}" required="required"/>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">备注</label>
+                                <div class="col-lg-10">
+                                    <textarea class="form-control" cols="60" rows="5" name="remark">{$data.remark}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">订单详情</label>
+                                <div class="col-lg-10">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>名称</th>
+                                            <th>封面图</th>
+                                            <th>积分</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>{$data.product_name}</td>
+                                            <td><img src="{$data.product.coverimg}" width="50" height="50" ></td>
+                                            <td>{$data.product.integral}</td>
+                                           
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <input class="btn btn-danger" type="submit" value="提交保存">
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="id" value="{$data.id}">
+                        </form>
+                        <input type="hidden" id="do_action" value="{:url('Integral/orderdetail')}"/>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+{/block}

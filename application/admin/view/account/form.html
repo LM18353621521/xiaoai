@@ -1,0 +1,52 @@
+{if condition ="strtolower(request()->action()) == 'account'"}
+<!--账号列表-->
+{volist name="dataList" id="vo"}
+<tr>
+    <td><a href="#">{$key+1}</a></td>
+    <td>{$vo.username}</td>
+    <td>{$vo.last_login_time|date="Y-m-d H:i",###}</td>
+    <td>{$vo.last_login_ip}</td>
+    <td>{$vo.reg_time|date="Y-m-d H:i",###}</td>
+    <td>
+        {if condition="$vo.status == 0"}
+        <span class="label label-danger">禁用</span>
+        {elseif condition="$vo.status == 1"/}
+        <span class="label label-success">正常</span>
+        {/if}
+    </td>
+    <td data-pid="{$vo.id}">
+        <a href="{:url('Account/accountadd',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-pencil"></i></button>
+        </a>
+        {if condition="$vo.status == 0"}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="system_loginer" data-fieldname="status" data-value="1">
+            <button class="btn btn-warning btn-xs" title="启用"><i class="icon-eye-open"></i></button>
+        </a>
+        {elseif condition="$vo.status == 1"/}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="system_loginer" data-fieldname="status" data-value="0">
+            <button class="btn btn-warning btn-xs" title="停用"><i class="icon-eye-close"></i></button>
+        </a>
+        {/if}
+    </td>
+</tr>
+{/volist}
+{/if}
+
+{if condition ="strtolower(request()->action()) == 'auth'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><a href="#">{$key+1}</a></td>
+    <td>{$vo.title}</td>
+    <td>{$vo.description}</td>
+    <td data-pid="{$vo.id}">
+        <a href="{:url('Account/authadd',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-pencil"></i></button>
+        </a>
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="auth_group" data-fieldname="ishidden" data-value="1"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}

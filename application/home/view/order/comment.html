@@ -1,0 +1,80 @@
+{include file="public/header" title="订单详情"}
+<body>
+<div class="wrap">
+    {include file="public/top_nav"}
+    <div class="banner">
+        {include file="public/search"}
+        {include file="public/category_nav"}
+    </div>
+    <form id="data-form">
+        <ul class="discuss-content">
+            <input type="hidden" name="order_id" value="{$order['id']}">
+            {foreach name="order['orderlog']" item="vo"}
+            <li class="discuss-list">
+                <input type="hidden" class="goods_id" name="comment[{$vo.goods_id}][goods_id]" value="{$vo.goods_id}">
+                <a href="javascript:;" class="discuss-left">
+                    <img src="{$vo.coverimg}">
+                    <div class="discuss-box">
+                        <p class="discuss-info">{$vo.goods_name}</p>
+                        <p class="discuss-money">￥{$vo.goods_price}</p>
+                        <p class="discuss-detail">{$vo.key_name}</p>
+                    </div>
+                </a>
+                <div class="discuss-right">
+                    <div class="discuss-right-box">
+                        <div class="discuss-tit">商品评分</div>
+                        <div class="discuss-wrap">
+                            <img src="__STATIC__/home/common/images/stara-yes.png">
+                            <img src="__STATIC__/home/common/images/stara-yes.png">
+                            <img src="__STATIC__/home/common/images/stara-yes.png">
+                            <img src="__STATIC__/home/common/images/stara-yes.png">
+                            <img src="__STATIC__/home/common/images/stara-yes.png">
+                            <span>5分</span>
+                            <input type="hidden" class="star" name="comment[{$vo.goods_id}][star]" value="5">
+                        </div>
+                    </div>
+                    <div class="discuss-right-box">
+                        <div class="discuss-tit">晒单评价</div>
+                        <div class="discuss-wrap">
+                            <textarea placeholder="您对此商品满意吗？快去告诉其他网友吧"  name="comment[{$vo.goods_id}][content]"></textarea>
+                            <div class="upload-img">
+                                <ul class="file-list"></ul>
+                                <div class="add-img">
+                                    <img class="add-bg" src="__STATIC__/home/common/images/upload.png">
+                                    <input type="file" name="" id="choose-file" multiple="multiple"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {/foreach}
+        </ul>
+        <input type="hidden" name="is_anonymous" value="0">
+        <p class="discuss-btn" id="submit_do">提交评论</p>
+    </form>
+
+</div>
+{include file="public/footer"}
+
+<script type="text/javascript" src="__STATIC__/home/common/js/updateimg.js"></script>
+<script type="text/javascript">
+    $(document).ready(order_obj.comment);
+    $(function () {
+        // 星星打分
+        $(".discuss-wrap>img").click(function () {
+            var index = $(this).index();
+            for (var i = 0; i <= index; i++) {
+                $(this).parents(".discuss-wrap").find("img").eq(i).attr("src", "__STATIC__/home/common/images/stara-yes.png")
+            }
+            for (var j = index + 1; j < $(".discuss-wrap img").length; j++) {
+                $(this).parents(".discuss-wrap").find("img").eq(j).attr("src", "__STATIC__/home/common/images/stara-no.png")
+            }
+            $(this).parents(".discuss-wrap").find("span").text(index + 1 + '分');
+            $(this).parents(".discuss-wrap").find(".star").val(index + 1);
+        })
+
+    })
+</script>
+</body>
+</html>

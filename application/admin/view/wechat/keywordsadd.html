@@ -1,0 +1,130 @@
+{extend name="public/left"/}
+
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(function () {
+        var display_row = function () {
+            var type = $('input[name=type]:checked').val();
+            $('.reply-text,.reply-news,.reply-image').hide().find("textarea,select,input").removeAttr("required");
+            $('.reply-' + type).show().find("textarea,select,input:text,input:hidden").attr("required", 'required');
+        }
+        setTimeout(function () {
+            display_row()
+        }, 10);
+        $('input[name=type]').on('change blur', display_row);
+    });
+
+    $(document).ready(common_obj.form_submit);
+
+</script>
+
+<section class="wrapper" style="margin-top:0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="form">
+                        <form class="cmxform form-horizontal tasi-form" id="data-form">
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">名称</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" type="text" name="name" required="required" value="{$data.name}"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group replay-text">
+                                <label class="control-label col-lg-2">匹配模式</label>
+                                <div class="col-lg-10">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="matchingtype" value="0" {if condition="$data.matchingtype == 0" }checked="true"
+                                                   {/if} />
+                                            精确匹配（用户输入的文字和此关键词一样才会触发）
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="matchingtype" value="1" {if condition="$data.matchingtype == 1" }checked="true"
+                                                   {/if} />
+                                            模糊匹配（只要用户输入的文字包含此关键词就触发）
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group replay-text">
+                                <label class="control-label col-lg-2">回复类型</label>
+                                <div class="col-lg-10">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="type" value="text" {if condition="$data.type == 'text' || !$data.type"
+                                                   }checked="true" {/if}>
+                                            回复文本消息
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="type" value="image" {if condition="$data.type == 'image'" }checked="true" {/if}>
+                                            回复图片消息
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="type" value="news" {if condition="$data.type == 'news'" }checked="true" {/if}>
+                                            回复图文消息
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group reply-text">
+                                <label class="control-label col-lg-2">回复内容</label>
+                                <div class="col-lg-10">
+                                    <textarea class="form-control" cols="60" rows="5" name="replytext">{if condition="$data.type == 'text'"}{$data.content}{/if}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group reply-news">
+                                <label class="control-label col-lg-2">回复内容</label>
+                                <div class="col-lg-10">
+                                    <select class="form-control m-bot15" name="replynewsid">
+                                        {volist name="newsList" id="vo"}
+                                        <option value="{$vo.id}" {eq name="data.content" value="$vo.id" }selected="selected" {/eq}>{$vo.name}</option>
+                                        {/volist}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group reply-image one-img">
+                                <label class="control-label col-lg-2">回复内容</label>
+                                <div class="col-lg-10">
+                                    <div id="picker" class="webuploader-picker">选择文件</div>
+                                    <input type="hidden" name="replyimage" {if condition="$data.type == 'image'" }value="{$data.content}" {/if}>
+                                </div>
+
+                                <div class="col-lg-10 col-lg-offset-2 img">
+                                    {if condition="$data.type == 'image'"}
+                                    <a href="{$data.content}" target="_blank">
+                                        <img src="{$data.content}">
+                                    </a>
+                                    {/if}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <input class="btn btn-danger" type="submit" value="提交保存">
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="id" value="{$data.id}">
+                        </form>
+                        <input type="hidden" id="do_action" value="{:url('Wechat/keywordsadd')}"/>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+{/block}

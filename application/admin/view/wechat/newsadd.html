@@ -1,0 +1,133 @@
+{extend name="public/left"/}
+
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(function () {
+        var html = $(".wechat-news-demo").html();
+        $(".news-add").click(function () {
+            if($(".wechat-news").length >= 8){
+                alert('您最多添加8条图文');return false;
+            }
+            $(".footer").before('<div class="form-group one-img wechat-news">' + html + '</div>');
+            var number = $(".wechat-news").length;
+            $(".wechat-news").eq(number - 1).find(".control-label").html('<span class="btn btn-danger btn-xs news-del"><i class="icon-trash"></i></span> 图文内容' + number)
+                    .parents(".wechat-news").find(".webuploader-picker").attr("id", "picker" + parseInt(Math.random() * 100000));
+
+            webuploader_obj.webuploader_init('#' + $(".wechat-news").eq(number - 1).find(".webuploader-picker").attr("id"), $(".wechat-news").eq(number - 1).find("input:hidden"), $(".wechat-news").eq(number - 1).find(".img"));
+        });
+        $("form").on("click", ".news-del", function () {
+            $(this).parents(".wechat-news").remove();
+        });
+    });
+    $(document).ready(common_obj.form_submit);
+
+</script>
+
+<section class="wrapper" style="margin-top:0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="form">
+                        <form class="cmxform form-horizontal tasi-form" id="data-form">
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">名称</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" type="text" name="name" required="required" value="{$data.name}"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <p class="btn btn-success news-add">+添加一条图文</p>
+                                </div>
+                            </div>
+
+                            {volist name="data.content" id="v"}
+                            <div class="form-group one-img wechat-news">
+                                <label class="control-label col-lg-2">
+                                    <span class="btn btn-danger btn-xs news-del"><i class="icon-trash"></i></span>
+                                    图文内容1
+                                </label>
+
+                                <div class="col-lg-10">
+                                    <div style="margin: 10px auto">
+                                        <input class="form-control" type="text" name="title[]" required="required"
+                                               value="{$v['title']}" placeholder="请输入图文标题"/>
+                                    </div>
+                                    <div style="margin: 10px auto">
+                                        <textarea class="form-control" cols="60" rows="5" name="description[]"
+                                                  placeholder="请输入图文简介">{$v['description']}</textarea>
+                                    </div>
+                                    <div style="margin: 10px auto">
+                                        <div id="picker{$key}" class="webuploader-picker">选择图文封面</div>
+                                        <input type="hidden" name="picurl[]" required="required" value="{$v['picurl']}">
+                                        <div class="col-lg-12 padding0 img">
+                                            {if condition="$v['picurl'] != ''"}
+                                            <a href="{$v['picurl']}" target="_blank">
+                                                <img src="{$v['picurl']}">
+                                            </a>
+                                            {/if}
+                                        </div>
+                                    </div>
+                                    <div style="margin: 10px auto">
+                                        <select class="form-control m-bot15" name="url[]">
+                                            <option value="">--请选择链接页面--</option>
+                                            {volist name="urlList" id="vo"}
+                                            <option value="{$vo.url}" {eq name="v['url']" value="$vo.url" }selected{/eq}>{$vo.name}</option>
+                                            {/volist}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            {/volist}
+
+                            <div class="form-group footer">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <input class="btn btn-danger" type="submit" value="提交保存">
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="id" value="{$data.id}">
+                        </form>
+                        <input type="hidden" id="do_action" value="{:url('Wechat/newsadd')}"/>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<div class="form-group one-img wechat-news-demo" style="display: none">
+    <label class="control-label col-lg-2">
+        <span class="btn btn-danger btn-xs news-del"><i class="icon-trash"></i></span>
+        图文内容
+    </label>
+
+    <div class="col-lg-10">
+        <div style="margin: 10px auto">
+            <input class="form-control" type="text" name="title[]" required="required" placeholder="请输入图文标题"/>
+        </div>
+        <div style="margin: 10px auto">
+            <textarea class="form-control" cols="60" rows="5" name="description[]" placeholder="请输入图文简介"></textarea>
+        </div>
+        <div style="margin: 10px auto">
+            <div id="picker" class="webuploader-picker">选择图文封面</div>
+            <input type="hidden" name="picurl[]" required="required">
+            <div class="col-lg-12 padding0 img">
+
+            </div>
+        </div>
+        <div style="margin: 10px auto">
+            <select class="form-control m-bot15" name="url[]">
+                <option value="">--请选择链接页面--</option>
+                {volist name="urlList" id="vo"}
+                <option value="{$vo.url}">{$vo.name}</option>
+                {/volist}
+            </select>
+        </div>
+    </div>
+</div>
+{/block}
+

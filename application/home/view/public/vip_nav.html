@@ -1,0 +1,10 @@
+<div class="volume-content-top">
+    <div class="user-info"><img src="__STATIC__/home/common/images/head.png"/>{$user.nickname|default=""}</div>
+    <ul class="navbar-nav">
+        <li class="nav-item {if condition="request()->action() eq 'order_list'"}active{/if}"><a href="{:url('Order/order_list')}">全部订单({$count_data['order_num']})</a></li>
+        <li class="nav-item {if condition="request()->action() eq 'mycoupon'"}active{/if}"><a href="{:url('Vip/mycoupon')}">优惠券({$count_data['coupon_num']})</a></li>
+        <li class="nav-item {if condition="request()->action() eq 'addresslist'"}active{/if}"><a href="{:url('Vip/addresslist')}">收货地址({$count_data['address_num']})</a></li>
+        <li class="nav-item {if condition="request()->action() eq 'mycollect'"}active{/if}"><a href="{:url('Vip/mycollect')}">我的关注({$count_data['collect_num']})</a></li>
+        <li class="nav-item {if condition="request()->action() eq 'index'"}active{/if}"><a href="{:url('Vip/index')}">个人信息</a></li>
+    </ul>
+</div>

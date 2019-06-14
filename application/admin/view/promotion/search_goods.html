@@ -1,0 +1,134 @@
+{include file="public/header"/}
+{include file="public/footer"/}
+
+{block name="body"}
+<script src="__STATIC__/common/js/layer/laydate/laydate.js"></script>
+<script language="javascript">
+    $(document).ready(common_obj.data_handle);
+    $(document).ready(function(){
+        $('#stime').layDate();
+        $('#etime').layDate();
+    })
+</script>
+
+<section class="wrapper" style="margin-top:0">
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <section class="panel">
+                <div class="panel-body">
+                    <form class="form-inline" role="form" id="search-form" method="post">
+                        <div class="form-group col-lg-2">
+                            <label class="control-label">关键字:</label>
+                            <input type="text" class="form-control" name="keyword" value="" data-value="">
+                        </div>
+                        <input type="hidden" name="page" value="1" data-value="1">
+                        <input name="prom_id" type="hidden" value="{$Request.param.prom_id}">
+                        <input name="prom_type" type="hidden" value="{$Request.param.prom_type}">
+                        <div class="form-group">
+                            <label class="control-label">&nbsp;</label>
+                            <input type="submit" class="btn btn-success form-control" value="查询">
+                        </div>
+                    </form>
+                </div>
+
+                <table class="table table-striped table-advance table-hover" id="data-table">
+                    <thead>
+                    <tr>
+                        <th style="max-width: 20px"><i></i>选择</th>
+                        <th style="max-width: 30px"><i></i>ID</th>
+                        <th><i></i>展示图</th>
+                        <th><i></i>名称</th>
+                        <th><i></i>分类</th>
+                        <th><i></i>价格</th>
+                        <th><i></i>销量</th>
+                        <th><i></i>上架</th>
+
+                    </tr>
+                    </thead>
+                    <tbody  id="flexigrid">
+                    </tbody>
+                </table>
+            </section>
+            <div id="page"></div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <input class="btn btn-danger" onclick="select_goods();"  type="button" value="提交保存">
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(document).ready(function(){
+        $("input[type='radio']:checked").each(function(i,o){
+            var goods_id = $(this).data('id');
+            $('#spec_goods_id_'+goods_id).show();
+        })
+    });
+    //商品对象
+    function GoodsItem(goods_id, goods_name, store_count, goods_price, cost_price, goods_image,spec) {
+        this.goods_id = goods_id;
+        this.goods_name = goods_name;
+        this.store_count = store_count;
+        this.goods_price = goods_price;
+        this.cost_price = cost_price;
+        this.goods_image = goods_image;
+        this.spec = spec;
+    }
+    //商品对象
+    function GoodsSpecItem(item_id, key_name, store_count, price ,spec_img) {
+        this.item_id = item_id;
+        this.key_name = key_name;
+        this.store_count = store_count;
+        this.price = price;
+        this.spec_img = spec_img;
+    }
+    //单选框选中事件
+    $(function () {
+        $(document).on("click", '#flexigrid input', function (e) {
+            var goods_id = $(this).data('id');
+            if($(this).is(':checked')){
+                $('#spec_goods_id_'+goods_id).show();
+            }else{
+                $('#spec_goods_id_'+goods_id).hide();
+            }
+        })
+    })
+    //规格按钮点击事件
+    $(function () {
+        $(document).on("click", '.specBtn', function (e) {
+            $(this).parent().find('a').css("color","#777").removeClass('ncap-btn-green');
+            $(this).css("color","#FFF").addClass('ncap-btn-green');
+        })
+    })
+
+    function select_goods()
+    {
+        var input = $("input[type='radio']:checked");
+        if (input.length == 0) {
+            layer.alert('请选择商品', {icon: 2}); //alert('请选择商品');
+            return false;
+        }
+        var goods_id = input.data('id');
+        var spec = $('#spec_goods_id_'+goods_id);
+        var goodsItem = null;
+        if(spec.length == 0){
+            goodsItem = new GoodsItem(input.data('id'), input.data('name'),input.data('count'), input.data('price'),input.data('cost-price'),input.data('img'), null);
+        }else{
+            var spec_a = spec.find('.ncap-btn-green');
+            if(spec_a.length == 0){
+                layer.alert('请选择要参与活动的商品规格', {icon: 2}); //alert('请选择商品');
+            }else{
+                var goodsSpecItem = new GoodsSpecItem(spec_a.data('item-id'),spec_a.data('key-name'),spec_a.data('store-count'),spec_a.data('price'),spec_a.data('spec-img'));
+                goodsItem = new GoodsItem(input.data('id'), input.data('name'), input.data('count'),input.data('price'),input.data('cost-price'), input.data('img'), goodsSpecItem);
+            }
+        }
+        window.parent.call_back(goodsItem);
+    }
+</script>
+
+
+{/block}

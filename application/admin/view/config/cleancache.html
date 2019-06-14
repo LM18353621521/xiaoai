@@ -1,0 +1,12 @@
+{extend name="public/left"/}
+
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(function () {
+        UM.getEditor('editor');
+        load_one_img_init();
+    });
+    layer.msg("清除成功",{icon:1});
+</script>
+
+{/block}

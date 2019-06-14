@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>分类搜索</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+    <meta http-equiv="cache-control" content="no-store" />
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/public.css" />
+	<link rel="stylesheet" type="text/css" href="css/classify.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+</head>
+<body>
+	<div class="wrap">
+		<div class="header">
+			<div class="header-content">
+				<div class="header-home"><img src="images/header-home.png"/>首页</div>
+				<div class="header-right">
+					<select class="header-client">
+						<option>客服服务</option>
+						<option>客服服务1</option>
+						<option>客服服务2</option>
+						<option>客服服务3</option>
+					</select>
+					<a href="#" title="晓爱商城"><div class="header-cart after-line"><img src="images/header-shopcart.png"/>购物车</div></a>
+					<a href="#" title="晓爱商城"><div class="header-order after-line"><img src="images/header-menu.png"/>我的订单</div></a>
+					<div class="header-login after-line login-before">登录</div>
+					<!-- <div class="header-login after-line login-after">
+						夜尽天明<img src="images/bottoma.png"/>
+						<div class="person-center">
+							<img src="images/head.png"/>
+							<a href="#" title="晓爱商城"><div class="center-page">个人中心</div></a>
+							<a href="#" title="晓爱商城"><div class="login-out">退出</div></a>
+						</div>
+					</div> -->
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="banner">
+			<div class="banner-search">
+				<img class="logo" src="images/logo.png"/>
+				<div class="search-right">
+					<div class="search-input-box">
+						<input type="text" placeholder="" name="">
+						<div class="search">搜索</div>
+					</div>
+					<div class="serach-list">
+						<a href="#" title="晓爱商城">飞机杯</a>
+						<a href="#" title="晓爱商城">避孕套</a>
+						<a href="#" title="晓爱商城">飞机杯</a>
+						<a href="#" title="晓爱商城">避孕套</a>
+					</div>
+				</div>
+			</div>
+			<div class="banner-title clear">
+				<div class="banner-tits text-center">
+					<a href="#" title="晓爱商城">情趣市场</a>
+					<div class="banner-left">
+						<ul class="banner-menu">
+							<li>
+								<p class="menu-tit">男用</p>
+								<ul class="menu-sec-list">
+									<a href="#" title="晓爱商城"><li>飞机杯</li></a>
+									<a href="#" title="晓爱商城"><li>充气娃娃</li></a>
+									<a href="#" title="晓爱商城"><li>延时喷雾</li></a>
+								</ul>
+							</li>
+							<li>
+								<p class="menu-tit">女用</p>
+								<ul class="menu-sec-list">
+									<a href="#" title="晓爱商城"><li>震动棒</li></a>
+									<a href="#" title="晓爱商城"><li>跳蛋</li></a>
+									<a href="#" title="晓爱商城"><li>仿真阳具</li></a>
+								</ul>
+							</li>
+							<li>
+								<p class="menu-tit">延时</p>
+								<ul class="menu-sec-list">
+									<a href="#" title="晓爱商城"><li>增加增粗</li></a>
+									<a href="#" title="晓爱商城"><li>湿纸巾</li></a>
+								</ul>
+							</li>
+							<li>
+								<p class="menu-tit">情趣</p>
+								<ul class="menu-sec-list">
+									<a href="#" title="晓爱商城"><li>制服诱惑</li></a>
+									<a href="#" title="晓爱商城"><li>各类丝袜</li></a>
+									<a href="#" title="晓爱商城"><li>情趣内衣</li></a>
+								</ul>
+							</li>
+							<li>
+								<p class="menu-tit">润滑液</p>
+								<ul class="menu-sec-list">
+									<a href="#" title="晓爱商城"><li>人体润滑</li></a>
+									<a href="#" title="晓爱商城"><li>玩具润滑</li></a>
+									<a href="#" title="晓爱商城"><li>后庭润滑</li></a>
+								</ul>
+							</li>
+							<li>
+								<p class="menu-tit">避孕</p>
+								<ul class="menu-sec-list">
+									<a href="#" title="晓爱商城"><li>避孕药</li></a>
+									<a href="#" title="晓爱商城"><li>避孕套</li></a>
+								</ul>
+							</li>
+							<li>
+								<p class="menu-tit">SM</p>
+								<ul class="menu-sec-list">
+									<a href="#" title="晓爱商城"><li>各类道具</li></a>
+								</ul>
+							</li>
+							<li>
+								<p class="menu-tit">活动</p>
+								<ul class="menu-sec-list">
+									<a href="#" title="晓爱商城"><li>产品配套赠品</li></a>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>			
+				<a href="#" title="晓爱商城"><div class="banner-div1">首页</div></a>
+				<a href="#" title="晓爱商城"><div class="banner-div2">限时特惠</div></a>
+			</div>
+		</div>
+		<div class="classify-wrapper">
+			<p class="crumds">
+				<a href="#">首页</a>
+				<span>&gt;</span>
+				<a href="#">首页</a>
+				<span>&gt;</span>
+				<a href="#" class="current">首页<img src="images/close.png"></a>
+			</p>
+			<ul class="search-list-box">
+				<li>
+					<p class="search-tit">分类:</p>
+					<div class="search-list">
+						<p>震动</p>
+						<p>手动</p>
+						<p>其它</p>
+					</div>
+				</li>
+				<li>
+					<p class="search-tit">品牌:</p>
+					<div class="search-list">
+						<p>充电</p>
+						<p>电池</p>
+						<p>其它</p>
+					</div>
+				</li>
+				<li>
+					<p class="search-tit">特点:</p>
+					<div class="search-list">
+						<p>免提</p>
+						<p>伸缩</p>
+						<p>旋转</p>
+						<p>夹吸</p>
+						<p>智能</p>
+						<p>互动</p>
+						<p>发声</p>
+						<p>加温</p>
+						<p>其它</p>
+					</div>
+				</li>
+				<li>
+					<p class="search-tit">价格:</p>
+					<div class="search-list">
+						<p>30-120</p>
+						<p>110-190</p>
+						<p>190-270</p>
+						<p>270-350</p>
+						<p>350以上</p>
+					</div>
+				</li>
+			</ul>
+			<div class="product-box">
+				<ul class="product-condition">
+					<li class="active">销量</li>
+					<li>价格</li>
+					<li>评论数</li>
+					<li>最新上架</li>
+				</ul>
+				<ul class="product-list">
+					<li class="active">
+						<img src="images/product-a.png">
+						<p class="price">￥268.00</p>
+						<p class="name">雷霆（LETEN） 飞机杯全自动男飞机杯全自动男用自慰器用自慰器成人情趣性用品加温震动防水倒模夹吸互动</p>
+						<div class="info">
+							<p class="salenum">热销<span>555555</span>笔</p>
+							<p class="discuss">已有<span>5555+</span>评价</p>
+						</div>
+					</li>
+					<li>
+						<img src="images/product-a.png">
+						<p class="price">￥268.00</p>
+						<p class="name">雷霆（LETEN） 飞机杯全自动男用自慰器成人情趣性用品加温震动防水倒模夹吸互动</p>
+						<div class="info">
+							<p class="salenum">热销<span>555555</span>笔</p>
+							<p class="discuss">已有<span>5555+</span>评价</p>
+						</div>
+					</li>
+					<li>
+						<img src="images/product-a.png">
+						<p class="price">￥268.00</p>
+						<p class="name">雷霆（LETEN） 飞机杯全自动男用自慰器成人情趣性用品加温震动防水倒模夹吸互动</p>
+						<div class="info">
+							<p class="salenum">热销<span>555555</span>笔</p>
+							<p class="discuss">已有<span>5555+</span>评价</p>
+						</div>
+					</li>
+					<li>
+						<img src="images/product-a.png">
+						<p class="price">￥268.00</p>
+						<p class="name">雷霆（LETEN） 飞机杯全自动男用自慰器成人情趣性用品加温震动防水倒模夹吸互动</p>
+						<div class="info">
+							<p class="salenum">热销<span>555555</span>笔</p>
+							<p class="discuss">已有<span>5555+</span>评价</p>
+						</div>
+					</li>
+					<li>
+						<img src="images/product-a.png">
+						<p class="price">￥268.00</p>
+						<p class="name">雷霆（LETEN） 飞机杯全自动男用自慰器成人情趣性用品加温震动防水倒模夹吸互动</p>
+						<div class="info">
+							<p class="salenum">热销<span>555555</span>笔</p>
+							<p class="discuss">已有<span>5555+</span>评价</p>
+						</div>
+					</li>
+					<li>
+						<img src="images/product-a.png">
+						<p class="price">￥268.00</p>
+						<p class="name">雷霆（LETEN） 飞机杯全自动男用自慰器成人情趣性用品加温震动防水倒模夹吸互动</p>
+						<div class="info">
+							<p class="salenum">热销<span>555555</span>笔</p>
+							<p class="discuss">已有<span>5555+</span>评价</p>
+						</div>
+					</li>
+					<li>
+						<img src="images/product-a.png">
+						<p class="price">￥268.00</p>
+						<p class="name">雷霆（LETEN） 飞机杯全自动男用自慰器成人情趣性用品加温震动防水倒模夹吸互动</p>
+						<div class="info">
+							<p class="salenum">热销<span>555555</span>笔</p>
+							<p class="discuss">已有<span>5555+</span>评价</p>
+						</div>
+					</li>
+					<li>
+						<img src="images/product-a.png">
+						<p class="price">￥268.00</p>
+						<p class="name">雷霆（LETEN） 飞机杯全自动男用自慰器成人情趣性用品加温震动防水倒模夹吸互动</p>
+						<div class="info">
+							<p class="salenum">热销<span>555555</span>笔</p>
+							<p class="discuss">已有<span>5555+</span>评价</p>
+						</div>
+					</li>
+					<li>
+						<img src="images/product-a.png">
+						<p class="name">雷霆（LETEN） 飞机杯全自动男用自慰器成人情趣性用品加温震动防水倒模夹吸互动</p>
+						<div class="info">
+							<p class="salenum">热销<span>555555</span>笔</p>
+							<p class="discuss">已有<span>5555+</span>评价</p>
+						</div>
+					</li>
+					<li>
+						<img src="images/product-a.png">
+						<p class="name">雷霆（LETEN） 飞机杯全自动男用自慰器成人情趣性用品加温震动防水倒模夹吸互动</p>
+						<div class="info">
+							<p class="salenum">热销<span>555555</span>笔</p>
+							<p class="discuss">已有<span>5555+</span>评价</p>
+						</div>
+					</li>
+					<li>
+						<img src="images/product-a.png">
+						<p class="name">雷霆（LETEN） 飞机杯全自动男用自慰器成人情趣性用品加温震动防水倒模夹吸互动</p>
+						<div class="info">
+							<p class="salenum">热销<span>555555</span>笔</p>
+							<p class="discuss">已有<span>5555+</span>评价</p>
+						</div>
+					</li>
+					<li>
+						<img src="images/product-a.png">
+						<p class="name">雷霆（LETEN） 飞机杯全自动男用自慰器成人情趣性用品加温震动防水倒模夹吸互动</p>
+						<div class="info">
+							<p class="salenum">热销<span>555555</span>笔</p>
+							<p class="discuss">已有<span>5555+</span>评价</p>
+						</div>
+					</li>
+				</ul>
+				<div class="page">
+					
+				</div>
+			</div>		
+			<p class="new-list"><span></span>热门推荐</p>
+			<ul class="product-list">
+				<li>
+					<img src="images/product-a.png">
+					<p class="price">￥268.00</p>
+					<p class="name">雷霆（LETEN） 飞机杯全自动男用自慰器成人情趣性用品加温震动防水倒模夹吸互动</p>
+					<div class="info">
+						<p class="salenum">热销<span>555555</span>笔</p>
+						<p class="discuss">已有<span>5555+</span>评价</p>
+					</div>
+				</li>
+				<li>
+					<img src="images/product-a.png">
+					<p class="price">￥268.00</p>
+					<p class="name">雷霆（LETEN） 飞机杯全自动男用自慰器成人情趣性用品加温震动防水倒模夹吸互动</p>
+					<div class="info">
+						<p class="salenum">热销<span>555555</span>笔</p>
+						<p class="discuss">已有<span>5555+</span>评价</p>
+					</div>
+				</li>
+				<li>
+					<img src="images/product-a.png">
+					<p class="price">￥268.00</p>
+					<p class="name">雷霆（LETEN） 飞机杯全自动男用自慰器成人情趣性用品加温震动防水倒模夹吸互动</p>
+					<div class="info">
+						<p class="salenum">热销<span>555555</span>笔</p>
+						<p class="discuss">已有<span>5555+</span>评价</p>
+					</div>
+				</li>
+				<li>
+					<img src="images/product-a.png">
+					<p class="price">￥268.00</p>
+					<p class="name">雷霆（LETEN） 飞机杯全自动男用自慰器成人情趣性用品加温震动防水倒模夹吸互动</p>
+					<div class="info">
+						<p class="salenum">热销<span>555555</span>笔</p>
+						<p class="discuss">已有<span>5555+</span>评价</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+		
+
+
+
+
+
+	</div>
+<script src="js/main.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(".product-condition li").click(function(){
+			$(this).addClass("active").siblings().removeClass("active");
+		})
+	})
+
+</script>
+
+</body>
+</html>

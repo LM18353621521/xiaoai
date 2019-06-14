@@ -1,0 +1,87 @@
+{extend name="public/base"/ }
+
+{block name="body"}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        total_num={$total_count.total_num};
+        total_price={$total_count.total_price};
+        can_click=1;
+    });
+    $(document).ready(cart_obj.cart);
+</script>
+<body>
+{empty name="cartList"}
+{assign name="nodata" value="nothing_img"}
+{include file="public/nodata"/  text="亲，购物车空空如也~"}
+<style>
+    .nodata{
+        display: block !important;
+    }
+</style>
+{else/}
+    <div class="way lists">
+        {foreach name="cartList" item="vo" key="k"}
+        <div  class="add content cartList"  cart_id="{$vo.id}">
+            <p class="bg    {if condition="$vo.selected eq 1"}bg1{/if} cart_ids"><input type="checkbox" name="cart_id" value="{$vo.id}" /></p>
+            <div class="detail">
+                <div class="mid">
+                    <div class="list">
+                        <div class="lt"><img src="{$vo.coverimg}" /></div>
+                        <div class="rt">
+                            <p><span>{$vo.name}</span></p>
+                            <p><span>￥</span><span class="danjia" id="price{$vo.id}">{$vo.price}</span><span class="nmpc"><span class="mit">－</span><span class="number" id="num{$vo.id}">{$vo.number}</span><span class="plus">+</span></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {/foreach}
+    </div>
+    <!--all-->
+    <div class="all">
+          <div class="lt ss" ><span class="allcheck" id="isall"></span>全选</div>
+          <div class="lt ee"><span style="margin-left: 5%;">总计：<span style="color:#FF4A8A; font-size:1.8rem; margin-left:0.5rem;">¥<span class="ji" id="total_price">{$total_count.total_price}</span></span></div>
+         <div class="rt" id="buy_now">立即付款<span class="buy-num" ></span></div>
+    </div>
+{/empty}
+
+<!--底部导航   s-->
+{include file="public/foot_nav"/}
+<!--底部导航   e-->
+
+    <script type="text/javascript">
+        $(function(){
+            function accMul(arg1,arg2){ 
+                var m=0,s1=arg1.toString(),s2=arg2.toString(); 
+                try{m+=s1.split(".")[1].length}catch(e){} 
+                try{m+=s2.split(".")[1].length}catch(e){} 
+                return Number(s1.replace(".",""))*Number(s2.replace(".",""))/Math.pow(10,m) 
+            } 
+            //给Number类型增加一个mul方法，调用起来更加方便。 
+            Number.prototype.mul = function (arg){ 
+                return accMul(arg, this); 
+            }
+
+            // 算总钱数
+            function suan(){
+                var qianzong=0;
+                var qian1=0;
+                var danjia=0;
+                var shuliang=0;
+                var shuliangzong=0;
+                $(".bg.bg1").each(function(){
+                    danjia = $(this).next(".detail").find(".danjia").text();
+                    shuliang = $(this).next(".detail").find(".number").text();
+                    qian1 =accMul(danjia,shuliang);
+                    qianzong +=qian1;
+                    shuliangzong += parseInt(shuliang);
+                });
+                $(".buy-num").text("("+shuliangzong+")");
+                $(".ji").text(qianzong);
+            }
+
+        });
+    </script>
+
+    {/block}

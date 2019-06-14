@@ -1,0 +1,66 @@
+{extend name="public/left"/}
+
+{block name="body"}
+<script type="text/javascript" src="__STATIC__/common/js/searchableselect/jquery.searchableSelect.js"></script>
+<link rel="stylesheet" type="text/css" href="__STATIC__/common/js/searchableselect/jquery.searchableSelect.css"/>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('select[name=openid]').searchableSelect();
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(common_obj.form_submit);
+</script>
+
+<section class="wrapper" style="margin-top:0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="form">
+                        <form class="cmxform form-horizontal tasi-form" id="data-form">
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">昵称</label>
+                                <div class="col-lg-10">
+                                    <select class="form-control m-bot15" name="openid" required="required">
+                                        <option value="">请选择</option>
+                                        {volist name="vipList" id="vo"}
+                                        <option value="{$vo.openid}">{$vo.nickname}</option>
+                                        {/volist}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">方式</label>
+                                <div class="col-lg-10">
+                                    <select class="form-control m-bot15" name="field_change" required="required">
+                                        <option value="+">增加</option>
+                                        <option value="-">减少</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">积分</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" type="number" name="integral" required="required" step="1" min="0"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <input class="btn btn-danger" type="submit" value="提交保存">
+                                </div>
+                            </div>
+
+                        </form>
+                        <input type="hidden" id="do_action" value="{:url('Integral/integraladd')}"/>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+{/block}

@@ -1,0 +1,122 @@
+{extend name="public/left"/}
+
+{block name="body"}
+<script src="__STATIC__/common/js/layer/laydate/laydate.js"></script>
+<script language="javascript">
+    $(document).ready(function () {
+        UM.getEditor('editor');
+
+        laydate.render({
+            elem: '#use_stime',//绑定元素
+            theme: 'molv', //主题
+            type:'datetime', //控件选择类型
+            format: 'yyyy-MM-dd HH:mm:ss', //自定义格式
+            calendar: true, //显示公历节日
+            min: '1970-01-01 00:00:00', //最小日期
+            max: '2099-12-31 00:00:00', //最大日期
+            // value: new Date(),//默认当前时间
+            isInitValue: true,
+            position : 'fixed', //定位方式
+            zIndex: 99999999, //css z-index
+        });
+        laydate.render({
+            elem: '#use_etime',//绑定元素
+            theme: 'molv', //主题
+            type:'datetime', //控件选择类型
+            format: 'yyyy-MM-dd HH:mm:ss', //自定义格式
+            calendar: true, //显示公历节日
+            min: '1970-01-01 00:00:00', //最小日期
+            max: '2099-12-31 00:00:00', //最大日期
+            // value: new Date(),//默认当前时间
+            isInitValue: true,
+            position : 'fixed', //定位方式
+            zIndex: 99999999, //css z-index
+        });
+
+    });
+    $(document).ready(common_obj.form_submit);
+</script>
+
+<section class="wrapper" style="margin-top:0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="form">
+                        <form class="cmxform form-horizontal tasi-form" id="data-form">
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">优惠券名称</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" type="text" name="name" required="required" value="{$data.name}"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">优惠券面额</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" type="number" name="money" required="required" value="{$data.money}"  onKeyUp="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/[^\d]/g,'')"   />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">满多少钱可用</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" type="number" name="limit" required="required" value="{$data.limit}"  onKeyUp="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/[^\d]/g,'')"   />
+                                    <span class="help-block">订单需满足的最低消费金额(必需为整数)才能使用(0为不限制)</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">发放数量</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" type="number" name="number" required="required" value="{$data.number}"  onKeyUp="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/[^\d]/g,'')"   />
+                                    <span class="help-block">发放数量限制(默认为0则无限制)</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">使用起始时间</label>
+                                <div class="col-lg-3">
+                                    <label for="use_stime">使用开始时间</label><br>
+                                    <input type="text" id="use_stime" name="use_stime" value="{$use_stime|date='Y-m-d H:i:s',###}"  class="form-control">
+                                    <span class="help-block">发放数量限制(默认为0则无限制)</span>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label for="use_etime">使用结束时间</label><br>
+                                    <input type="text" id="use_etime" name="use_etime" value="{$use_etime|date='Y-m-d H:i:s',###}"  class="form-control">
+                                    <span class="help-block">发放数量限制(默认为0则无限制)</span>
+                                </div>
+                            </div>
+
+                            <!--<div class="form-group">-->
+                                <!--<label class="control-label col-lg-2">优惠券类型</label>-->
+                                <!--<div class="col-lg-6">-->
+                                    <!--<select class="form-control m-bot15" name="type" required="required">-->
+                                        <!--<option value="" >请选择类型</option>-->
+                                        <!--{volist name="typeList" id="vo" key="k"}-->
+                                        <!--<option value="{$k}" {eq name="data.type" value="$k" }selected="selected" {/eq}>{$vo}</option>-->
+                                        <!--{/volist}-->
+                                    <!--</select>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+
+
+
+                            <input type="hidden" name="id" value="{$data.id}">
+
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <input class="btn btn-danger" type="submit" value="提交保存">
+                                </div>
+                            </div>
+                        </form>
+                        <input type="hidden" id="do_action" value="{:url('Coupon/coupon_add')}">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+{/block}

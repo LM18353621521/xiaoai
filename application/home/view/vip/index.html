@@ -1,0 +1,186 @@
+{include file="public/header" title="个人中心"}
+<script>
+    $(document).ready(vip_obj.index);
+</script>
+<body>
+<div class="wrap">
+    {include file="public/top_nav"}
+    <div class="banner">
+        {include file="public/search"}
+        {include file="public/category_nav"}
+    </div>
+    <div class="volume-wrapper">
+        <div class="volume-wrapper-content">
+
+            {include file="public/vip_nav" title="个人中心"}
+
+            <div class="volume-content-bottom">
+                <form action="" id="edit_info">
+                <div class="base-info">
+                    <p class="base-title"><span></span>基本信息</p>
+                    <div class="base-wrap">
+                        <p class="base-tit">头像：</p>
+                        <div class="base-right">
+                            <div class="base-head">
+                                <img id="pic" src="{$vip.headimgurl|default='__STATIC__/home/common/images/head.jpg'}">
+                                <input id="upload" name="file" accept="image/*" type="file" style="display: none"/>
+                                <input type="hidden" name="head_pic" value="">
+                            </div>
+                            <label for="upload"><p class="change-head">修改头像</p></label>
+                        </div>
+                    </div>
+                    <div class="base-wrap">
+                        <p class="base-tit">用户名：</p>
+                        <div class="base-right">
+                            <p class="base-name">{$vip.mobile}</p>
+                        </div>
+                    </div>
+                    <div class="base-wrap">
+                        <p class="base-tit">昵称：</p>
+                        <div class="base-right">
+                            <input type="text" class="base-input" name="nickname" value="{$vip.nickname}">
+                        </div>
+                    </div>
+                    <!--<div class="base-wrap">-->
+                    <!--<p class="base-tit">生日</p>-->
+                    <!--<div class="base-right">-->
+                    <!--<input type="text" class="base-input" name="">-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <div class="base-wrap">
+                        <p class="base-tit">性别</p>
+                        <input type="hidden" name="sex" value="{$vip.sex}">
+                        <div class="base-right">
+                            {if condition="$vip.sex eq 1"}
+                            <p class="radio-sex" sex="1"><img src="__STATIC__/home/common/images/radio-yes.jpg">男</p>
+                            <p class="radio-sex" sex="2"><img src="__STATIC__/home/common/images/radio-no.png">女</p>
+                            {else/}
+                            <p class="radio-sex" sex="1"><img src="__STATIC__/home/common/images/radio-no.png">男</p>
+                            <p class="radio-sex" sex="2"><img src="__STATIC__/home/common/images/radio-yes.jpg">女</p>
+                            {/if}
+                        </div>
+                    </div>
+                    <div class="base-wrap">
+                        <p class="base-tit">手机</p>
+                        <div class="base-right user_mobile">
+                            {if condition="$vip.mobile"}
+                            <p class="base-name">{$vip.mobile}</p>
+                            {/if}
+                            {if condition="$is_bind eq 0"}
+                            <p class="bind_mobile"><a href="javascript:;">绑定手机</a></p>
+                            {/if}
+                        </div>
+                        </div>
+                    </div>
+                    <p class="base-btn" id="edit_info_do">确认修改</p>
+                </form>
+                </div>
+                <div class="base-info">
+                    <form action="{:url('Vip/edit_password')}" id="edit_password_form">
+                        <p class="base-title"><span></span>基本信息</p>
+                        <div class="base-wrap">
+                            <p class="base-tit">原密码：</p>
+                            <div class="base-right">
+                                <input type="password" class="base-input" name="password_old">
+                            </div>
+                        </div>
+                        <div class="base-wrap">
+                            <p class="base-tit">新密码：</p>
+                            <div class="base-right">
+                                <input type="password" class="base-input" name="password">
+                            </div>
+                        </div>
+                        <div class="base-wrap">
+                            <p class="base-tit">确认密码：</p>
+                            <div class="base-right">
+                                <input type="password" class="base-input" name="passwords">
+                            </div>
+                        </div>
+                        <p class="base-btn edit_password_btn">确认修改</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--右边导航s-->
+{include file="public/right_nav"}
+<!--右边导航e-->
+<!--右边导航s-->
+{include file="public/kf_layer"}
+<!--右边导航e-->
+{include file="public/footer"}
+<!-- 登录/注册浮层 -->
+{include file="public/login_layer"}
+
+<script src="js/main.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".bind_mobile").click(function (e) {
+            $(".bind-account").show();
+        });
+
+        $(".radio-sex").click(function () {
+            $(".radio-sex img").attr("src", "__STATIC__/home/common/images/radio-no.png");
+            $(this).find("img").attr("src", "__STATIC__/home/common/images/radio-yes.jpg");
+            var sex = $(this).attr('sex');
+            $("input[name=sex]").val(sex);
+        })
+
+        $("#pic").click(function () {
+            $("#upload").click(); //隐藏了input:file样式后，点击头像就可以本地上传
+            $("#upload").on("change", function (e) {
+                var filePath = $(this).val(),
+                    fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase();//获取文件后缀名
+                //检查后缀名
+                if( !fileFormat.match(/.png|.jpg|.jpeg/) ) {
+                    layer.msg('文件格式必须为：png/jpg/jpeg',{icon:2});//showError是另外写的一个显示错误信息的function
+                    return;
+                }
+                //获取并记录图片的base64编码
+                var reader = new FileReader();
+                reader.readAsDataURL(e.target.files[0]); // 读出 base64
+                reader.onloadend = function () {
+                    // 图片的 base64 格式, 可以直接当成 img 的 src 属性值
+                    var dataURL = reader.result;//base64
+                    $("input[name=head_pic]").val(dataURL);
+                    $("#pic").attr("src", dataURL); //将图片路径存入src中，显示出图片
+                };
+            });
+        });
+    });
+
+    //建立一?可存取到?file的url
+    function getObjectURL(file) {
+        var url = null;
+        if (window.createObjectURL != undefined) { // basic
+            url = window.createObjectURL(file);
+        } else if (window.URL != undefined) { // mozilla(firefox)
+            url = window.URL.createObjectURL(file);
+        } else if (window.webkitURL != undefined) { // webkit or chrome
+            url = window.webkitURL.createObjectURL(file);
+        }
+        return url;
+    }
+
+    //上传头像到服务器
+    function upimg() {
+        // 	var pic = $('#upload')[0].files[0];
+        // 	var file = new FormData();
+        // 	file.append('image', pic);
+        // 	$.ajax({
+        //     	url: "/uploadImg",
+        //     	type: "post",
+        //     	data: file,
+        //     	cache: false,
+        //     	contentType: false,
+        //     	processData: false,
+        //     	success: function(data) {
+        //         	var res = data;
+        //         	$("#resimg").append("<img src='/" + res + "'>")
+        //     	}
+        // });
+    }
+</script>
+</body>
+</html>

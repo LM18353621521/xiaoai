@@ -1,0 +1,78 @@
+{
+  "pages": [    
+    "pages/home/index/index",
+    "pages/user/coupon/coupon",
+    "pages/user/index/index",
+    "pages/user/mycoupon/mycoupon",
+    "pages/order/wuliu/wuliu",
+    "pages/home/detail/detail",
+    "pages/order/discuss/discuss",
+    "pages/order/myorder/myorder",
+    "pages/home/distributgoods/distributgoods",
+    "pages/user/mycollect/mycollect",
+    "pages/home/search/search",
+    "pages/home/orderconfirm/orderconfirm",
+    "pages/home/cart/cart",
+    "pages/home/happy/happy",
+    "pages/home/goodsList/goodsList",
+    "pages/home/types/types",
+    "pages/user/withdrawlist/withdrawlist",
+    "pages/user/distribution/distribution",
+    "pages/user/myqrcode/myqrcode",
+    "pages/user/addredit/addredit",
+    "pages/user/addrlist/addrlist",
+    "pages/user/moneydetail/moneydetail",
+    "pages/user/mysubordinate/mysubordinate",
+    "pages/order/orderdetail/orderdetail",
+    "pages/order/ordersdetailpayed/ordersdetailpayed",
+    "pages/order/ordersdetailsended/ordersdetailsended",
+    "pages/order/ordersdetailwaitdiscuss/ordersdetailwaitdiscuss",
+    "pages/home/aftersale/aftersale"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "晓爱商城",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#b73ef1",
+    "borderStyle": "white",
+    "backgroundColor": "white",
+    "navigationBarTextStyle": "white",
+    "list": [
+      {
+        "selectedIconPath": "images/footera-active.png",
+        "iconPath": "images/footera.png",
+        "pagePath": "pages/home/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "images/footerb-active.png",
+        "iconPath": "images/footerb.png",
+        "pagePath": "pages/home/types/types",
+        "text": "分类"
+      },
+      {
+        "selectedIconPath": "images/footerc-active.png",
+        "iconPath": "images/footerc.png",
+        "pagePath": "pages/home/distributgoods/distributgoods",
+        "text": "分销"
+      },
+      {
+        "selectedIconPath": "images/footerd-active.png",
+        "iconPath": "images/footerd.png",
+        "pagePath": "pages/home/cart/cart",
+        "text": "购物车"
+      },
+      {
+        "selectedIconPath": "images/footere-active.png",
+        "iconPath": "images/footere.png",
+        "pagePath": "pages/user/index/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

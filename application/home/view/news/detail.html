@@ -1,0 +1,57 @@
+{extend name="public/base"/}
+
+{block name="body"}
+<script type="text/javascript">
+    var id = "{$news.id}";
+    var title = "{$news.title}"
+    $("title").text(title);
+
+    $(document).ready(news_obj.detail);
+</script>
+
+<header>
+    <div>{$news.title}</div>
+    <div>
+        <span>
+            <img src="__STATIC__/wechat/news/images/browse.png">
+   			<span>{$news.browse_actual}</span>人
+        </span>
+        <span>{$news.create_time|date='Y-m-d H:i',###}</span>
+    </div>
+</header>
+
+<div class="description">
+    {$news.content}
+</div>
+
+<div class="ping content" id="review_list" >
+
+</div>
+
+<div class="hidden">
+    <input type="hidden" name="page" value="1"/>
+    <input type="hidden" name="url" value="{:url('News/reviewlist')}"/>
+</div>
+<form id="form_ajax">
+    <input type="hidden" name="news_id" value="{$news.id}"/>
+</form>
+{assign name="nodata" value="nothing"}
+{include file="public/nodata"/}
+
+<footer>
+    <input type="text" placeholder="写评价...." readonly>
+</footer>
+
+<form id="data-form">
+    <div class="wirte_layer">
+        <div class="top"></div>
+        <div class="wirte_lay">
+            <textarea rows="6" name="content" notnull placeholder="请输入您的评价"></textarea>
+            <input class="publish" type="submit" value="发表">
+        </div>
+    </div>
+    <input type="hidden" name="news_id" value="{$news.id}">
+</form>
+<input type="hidden" id="do_action" value="{:url('News/review')}">
+<input type="hidden" id="do_thumb" value="{:url('News/thumb')}">
+{/block}

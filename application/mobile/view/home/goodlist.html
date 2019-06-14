@@ -1,0 +1,52 @@
+{extend name="public/base"/ }
+
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(home_obj.goodlist);
+</script>
+<body>
+    <div class="white">
+        <input class="search" id="keyword" value="{$data.keyword}" type="text" placeholder="请输入关键词称">
+    </div>
+    <div class="bt">
+        <div class="bt1">
+            <div sort="price" class="bt2 color01">价格</div>
+        </div>
+        <div class="bt1">
+            <div sort="sales" class="bt2">销量</div>
+        </div>
+        <div class="bt1">
+            <div sort="id"  class="bt2">最新</div>
+        </div>
+        <div class="bt1">
+            <div sort="comment_score"  class="bt2">评价</div>
+        </div>
+    </div>
+
+    <!--列表  -->
+    <div class='lists'>
+            <div class="hidden">
+                <input type="hidden" name="page" value="1"/>
+                <input type="hidden" name="url" value="{:url('Home/goodlist')}"/>
+            </div>
+            <div class="content">
+            </div>
+    </div>
+
+
+    <form id="form_ajax">
+        <input type="hidden" name="category_id" value="{$data.category_id}"/>
+        <input type="hidden" name="keyword" value="{$data.keyword}"/>
+        <input type="hidden" name="sort" value="price"/>
+        <input type="hidden" name="asc" value="asc"/>
+    </form>
+    {assign name="nodata" value="nothing_img"}
+    {include file="public/nodata"/  text="亲，未搜索到您查找的商品~"}
+
+    <!--<div class="more"><img src="__STATIC__/mobile/home/images/jiazai.png"/>加载更多...</div>-->
+    <script type="text/javascript">
+        $(function(){
+        });
+    </script>
+    
+    {/block}

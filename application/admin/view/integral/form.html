@@ -1,0 +1,93 @@
+{if condition ="strtolower(request()->action()) == 'log'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><a href="#">{$key+1}</a></td>
+    <td>{$vo.nickname}</td>
+    <td>{$vo.remark}</td>
+    <td>
+        {$vo.field_change} {$vo.number}
+    </td>
+    <td>{$vo.cur_number}</td>
+    <td>{$vo.create_time|date="Y-m-d H:i",###}</td>
+</tr>
+{/volist}
+{/if}
+
+
+{if condition ="strtolower(request()->action()) == 'product'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><input type="checkbox" name="id" value="{$vo.id}"></td>
+    <td><a href="#">{$key+1}</a></td>
+    <td>{$vo.name}</td>
+    <td>{$vo.integral}</td>
+    <td>
+        {if condition="$vo.coverimg"}
+        <a class="icon-picture" data-toggle="modal" href="#layer_image" data-image="{$vo.coverimg}"></a>
+        {/if}
+    </td>
+    <td>{$vo.create_time|date="Y-m-d H:i",###}</td>
+    <td data-pid="{$vo.id}">
+        {if condition="$vo.is_publish == 0"}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="integral_product" data-fieldname="is_publish" data-value="1">
+            <i class="icon-remove" title="未发布"></i>
+        </a>
+        {elseif condition="$vo.is_publish == 1"/}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="integral_product" data-fieldname="is_publish" data-value="0">
+            <i class="icon-ok" title="已发布"></i>
+        </a>
+        {/if}
+    </td>
+    <td data-pid="{$vo.id}">
+        <a href="{:url('Integral/productadd',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-pencil"></i></button>
+        </a>
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="integral_product" data-fieldname="is_hidden" data-value="1"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}
+
+{if condition ="strtolower(request()->action()) == 'order'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><input type="checkbox" name="id" value="{$vo.id}"></td>
+    <td><a href="#">{$key+1}</a></td>
+    <td>{$vo.order_number}</td>
+    <td>{$vo.nickname}</td>
+    <td>{$vo.product_name}</td>
+    {if condition="$vo.pay eq 0"}
+    <td>{$vo.pay_integral}积分 </td>
+    {elseif condition="$vo.pay eq 1"/}
+    <td>{$vo.pay_integral}积分,微信:{$vo.pay_money}元</td>
+    {elseif condition="$vo.pay eq 2"/}
+    <td>{$vo.pay_integral}积分,余额:{$vo.pay_money}元 </td>
+    {/if}
+    <td>{$vo.linkman} {$vo.linktel} {$vo.address}</td>
+    <td>{$vo.create_time|date="Y-m-d H:i",###}</td>
+    <td>
+        {if condition="$vo.status == 0"}
+        <span class="label label-warning">待付款</span>
+        {elseif condition="$vo.status == 1"/}
+        <span class="label label-success">待发货</span>
+        {elseif condition="$vo.status == 2"/}
+        <span class="label label-primary">已发货</span>
+        {elseif condition="$vo.status == 3"/}
+        <span class="label label-info">已完成</span>
+        {/if}
+    </td>
+    <td data-pid="{$vo.id}">
+        <a href="{:url('Integral/orderdetail',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-pencil"></i></button>
+        </a>
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename=integral_order" data-fieldname="is_hidden" data-value="1"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}

@@ -1,0 +1,103 @@
+{extend name="public/left"/}
+
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(function () {
+        UM.getEditor('editor');
+    });
+    $(document).ready(common_obj.form_submit);
+</script>
+
+<section class="wrapper" style="margin-top:0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="form">
+                        <form class="cmxform form-horizontal tasi-form" id="data-form">
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">首次关注送积分</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" type="number" name="firstsubscribe" required="required" value="{$data.firstsubscribe}" min="0"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">注册送积分</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" type="number" name="register" required="required" value="{$data.register}" min="0"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">签到送积分</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" type="number" name="sign" required="required" value="{$data.sign}" min="0"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">下单送积分</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" type="number" name="order" required="required" value="{$data.order}" min="0"/>
+                                </div>
+                            </div>
+
+                            <!--<div class="form-group">
+                                <label class="control-label col-lg-2">积分商城积分抵用</label>
+                                <div class="col-lg-10">
+                                    <div class="col-lg-3">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="use_money" value="0" {eq name="data.use_money" value="0" }checked="checked" {/eq}>
+                                                不可以用钱抵用积分
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="use_money" value="1" {eq name="data.use_money" value="1" }checked="checked" {/eq}>
+                                                可以用钱抵用积分
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                            <div style="float:left">
+                                                <label class="control-label"> 1积分 =</label>
+                                            </div>
+                                            <div class="col-lg-4"  style="float:left">
+                                                <input type="number" name="integral_to_money" class="form-control" value="{$data.integral_to_money}" min="0.00">
+                                            </div>
+                                            <div  style="float:left">
+                                                <label class="control-label"> 元 </label>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>-->
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">使用说明</label>
+                                <div class="col-lg-10">
+                                    <script type="text/plain" id="editor" name="content" style="width:1000px;height:240px;">{$data.content}</script>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <input class="btn btn-danger" type="submit" value="提交保存">
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="id" value="{$data.id}">
+                        </form>
+                        <input type="hidden" id="do_action" value="{:url('Integral/config')}"/>
+                        <input type="hidden" id="do_jump" value="{:url('Integral/config')}"/>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+{/block}

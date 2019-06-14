@@ -1,0 +1,35 @@
+{extend name="public/base"/}
+{block name="body"}
+<script type="text/javascript">
+    var product_id = "{$product.id}"
+    var product_name = "{$product.name}";
+    $("title").text(product_name);
+    $(document).ready(integral_obj.detail);
+</script>
+
+<header>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {volist name="product.imgpath" id="vo"}
+            {if condition="$vo neq ''"}
+            <div class="swiper-slide"><img src="{$vo}"/></div>
+            {/if}
+            {/volist}
+        </div>
+    </div>
+    <p>{$product.name}</p>
+    <p>{$product.integral}积分</p>
+</header>
+
+<!--detail-->
+<div class="detail">
+    <div class="tp">&nbsp;&nbsp;商品详情</div>
+    <div class="bn">{$product.description}</div>
+</div>
+
+<!--footer-->
+<footer class="footer2">
+    <div>单价：<span>{$product.integral}积分</span></div>
+    <div {if condition="$product.can_exchange == 0" }class="on" {/if}>兑换</div>
+</footer>
+{/block}

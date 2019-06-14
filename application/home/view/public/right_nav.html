@@ -1,0 +1,74 @@
+<div class="wrap-right">
+    <div class="icon-list kf_btn">
+        <a href="javascript:;">
+            <img src="__STATIC__/home/common/images/icon_kf.png">
+            <p>在线客服</p>
+        </a>
+        <!--右边导航s-->
+        {include file="public/kf_layer"}
+        <!--右边导航e-->
+    </div>
+    <div class="icon-list">
+        <a href="javascript:check_login('{:url('Cart/cart')}');">
+        <img src="__STATIC__/home/common/images/cart.png">
+        <p>购物车</p>
+            {notempty name="$user"}
+            <sub>{$cart_num|default=0}</sub>
+            {/notempty}
+        </a>
+    </div>
+    <div class="icon-list">
+        <a href="javascript:check_login('{:url('Vip/mycoupon')}');">
+        <img src="__STATIC__/home/common/images/conpou.png">
+        <p>优惠券</p>
+        </a>
+    </div>
+    <div class="icon-list">
+        <a href="javascript:check_login('{:url('Vip/mycollect')}');">
+        <img src="__STATIC__/home/common/images/star.png">
+        <p>我的收藏</p>
+        </a>
+    </div>
+    <!--<div class="icon-list">-->
+        <!--<img src="__STATIC__/home/common/images/ear.png">-->
+        <!--<p>客服咨询</p>-->
+    <!--</div>-->
+</div>
+<style>
+    .wrap-right{
+        overflow: visible;
+    }
+    .online-tel{
+        text-align: left !important;
+        font-size: 13px !important;
+    }
+    .kf_btn{
+        position: relative;
+    }
+    .kf_layer{
+        position: absolute;
+        display: none;
+        right: 24px;
+        top: 15%;
+        padding: 0 4px;
+    }
+    .kf_con{
+        width: 160px;
+        background: var(--theme);
+        overflow: hidden;
+        padding: 30px 20px 40px;
+        border-radius: 9px;
+
+    }
+    .kf_btn:hover .kf_layer{
+        display: block;
+    }
+    .refer-box {
+        right: 32px;
+    }
+    .text-font{
+        margin-top: 0px !important;
+        line-height: 18px !important;
+        text-align: left !important;
+    }
+</style>

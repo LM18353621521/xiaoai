@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!-- saved from url=(0136)https://wqs.jd.com/order/deal_wuliu.shtml?from=orderdetail&dealState=18&dealId=83444492691&skuid=1045206&shopid=0&orderType=0&sceneval=2 -->
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>物流详情页</title>
+    <meta name="apple-mobile-webC-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="__STATIC__/mobile/common/jd/jd_common.css">
+    <link rel="stylesheet" href="__STATIC__/mobile/common/jd/jd_wuliu.css">
+</head>
+<body>
+
+<div class="m_header_v2" id="m_header" style="display: block;">
+    <div class="m_header_bar">
+        <a href="javascript:history.go(-1);"><div class="m_header_bar_back"></div></a>
+        <div class="m_header_bar_title">订单跟踪</div>
+        <div class="m_header_bar_menu" style="visibility: hidden"></div>
+    </div>
+    <div class="m_header_nav" style="display:none;">
+        <div class="m_header_nav_item type_index" idx="0">首页</div>
+        <div class="m_header_nav_item type_search" idx="1">分类搜索</div>
+        <div class="m_header_nav_item type_shopcart" idx="2">购物车</div>
+        <div class="m_header_nav_item type_my cur" idx="3">我的京东</div>
+        <div class="m_header_nav_item type_recently" idx="4">浏览记录</div>
+    </div>
+</div>
+<div class="m_header_v2_mask" style="display:none;"></div>
+
+<!-- m站头部 -->
+
+<div id="wuliuCon">
+    <!-- 物流详情主内容 -->
+    <div id="wuliuDiv">
+        <div class="track_info"><a class="track_info_serve" href="javascript:;" style="display:none" id="wuliudongdong">联系客服</a>
+            <div class="track_info_item"><p class="track_info_item_label">订单编号：</p>
+                <div class="track_info_item_content">{$order['order_number']}</div>
+            </div>
+            <!--<a href="#" class="track_goods_v2">-->
+            <!--<div class="track_goods_imgs"><img src="./物流详情页_files/5bbc70abN97d01690.jpg!q70.dpg"></div>-->
+            <!--<div class="track_goods_detail">-->
+            <!--<p class="track_goods_detail_text">电视挂架电视架电视机挂架</p>-->
+            <!--<p class="track_goods_detail_text_small">1件</p></div>-->
+            <!--</a>-->
+            <div class="track_info_item"><p class="track_info_item_label">国内承运人：</p>
+                <div class="track_info_item_content">{$express['express_name']}</div>
+            </div>
+        </div>
+        <ul class="track_shipflow">
+            {if condition="$wuliu['message'] eq 'ok'"}
+            {foreach name="wuliu['data']" item="vo" key="k"}
+                <li class="track_shipflow_item {if condition="$k eq 0"}cur{/if}"><i class="track_shipflow_item_status type_dot"></i>
+                    <div class="track_shipflow_item_msg">
+                        <p class="track_shipflow_item_msg_text">{$vo.context}</p>
+                        <p class="track_shipflow_item_msg_time">{$vo.time}</p>
+                    </div>
+                </li>
+            {/foreach}
+            {else/}
+            <li class="track_shipflow_item"><i class="track_shipflow_item_status type_dot"></i>
+            <div class="track_shipflow_item_msg">
+                <p class="track_shipflow_item_msg_text">未查询到物流信息</p>
+            </div>
+            </li>
+            {/if}
+        </ul>
+    </div>
+    <div id="jdAppID"></div>
+</div>
+<script>
+    queryExpress();
+    function queryExpress() {
+        var express_id = "{$order['express_id']}";
+        var invoice_no = "{$order['express_number']}";
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "/index.php?m=Home&c=Api&a=queryExpress&express_id=" + express_id + "&invoice_no=" + invoice_no,//+tab,
+            success: function (data) {
+                var html = '';
+                if (data.status == 200) {
+                    $.each(data.data, function (i, o) {
+                        html += "<div class='tittimlord red-around'><h2>" + o.context + "</h2> <p>" + o.time + "</p></div>";
+                    });
+                } else {
+                    html += "<div class='tittimlord red-around'><h2>" + data.message + "</h2> <p></p></div>";
+                }
+                $("#express_info").after(html);
+            }
+        });
+    }
+</script>
+</body>
+</html>

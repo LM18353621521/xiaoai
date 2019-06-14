@@ -1,0 +1,77 @@
+ <div class="header">
+    <div class="header-content">
+        <div class="header-home"><a href="{:url('Index/index')}"><img src="__STATIC__/home/common/images/header-home.png"/>首页</a></div>
+        <div class="header-right">
+            <!--<select class="header-client">-->
+            <!--<option>客服服务</option>-->
+            <!--<option>客服服务1</option>-->
+            <!--<option>客服服务2</option>-->
+            <!--<option>客服服务3</option>-->
+            <!--</select>-->
+            <a href="javascript:check_login('{:url('Cart/cart')}');" title="晓爱商城">
+                <div class="header-cart after-line"><img src="__STATIC__/home/common/images/header-shopcart.png"/>购物车
+                </div>
+            </a>
+            <a href="javascript:check_login('{:url('Order/order_list')}');" title="订单中心">
+                <div class="header-order after-line"><img src="__STATIC__/home/common/images/header-menu.png"/>我的订单
+                </div>
+            </a>
+            {empty name="user"}
+            <div class="header-login after-line login-before">登录</div>
+            {else/}
+            <div class="header-login after-line login-after">
+                {$user.nickname}<img src="__STATIC__/home/common/images/bottoma.png"/>
+                <div class="person-center">
+                    <img src="{$user.headimgurl|default='__STATIC__/home/common/images/head.png'}"/>
+                    <a href="{:url('Vip/index')}" title=个人中心>
+                        <div class="center-page">个人中心</div>
+                    </a>
+                    <a href="javascript:;" title="晓爱商城">
+                        <div class="login-out login_out">退出</div>
+                    </a>
+                </div>
+            </div>
+            {/empty}
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+ <style>
+     .person-center{
+         top: 30px;
+     }
+     .login-after:hover .person-center{
+        display: block;
+     }
+ </style>
+<script>
+    // 个人中心浮沉
+    // $(".login-after").mouseenter(function () {
+    //     $(".person-center").show();
+    // })
+    // $(".login-after").mouseleave(function () {
+    //     setTimeout(function () {
+    //         $(".person-center").hide();
+    //     },800);
+    // });
+    function check_login(url) {
+        $.post("/Home/Api/check_login", {}, function (data) {
+            can_click = 1;
+            if (data.ret == 1) {
+                window.location.href = url;
+            } else {
+                layer.confirm(data.msg, {
+                    btn: ['确定', '取消'] //按钮
+                }, function (index) {
+                    layer.close(index);
+                    $(".login-layer").hide();
+                    $(".login-register").show();
+                }, function () {
+                });
+
+            }
+        });
+    }
+    
+</script>

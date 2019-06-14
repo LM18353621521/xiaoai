@@ -1,0 +1,90 @@
+{extend name="public/base"/ }
+
+{block name="body"}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        can_click=1;
+    });
+    $(document).ready(home_obj.distributgoods);
+
+</script>
+<body>
+<div class='wrapper'>
+    <!--列表  -->
+    <div class='lists'>
+        <div class="hidden">
+            <input type="hidden" name="page" value="1"/>
+            <input type="hidden" name="url" value="{:url('Home/distributgoods')}"/>
+        </div>
+        <div class="content">
+        </div>
+        <!--<div class='item'>-->
+            <!--<div class="lt">-->
+                <!--<img src="__STATIC__/mobile/home/images/product-list.jpg"/>-->
+            <!--</div>-->
+            <!--<div class="rt">-->
+                <!--<div>VR飞机杯真实体验真人3D环绕声叫爽翻</div>-->
+                <!--<div class='info'>价格：<text>￥159</text></div>-->
+                <!--<div class='info'>佣金：<text>￥159</text></div>-->
+                <!--<div class='info'>返佣比例：<text>6%</text></div>-->
+                <!--<button class='btn-recommend'>我要推荐</button>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+
+    <form id="form_ajax">
+        <input type="hidden" name="category_id" value="0"/>
+        <input type="hidden" name="keyword" value=""/>
+        <input type="hidden" name="sort" value="is_recommend"/>
+        <input type="hidden" name="asc" value="desc"/>
+    </form>
+    {assign name="nodata" value="nothing_img"}
+    {include file="public/nodata"/  text="亲，未搜索到您查找的商品~"}
+    <!--<div class="more"><img src="__STATIC__/mobile/home/images/jiazai.png"/>加载更多...</div>-->
+</div>
+
+<!--f3  -->
+<div class='fuceng f3'>
+    <div class="fuer"></div>
+    <div class='baibgb'>
+        <img class="close-img" src="__STATIC__/mobile/home/images/close-pink.jpg"/>
+        <div class="poster"><img class="poster-img" src="__STATIC__/mobile/home/images/product.jpg"/></div>
+        <div class='sure'>保存图片</div>
+        <div class='suretips'>保存至相册可以分享到朋友圈</div>
+    </div>
+</div>
+
+<!--f4  -->
+<div class='fuceng f4'>
+    <div class="fuer"></div>
+    <div class='baibga'>
+        <div class="img-tab">
+            <img class="wechat" src="__STATIC__/mobile/home/images/wechats.png"/>
+            <img class="wechat posert" src="__STATIC__/mobile/home/images/codes.png"/>
+        </div>
+        <div class='sure'>关闭</div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        // f4 f3
+        $(".btn-recommend").click(function(){
+            $(".f4").show();
+            $(".wrapper").addClass("hidecontainer");
+        })
+        $(".posert").click(function(){
+            $(".f4").hide();
+            $(".f3").show();
+        })
+        // f3
+        $(".sure,.close-img").click(function(){
+            $(".fuceng").hide();
+            $(".wrapper").removeClass("hidecontainer");
+        })
+
+    });
+</script>
+
+{/block}

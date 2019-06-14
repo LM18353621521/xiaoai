@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>分销中心</title>
+    <link rel="stylesheet" type="text/css" href="../__STATIC__/wechat/home/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../__STATIC__/wechat/home/css/lj.css"/>
+    <script type="text/javascript" src="../__STATIC__/wechat/home/js/jquery-1.11.2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../__STATIC__/wechat/home/css/distribution.css"/>
+</head>
+<body>
+<div class="wrapper">
+    <div class="uycenter_head2">
+        <img class="uybg" src="../__STATIC__/wechat/home/images/center-bg.jpg" />
+        <img class="head" src="../__STATIC__/wechat/home/images/header.jpg" />
+        <div class="uylmenu">
+            <div class="uylmenu11">张三<span class="poster">邀请海报</span></div>
+            <div class="uylmenu12">5545454545</div>
+            <div class="uylmenu12">账户余额<span>(元)</span></div>
+            <div class="uylmenu11">565456.00<span class="withdraw">提现</span></div>
+        </div>
+    </div>
+
+
+
+    <div class='tabs'>
+        <div class='item black-font'><span class='label'>本月订单</span>180</div>
+        <div class='item text-right'><span class='label'>已返佣金</span>180<span class='yuan'>元</span></div>
+        <div class='item'><span class='label'>佣金收益</span>180<span class='yuan'>元</span></div>
+        <div class='item text-right'><span class='label'>待返佣金</span>180<span class='yuan'>元</span></div>
+    </div>
+
+    <div class="swiper-tab">
+        <div class="swiper-tab-list on">收入记录</div>
+        <div class="swiper-tab-list">提现记录</div>
+    </div>
+
+
+<div class="tab-content">
+    <!--1-->
+    <div class="list">
+        <div class="top">
+            <div>订单编号</div>
+            <div>佣金(元)</div>
+            <div>结算日期</div>
+        </div>
+        <div class="bn">
+            <div class="sub_list">
+                <div>545454545</div>
+                <div>+200</div>
+                <div>2017-06-01 14 : 00</div>
+            </div>
+            <div class="sub_list">
+                <div>545454545</div>
+                <div>+200</div>
+                <div>2017-06-01 14 : 00</div>
+            </div>
+        </div>
+    </div>
+    <!--2-->
+    <div class="list">
+        <div class="top">
+            <div>订单编号</div>
+            <div>佣金(元)</div>
+            <div>结算日期</div>
+        </div>
+        <div class="bn">
+            <div class="sub_list">
+                <div>545454545</div>
+                <div>+200</div>
+                <div>2017-06-01 14 : 00</div>
+            </div>
+            <div class="sub_list">
+                <div>545454545</div>
+                <div>+200</div>
+                <div>2017-06-01 14 : 00</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='more'>暂无更多订单信息</div>
+</div>
+
+
+<!--提现浮层  -->
+<div class="fuceng f1">
+    <div class="fucenger"></div>
+    <div class="fucengbox">
+        <img class="img-head" src="../__STATIC__/wechat/home/images/header.jpg" />
+        <img class="img-close" src="../__STATIC__/wechat/home/images/close.png" />
+        <div class="tit-info">
+            <div class="tit-name">张三</div>
+            <div class="tit-name">初级会员</div>
+        </div>
+        <div class="box-fu">
+            <div class="box-info">张三</div>
+            <div class="box-money">初级会员</div>
+        </div>
+        <div class='fu-leftright'>
+            <div class='fu-left'>提现金额:</div>
+            <input class="fu-right" type="text" placeholder="￥0.00（元）" />
+        </div>
+        <div class='gray-backgound'>
+            <div class="fu-info">提现金额将会以微信公众号红包的形式放至您的微信中，领取后提现至零钱包</div>
+            <div class="fu-btn">提现</div>
+            <div class="box-withdraw">历史提现</div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!--邀请海报浮层  -->
+<div class="fuceng f2">
+   <div class="fucenger"></div>
+   <div class="fucengboxa">
+        <img class="img-close" bindtap="closea" src="../__STATIC__/wechat/home/images/close-pink.jpg" />
+        <img class="wechat-code" mode="widthFix" src="../__STATIC__/wechat/home/images/header.jpg" />
+        <div class="code-box">
+            <div class="code-tit">长按识别小程序码访问</div>
+            <div class="code-info">xioaai晓爱商城</div>
+            <div class="code-info">保存至相册可以分享到朋友圈</div>
+        </div>
+        <div class="save-btn" bindtap="closea">保存图片</div>
+    </div>
+</div>
+
+
+    <script type="text/javascript">
+        $(function(){
+            $(".swiper-tab-list").click(function(){
+                $(".swiper-tab-list").removeClass("on");
+                $(this).addClass("on");
+                var _index = $(this).index();
+                $(".list").eq(_index).show().siblings(".list").hide();
+            });
+
+
+
+            // f1
+            $(".fucenger,.img-close,.fu-btn").click(function(){
+                $(".fuceng").hide();
+                $(".wrapper").removeClass("hidecontainer");
+             })
+             $(".uylmenu11 span.withdraw").click(function(){
+                $(".f1").show();
+                $(".wrapper").addClass("hidecontainer");
+             })
+             // f2
+             $(".img-close,.fucenger,.save-btn").click(function(){
+                $(".fuceng").hide();
+                $(".wrapper").removeClass("hidecontainer");
+             })
+             $(".uylmenu11 span.poster").click(function(){
+                $(".f2").show();
+                $(".wrapper").addClass("hidecontainer");
+             })
+
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+{foreach name="commentlist" item="vo"}
+<li>
+    <div class="discuss-head"><img src="{$vo.headimg|default='__STATIC__/home/common/images/head.png'}">{if condition="$vo.is_anonymous eq 1"}匿名{else/}{$vo.nickname}{/if}</div>
+    <div class="discuss-info">
+        <div class="discuss-star">
+            {for start="0" end="$vo.star" name="star"}
+            <img src="__STATIC__/home/common/images/stara-yes.png">
+            {/for}
+        </div>
+        <p class="discuss-text">{$vo.content}</p>
+        <div class="discuss-img">
+            {foreach name="vo.imgpath" item="img"}
+            <div><img src="{$img}"></div>
+            {/foreach}
+        </div>
+        <p class="discuss-type">
+            <!--飞机杯-256号--><span>{$vo.create_time|date="Y-m-d H:i:s",###}</span>
+        </p>
+    </div>
+</li>
+{/foreach}
+<div class="page">
+    {$page}
+</div>
+<script>
+    // 点击分页触发的事件
+    $("#ajax_comment_list .pagination  a").click(function(){
+        ajaxComment(0,$(this).data('p'));
+    });
+</script>

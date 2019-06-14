@@ -1,0 +1,183 @@
+{include file="public/header"/}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".refreshverify").click(function () {
+            $(".yan").attr("src", '?s=User/verify');
+        });
+
+        $('form button').click(function () {
+            var flag = false;
+            $('input[name=username],input[name=password]').each(function () {
+                if ($(this).val() == '') {
+                    $(this).focus();
+                    flag = true;
+                    return false;
+                }
+            });
+            if (flag) {
+                return false;
+            }
+            $.post('/admin.php/User/index', $("form").serialize(), function (data) {
+                if (data.ret == 1) {
+                    window.location.href = data.url;
+                } else {
+                    alert(data.msg);
+                }
+            });
+        });
+
+        $('input').keypress(function (event) {
+            if (event.keyCode == 13) {
+                $('form button').click();
+            }
+        });
+    });
+</script>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+<!--[if lt IE 9]>
+<!--<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>-->
+<![endif]-->
+
+<div class="container">
+
+    <form class="form-signin">
+        <h2 class="form-signin-heading">系统管理中心</h2>
+        <h3 class="form-signin-heading">System Management Center</h3>
+        <div class="login-wrap">
+            <div class="form-group">
+                <span class="icon-user"></span>
+                <input type="text" name="username" class="form-control login" autocomplete="off" tabindex="1"
+                       placeholder="用户名" autofocus>
+            </div>
+            <div class="form-group">
+                <span class="icon-lock"></span>
+                <input type="password" name="password" class="form-control login" autocomplete="off" tabindex="2"
+                       placeholder="密码">
+            </div>
+            <div class="form-group">
+                <span class="icon-font"></span>
+                <input type="text" name="verify" class="form-control login" autocomplete="off" tabindex="2"
+                       placeholder="请填写验证码">
+                <a class="changezhang refreshverify">换一张？</a>
+            </div>
+            <img class="yan refreshverify" src="{:url('User/verify')}">
+            <button class="btn btn-lg btn-login btn-block" type="button">登 录</button>
+        </div>
+    </form>
+
+</div>
+<div id="bannerBox">
+    <ul id="slideBanner" class="slideBanner">
+        <li><img src="__STATIC__/member/images/banner_1.jpg"></li>
+        <li><img src="__STATIC__/member/images/banner_2.jpg"></li>
+        <li><img src="__STATIC__/member/images/banner_3.jpg"></li>
+    </ul>
+</div>
+<script src="__STATIC__/member/js/jquery.SuperSlide.2.1.2.js"></script>
+<script>
+    $("#bannerBox").slide({
+        mainCell: ".slideBanner",
+        effect: "fold",
+        interTime: 3500,
+        delayTime: 500,
+        autoPlay: true,
+        autoPage: true,
+        endFun: function (i, c, s) {
+            $(window).resize(function () {
+                var width = $(window).width();
+                var height = $(window).height();
+                s.find(".slideBanner,.slideBanner li").css({"width": width, "height": height});
+            });
+        }
+    });
+
+</script>
+
+
+<style>
+    body {
+        /*background: url("__STATIC__/member/images/4.jpg");*/
+        /*background-position: center;*/
+        /*background-attachment: fixed;*/
+        /*background-size: cover;*/
+        background: #555;
+        font-family: "Microsoft YaHei";
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+    }
+
+    /*.container {*/
+        /*width: 418px;*/
+        /*position: absolute;*/
+        /*z-index: 3;*/
+        /*top: 50%;*/
+        /*left: 50%;*/
+        /*margin: -300px auto auto -60px;*/
+    /*}*/
+
+    .form-signin {
+        max-width: 430px;
+        opacity: 0.8;
+        background-color: rgba(38, 43, 54, .9);
+        padding: 25px 50px 20px 50px;
+        margin: 70px auto 0;
+    }
+
+    .form-signin h2.form-signin-heading {
+        background: none;
+        font-size: 30px;
+    }
+
+    h3 {
+        margin: 0;
+        text-align: center;
+    }
+
+    .form-signin .form-control {
+        padding: 10px 13%;
+    }
+
+    .form-signin input {
+        font-size: 14px !important;
+    }
+
+    #bannerBox {
+        display: block;
+        position: fixed;
+        left: 0;
+        top: 0;
+        overflow: hidden;
+        z-index: -999;
+        height: 100%;
+        width: 100%;
+    }
+
+    #bannerBox .slideBanner {
+        height: 100% !important;
+        width: 100% !important;
+    }
+
+    #bannerBox .slideBanner li {
+        display: block;
+        list-style: none;
+        z-index: -30;
+        position: fixed;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #111;
+    }
+
+    .slideBanner li img {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+{include file="public/footer"/}

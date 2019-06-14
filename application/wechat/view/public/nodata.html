@@ -1,0 +1,57 @@
+{if condition="$nodata == 'nothing'"}
+<style type="text/css">
+    .nodata.nothing {
+        width: 100%;
+        margin-top: 2rem;
+        text-align: center;
+        font-size: 1.6rem;
+        color: #999;
+        letter-spacing: 0.1rem;
+    }
+</style>
+<div class="nodata nothing">
+    暂无内容～
+</div>
+{/if}
+
+{if condition="$nodata == 'nothing_img'"}
+<style type="text/css">
+    .nodata {
+        width: 100%;
+        margin-top:2rem;
+        text-align: center;
+        font-size: 1.4rem;
+        color: #999;
+    }
+
+    .nodata img{
+        width: 70%;
+        margin-top: 30%;
+        display: block;
+        margin: 30% auto 2rem;
+    }
+</style>
+<div class="nodata">
+    <img src="__STATIC__/wechat/common/images/nodata.png">
+    亲，你还没有内容哦～
+</div>
+{/if}
+
+<style type="text/css">
+    .nodata {
+        display: none
+    }
+
+    .load {
+        display: none;
+        text-align: center;
+        font-size: 1.4rem;
+        color: #999;
+        margin: 1rem auto;
+    }
+</style>
+<div class="load">
+    正在加载中，请稍后...
+</div>
+
+

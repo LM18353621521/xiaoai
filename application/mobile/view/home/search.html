@@ -1,0 +1,89 @@
+{extend name="public/base"/ }
+
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(home_obj.search);
+</script>
+<body>
+    <div class="content">
+        <div class="topsear">
+            <form action="{:url('Home/goodlist')}">
+            <input class="searh" name="keyword" type="text" placeholder="请输入关键词称">
+            <div class="searimg" onclick="$('form').submit()">搜索</div>
+                <!--<button class="searimg" >搜索</button>-->
+            </form>
+        </div>
+        <!-- 没有搜索到商品 -->
+        <div class="tab-content history" style="display: block;">
+            <div class="title">历史搜索</div>
+            <div class="tuop1">
+                {volist name="keywordList" id="vo"}
+                <a href="{:url('Home/goodlist',array('keyword'=>$vo))}">
+                <span class="tuop11">{$vo}</span>
+                </a>
+                {/volist}
+                <!--<span class="tuop11">待付款</span>-->
+            </div>
+            {notempty name="keywordList"}
+            <div class="lohai1 clear_serach"><img src="__STATIC__/mobile/home/images/del.png">清空历史搜索</div>
+            {else/}
+            {assign name="nodata" value="nothing_img"}
+            {include file="public/nodata"/  text="亲，暂无搜索记录~"}
+            <style>
+                .nodata{
+                    display: block;
+                }
+            </style>
+            {/notempty}
+        </div>
+        <!-- 搜索到商品 -->
+        <div class="tab-content" hidden>
+            <div class="bt">
+                <div class="bt1">
+                    <div class="bt2 color01">综合</div>
+                </div>
+                <div class="bt1">
+                    <div class="bt2">上新</div>
+                </div>
+            </div>
+            <div class="have-no-goods">
+                <img class="no-img" src="__STATIC__/mobile/home/images/my-cart.jpg">
+                <div class="no-word">没有找到你想要的商品<br/>换个搜索词试试</div>
+            </div>
+            <div class="erlistbox">
+                <div class="erlist1">
+                    <img class="erleft1" src="__STATIC__/mobile/home/images/my-goods.jpg">
+                    <div class="erright1">
+                        <div class="erright11">贵哥直购商城</div>
+                        <div class="erright12">
+                            <div class="erright121">￥52.00</div>
+                            <div class="erright123"><img src="__STATIC__/mobile/home/images/my-carta.jpg"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="erlist1">
+                    <img class="erleft1" src="__STATIC__/mobile/home/images/my-goods.jpg">
+                    <div class="erright1">
+                        <div class="erright11">贵哥直购商城</div>
+                        <div class="erright12">
+                            <div class="erright121">￥52.00</div>
+                            <div class="erright123"><img src="__STATIC__/mobile/home/images/my-carta.jpg"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="more">更换搜素词查找更多商品</div> -->
+        </div> 
+
+
+        
+    </div>
+
+    <script type="text/javascript">
+        $(".bt2").click(function(){
+            $(".bt2").removeClass("color01");
+            $(this).addClass("color01");
+        });
+    </script>
+
+    {/block}

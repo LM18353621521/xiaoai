@@ -1,0 +1,78 @@
+<view>
+<block wx:for="{{orderlog}}" wx:for-item="item" wx:for-index="index">
+<view class="header twoa">
+  <image class="product" src="{{item.coverimg}}" />
+  <view class="header-right">
+    <view class="header-tit">{{item.goods_name}}</view>
+    <view class="header-tit">商品评分</view>
+    <view class="header-star">
+      <!-- <image src="../../../images/star.png" />
+        <image src="../../../images/star.png" />
+        <image src="../../../images/star.png" />
+        <image src="../../../images/star.png" />
+        <image src="../../../images/star.png" /> -->
+      <image bindtap="starbtn" wx:for="{{item.starlist}}" wx:for-index="indexstar" wx:for-item="itemstar" data-index="{{index}}" data-indexstar="{{indexstar}}" src="{{itemstar}}" />
+    </view>
+  </view>
+</view>
+<textarea bindblur='set_content' data-index="{{index}}" class='titcontent' placeholder="说说你的购物体验吧，给其他买家一些帮助" placeholder-style="color:#ccc;"></textarea>
+<view class="five">
+  <view class='subfive'>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        <view class="weui-uploader">
+          <view class="weui-uploader__bd">
+            <view class="weui-uploader__files">
+              <block wx:for="{{item.imgs}}" wx:for-item="image">
+                <view class="weui-uploader__file">
+                  <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
+                </view>
+              </block>
+            </view>
+            <view class="weui-uploader__input-box">
+              <view class='upload' bindtap="chooseImage" data-index='{{index}}'>
+                <image class='upload-img' src="../../../images/camera.png" />
+                <view class='upload-font'>照片/视频</view>
+              </view>
+              <view class="weui-uploader__input"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+</block>
+
+<view class="twoa niming" bindtap='radiobtn'>
+  <view class="lefta">
+    <image src="{{niming==0?'../../../images/no.png':'../../../images/yesa.png'}}"></image>匿名</view>
+  <view class="righta"></view>
+</view>
+
+
+<view class="twoa">
+  <view class="lefta">
+    <image src="../../../images/car.png"></image>物流服务描述</view>
+  <view class="righta">满意请给5星哦</view>
+</view>
+<view class="twob">
+  <view class="lefta">快递包装</view>
+  <view class="righta">
+    <image bindtap="starbtna" wx:for="{{starlist1}}" data-index="{{index}}" src="{{item}}" />
+  </view>
+</view>
+<view class="twob">
+  <view class="lefta">送货速度</view>
+  <view class="righta">
+    <image bindtap="starbtnb" wx:for="{{starlist2}}" data-index="{{index}}" src="{{item}}" />
+  </view>
+</view>
+<!-- <view class="twob">
+  <view class="lefta">配送员服务态度</view>
+  <view class="righta">
+    <image bindtap="starbtnc" wx:for="{{starc}}" data-index="{{index}}" src="{{item.src}}" />
+  </view>
+</view> -->
+<button class='submit' bindtap='submit_do'>保存</button>
+</view>

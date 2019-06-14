@@ -1,0 +1,114 @@
+{extend name="public/left"/}
+
+{block name="body"}
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Xbq3g4meudxD5Q0MB9osTLpg"></script>
+<script language="javascript">
+    $(document).ready(function () {
+        UM.getEditor('editor');
+
+    });
+    $(document).ready(common_obj.form_submit);
+</script>
+
+<section class="wrapper" style="margin-top:0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="form">
+                        <form class="cmxform form-horizontal tasi-form" id="data-form">
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">名称</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" type="text" name="name" required="required" value="{$data.name}"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">电话</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" type="text" name="linktel" required="required" value="{$data.linktel}"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group map">
+                                <label class="control-label col-lg-2">地址</label>
+                                <div class="col-lg-10">
+
+                                    <input class="form-control" type="text" readonly name="address" required="required" value="{$data.address}"/>
+
+                                    {if condition="$data.lng"}
+                                    <iframe id="mapPage" width="100%" frameborder="0" scrolling="no" height="589"
+                                            src="https://apis.map.qq.com/tools/locpicker?search=1&type=1&key=ZFGBZ-23MRG-2WNQJ-IMOAZ-U6GKK-NVF4U&referer=myapp&coord={$data.lng},{$data.lat}">
+                                    </iframe>
+                                    {else/}
+                                    <iframe id="mapPage" width="100%" frameborder="0" scrolling="no" height="589"
+                                            src="https://apis.map.qq.com/tools/locpicker?search=1&type=1&key=ZFGBZ-23MRG-2WNQJ-IMOAZ-U6GKK-NVF4U&referer=myapp}">
+                                    </iframe>
+                                    {/if}
+                                    <input type="hidden" name="lng" value="{$data.lng}">
+                                    <input type="hidden" name="lat" value="{$data.lat}">
+                                </div>
+                            </div>
+
+                            <div class="form-group one-img">
+                                <label class="control-label col-lg-2">封面图</label>
+                                <div class="col-lg-10">
+                                    <div id="picker0" class="webuploader-picker">选择文件</div>
+                                    <input type="hidden" name="coverimg" value="{$data.coverimg}" notnull placeholder="请上传封面图">
+                                </div>
+
+                                <div class="col-lg-10 col-lg-offset-2 img">
+                                    {if condition="$data.coverimg"}
+                                    <a href="{$data.coverimg}" target="_blank">
+                                        <img src="{$data.coverimg}">
+                                    </a>
+                                    {/if}
+                                </div>
+                            </div>
+
+                            <div class="form-group more-img" data-imgname="imgpath[]">
+                                <label class="control-label col-lg-2">展示图片</label>
+                                <div class="col-lg-10">
+                                    <div id="picker" class="webuploader-picker">选择文件</div>
+                                    <p class="help-block">共可上传<span>5</span>张图片，图片大小建议：640*400像素</p>
+                                </div>
+
+                                <div class="col-lg-10 col-lg-offset-2 img">
+                                    {volist name="data.imgpath" id="v"}
+                                    <div>
+                                        <a href="{$v}" target="_blank">
+                                            <img src="{$v}">
+                                        </a>
+                                        <span>删除</span>
+                                        <input type="hidden" name="imgpath[]" value="{$v}">
+                                    </div>
+                                    {/volist}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">详情</label>
+                                <div class="col-lg-10">
+                                    <script type="text/plain" id="editor" name="content" style="width:1000px;height:240px;">{$data.content}</script>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="id" value="{$data.id}">
+
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <input class="btn btn-danger" type="submit" value="提交保存">
+                                </div>
+                            </div>
+                        </form>
+
+                        <input type="hidden" id="do_action" value="{:url('Mall/storeadd')}">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+{/block}

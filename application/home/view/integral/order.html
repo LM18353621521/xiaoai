@@ -1,0 +1,66 @@
+{extend name="public/base"/}
+{block name="body"}
+<script type="text/javascript">
+    $("title").text('提交订单');
+    var product_id = "{$data.id}"
+    $(document).ready(integral_obj.order);
+</script>
+
+<form id="data-form">
+    <div class="address_select" id="address_select">
+
+</div>
+
+    <div class="list">
+        <div class="top"><img src="__STATIC__/wechat/integral/images/listtop.png">兑换清单</div>
+        <div class="detail">
+            <div class="lt"><img src="{$data.coverimg}"></div>
+            <div class="rt">
+                <p>{$data.name}</p>
+                <p>{$data.integral}积分</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="info">
+        <div>您的现有积分</div>
+        <div id="integral">{$vip.integral}</div>
+    </div>
+
+    {if condition="$config['can_use_money'] eq 1"}
+    <div class="info">
+        <div>仍须支付费用</div>
+        <div>{$data.need_money}</div>
+    </div>
+    {/if}
+
+    <div class="height"></div>
+
+    <div class="deliver_way">
+        <div>配送方式</div>
+        <div>{$config['deliver'][1]}</div>
+        <img src="__STATIC__/wechat/common/images/next.png"/>
+    </div>
+    {assign name="layer" value="bottom_select"/}
+    {assign name="select_text" value="配送方式"/}
+    {assign name="select_name" value="deliver"/}
+    {include file="public/layer"/}
+
+    {if condition="$data['need_money'] gt 0"}
+    <div class="pay_way">
+        <div>支付方式</div>
+        <div>{$config['pay'][1]}</div>
+        <img src="__STATIC__/wechat/common/images/next.png"/>
+    </div>
+    {assign name="layer" value="bottom_select"/}
+    {assign name="select_text" value="支付方式"/}
+    {assign name="select_name" value="pay"/}
+    {include file="public/layer"/}
+    {/if}
+
+    <input type="submit" class="footer5" value="确认兑换">
+    <input type="hidden" name="product_id" value="{$data.id}"/>
+</form>
+<input type="hidden" id="do_action" value="{:url('Integral/order')}">
+{include file="public/wxpay"/}
+{/block}

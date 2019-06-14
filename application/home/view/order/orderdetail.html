@@ -1,0 +1,261 @@
+{include file="public/header" title="订单详情"}
+<body>
+<style>
+    .line_50 {
+        background: linear-gradient(90deg, #e2acdf 50%, #e4e4e4 50%);
+    }
+
+    .line_100 {
+        background: linear-gradient(90deg, #e2acdf 100%, #e4e4e4 50%);
+    }
+
+    .o-d-1 p:hover {
+        cursor: pointer;
+    }
+</style>
+<div class="wrap">
+    <input type="hidden" name="order_id" value="{$order.id}">
+    {include file="public/top_nav"}
+    <div class="wrap-content ss">
+        <div class="logo-order-d">
+            <a href="{:url('Index/index')}">
+            <img src="{$xa_config.web_logo}">
+            </a>
+            <div class="link-two" title="点击打开客服" is_show="0">
+                <img src="__STATIC__/home/common/images/contact.png">
+                <p class="contact-m"> 联系客服
+                <p>
+                <!--右边导航s-->
+                {include file="public/kf_layer"}
+                <!--右边导航e-->
+            </div>
+            <a href="{:url('Index/index')}">
+            <div class="link-one">继续购物</div>
+            </a>
+        </div>
+        <div class="o-d-1">
+            <div class="o-d-1-a" id="ss">
+                <p class="o-d-1-a-1">订单编号：{$order.order_number}</p>
+                <p class="o-d-1-a-2">{$order.status_text}</p>
+                {if condition="$order.status eq 0"}
+                <p class="o-d-1-a-3">剩余{$sub_time.hour}小时{$sub_time.min}分</P>
+                {/if}
+                {if condition="$order.status eq 0"}
+                <p class="o-d-1-a-4 pay_do">立即付款</p>
+                <a href="javascript:;" class="cancel_do"><p class="o-d-1-a-4 ">取消订单</p></a>
+                {elseif condition="$order.status eq 1"/}
+                <p class="o-d-1-a-4 refund_do">申请退款</p>
+                {elseif condition="$order.status eq 2"/}
+                <p class="o-d-1-a-4 refund_do">申请退款</p>
+                {elseif condition="$order.status eq 3&&$order.is_comment eq 0"/}
+                <p class="o-d-1-a-4 comment_do">去评价</p>
+                {elseif condition="$order.status eq 3&&$order.is_comment eq 1"/}
+                <p class="o-d-1-a-4 del_do">删除订单</p>
+                {/if}
+            </div>
+            <div class="o-d-1-line"></div>
+            <div class="o-d-1-b">
+                {if condition="$order.status eq 0"}
+                <p class="o-d-1-b-1">该订单为您保留{$xa_config.shopping_cancel_time}小时)(下单后{$xa_config.shopping_cancel_time}小时).{$xa_config.shopping_cancel_time}小时候未付款.系统将会自动取消订单</p>
+                {else/}
+                <p class="o-d-1-b-1">&nbsp;</p>
+                {/if}
+                <ul class="lili clear">
+                    <li class="fi">
+                        <img src="__STATIC__/home/common/images/ordera-yes.png">
+                        <p>&nbsp;</p>
+                        <span>提交订单</span>
+                    </li>
+                    <li>
+                        {if condition="$order.is_pay eq 1"}
+                        <img src="__STATIC__/home/common/images/orderb-yes.png">
+                        {else/}
+                        <img src="__STATIC__/home/common/images/orderb-no.png">
+                        {/if}
+                        <p>&nbsp;</p>
+                        <span>付款成功</span>
+                    </li>
+                    <li>
+                        {if condition="$order.status egt 2"}
+                        <img src="__STATIC__/home/common/images/orderc-yes.png">
+                        {else/}
+                        <img src="__STATIC__/home/common/images/orderc-no.png">
+                        {/if}
+                        <p>&nbsp;</p>
+                        <span>商品出库</span>
+                    </li>
+                    <li>
+                        {if condition="$order.status egt 2"}
+                        <img src="__STATIC__/home/common/images/orderd-yes.png">
+                        {else/}
+                        <img src="__STATIC__/home/common/images/orderd-no.png">
+                        {/if}
+                        <p>&nbsp;</p>
+                        <span>等待收货</span>
+                    </li>
+                    <li class="fi la">
+                        {if condition="$order.status egt 3"}
+                        <img src="__STATIC__/home/common/images/ordere-yes.png">
+                        {else/}
+                        <img src="__STATIC__/home/common/images/ordere-no.png">
+                        {/if}
+                        <span>完成</span>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="o-d-2">
+            <div class="o-d-2-a">
+                <img src="__STATIC__/home/common/images/icon_express.png">
+                <p>物流信息</p>
+            </div>
+            <div class="o-d-1-line"></div>
+            <div class="o-d-2-b">
+                {if condition="$wuliu['message'] eq 'ok'"}
+                    {foreach name="wuliu['data']" item="vo" key="k"}
+                    <div class="order-li">
+                        <p class="dot {if condition="$k eq 0"}active{/if}"></p>
+                        <p class="time">{$vo.time}</p>
+                        <p class="status">{$vo.context}</p>
+                    </div>
+                    {/foreach}
+                {else/}
+                    <div class="order-li">
+                        <p class="dot active"></p>
+                        <p class="time">&nbsp;</p>
+                        <p class="status">暂无物流信息</p>
+                    </div>
+                {/if}
+            </div>
+        </div>
+        <div class="o-d-3">
+            <div class="o-d-3-a">
+                <div class="o-d-3-a1">收货信息</div>
+                <p>收货人:</p>
+                <p>地 址：</p>
+                <p>手机号：</p>
+            </div>
+            <div class="o-d-3-b">
+                <p>{$order.linkman}</p>
+                <div class="o-d-3-b1">{$order.address}</div>
+                <p>{$order.linktel}</p>
+            </div>
+            <div class="o-d-3-line"></div>
+            <div class="o-d-3-a">
+                <div class="o-d-3-a1">配送信息</div>
+                <p>配送方式:</p>
+                <p>运 费：</p>
+            </div>
+            <div class="o-d-3-b">
+                <p>{$express.express_name|default=" "}&nbsp;</p>
+                <p>￥{$order.express_fee}</p>
+            </div>
+            <div class="o-d-3-line"></div>
+            <div class="o-d-3-a">
+                <div class="o-d-3-a1">付款信息</div>
+                <p>付款方式</p>
+                <p>订单总额:</p>
+                <p>商品金额:</p>
+                <p>优惠抵扣:</p>
+                <p>应付总额：</p>
+            </div>
+            <div class="o-d-3-b">
+                <p>{$order.pay_type_text}</p>
+                <p>￥{$order.total_price}</p>
+                <p>￥{$order.goods_price}</p>
+                <p>￥{$order.coupon_money}</p>
+                <p>￥{$order.pay_money}</p>
+            </div>
+        </div>
+    </div>
+
+
+<div class="order-bottle">
+    <div class="order-bottle-head">
+        <p class="order-head-shop">商品</p>
+        <p class="order-head-price">单价</p>
+        <p class="order-head-no">数量</p>
+        <p class="order-head-off">&nbsp;</p>
+        <p class="order-head-sum">小计</p>
+    </div>
+    <ul class="order-list">
+        {foreach name="order.orderlog" item="vo"}
+        <li>
+            <img src="{$vo.coverimg}">
+            <div class="order-lista">
+                <div class="order-list-one">{$vo.goods_name}</div>
+                <p>{$vo.key_name}</p>
+            </div>
+            <p class="order-list-two">￥{$vo.goods_price}</p>
+            <p class="order-list-three">{$vo.buy_num}</p>
+            <p class="order-list-four">&nbsp;</p>
+            <p class="order-list-five">￥{$vo.total_price}</p>
+        </li>
+        {/foreach}
+    </ul>
+</div>
+</div>
+{include file="public/footer"}
+<style>
+    .link-two{
+        cursor: pointer;
+    }
+    .wrap-right{
+        overflow: visible;
+    }
+    .online-tel{
+        text-align: left !important;
+        font-size: 13px !important;
+    }
+    .kf_btn{
+        position: relative;
+    }
+    .kf_layer{
+        position: absolute;
+        display: none;
+        right: 24px;
+        top: 15%;
+        padding: 0 4px;
+    }
+    .kf_con{
+        width: 160px;
+        background: var(--theme);
+        overflow: hidden;
+        padding: 30px 20px 40px;
+        border-radius: 9px;
+
+    }
+    .kf_btn:hover .kf_layer{
+        display: block;
+    }
+    .refer-box {
+        right: 32px;
+    }
+    .text-font{
+        margin-top: 0px !important;
+        line-height: 18px !important;
+        text-align: left !important;
+    }
+</style>
+
+<script>
+    $(document).ready(order_obj.orderdetail());
+    $("#ss").on("click", '.cancel_do', function () {
+    })
+    $(".link-two").click(function () {
+        var is_show = $(this).attr('is_show');
+        if(is_show==0){
+            $(".kf_layer").show();
+            $(this).attr('is_show',1);
+            $(this).attr('title','点击关闭客服');
+        }else{
+            $(".kf_layer").hide();
+            $(this).attr('is_show',0);
+            $(this).attr('title','点击打开客服');
+        }
+    })
+</script>
+
+</body>
+</html>

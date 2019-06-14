@@ -1,0 +1,106 @@
+{extend name="public/left"/}
+
+{block name="body"}
+<script type="text/javascript" src="__STATIC__/common/js/searchableselect/jquery.searchableSelect.js"></script>
+<link rel="stylesheet" type="text/css" href="__STATIC__/common/js/searchableselect/jquery.searchableSelect.css"/>
+<script type="text/javascript">
+    $(document).ready(function () {
+        load_one_img_init();
+        $('select[name=product_id]').searchableSelect();
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(common_obj.form_submit);
+</script>
+
+<section class="wrapper" style="margin-top:0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+
+                <div class="panel-body">
+                    <div class="form">
+                        <form class="cmxform form-horizontal tasi-form" id="data-form">
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">评价用户</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" type="text" name="nickname" required="required" value=""/>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group one-img">
+                                <label class="control-label col-lg-2">用户头像</label>
+                                <div class="col-lg-6">
+                                    <div id="picker0" class="webuploader-picker">选择文件</div>
+                                    <input type="hidden" name="headimg" value="" notnull placeholder="请上传用户头像">
+                                </div>
+
+                                <div class="col-lg-10 col-lg-offset-2 img">
+                                    <a href="" target="_blank">
+                                        <img src="">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">评价商品</label>
+                                <div class="col-lg-6">
+                                    <select class="form-control m-bot15" name="product_id" required="required" style="border:none;">
+                                        <option value="">请选择</option>
+                                        {volist name="$good_list" id="vo"}
+                                        <option value="{$vo.id}">{$vo.name}</option>
+                                        {/volist}
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">评价等级</label>
+                                <div class="col-lg-6">
+                                    <select class="form-control m-bot15" name="star" required="required" >
+                                        <option value="5">5颗星</option>
+                                        <option value="4">4颗星</option>
+                                        <option value="3">3颗星</option>
+                                        <option value="2">2颗星</option>
+                                        <option value="1">1颗星</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">评价内容</label>
+                                <div class="col-lg-6">
+                                    <textarea class="form-control"   name="content" id="" cols="30" rows="3"></textarea>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group more-img" data-imgname="imgpath[]">
+                                <label class="control-label col-lg-2">评价图片</label>
+                                <div class="col-lg-10">
+                                    <div id="picker" class="webuploader-picker">选择文件</div>
+                                    <p class="help-block">共可上传<span>5</span>张图片，图片大小建议：640*400像素</p>
+                                </div>
+                                <div class="col-lg-10 col-lg-offset-2 img">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <input class="btn btn-danger" type="submit" value="提交保存">
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="id" value="">
+                        </form>
+                        <input type="hidden" id="do_action" value="{:url('Mall/comment_add')}"/>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+{/block}

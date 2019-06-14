@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>待付款</title>
+    <link rel="stylesheet" type="text/css" href="../__STATIC__/wechat/home/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../__STATIC__/wechat/home/css/lj.css"/>
+    <script type="text/javascript" src="../__STATIC__/wechat/home/js/jquery-1.11.2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../__STATIC__/wechat/home/css/ordersdetailwaitpay.css"/>
+</head>
+<body>
+    <div class="top-banner">
+        <div class="top-bannera">订单状态：待付款<text>剩余支付时间：<span class="time"></span>秒</text></div>
+    </div>
+
+
+    <div class='order-addr'>
+        <img class='addr' src="../__STATIC__/wechat/home/images/addr.png" />
+        <img class='toright' src="../__STATIC__/wechat/home/images/toright.png" />
+        <div class='addr-box'>
+            <div class='addr-name'>收货人：李三 <span>2454121254512121</span></div>
+            <div class='addr-info'>收货地址：上海市徐汇区街道的方式开发商</div>
+        </div>
+    </div>
+
+
+
+    <div class='lists'>
+        <div class='item'>
+            <div class="lt">
+                <img src="../__STATIC__/wechat/home/images/product.jpg"/>
+            </div>
+            <div class="rt">
+                <div class='list-name'>单人沙发身份雾非雾地热个个人</div>
+                <div class='list-info'>
+                    <span>颜色:白色</span>
+                    <span>尺寸:大号</span>
+                </div>
+                <div class='list-money'>
+                    <span class='aa'>￥<span>343</span></span>
+                    <span class='bb'>x4</span>
+                </div>
+            </div>
+        </div>
+        <div class='item'>
+            <div class="lt">
+                <img src="../__STATIC__/wechat/home/images/product.jpg"/>
+            </div>
+            <div class="rt">
+                <div class='list-name'>单人沙发身份雾非雾地热个个人</div>
+                <div class='list-info'>
+                    <span>颜色:白色</span>
+                    <span>尺寸:大号</span>
+                </div>
+                <div class='list-money'>
+                    <span class='aa'>￥<span>343</span></span>
+                    <span class='bb'>x4</span>
+                </div>
+            </div>
+        </div>
+        <div class='item'>
+            <div class="lt">
+                <img src="../__STATIC__/wechat/home/images/product.jpg"/>
+            </div>
+            <div class="rt">
+                <div class='list-name'>单人沙发身份雾非雾地热个个人</div>
+                <div class='list-info'>
+                    <span>颜色:白色</span>
+                    <span>尺寸:大号</span>
+                </div>
+                <div class='list-money'>
+                    <span class='aa'>￥<span>343</span></span>
+                    <span class='bb'>x4</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class='div-input'>
+        <div class='div-input-left'>买家留言</div>
+        <div class='div-input-right'>买家无留言</div>
+    </div>
+
+
+
+    <div class='order-box'>
+        <div class='order-left small-fontSize'>共2件商品 合计</div>
+        <div class='order-right'>￥336.00</div>
+    </div>
+    <div class='order-box'>
+        <div class='order-left'>运费</div>
+        <div class='order-right order-gray'>￥336.00</div>
+    </div>
+    <div class='order-box'>
+        <div class='order-left'>优惠金额</div>
+        <div class='order-right'>￥336.00</div>
+    </div>
+    <div class='order-box'>
+        <div class='order-left'>实付款</div>
+        <div class='order-right'>￥336.00</div>
+    </div>
+
+
+
+    <div class='order-box'>
+        <div class='ordera-left'>支付方式：</div>
+        <div class='ordera-right'>佣金支付</div>
+    </div>
+    <div class='order-box'>
+        <div class='ordera-left'>订单编号：</div>
+        <div class='ordera-right'>sfsfsfsf</div>
+    </div>
+    <div class='order-box'>
+        <div class='ordera-left'>下单时间：</div>
+        <div class='ordera-right'>2018-05-30 15:00:00</div>
+    </div>
+    <div class='order-box'>
+        <div class='ordera-left'>付款时间：</div>
+        <div class='ordera-right'>2018-05-30 15:00:00</div>
+    </div>
+
+
+
+
+    <div class="ss">
+      <div class="ke">
+          <img class="keimg" src="../__STATIC__/wechat/home/images/footer-home.png"/>
+          <div class="kefont">首页</div>
+      </div>
+      <div class="ke">
+          <img class="keimg" src="../__STATIC__/wechat/home/images/footer-ear.png"/>
+          <div class="kefont">客服</div>
+      </div>
+      <div class="s2">申请退款</div>
+      <div class="s3">确认收货</div>
+    </div>
+
+    <script type="text/javascript">
+        $(function(){
+            TimeDown("2018-11-30 8:00:45");
+            function TimeDown(endDateStr) {
+                //结束时间
+                var endDate = new Date(endDateStr.replace(/-/g, "/"));
+                //当前时间
+                var nowDate = new Date();
+                //相差的总秒数
+                var time = parseInt((endDate - nowDate) / 1000);
+                if(time<=0){
+                    // $(".day").html("00");
+                    // $(".hour").html("00");
+                    // $(".min").html("00");
+                    // $(".sec").html("00");
+                    $(".time").html('0');
+                }else{
+                    // 天数
+                    var date = Math.floor(time/24/60/60);  //1
+                    if(date<10){
+                        date = "0"+ date;
+                    }    
+                    // 小时
+                    var hour =Math.floor((time%(24*60*60))/60/60); //3
+                    if(hour<10){
+                        hour = "0"+ hour;
+                    }
+                    // 分钟
+                    var minute =Math.floor((time%(24*60*60))%(60*60)/60);   //46
+                    if(minute<10){
+                        minute = "0"+ minute;
+                    }
+                    // 秒
+                    var second =Math.floor((time%(24*60*60))%(60*60)%60);   //40
+                    if(second<10){
+                        second = "0"+ second;
+                    }
+                    // $(".day").html(date);
+                    // $(".hour").html(hour);
+                    // $(".min").html(minute);
+                    // $(".sec").html(second);
+                    $(".time").html(time);
+
+                    //延迟一秒执行自己
+                    setTimeout(function () {
+                        TimeDown(endDateStr);
+                    }, 1000);
+                } 
+            }
+
+        });
+    </script>
+
+</body>
+</html>

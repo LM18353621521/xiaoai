@@ -1,0 +1,207 @@
+body {
+	background: #fff;
+	padding-bottom: 45px;
+}
+
+.wrap {
+	margin: 0 auto;
+	width: 100%;
+	min-width: 1200px;
+	overflow: hidden;
+}
+
+.volume-wrapper {
+	margin: 0 auto;
+	width: 100%;
+	min-width: 1200px;
+	position: relative;
+	border-top: solid;
+	border-width: 1px;
+	border-top-color: #a15fbc;
+}
+
+.volume-wrapper-content {
+	margin: 0 auto;
+	width: 1200px;
+	margin-top: 20px;
+}
+
+.volume-content-top {
+	margin: 0 auto;
+	padding:15px 40px 0;
+	box-shadow: 2px 2px 10px #909090;
+}
+
+.user-info {
+	height: 70px;
+	line-height: 70px;
+	font-size: 14px;
+	color: #333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.user-info img{
+	width: 70px;
+	height: 70px;
+	vertical-align: middle;
+	margin-right: 10px;
+	margin-top:-2px;
+}
+
+.navbar-nav{
+	overflow: hidden;
+	margin-top: 20px;
+}
+.nav-item{
+	width: 90px;
+	float: left;
+	height: 60px;
+	line-height: 60px;
+	font-size: 16px;
+	text-align: center;
+	color: #2e2e2e;
+	margin-right: 20px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	border-bottom: 3px solid #fff;
+	cursor: pointer;
+}
+.nav-item.active{
+	border-bottom: 3px solid var(--theme);
+	color: var(--theme);
+}
+.volume-content-bottom{
+	margin: 30px auto;
+	border: 1px solid #ddd;
+}
+
+
+
+
+
+
+
+
+.base-info{
+	overflow: hidden;
+	margin:0 20px;
+}
+.base-title{	
+	height:45px;
+	line-height:45px;
+	font-size: 16px;
+	color: #333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;	
+	border-bottom:1px solid #f2f2f2;
+}
+.base-title span{
+	width: 3px;
+	height: 14px;
+	background:var(--theme);
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 8px;
+	margin-top: -3px;
+}
+.base-wrap{
+	overflow: hidden;
+	margin-top:20px;
+	display: flex;
+}
+.base-tit{
+	flex: 0 0 60px;
+	width: 60px;	
+	height:34px;
+	line-height:34px;
+	font-size: 12px;
+	color: #333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.base-right{
+	flex: 1;
+	overflow: hidden;
+}
+.base-head{
+	width: 70px;
+	height: 70px;
+	float: left;
+	cursor: pointer;
+	margin-right: 30px;
+}
+.base-head img{
+	width: 70px;
+	height: 70px;
+}
+.change-head{	
+	width: 175px;
+	height:70px;
+	line-height:70px;
+	font-size: 12px;
+	color: #333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.base-name{	
+	width: 245px;	
+	height:34px;
+	line-height:34px;
+	font-size: 12px;
+	color: #333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.base-input{
+	width: 225px;	
+	height:34px;
+	line-height:34px;
+	font-size: 12px;
+	color: #333;
+	padding:0 10px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;	
+	border:1px solid #f2f2f2;
+}
+.radio-sex{	
+	width:50px;	
+	height:34px;
+	line-height:34px;
+	font-size: 12px;
+	color: #333;
+	float: left;
+	padding:0 10px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;	
+	cursor: pointer;
+}
+.radio-sex img{
+	width: 12px;
+	height: 12px;
+	vertical-align: middle;
+	margin-right: 5px;
+	margin-top:-2px;
+}
+.base-btn{
+	width: 120px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 5px;
+    margin:20px 0 30px 60px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background-color: var(--theme);
+    cursor: pointer;
+}

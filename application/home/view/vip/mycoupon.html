@@ -1,0 +1,84 @@
+{include file="public/header" title="我的优惠券"}
+<script>
+    $(document).ready(vip_obj.mycoupon);
+</script>
+<body>
+<style>
+    .coupon_useing  .coupon-use {
+        color: #fff;
+        background: #b730b0;
+    }
+
+    .coupon_used  .coupon-use {
+        background: #d3d3d3;
+        color: #9a9a9a;
+    }
+
+</style>
+<div class="wrap">
+    {include file="public/top_nav"}
+    <div class="banner">
+        {include file="public/search"}
+        {include file="public/category_nav"}
+    </div>
+    <div class="volume-wrapper">
+        <div class="volume-wrapper-content">
+
+            {include file="public/vip_nav" title="个人中心"}
+
+            <div class="volume-content-bottom">
+                <ul class="nav-content">
+                    <a href="{:url('Vip/mycoupon',array('status'=>0))}"><li class="navs-item {if condition="$status eq 0"}active{/if}">全部优惠券</li></a>
+                    <a href="{:url('Vip/mycoupon',array('status'=>1))}"><li class="navs-item {if condition="$status eq 1"}active{/if}">待使用</li></a>
+                    <a href="{:url('Vip/mycoupon',array('status'=>2))}"><li class="navs-item {if condition="$status eq 2"}active{/if}">已使用 </li></a>
+                    <a href="{:url('Vip/mycoupon',array('status'=>3))}"><li class="navs-item {if condition="$status eq 3"}active{/if}">已过期 </li></a>
+                    <a href="{:url('Vip/mycoupon',array('status'=>4))}"><li class="navs-item {if condition="$status eq 4"}active{/if}">可领取 </li></a>
+                    <div class="clear"></div>
+                </ul>
+                <ul class="tab-content" id="coupon_list">
+                    {foreach name="$dataList" item="vo"}
+                    {if condition="$vo.status eq 0||$vo.status eq 3"}
+                    <li class="coupon_useing">
+                    {elseif condition="$vo.status eq 1"/}
+                    <li class="coupon_used">
+                    {elseif condition="$vo.status eq 2"/}
+                    <li class="coupon_used">
+                    {/if}
+                    <div class="coupon-img">
+                        <p class="coupon-money">￥{$vo.money}</p>
+                        <p class="coupon-dateline">使用期限</p>
+                        <p class="coupon-date">{$vo.use_stime}-{$vo.use_etime}</p>
+                    </div>
+                    {if condition="$vo.status eq 3"}
+                    <p class="coupon-use get_coupon" coupon_id="{$vo.id}">立即领取</p>
+                    {else/}
+                    <p class="coupon-use">{$vo.status_text}</p>
+                    {/if}
+
+                    </li>
+                    {/foreach}
+                    {empty name="dataList"}
+                    <div style="text-align: center;">暂无该优惠券数据~</div>
+                    {/empty}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {include file="public/footer"}
+
+    <!--右边导航s-->
+    {include file="public/right_nav"}
+    <!--右边导航e-->
+</div>
+
+<script type="text/javascript">
+    $(function () {
+
+        // 一级菜单切换
+        $(".navs-item").click(function () {
+            $(this).addClass("active").siblings(".navs-item").removeClass("active");
+        })
+    })
+</script>
+</body>
+</html>

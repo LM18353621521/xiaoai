@@ -1,0 +1,117 @@
+{extend name="public/base"/ }
+
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(home_obj.index);
+</script>
+
+<body>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {volist name="carousel" id="vo"}
+            {if condition="$vo['imgpath'] neq ''"}
+            <div class="swiper-slide"><a href="{$vo.url}"><img src="{$vo.imgpath}"/></a></div>
+            {/if}
+            {/volist}
+            <!--<div class="swiper-slide"><a href=""><img src="__STATIC__/mobile/home/images/swiper.jpg" /></a></div>-->
+
+        </div>
+        <div class="swiper-pagination"></div>
+        <a href="{:url('Home/search')}" class="search">
+            <input class="" readonly name="keyword"  type="text" placeholder="请输入关键词称">
+        </a>
+    </div>
+    <div class="menubigboxp">
+        <div class="menuboxp1">
+            <a href="{:url('Home/happy')}">
+            <img class="menuimgp" src="__STATIC__/mobile/home/images/menua.png">
+            <div class="fontp">开心一刻</div>
+            </a>
+        </div>
+        <div class="menuboxp1">
+            <img class="menuimgp" src="__STATIC__/mobile/home/images/menub.png">
+            <div class="fontp">活动</div>
+        </div>
+        {volist name="categoryList" id="vo"}
+        <div class="menuboxp1">
+            <a href="{:url('Home/goodlist',array('category_id'=>$vo['id']))}">
+                <img class="menuimgp" src="{$vo.coverimg}">
+                <div class="fontp">{$vo.name}</div>
+            </a>
+        </div>
+        {/volist}
+
+        <!--<div class="menuboxp1">-->
+            <!--<img class="menuimgp" src="__STATIC__/mobile/home/images/menud.png">-->
+            <!--<div class="fontp">女用器具</div>-->
+        <!--</div>-->
+    </div>
+    <div class="tit">新品推荐</div>
+    <div class="sx">
+        <nav>
+            <div class="hidden">
+                <input type="hidden" name="page" value="1"/>
+                <input type="hidden" name="url" value="{:url('Home/getNewGoods')}"/>
+            </div>
+            <ul class="content">
+            </ul>
+        </nav>
+        <form id="form_ajax">
+            <input type="hidden" name="category_id" value=""/>
+            <input type="hidden" name="keyword" value=""/>
+            <input type="hidden" name="sort" value=""/>
+            <input type="hidden" name="asc" value=""/>
+        </form>
+        {assign name="nodata" value="nothing_img"}
+        {include file="public/nodata"/}
+
+        <!--<div class="tsil1">-->
+            <!--<img class="tsilimg" src="__STATIC__/mobile/home/images/product.jpg">-->
+            <!--<div class="tsilfont">农夫山泉农夫山泉农夫山泉农夫山泉农夫山泉农夫山泉农夫山泉</div>-->
+            <!--<div class="tsilfont1"><span>￥99</span>33333人付款</div>-->
+        <!--</div>-->
+
+    <!--<div class="more">加载更多</div>-->
+
+    <!--底部导航   s-->
+    {include file="public/foot_nav"/}
+    <!--底部导航   e-->
+
+        <!--登录浮层   s-->
+        {include file="public/login_layer"/}
+
+    <!-- 浮层 -->
+    <div class="fuceng" style="display: none;">
+        <div class="fucenger"></div>
+        <div class="zhong-bai">
+            <div class="fucengtit">微信授权</div>
+            <div class='leftrightf'>
+              <img class="leftf" src="__STATIC__/mobile/home/images/logo.jpg">
+              <div class='rightf'>XXXX官方+申请获取以下权限:</div>
+            </div>
+            <div class='span'><text></text>获得你的公开信息(昵称、头像等)</div>
+            <div class="fucengbtn">
+                <div class="fucengbtn1">拒绝</div>
+                <div class="fucengbtn2">允许</div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+      $(function(){
+        var swiper = new Swiper('.swiper-container', {
+            pagination : '.swiper-pagination',
+            paginationClickable: true,
+            speed:500,
+            autoplay:false,
+            loop:true,
+        })
+
+        $(".fucengbtn1,.fucengbtn2,.fucenger").click(function(){
+            $(".fuceng").hide();
+         })
+    });
+    </script>
+
+    {include file="public/wxpay"/}
+    {/block}

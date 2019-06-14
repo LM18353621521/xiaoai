@@ -1,0 +1,161 @@
+{extend name="public/left"/}
+
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(common_obj.form_submit);
+</script>
+<style>
+    .control-label{
+        /*border-right: 1px solid #cccccc;*/
+    }
+    .panel{
+        border: 1px solid #ddd !important;
+    }
+    .panel-heading{
+        background: #f5f5f5;
+    }
+</style>
+
+<section class="wrapper" style="margin-top:0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    <a href="javascript:history.go(-1)">
+                        <i class="icon-mail-reply (alias)" title="返回"></i>
+                    </a>&nbsp;
+                    评价详情
+                </header>
+                <div class="panel-body">
+                    <div class="form">
+                        <form class="cmxform form-horizontal tasi-form" id="data-form">
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">评价时间：</label>
+                                <div class="col-lg-10">
+                                    <p class="form-control-static">{$data.create_time|date="Y-m-d H:i:s",###}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">用户昵称</label>
+                                <div class="col-lg-10">
+                                    <p class="form-control-static">{$data.nickname}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">用户头像</label>
+                                    <div class="col-lg-10 col-lg-offset-2 img">
+                                        <a href="" target="_blank">
+                                            <img src="{$data.headimg}">
+                                        </a>
+                                    </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">产品</label>
+                                <div class="col-lg-10">
+                                    <p class="form-control-static">{$data.product.name}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">内容</label>
+                                <div class="col-lg-10">
+                                    <p class="form-control-static">{$data.content}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">图片</label>
+                                <div class="col-lg-10 img" style="margin-top: 0;">
+                                    {volist name="data.imgpath" id="v"}
+                                    <div style="margin-bottom: 0;">
+                                        <a href="{$v}" target="_blank">
+                                            <img src="{$v}">
+                                        </a>
+                                    </div>
+                                    {/volist}
+
+                                </div>
+                            </div>
+
+                            <!--<div class="form-group">-->
+                                <!--<label class="control-label col-lg-2">回复列表</label>-->
+                                <!--<div class="col-lg-10 img" style="margin-top: 0;">-->
+                                    <!--<table class="table table-bordered">-->
+                                        <!--<thead>-->
+                                        <!--<tr>-->
+                                            <!--<th>#</th>-->
+                                            <!--<th>回复人</th>-->
+                                            <!--<th>回复时间</th>-->
+                                            <!--<th>回复内容</th>-->
+                                        <!--</tr>-->
+                                        <!--</thead>-->
+                                        <!--<tbody>-->
+                                        <!--<tr>-->
+                                            <!--<td rowspan="2">1</td>-->
+                                            <!--<td>Mark</td>-->
+                                            <!--<td>Otto</td>-->
+                                            <!--<td>@mdo</td>-->
+                                        <!--</tr>-->
+                                        <!--<tr>-->
+                                            <!--<td>Mark</td>-->
+                                            <!--<td>Otto</td>-->
+                                            <!--<td>@TwBootstrap</td>-->
+                                        <!--</tr>-->
+                                        <!--<tr>-->
+                                            <!--<td>2</td>-->
+                                            <!--<td>Jacob</td>-->
+                                            <!--<td>Thornton</td>-->
+                                            <!--<td>@fat</td>-->
+                                        <!--</tr>-->
+                                        <!--</tbody>-->
+                                    <!--</table>-->
+                                    <!--<div>-->
+
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+
+                            <!--<div class="form-group">-->
+                                <!--<label class="control-label col-lg-2">回复内容</label>-->
+                                <!--<div class="col-lg-6">-->
+                                    <!--<textarea class="form-control"   name="content"  required="required" id="" cols="30" rows="3"  placeholder="请输入回复内容"></textarea>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="form-group">-->
+                                <!--<div class="col-lg-offset-2 col-lg-10">-->
+                                    <!--<input class="btn btn-danger" type="submit" value="提交回复">-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+
+                            <!--<div class="form-group">-->
+                                <!--<div class="col-lg-offset-2 col-lg-10">-->
+                                    <!--<input class="btn btn-danger" type="submit" value="提交回复">-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <a href="javascript:history.go(-1)">
+                                    <input class="btn btn-danger" type="button" value="返回列表">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="pid" value="{$data.id}">
+                        </form>
+                        <input type="hidden" id="do_action" value="{:url('Mall/commentdetail')}"/>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+{/block}

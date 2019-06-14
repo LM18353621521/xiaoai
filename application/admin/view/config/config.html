@@ -1,0 +1,316 @@
+{extend name="public/left"/}
+
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(function () {
+        UM.getEditor('editor');
+        $("#shopping,#base").removeClass('active');
+        $(".nav-tabs").on('click','',function() {
+            //单张图片上传
+        })
+    });
+    $(document).ready(common_obj.form_submit);
+</script>
+
+<section class="wrapper" style="margin-top:0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <form class="cmxform form-horizontal tasi-form" id="data-form">
+                    <header class="panel-heading tab-bg-dark-navy-blue">
+
+                        <ul class="nav nav-tabs nav-justified ">
+                                {foreach name="inc_type_list" item="vo" key="k"}
+                                <li {eq name="k" value="$inc_type"}class="active"{/eq}>
+                                <a href="{:url('Config/config',array('inc_type'=>$k))}" >
+                                    {$vo}
+                                </a>
+                                </li>
+                                {/foreach}
+                        </ul>
+
+                    </header>
+                    <div class="panel-body">
+                        <div class="tab-content tasi-tab">
+                            <!--  网站配置  s  -->
+                            <div class="tab-pane active" id="web">
+                                <div class="form">
+
+                                    <div class="form-group one-img">
+                                        <label class="control-label col-lg-2">LOGO</label>
+                                        <div class="col-lg-10">
+                                            <div id="picker3" class="webuploader-picker">选择文件</div>
+                                            <input type="hidden" name="logo" value="{$data.logo}" notnull
+                                                   placeholder="请上传LOGO">
+                                        </div>
+
+                                        <div class="col-lg-10 col-lg-offset-2 img">
+                                            {if condition="$data.logo"}
+                                            <a href="{$data.logo}" target="_blank">
+                                                <img src="{$data.logo}">
+                                            </a>
+                                            {/if}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">网站名称</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" type="text" name="web_name" required="required"
+                                                   value="{$data.web_name}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">网站标题</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" type="text" name="web_title" required="required"
+                                                   value="{$data.web_title}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">网站描述</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" type="text" name="web_desc" required="required"
+                                                   value="{$data.web_desc}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">网站关键词</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" type="text" name="web_keyword"
+                                                   required="required"
+                                                   value="{$data.web_keyword}"/>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">数字输入</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" type="number" name="price" required="required"
+                                                   value="{$data.price}" step="0.01" min="0.00"/>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <!--  网站配置  e  -->
+
+                            <!--  购物流程设置  s  -->
+                            <div class="tab-pane active" id="shopping" >
+                                <div class="form">
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">下单后X小时自动取消订单</label>
+                                        <div class="col-lg-6">
+                                            <input class="form-control" type="number" name="cancel_time" required="required"
+                                                   value="{$data.cancel_time}" step="1" min="1"/>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">发货后X天自动收货</label>
+                                        <div class="col-lg-6">
+                                            <input class="form-control" type="number" name="confirm_time" required="required"
+                                                   value="{$data.confirm_time}" step="1" min="1"/>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <!--  购物流程设置  e  -->
+
+                            <!--  基本配置  s  -->
+                            <div class="tab-pane active" id="base">
+                                <div class="form">
+
+                                    <div class="form-group one-img">
+                                        <label class="control-label col-lg-2">商品海报背景图</label>
+                                        <div class="col-lg-10">
+                                            <div id="picker2" class="webuploader-picker">选择文件</div>
+                                            <input type="hidden" name="goods_poster_bg" value="{$data.goods_poster_bg}" notnull
+                                                   placeholder="请上传商品海报背景图">
+                                        </div>
+
+                                        <div class="col-lg-10 col-lg-offset-2 img">
+                                            {if condition="$data.goods_poster_bg"}
+                                            <a href="{$data.goods_poster_bg}" target="_blank">
+                                                <img src="{$data.goods_poster_bg}">
+                                            </a>
+                                            {/if}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group one-img">
+                                        <label class="control-label col-lg-2">个人海报背景图</label>
+                                        <div class="col-lg-10">
+                                            <div id="picker4" class="webuploader-picker">选择文件</div>
+                                            <input type="hidden" name="user_poster_bg" value="{$data.user_poster_bg}" notnull
+                                                   placeholder="请上传个人海报背景图">
+                                        </div>
+
+                                        <div class="col-lg-10 col-lg-offset-2 img">
+                                            {if condition="$data.user_poster_bg"}
+                                            <a href="{$data.user_poster_bg}" target="_blank">
+                                                <img src="{$data.user_poster_bg}">
+                                            </a>
+                                            {/if}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  基本配置  e  -->
+
+
+                            <!--  基本配置  s  -->
+                            <div class="tab-pane" id="popular">
+                                <div class="form">
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">输入框</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" type="text" name="name" required="required"
+                                                   value="{$data.name}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">数字输入</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" type="number" name="price" required="required"
+                                                   value="{$data.price}" step="0.01" min="0.00"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">下拉</label>
+                                        <div class="col-lg-10">
+                                            <select class="form-control m-bot15" name="category_id" required="required">
+                                                <option value="1" {eq name="data.category_id" value="1"
+                                                        }selected="selected" {
+                                                /eq}>下拉1</option>
+                                                <option value="2" {eq name="data.category_id" value="2"
+                                                        }selected="selected" {
+                                                /eq}>下拉2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group one-img">
+                                        <label class="control-label col-lg-2">单图1</label>
+                                        <div class="col-lg-10">
+                                            <div id="picker" class="webuploader-picker">选择文件</div>
+                                            <input type="hidden" name="img1" value="{$data.img1}" notnull
+                                                   placeholder="请上传单图1">
+                                        </div>
+
+                                        <div class="col-lg-10 col-lg-offset-2 img">
+                                            {if condition="$data.img1"}
+                                            <a href="{$data.img1}" target="_blank">
+                                                <img src="{$data.img1}">
+                                            </a>
+                                            {/if}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group one-img">
+                                        <label class="control-label col-lg-2">单图2</label>
+                                        <div class="col-lg-10">
+                                            <div id="picker1" class="webuploader-picker">选择文件</div>
+                                            <input type="hidden" name="img2" value="{$data.img2}" notnull
+                                                   placeholder="请上传单图2">
+                                        </div>
+
+                                        <div class="col-lg-10 col-lg-offset-2 img">
+                                            {if condition="$data.img2"}
+                                            <a href="{$data.img2}" target="_blank">
+                                                <img src="{$data.img2}">
+                                            </a>
+                                            {/if}
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group more-img" data-imgname="duotu1[]">
+                                        <label class="control-label col-lg-2">多图1</label>
+                                        <div class="col-lg-10">
+                                            <div id="pickers" class="webuploader-picker">选择文件</div>
+                                            <p class="help-block">共可上传<span>5</span>张图片，图片大小建议：640*400像素</p>
+                                        </div>
+
+                                        <div class="col-lg-10 col-lg-offset-2 img">
+                                            {volist name="data.duotu1" id="v"}
+                                            <div>
+                                                <a href="{$v}" target="_blank">
+                                                    <img src="{$v}">
+                                                </a>
+                                                <span>删除</span>
+                                                <input type="hidden" name="duotu1[]" value="{$v}">
+                                            </div>
+                                            {/volist}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group more-img" data-imgname="duotu2[]">
+                                        <label class="control-label col-lg-2">多图2</label>
+                                        <div class="col-lg-10">
+                                            <div id="pickers1" class="webuploader-picker">选择文件</div>
+                                            <p class="help-block">共可上传<span>3</span>张图片，图片大小建议：640*400像素</p>
+                                        </div>
+
+                                        <div class="col-lg-10 col-lg-offset-2 img">
+                                            {volist name="data.duotu2" id="v"}
+                                            <div>
+                                                <a href="{$v}" target="_blank">
+                                                    <img src="{$v}">
+                                                </a>
+                                                <span>删除</span>
+                                                <input type="hidden" name="duotu2[]" value="{$v}">
+                                            </div>
+                                            {/volist}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">文本</label>
+                                        <div class="col-lg-10">
+                                    <textarea class="form-control" cols="60" rows="5"
+                                              name="wenben">{$data.wenben}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">富文本</label>
+                                        <div class="col-lg-10">
+                                            <script type="text/plain" id="editor" name="fuwenben"
+                                                    style="width:1000px;height:240px;">{$data.fuwenben}
+
+                                            </script>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!--  基本配置  e  -->
+                        </div>
+                    </div>
+                    <input type="hidden" name="id" value="{$data.id}">
+                    <input type="hidden" id="do_action" value="{:url('Config/config')}"/>
+                    <input type="hidden" id="do_jump" value="{:url('Config/config')}"/>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <input class="btn btn-danger" type="submit" value="提交保存">
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</section>
+{/block}

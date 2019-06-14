@@ -1,0 +1,132 @@
+{extend name="public/left"/}
+
+{block name="body"}
+<script language="javascript">
+    $(document).ready(function () {
+        load_video = 0;
+        load_image = 0;
+        var type = "{$data.type}";
+//        type = type ? type : 'video';
+
+//        type == 'video' ? load_video = 1 : load_image = 1;
+        controll_type(type);
+
+        $('select[name=type]').change(function () {
+            var type_val = $(this).val();
+            controll_type(type_val);
+        });
+
+        UM.getEditor('editor');
+
+    });
+    $(document).ready(common_obj.form_submit);
+    function controll_type(type) {
+        if (type == 'video' && load_video == 0) {
+            load_video += 1;
+            load_video_init();
+        }
+        if (type == 'image' && load_image == 0) {
+            load_image += 1;
+            load_one_img_init();
+        }
+        $('.type_c').hide();
+        $('#type_' + type).show();
+    }
+</script>
+<style>
+    .img img {
+        width: 352px;
+        height: 170px;;
+    }
+</style>
+
+<section class="wrapper" style="margin-top:0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="form">
+                        <form class="cmxform form-horizontal tasi-form" id="data-form">
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">标题</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" type="text" name="title" required="required"
+                                           value="{$data.title}"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">类型</label>
+                                <div class="col-lg-6">
+                                    <select class="form-control m-bot15" name="type" required="required">
+                                        <option value="">请选择类型</option>
+                                        {foreach name="categoryList" item="vo" key="k"}
+                                        <option value="{$k}" {eq name="data.type" value="$k" }selected="selected" {/eq}>{$vo}</option>
+                                        {/foreach}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group type_c one-video" id="type_video">
+                                <label class="control-label col-lg-2">选择视频资源</label>
+                                <div class="col-lg-6">
+                                    <div id="picker1" class="webuploader-picker">选择文件</div>
+                                    <input type="hidden" name="video_url" value="{$data.video_url}" placeholder="请上传视频">
+                                </div>
+                                <div class="col-lg-6 col-lg-offset-2 img">
+                                    {if condition="$data.video_url"}
+                                    <video controls="controls" width="360" height="200">
+                                        <source src="{$data.video_url}" type="video/ogg"/>
+                                        <source src="{$data.video_url}" type="video/mp4"/>
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    {/if}
+                                </div>
+                            </div>
+
+
+                            <div class="form-group type_c one-img" id="type_image">
+                                <label class="control-label col-lg-2">选择漫画图片</label>
+                                <div class="col-lg-6">
+                                    <div id="picker0" class="webuploader-picker">选择文件</div>
+                                    <span class="help-block">图片大小建议：352*170像素</span>
+                                    <input type="hidden" name="img_url" value="{$data.img_url}" placeholder="请上传漫画">
+                                </div>
+                                <div class="col-lg-6 col-lg-offset-2 img">
+                                    {if condition="$data.img_url"}
+                                    <a href="{$data.img_url}" target="_blank">
+                                        <img src="{$data.img_url}">
+                                    </a>
+                                    {/if}
+                                </div>
+                            </div>
+
+                            <div class="form-group type_c" id="type_text">
+                                <label class="control-label col-lg-2">段子内容</label>
+                                <div class="col-lg-10">
+                                    <script type="text/plain" id="editor" name="content"
+                                            style="width:1000px;height:240px;">{$data.content}
+                                    </script>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="id" value="{$data.id}">
+
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <input class="btn btn-danger" type="submit" value="提交保存">
+                                    <!--<a href="{:url('News/news',array('bk'=>1))}">
+                                        <button class="btn btn-default" type="button">返回</button>
+                                    </a>-->
+                                </div>
+                            </div>
+                        </form>
+                        <input type="hidden" id="do_action" value="{:url('Fun/fun_add')}">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+{/block}

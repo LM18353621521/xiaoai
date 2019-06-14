@@ -1,0 +1,55 @@
+{extend name="public/left"/}
+
+{block name="body"}
+<script language="javascript">
+    $(document).ready(common_obj.form_submit);
+    $(document).ready(function(){
+        webuploader_obj.webuploader_init('#picker', $('#data-form input[name=excelpath]'),'','', true, 1, function(path){
+            $('.img img').show();
+            $("#data-form input[name=excelpath]").val(path);
+        },'*.xls');
+
+    });
+</script>
+
+<section class="wrapper" style="margin-top:0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="form">
+                        <form class="cmxform form-horizontal tasi-form" id="data-form">
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">Excel表格</label>
+                                <div class="col-lg-10">
+                                    <a href="__STATIC__/common/file/model.xls">下载Excel表格</a>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">上传Excel</label>
+                                <div class="col-lg-10">
+                                    <div id="picker" class="webuploader-picker">选择文件</div>
+                                    <input type="hidden" name="excelpath">
+                                </div>
+
+                                <div class="col-lg-10 col-lg-offset-2 img">
+                                    <img src="__STATIC__/member/images/excel.png" style="display:none">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <input class="btn btn-danger" type="submit" value="提交保存">
+                                </div>
+                            </div>
+                        </form>
+                        <input type="hidden" id="do_action" value="{:url('Config/import')}">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+{/block}

@@ -1,0 +1,98 @@
+{include file="public/header"/}
+<style>
+    .notify-row {
+        margin-top: 12px;
+        margin-left: 42px;
+    }
+
+    .pull-middle {
+        min-width: 100px;
+        height: 25px;
+        /*background: #ccc;*/
+        text-align: center;
+    }
+
+    #top_menu .nav > li {
+        text-align: center;
+        color: #797979;
+        font-size: 20px;
+        border: 1px solid;
+        border-radius: 5px;
+        padding: 4px 13px;
+    }
+
+    .cleanCache {
+        margin-right: 30px;
+    }
+
+    .cleanCache img {
+        width: 50px;
+        height: 50px;
+        margin: auto;
+    }
+</style>
+<section id="container" class="">
+    <header class="header white-bg">
+        <div class="sidebar-toggle-box">
+            <div data-original-title="wechat" data-placement="right" class="icon-reorder tooltips"></div>
+        </div>
+        <!--logo-->
+        <a href="{:url('Index/index')}" class="logo">We<span>Chat</span></a>
+        <!-- 菜单 -->
+        <div class="nav notify-row pull-middle" id="top_menu">
+            <ul class="nav top-menu">
+                <li>{$Think.session.web_name}</li>
+            </ul>
+        </div>
+        <!-- 搜索和登录 -->
+        <div class="top-nav">
+            <ul class="nav pull-right top-menu">
+                <!--<a href="{:url('System/cleanCache')}">-->
+                    <!--<img alt="" src="__STATIC__/member/images/cleancache.png">-->
+                <!--</a>-->
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <img alt="" src="__STATIC__/member/bootstrap/img/avatar1_small.jpg">
+                        <span class="username">{$Think.session.loginer_auth.username}</span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu extended logout">
+                        <li><a href="{:url('Index/changepasswd')}"><i class="icon-key"></i>修改密码</a></li>
+                        <li><a href="{:url('User/logout')}"><i class="icon-unlock"></i>退出登录</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <aside>
+        <div id="sidebar" class="nav-collapse">
+            <ul class="sidebar-menu">
+
+                {volist name=":config('menu')" id="vo"}
+                <li class="sub-menu {if condition=" strtolower(request()->controller()) == $vo.group"}active{/if}"
+                    data-model="{$vo.group}">
+                    <a href="javascript:;">
+                        <i class="{$vo.icon}"></i>
+                        <span>{$vo.name}</span>
+                        <span class="arrow "></span>
+                    </a>
+                    <ul class="sub">
+                        {volist name="vo['_child']" id="v"}
+                        <li class="{$v['_child']|implode=' ',###} {if condition=" in_array(strtolower(request()->
+                            action()),$v['_child']) && strtolower(request()->controller()) == $vo.group"} active{/if}">
+                            <a href="{:url($vo['group'].'/'.$v['_child'][0])}">{$v.name}</a>
+                        </li>
+                        {/volist}
+                    </ul>
+                </li>
+                {/volist}
+            </ul>
+            <!-- sidebar menu end-->
+        </div>
+    </aside>
+    <section id="main-content">
+        {include file="public/title"/}
+        {block name="body"}{/block}
+    </section>
+</section>
+{include file="public/footer"/}

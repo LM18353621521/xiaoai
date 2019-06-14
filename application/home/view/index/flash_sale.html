@@ -1,0 +1,212 @@
+{include file="public/header" title="限时秒杀"}
+<body>
+<style>
+	.buy_btn{
+		background: #b730b0;
+		color: #FFF;
+		float: right;
+		display: inline-block;
+		padding: 0 10px;
+	}
+	.buy_btn:hover{
+		background: #B730FA;
+	}
+</style>
+	<div class="wrap">
+		{include file="public/top_nav"}
+		<div class="banner">
+			{include file="public/search"}
+			{include file="public/category_nav"}
+		</div>
+		<div class="second-wrapper">
+			<li class="active">
+				<div class="before-second">
+					<p class="hours">20:00</p>
+					<p class="tips">即将开始</p>
+				</div>
+				<div class="second-current">
+					<p class="hours">24:00</p>
+					<div class="hours-right">
+						<p class="hours-title">正在秒杀</p>
+						<p class="hours-title">距结束 
+							<span class="hour-num">00</span>:
+							<span class="minute-num">00</span>:
+							<span class="second-num">00</span>
+						</p>
+					</div>
+				</div>				
+			</li>
+			<!--<li>-->
+				<!--<div class="before-second">-->
+					<!--<p class="hours">20:00</p>-->
+					<!--<p class="tips">即将开始</p>-->
+				<!--</div>-->
+				<!--<div class="second-current">-->
+					<!--<p class="hours">18:00</p>-->
+					<!--<div class="hours-right">-->
+						<!--<p class="hours-title">正在秒杀</p>-->
+						<!--<p class="hours-title">距结束 -->
+							<!--<span class="hour-num">00</span>:-->
+							<!--<span class="minute-num">00</span>:-->
+							<!--<span class="second-num">00</span>-->
+						<!--</p>-->
+					<!--</div>-->
+				<!--</div>				-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--<div class="before-second">-->
+					<!--<p class="hours">20:00</p>-->
+					<!--<p class="tips">即将开始</p>-->
+				<!--</div>-->
+				<!--<div class="second-current">-->
+					<!--<p class="hours">18:00</p>-->
+					<!--<div class="hours-right">-->
+						<!--<p class="hours-title">正在秒杀</p>-->
+						<!--<p class="hours-title">距结束 -->
+							<!--<span class="hour-num">00</span>:-->
+							<!--<span class="minute-num">00</span>:-->
+							<!--<span class="second-num">00</span>-->
+						<!--</p>-->
+					<!--</div>-->
+				<!--</div>				-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--<div class="before-second">-->
+					<!--<p class="hours">20:00</p>-->
+					<!--<p class="tips">即将开始</p>-->
+				<!--</div>-->
+				<!--<div class="second-current">-->
+					<!--<p class="hours">18:00</p>-->
+					<!--<div class="hours-right">-->
+						<!--<p class="hours-title">正在秒杀</p>-->
+						<!--<p class="hours-title">距结束 -->
+							<!--<span class="hour-num">00</span>:-->
+							<!--<span class="minute-num">00</span>:-->
+							<!--<span class="second-num">00</span>-->
+						<!--</p>-->
+					<!--</div>-->
+				<!--</div>				-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--<div class="before-second">-->
+					<!--<p class="hours">20:00</p>-->
+					<!--<p class="tips">即将开始</p>-->
+				<!--</div>-->
+				<!--<div class="second-current">-->
+					<!--<p class="hours">18:00</p>-->
+					<!--<div class="hours-right">-->
+						<!--<p class="hours-title">正在秒杀</p>-->
+						<!--<p class="hours-title">距结束 -->
+							<!--<span class="hour-num">00</span>:-->
+							<!--<span class="minute-num">00</span>:-->
+							<!--<span class="second-num">00</span>-->
+						<!--</p>-->
+					<!--</div>-->
+				<!--</div>				-->
+			<!--</li>-->
+		</div>
+		<div class="classify-wrapper">
+			<div class="product-box">
+				<ul class="product-list">
+					{foreach name="flash_list" item="vo"}
+					<a href="{:url('Index/detail',array('goods_id'=>$vo.goods_id,'item_id'=>$vo.item_id))}">
+						<li>
+							<img src="{$vo.coverimg}">
+							<p class="name">{$vo.goods_name}</p>
+							<p class="price prices">￥{$vo.price} <span class="buy_btn">立即抢购</span></p>
+							<div class="info">
+								<p class="salenuma">限量{$vo.goods_num}件</p>
+								<p class="discussa">已售{$vo.buy_num}件</p>
+							</div>
+							<div class="slider">
+								<div class="slider-complete" style="width: {$vo.percent}%;"></div>
+							</div>
+							{if condition="$buy_num>=$vo.goods_num"}
+							<div class="sale-out">
+								<p>抢光了</p>
+								<p>sell out</p>
+							</div>
+							{/if}
+						</li>
+					</a>
+					{/foreach}
+				</ul>
+				<div class="page">
+				</div>
+			</div>		
+			<p class="new-list"><span></span>热门推荐</p>
+			<ul class="product-list">
+				{foreach name="recommend_list" item="vo"}
+				<a href="{:url('Index/detail',array('goods_id'=>$vo.id))}">
+				<li>
+					<img src="{$vo.coverimg}">
+					<p class="price">￥{$vo.price}</p>
+					<p class="name">{$vo.goods_name|getSubstr=0,15}</p>
+					<div class="info">
+						<p class="salenum">热销<span>{$vo.sales_text}</span>笔</p>
+						<p class="discuss">已有<span>{$vo.comment_count_text}</span>评价</p>
+					</div>
+				</li>
+				</a>
+				{/foreach}
+			</ul>
+		</div>
+	</div>
+	<!--右边导航s-->
+	{include file="public/right_nav"}
+	<!--右边导航e-->
+
+	<!--右边导航s-->
+	{include file="public/kf_layer"}
+	<!--右边导航e-->
+
+	<!-- 登录/注册浮层 -->
+	{include file="public/login_layer"}
+
+	{include file="public/footer"}
+<script type="text/javascript">
+	$(function(){
+		
+
+		// 限时秒杀
+		$(".second-wrapper li").click(function(){
+			$(this).addClass("active").siblings().removeClass("active");
+			$(".before-second").show();
+			$(".before-current").hide();
+			$(this).find(".before-second").hide();
+			$(this).find(".before-current").show();
+		})
+
+
+		// 倒计时
+		var intDiff = parseInt({$intDiff});//倒计时总秒数量
+		timer(intDiff);
+
+	})
+
+	function timer(intDiff){
+	    window.setInterval(function(){
+	    var day=0,
+	        hour=0,
+	        minute=0,
+	        second=0;//时间默认值        
+	    if(intDiff > 0){
+	        day = Math.floor(intDiff / (60 * 60 * 24));
+	        hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+	        minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+	        second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+	    }
+	    if (hour <= 9) hour = '0' + hour;
+	    if (minute <= 9) minute = '0' + minute;
+	    if (second <= 9) second = '0' + second;
+	    // $('#day_show').html(day+"天");
+	    $('.hour-num').html(hour);
+	    $('.minute-num').html(minute);
+	    $('.second-num').html(second);
+	    intDiff--;
+	    }, 1000);
+	} 
+</script>
+
+</body>
+</html>

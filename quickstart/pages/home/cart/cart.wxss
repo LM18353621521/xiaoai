@@ -1,0 +1,259 @@
+/* pages/record/record.wxss */
+page{
+   background: #f8f8f8;
+   padding-bottom: 120rpx;
+}
+
+
+.lists{
+   overflow: hidden;
+   padding:30rpx 0 10rpx;
+   padding-right:1%;
+   width:92%;
+   margin:30rpx auto 0;
+   background: #fff;
+   display: flex;
+   border-bottom: 1px solid #f8f8f8;
+   position: relative;
+   border-radius: 6rpx;
+}
+.sele{
+  vertical-align: middle;
+  width:45rpx;
+  height:45rpx;
+  padding-top:11%;
+}
+
+.listsleft{
+   width: 184rpx;
+   height: 184rpx;
+   flex:0 0 184rpx;
+   border-radius: 3px;
+   display: block;
+}
+.listsright{
+   flex: 1;
+   margin-left: 3%;
+   overflow: hidden;
+}
+.lists1{
+   width: 100%;
+   height: 80rpx;
+   line-height:40rpx;
+  font-size: var(--fontSize);
+  color:#4c4c4c;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.lists11{
+   width: 100%;
+   height: 60rpx;
+   line-height:60rpx;
+  font-size:26rpx;
+  color:#aaa;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.lists2{
+   width: 100%;
+   padding:17.5rpx 0;
+  overflow:hidden;
+}
+.lists21{
+  max-width:40%;
+  height: 35rpx;
+   line-height:35rpx;
+  font-size: var(--fontSize);
+  overflow:hidden;
+  color:#0F8FF2;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  float: left;
+}
+.lists22{
+  max-width:54%;
+  padding-left: 3%;
+  height: 35rpx;
+   line-height:35rpx;
+  font-size: var(--fontSize);
+  overflow:hidden;
+  color:#aaa;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  float: left;
+  border-left: 1px solid #eaeaea;
+  margin-left: 3%;
+}
+
+.lists3{
+   width: 100%;
+   height: 60rpx;
+  overflow:hidden;
+}
+.lists31{
+  max-width:31%;
+  margin-right: 4%;
+  height:60rpx;
+   line-height:60rpx;
+  font-size:26rpx;
+  overflow:hidden;
+  color:#aaa;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  float: left;
+}
+.lists31 text{
+  color: #FF7380;
+  font-size: 36rpx;
+}
+.lists32{
+  max-width:32.5%;
+  height: 60rpx;
+   line-height:70rpx;
+  font-size: var(--fontSize);
+  overflow:hidden;
+  color:#aaa;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  float: left;
+}
+
+.lists33{
+  max-width:32.5%;
+  height: 60rpx;
+   line-height:70rpx;
+  font-size: var(--fontSize);
+  overflow:hidden;
+  color:#aaa;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  float: left;
+}
+
+
+
+
+
+
+
+
+
+.border{
+   width: 94%;
+   margin:10rpx auto 0;
+   padding:0 3%;
+   overflow: hidden;
+}
+.border11{
+   width:48%;
+   float: left;
+   height:60rpx;
+   line-height: 60rpx;
+   color: #ff4a00;
+   font-size: var(--fontSize);
+   overflow: hidden;
+}
+.addbox{
+  width:40%;
+  float: right;
+   overflow: hidden;
+   height:40rpx;
+   margin:10rpx 0;
+   border:1px solid #f8f8f8;
+   border-radius: 5rpx;
+   display: flex;
+}
+.border12{
+   width:40rpx;
+   flex:0 0 40rpx;
+   height: 40rpx;
+   line-height: 40rpx;
+   color: #666;
+   font-family: "黑体";
+   font-size:20rpx;
+   overflow: hidden;
+   text-align: center;
+}
+.border13{
+  flex: 1;
+   height:40rpx;
+   line-height: 40rpx;
+   color: #666;
+   font-family: "黑体";
+   font-size: 20rpx;
+   overflow: hidden;
+   text-align: center;
+   border-right:1px solid #f8f8f8;
+   border-left:1px solid #f8f8f8;
+   margin-top:-6rpx;
+}
+.border14{
+  width:40rpx;
+  height: 40rpx;
+  flex:0 0 40rpx;
+   line-height: 40rpx;
+   color: #aaa;
+   font-family: "黑体";
+   font-size:20rpx;
+   overflow: hidden;
+   text-align: center;
+}
+
+
+
+
+.btnu{
+	width: 94%;
+	height: 100rpx;
+	position: fixed;
+	left: 3%;
+	bottom:0rpx;
+	overflow: hidden;
+	z-index: 9999;
+  box-sizing: border-box;
+}
+.btnu1{
+	width: 67%;
+	float: left;
+	height:100rpx;
+	line-height: 100rpx;
+	font-size: var(--fontSize);
+	color: #4c4c4c;
+	padding-left: 3%;
+	overflow: hidden;
+}
+.btnu1 image{
+  height: 45rpx; 
+    width:45rpx;
+    margin-top: -2%;
+    vertical-align: middle;
+    margin-right: 2%;
+}
+.btnu1 text{
+	font-size: var(--fontSize);
+  float: right;
+  padding-right: 10px;
+}
+.btnu1 text text{
+	color: #ff4a00;
+}
+.btnu2{
+	width: 30%;
+	float: left;
+  margin-top:10rpx;
+	height:80rpx;
+	line-height: 80rpx;
+	text-align: center;
+	font-size: var(--fontSize);
+	color: #fff;
+	overflow: hidden;
+  border-radius: 30px;
+  background: linear-gradient(to right,#b73ef1,#943ef1);
+}

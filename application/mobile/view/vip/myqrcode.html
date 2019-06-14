@@ -1,0 +1,22 @@
+{extend name="public/base"/}
+{block name="body"}
+<script type="text/javascript">
+    $("title").text('我的二维码');
+    $(document).ready(vip_obj.myqrcode);
+</script>
+
+<img src="__STATIC__/wechat/vip/images/er.jpg">
+<header>我是{$vip.nickname}</header>
+<div class="content"><img src="{$imgpath}"></div>
+<div class="msg"></div>
+
+<script type="text/javascript">
+    var share = {
+        title: '{$share.title}',
+        desc: '{$share.desc}',
+        imgurl: '{$share.imgurl}',
+        link: '{$share.link}'
+    }
+    $(document).ready(share_obj.share_init);
+</script>
+{/block}

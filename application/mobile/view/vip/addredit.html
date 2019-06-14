@@ -1,0 +1,94 @@
+{extend name="public/base"/ }
+
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(vip_obj.addredit);
+</script>
+<style>
+    html{
+        font-size: 20px !important;
+    }
+    .weui-picker-container h1{
+        height: 2.2rem !important;
+    }
+    .weui-picker-container .title{
+         background:inherit;
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="__STATIC__/common/js/larea/LArea.css"/>
+<script type="text/javascript" src="__STATIC__/common/js/larea/LAreaData1.js"></script>
+<script type="text/javascript" src="__STATIC__/common/js/larea/LArea.js"></script>
+<!-- 省市区插件 -->
+<script type="text/javascript" src="__STATIC__/common/js/jqweui/city-picker.js"></script>
+
+<body>
+<form id="data-form">
+    <div class="div10">
+        <div class="div11">收货人</div>
+        <input type="text"  name="linkman" value="{$data.linkman}"  class="div12" placeholder="请输入收货人" notnull notice="请输入收货人">
+    </div>
+    <div class="div10">
+        <div class="div11">手机号码</div>
+        <input type="text" name="linktel" value="{$data.linktel}" class="div12" placeholder="请输入手机号码" notnull notice="请输入手机号码">
+    </div>
+    <div class="div10">
+        <div class="div11">所在地区</div>
+        <input type="hidden" name="code" value="{$data.province_code},{$data.city_code},{$data.district_code}">
+        <div class="div12">
+            <div class="weui-cell__bd">
+                {if condition="$data.id"}
+                <input class="weui-input" id="region" name="region" type="text" value="{$data.province} {$data.city} {$data.district}" data-codes="{$data.province_code} {$data.city_code} {$data.district_code}" placeholder="请选择地区" notnull notice="请选择所在地区">
+                {else/}
+                <input class="weui-input" id="region" name="region" type="text" value="" data-codes="" placeholder="请选择地区" notnull notice="请选择所在地区">
+                {/if}
+            </div>
+            <img src="__STATIC__/mobile/home/images/right.png">
+        </div>
+    </div>
+    <div class="div10">
+        <input type="text"  name="address" value="{$data.address}" class="addr" placeholder="详细地址：如门牌号、小区等" notnull notice="请输入您的详细地址">
+    </div>
+
+     <div class="title">
+        <div class="title11">设为默认地址</div>
+         <input type="hidden" name="is_default" value="{$data.is_default}">
+        <div class="title12">
+            {if condition="$data.is_default eq 1"}
+            <img src="__STATIC__/mobile/home/images/tabyes.png">
+            {else/}
+            <img src="__STATIC__/mobile/home/images/tabno.png">
+            {/if}
+
+        </div>
+    </div>
+    <input type="hidden" name="id" value="{$data.id}">
+    <input type="submit" class="save-addr" value="保存">
+</form>
+<input type="hidden" id="do_action" value="{:url('Vip/addredit')}">
+    <script type="text/javascript">
+        $("#region").cityPicker({
+            title: "",
+            onChange: function (picker, values, displayValues) {
+                console.log(values, displayValues);
+            },
+            onClose: function(e){
+                var code = $('input[name=region]').attr('data-codes');
+                $('input[name=code]').val(code);
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        $('.title12').click(function(){
+            if($(this).hasClass("tabbg")){
+                $(this).removeClass("tabbg");
+                $(this).find("img").attr("src","__STATIC__/mobile/home/images/tabno.png");
+                $('input[name=is_default]').val(0);
+            }else{
+                $(this).addClass("tabbg");
+                $(this).find("img").attr("src","__STATIC__/mobile/home/images/tabyes.png");
+                $('input[name=is_default]').val(1);
+            }
+        });
+    </script>
+
+{/block}

@@ -1,0 +1,21 @@
+<!--搜索  -->
+<input class="lenright" type="text" name="keyword" bindconfirm="search_do" placeholder="商品搜索" placeholder-style="color:#ccc;" />
+<image src="../../../../images/search.png" class="search" />
+<!--列表  -->
+<view class="tablej">
+  <view class="tableleft0j">
+    <view wx:for="{{dataList}}" class="tabel {{sex==index?'leftsel':''}}" bindtap='radiobtn' data-index="{{index}}">
+      <image class="type-img" src="../../../images/typea.png" />
+      <view class="tableleft1j">{{item.name}}</view>
+    </view>
+  </view>
+  <view class="tablerightj">
+    <image class="ad" mode="widthFix" src="{{categoryParent.ad_img}}" />
+    <view wx:for="{{categoryChild}}" data-category_id='{{item.id}}' class="menuboxp1">
+      <navigator url='/pages/home/goodsList/goodsList?category_id={{item.id}}' hover-class='none'>
+        <image class="menuimgp" src="{{item.coverimg}}" />
+        <view class="fontp">{{item.name}}</view>
+      </navigator>
+    </view>
+  </view>
+</view>

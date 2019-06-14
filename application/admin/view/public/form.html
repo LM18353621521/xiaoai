@@ -1,0 +1,5 @@
+{if condition ="strtolower(request()->action()) == 'loadnextlevel'"}
+{volist name="dataList" id="vo"}
+<option value="{$vo.id}" {eq name="next_level_id" value="$vo.id" }selected="selected" {/eq}>{$vo.name}</option>
+{/volist}
+{/if}

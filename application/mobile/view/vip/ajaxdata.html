@@ -1,0 +1,39 @@
+{if condition ="strtolower(request()->controller()) == 'vip' && strtolower(request()->action()) == 'mycollect'"}
+<!--我的关注-->
+{volist name="dataList" id="vo"}
+<div class='item detail_do' cid="{$vo.id}" goods_id="{$vo.goods_id}">
+    <div class="lt">
+        <img src="{$vo.coverimg}"/>
+    </div>
+    <div class="rt">
+        <div>1{$vo.name}</div>
+        <div class='money'>
+            ￥{$vo.price}
+            <img class="del" src="__STATIC__/mobile/home/images/del.png" alt="">
+        </div>
+        <div class='person'>{$vo.sales}人付款</div>
+    </div>
+</div>
+{/volist}
+{/if}
+
+{if condition ="strtolower(request()->controller()) == 'vip' && strtolower(request()->action()) == 'mycoupon'"}
+<!--我的优惠券-->
+{volist name="dataList" id="vo"}
+<li class="coupon-item {eq name='vo.status' value='0'}new{/eq} {neq name='vo.status' value='0'}overdug{/neq}">
+    <div class="txt-info">
+        <div class="con-cell">
+            <p>满{$vo.limit}元可用现金券</p>
+            <span>{$vo.use_stime}至{$vo.use_etime}使用</span>
+        </div>
+    </div>
+    <div class="price">
+        <span>￥</span>{$vo.money}
+        <p><a href="javascript:void(0);">{$vo.status_text}</a></p>
+    </div>
+    {eq name='vo.status' value='0'}<span class="text-icon"></span>{/eq}
+</li>
+{/volist}
+{/if}
+
+

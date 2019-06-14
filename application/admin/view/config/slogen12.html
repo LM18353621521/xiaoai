@@ -1,0 +1,75 @@
+{extend name="public/left"/}
+
+{block name="body"}
+<script type="text/javascript">
+    $(document).ready(function () {
+    });
+    $(document).ready(common_obj.form_submit);
+</script>
+
+<section class="wrapper" style="margin-top:0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <form class="cmxform form-horizontal tasi-form" id="data-form">
+                    <header class="panel-heading tab-bg-dark-navy-blue">
+                    </header>
+                    <div class="panel-body">
+                        <div class="tab-content tasi-tab">
+                            <!--  基本配置  s  -->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <section class="panel">
+                                        <div class="panel-body">
+                                            <div class="form">
+                                                    {for start="0" end="4"}
+                                                    <div class="form-group one-img carousel">
+                                                        <label class="control-label col-lg-2">
+                                                            <span class="btn btn-danger btn-xs " title="删除"></span>
+                                                            标签{$i + 1}
+                                                        </label>
+                                                        <div class="col-lg-6">
+                                                            <div style="margin: 10px auto">
+                                                                <div class="col-lg-10">
+                                                                    <div>标签文字：</div>
+                                                                    <input class="form-control" type="text" name="text[{$i}][big]" placeholder="输入文字"   value="" />
+                                                                </div>
+                                                            </div>
+                                                            <div style="margin: 10px auto">
+                                                                <div class="col-lg-10">
+                                                                    <div>标签标题：</div>
+                                                                    <input class="form-control" type="text" name="text[{$i}][title]" placeholder="输入标题"   value="" />
+                                                                </div>
+                                                            </div>
+                                                            <div style="margin: 10px auto">
+                                                                <div class="col-lg-10">
+                                                                    <div>标签描述：</div>
+                                                                    <input class="form-control" type="text" name="text[{$i}][desc]" placeholder="输入描述"   value="" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {/for}
+                                                    <input type="hidden" name="id" value="{$data.id}">
+                                                    <input type="hidden" name="type" value="{$type}">
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                            <!--  基本配置  e  -->
+                        </div>
+                    </div>
+                    <input type="hidden" id="do_action" value="{:url('Config/carousel')}"/>
+                    <input type="hidden" id="do_jump" value="{:url('Config/carousel',array('type'=>$type))}"/>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <input class="btn btn-danger" type="submit" value="提交保存">
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</section>
+{/block}

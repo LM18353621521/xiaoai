@@ -1,0 +1,100 @@
+{if condition="$tool == 'address_pca'"}
+<!-- 省市区插件 -->
+<link rel="stylesheet" type="text/css" href="__STATIC__/common/js/larea/LArea.css"/>
+<script type="text/javascript" src="__STATIC__/common/js/larea/LAreaData2.js"></script>
+<script type="text/javascript" src="__STATIC__/common/js/larea/LArea.js"></script>
+
+<input id="address_code" type="hidden" name="code" value="{$data.code}"/>
+<input id="address_pca" type="hidden" name="address_pca" value="{$data.pca}" notnull notice="请输入您的所在地区"/>
+<script type="text/javascript">
+    //第二种效果
+    var area2 = new LArea();
+    area2.init({
+        'trigger': '#address',//触发选择控件的文本框，同时选择完毕后name属性输出到该位置
+        'valueTo': '#address_code',
+        'valueTo1': '#address_pca',
+        'keys': {
+            id: 'value',
+            name: 'text'
+        },
+        'type': 2,
+        'data': [provs_data, citys_data, dists_data]
+    });
+    area2.value[0] = "{$data.code0.0}" ? "{$data.code0.0}" : 0;
+    area2.value[1] = "{$data.code0.1}" ? "{$data.code0.1}" : 0;
+    area2.value[2] = "{$data.code0.2}" ? "{$data.code0.2}" : 0;
+</script>
+{/if}
+
+{if condition="$tool == 'address_select'"}
+<!-- 下单上方选择地址 -->
+<style type="text/css">
+    .address_select {
+        position: relative;
+        width: 94%;
+        margin: 0 auto 1rem;
+        padding: 0 3%;
+        background: #fff;
+        line-height: 5rem;
+        overflow: hidden;
+        font-size: 1.6rem;
+    }
+
+    .address_select .lt {
+        width: 80%;
+        float: left;
+        color: #4c4c4c;
+    }
+
+    .address_select .lt p {
+        width: 100%;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-overflow: -o-ellipsis-lastline;
+    }
+
+    .address_select .lt p span:nth-child(1) {
+        margin-right: 1.5rem;
+    }
+
+    .address_select .rt {
+        width: 20%;
+        float: right;
+        color: #808080;
+        text-align: right;
+    }
+
+    .address_select img {
+        height: 2.5rem;
+    }
+
+    .address_select .lt img {
+        margin-top: -0.3rem;
+        margin-right: 0.5rem;
+        vertical-align: middle;
+    }
+</style>
+
+<a href="{:url('Vip/myaddress',array('type'=>'integral'))}">
+    {if condition="empty($data)"}
+    <div class="lt">
+        <img src="__STATIC__/wechat/integral/images/addaddress.png"/>请选择收货地址
+    </div>
+    {else/}
+    <div class="lt">
+        <p><span>{$data.linkman}</span><span>{$data.linktel}</span></p>
+        <p>{$data.province}{$data.city}{$data.area}{$data.address}</p>
+    </div>
+    {/if}
+    <div class="rt">
+        <img src="__STATIC__/wechat/common/images/next.png"/>
+    </div>
+    <input type="hidden" name="linkman" value="{$data.linkman}" notnull placeholder="请选择一个地址"/>
+    <input type="hidden" name="linktel" value="{$data.linktel}" notnull placeholder="请选择一个地址"/>
+    <input type="hidden" name="address" value="{$data.province}{$data.city}{$data.area}{$data.address}" notnull
+           placeholder="请选择一个地址"/>
+</a>
+</div>
+{/if}

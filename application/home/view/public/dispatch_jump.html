@@ -1,0 +1,152 @@
+{include file="public/header" title="我的订单"}
+<script>
+    $(document).ready(order_obj.order_list);
+</script>
+<body>
+<link rel="stylesheet" type="text/css" href="__STATIC__/home/common/css/page.css" />
+<div class="wrap">
+	{include file="public/top_nav"}
+	<div class="banner">
+		{include file="public/search"}
+		{include file="public/category_nav"}
+	</div>
+	<div class="volume-wrapper">
+		<div class="operation_success_fail w710" >
+			<?php if($code == 1) {?>
+			<!--操作成功-s--->
+			<div class="boxoperation p" >
+				<div class="success_fial_img fl">
+					<img src="__STATIC__/home/common/images/right_06.jpg"/>
+				</div>
+				<div class="success_describe fl">
+					<div class="sd1">
+						<i class="suc"></i>
+						<span><?php echo(strip_tags($msg)); ?></span>
+					</div>
+					<div class="sd2">
+						<a id="href" href="<?php echo($url); ?>">页面跳转中...</a>
+						<span>等待时间：<em id="wait"><?php echo($wait); ?></em></span>
+					</div>
+					<div class="sd3">
+						<a href="/">首页</a>
+						<a href="{:url('Cart/cart')}">购物车</a>
+						<a href="{:url('Vip/index')}">用户中心</a>
+					</div>
+				</div>
+			</div>
+			<!--操作成功-s--->
+			<?php }else{?>
+			<!--操作失败-s--->
+			<div class="boxoperation p" >
+				<div class="success_fial_img fl">
+					<img src="__STATIC__/home/common/images/wrong_05.jpg"/>
+				</div>
+				<div class="success_describe fl">
+					<div class="sd1">
+						<i class="wro"></i>
+						<span><?php echo(strip_tags($msg)); ?></span>
+					</div>
+					<div class="sd2">
+						<a id="href" href="<?php echo($url); ?>">页面跳转中...</a>
+						<span>等待时间：<em id="wait"><?php echo($wait); ?></em></span>
+					</div>
+					<div class="sd3">
+						<a href="/">首页</a>
+						<a href="{:url('Cart/cart')}">购物车</a>
+						<a href="{:url('Vip/index')}">用户中心</a>
+					</div>
+				</div>
+			</div>
+			<!--操作失败-e--->
+			<?php }?>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+    /**/
+    (function () {
+        var wait = document.getElementById('wait'), href = document.getElementById('href').href;
+        var interval = setInterval(function () {
+            var time = --wait.innerHTML;
+            if (time <= 0) {
+                location.href = href;
+                clearInterval(interval);
+            }
+            ;
+        }, 1000);
+    })();
+
+</script>
+<style>
+	.w710 {
+		width: 710px;
+	}
+	.operation_success_fail {
+		border: 5px solid #eaeaea;
+		width: 600px;
+		margin: 0 auto;
+		margin-top: 180px;
+		margin-bottom: 180px;
+	}
+	.fl {
+		float: left;
+	}
+	.success_describe {
+		padding: 42px 30px;
+		width: 330px;
+	}
+	.success_describe .sd1 {
+		text-align: left;
+	}
+	.success_describe .sd1 i {
+		background: url(__STATIC__/home/common/images/tipsrw.png) no-repeat;
+		width: 36px;
+		display: inline-block;
+		vertical-align: middle;
+		margin-right: 10px;
+		height: 36px;
+	}
+	.success_describe .sd1 .suc {
+		background-position: 0 -44px;
+	}
+	.success_describe .sd1 span {
+		vertical-align: middle;
+		font-size: 24px;
+		color: #666666;
+	}
+	.success_describe .sd2 {
+		font-size: 18px;
+		margin-top: 20px;
+	}
+	.success_describe .sd2 a {
+		color: #3c8dbc;
+	}
+	.success_describe .sd2 span {
+		color: #666666;
+		margin-left: 10px;
+	}
+	.success_describe .sd2 span em {
+		color: #3c8dbc;
+	}
+	.success_describe .sd3 {
+		margin-top: 20px;
+	}
+	.success_describe .sd3 a {
+		font-size: 18px;
+		color: #666666;
+		margin: 0 10px;
+	}
+	.success_describe .sd3 a {
+		font-size: 18px;
+		color: #666666;
+		margin: 0 10px;
+	}
+	.p:before, .p:after {
+		content: "";
+		clear: both;
+		display: block;
+	}
+
+</style>
+</body>
+</html>

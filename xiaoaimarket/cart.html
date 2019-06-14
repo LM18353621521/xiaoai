@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>购物车</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+    <meta http-equiv="cache-control" content="no-store" />
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/public.css" />
+	<link rel="stylesheet" type="text/css" href="css/cart.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+</head>
+<body>
+	<div class="wrap">
+		<div class="wrap-content">
+			<div class="header">
+				<div class="header-content">
+					<div class="header-home"><img src="images/header-home.png"/>首页</div>
+					<div class="header-right">
+						<select class="header-client">
+							<option>客服服务</option>
+							<option>客服服务1</option>
+							<option>客服服务2</option>
+							<option>客服服务3</option>
+						</select>
+						<a href="#" title="晓爱商城"><div class="header-cart after-line"><img src="images/header-shopcart.png"/>购物车</div></a>
+						<a href="#" title="晓爱商城"><div class="header-order after-line"><img src="images/header-menu.png"/>我的订单</div></a>
+						<div class="header-login after-line login-before">登录</div>
+						<!-- <div class="header-login after-line login-after">
+							夜尽天明<img src="images/bottoma.png"/>
+							<div class="person-center">
+								<img src="images/head.png"/>
+								<a href="#" title="晓爱商城"><div class="center-page">个人中心</div></a>
+								<a href="#" title="晓爱商城"><div class="login-out">退出</div></a>
+							</div>
+						</div> -->
+						<div class="clear"></div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<div class="banner">
+				<div class="banner-search">
+					<img class="logo" src="images/logo.png"/>
+					<div class="search-right">
+						<div class="search-input-box">
+							<input type="text" placeholder="" name="">
+							<div class="search">搜索</div>
+						</div>
+						<div class="serach-list">
+							<a href="#" title="晓爱商城">飞机杯</a>
+							<a href="#" title="晓爱商城">避孕套</a>
+							<a href="#" title="晓爱商城">飞机杯</a>
+							<a href="#" title="晓爱商城">避孕套</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="se-bottle">
+				<div class="se-bottle-head">
+					<p class="head-select"><img src="images/no-select.png">全选</p>
+					<p class="head-shop">商品</p>
+					<p class="head-order">单价</p>
+					<p class="head-num">数量</p>
+					<p class="head-ji">小计</p>
+					<p class="head-money">操作</p>
+				</div>
+				<div class="table-order">
+					<ul class="product-list">
+						<li>
+							<img class="single-select" src="images/no-select.png">
+							<img class="product" src="images/product-a.png">
+							<p class="list-one">狐狸尾巴后庭肛门塞另类狗尾巴情趣性用品成人女用男用肛塞狐狸尾巴后庭肛门</p>
+							<div class="list-two">
+								<p>size：均码</p>
+								<p>颜色分类:pink</p>
+							</div>
+							<p class="list-three">￥369.00</p>
+							<p class="list-four">
+								<span class="mit">－</span>
+								<span class="number">1</span>
+								<span class="plus">+</span>
+							</p>
+							<div class="list-xiaoji">
+								<p class="xiaoji-money">￥369.00</p>
+								<p>0.93kg</p>
+							</div>
+							<div class="list-caozuo">
+								<p class="del">删除</p>
+								<p class="collect">移入收藏夹</p>
+							</div>
+						</li>
+						<li>
+							<img class="single-select" src="images/no-select.png">
+							<img class="product" src="images/product-a.png">
+							<p class="list-one">狐狸尾巴后庭肛门塞另类狗尾巴情趣性用品成人女用男用肛塞狐狸尾巴后庭肛门</p>
+							<div class="list-two">
+								<p>size：均码</p>
+								<p>颜色分类:pink</p>
+							</div>
+							<p class="list-three">￥369.00</p>
+							<p class="list-four">
+								<span class="mit">－</span>
+								<span class="number">1</span>
+								<span class="plus">+</span>
+							</p>
+							<div class="list-xiaoji">
+								<p class="xiaoji-money">￥369.00</p>
+								<p>0.93kg</p>
+							</div>							
+							<div class="list-caozuo">
+								<p class="del">删除</p>
+								<p class="collect">移入收藏夹</p>
+							</div>
+						</li>
+					</ul>	
+					<div class="zong">
+						<p class="head-select zong-all"><img src="images/no-select.png">全选 <span>删除选中的产品</span></p>
+						<p class="pay-btn">去结算</p>
+						<p class="qian-zong">总价：<span>￥369.00</span></p>
+						<p class="pay-select-num">已选<span>1</span>件商品</p>
+					</div>		
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+            // 单选
+            $(".single-select").click(function(){
+            	var len = $(".product-list li").length;
+            	var len1 = $(".single-select.active").length;
+            	if($(this).attr("src")=="images/no-select.png"){
+					// 影响自己
+					$(this).attr("src","images/selected.png");
+					$(this).addClass("active");
+					// 影响全选
+					if(len==(len1+1)){
+						$(".head-select img").attr("src","images/selected.png");
+						$(".head-select img").addClass("active");
+					}
+            	}else{
+            		// 影响自己
+            		$(this).attr("src","images/no-select.png");
+					$(this).removeClass("active");
+					// 影响全选
+					$(".head-select img").attr("src","images/no-select.png");
+					$(".head-select img").removeClass("active");
+            	}            	
+            });
+
+
+            // 全选
+            $(".head-select").click(function(){
+               if($(".head-select img").attr("src")=="images/no-select.png"){
+					$(".head-select img").attr("src","images/selected.png");
+					$(".head-select img").addClass("active");
+					$(".single-select").attr("src","images/selected.png");
+					$(".single-select").addClass("active");
+            	}else{
+					$(".head-select img").attr("src","images/no-select.png");
+					$(".head-select img").removeClass("active");
+					$(".single-select").attr("src","images/no-select.png");
+					$(".single-select").removeClass("active");
+            	}  
+            })	
+			// 删除地址
+			$(".del").click(function(){
+				$(this).parents("li").remove();
+			})
+
+             // 点击减号
+            $(".mit").click(function(){
+                var num=$(this).parent(".list-four").find(".number").text();
+                if(num>1){
+                    num--;
+                    $(this).parent(".list-four").find(".number").text(num);
+                }
+            })
+            // 点击加号
+            $(".plus").click(function(){
+                var num=$(this).parent(".list-four").find(".number").text();
+                num++;
+                $(this).parent(".list-four").find(".number").text(num); 
+            })
+
+
+		})
+		
+
+	</script>
+
+</body>
+</html>

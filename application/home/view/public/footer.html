@@ -1,0 +1,30 @@
+<div class="footer">
+    <ul class="footer-one">
+        {foreach name="xa_config['slogen_text']" item="vo"}
+        <li>
+            <p class="font">{$vo.big}</p>
+            <div class="footer-right">
+                <p class="font-title">{$vo.title}</p>
+                <p class="font-info">{$vo.desc}</p>
+            </div>
+        </li>
+        {/foreach}
+    </ul>
+    <div class="footer-line"></div>
+    <div class="footer-two">
+        <ul class="footer-two-left">
+            {foreach name="newCate" item="vo"}
+            <li>
+                <p class="footer-title">{$vo.name}</p>
+                    {foreach name="vo.newsList" item="vv"}
+                    <a href="{:url('Index/article_detail',array('id'=>$vv.id))}"><p class="footer-info">{$vv.title}</p></a>
+                    {/foreach}
+            </li>
+            {/foreach}
+        </ul>
+        <div class="footer-code">
+            <p>官方小程序</p>
+            <img src="{$xa_config.base_routine_qrcode}">
+        </div>
+    </div>
+</div>

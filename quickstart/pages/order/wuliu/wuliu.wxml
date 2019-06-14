@@ -1,0 +1,81 @@
+<!--pages/order/wuliu/wuliu.wxml-->
+<view>
+  <view class='track_info'>
+    <view class='track_info_item'>
+      <text>订单编号：</text>
+      <view class='track_info_item_content'>
+        123434576
+      </view>
+    </view>
+    <view class="track_goods_v2">
+      <view class="track_goods_imgs">
+        <image src="../../../images/camera.png" />
+      </view>
+      <view class="track_goods_detail">
+        <text class="track_goods_detail_text">电视挂架电视架电视机挂架</text>
+        <text class="track_goods_detail_text_small">1件</text>
+      </view>
+    </view>
+    <view class="track_info_item">
+      <text class="track_info_item_label">国内承运人：</text>
+      <view class="track_info_item_content">京东快递</view>
+    </view>
+
+
+  </view>
+  <view class="track_shipflow">
+    <!-- <view class="track_shipflow_item">
+      <text class="track_shipflow_item_status type_dot"></text>
+      <view class="track_shipflow_item_msg">
+        <text class="track_shipflow_item_msg_text"> 您的订单已由本人签收。感谢您在京东购物，欢迎再次光临。</text>
+        <text class="track_shipflow_item_msg_time">2019-01-27 14:58:02</text>
+      </view>
+    </view> -->
+    <view class="track_shipflow_item cur">
+      <text class="track_shipflow_item_status type_dot"></text>
+      <view class="track_shipflow_item_msg">
+        <text class="track_shipflow_item_msg_text">
+                        您的订单正在配送途中（配送员：梁耀林，电话：18176307378）请您准备签收，感谢您的耐心等待
+                    </text>
+        <text class="track_shipflow_item_msg_time">2019-01-27 09:48:05</text>
+      </view>
+    </view>
+    <view class="track_shipflow_item ">
+      <text class="track_shipflow_item_status type_dot"></text>
+      <view class="track_shipflow_item_msg">
+        <text class="track_shipflow_item_msg_text">
+                        您的订单正在配送途中（配送员：梁耀林，电话：18176307378）请您准备签收，感谢您的耐心等待
+                    </text>
+        <text class="track_shipflow_item_msg_time">2019-01-27 09:48:05</text>
+      </view>
+    </view>
+    <view class="track_shipflow_item ">
+      <text class="track_shipflow_item_status type_dot"></text>
+      <view class="track_shipflow_item_msg">
+        <text class="track_shipflow_item_msg_text">
+                        您的订单正在配送途中（配送员：梁耀林，电话：18176307378）请您准备签收，感谢您的耐心等待
+                    </text>
+        <text class="track_shipflow_item_msg_time">2019-01-27 09:48:05</text>
+      </view>
+    </view>
+    <view class="track_shipflow_item ">
+      <text class="track_shipflow_item_status type_dot"></text>
+      <view class="track_shipflow_item_msg">
+        <text class="track_shipflow_item_msg_text">
+                        您的订单正在配送途中（配送员：梁耀林，电话：18176307378）请您准备签收，感谢您的耐心等待
+                    </text>
+        <text class="track_shipflow_item_msg_time">2019-01-27 09:48:05</text>
+      </view>
+    </view>
+    <view class="track_shipflow_item ">
+      <text class="track_shipflow_item_status type_dot"></text>
+      <view class="track_shipflow_item_msg">
+        <text class="track_shipflow_item_msg_text">
+                        您的订单正在配送途中（配送员：梁耀林，电话：18176307378）请您准备签收，感谢您的耐心等待
+                    </text>
+        <text class="track_shipflow_item_msg_time">2019-01-27 09:48:05</text>
+      </view>
+    </view>
+  </view>
+
+</view>

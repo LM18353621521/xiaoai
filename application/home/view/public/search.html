@@ -1,0 +1,64 @@
+<div class="banner-search">
+    <div class="web_logo">
+        <a href="{:url('Index/index')}">
+            <img  class="logo_img" src="{$xa_config['web_logo']}" alt="">
+        </a>
+        <a href="{:url('Index/index')}">
+            <img  class="qrcode" src="{$xa_config.base_routine_qrcode}" alt="">
+        </a>
+    </div>
+
+    <div class="search-right">
+        <form id="search_form" action="{:url('Index/goodsList')}">
+            <div class="search-input-box">
+                <input type="text" placeholder="请输入搜索关键词" name="keyword" value="">
+                <button type="button" class="search search_do">搜索</button>
+            </div>
+        </form>
+        <div class="serach-list">
+            {foreach name="xa_config['hot_keywords']" item="vo"}
+            <a href="{:url('Index/goodsList',array('keyword'=>$vo))}" title="{$vo}">{$vo}</a>
+            {/foreach}
+        </div>
+    </div>
+</div>
+<style>
+    .web_logo{
+        width: 288px;
+        float: left;
+    }
+    .web_logo .logo_box{
+        display: inline-block;
+    }
+    .web_logo .refer-code{
+        display: inline-block;
+    }
+    .web_logo .logo_img{
+        display: inline-block;
+        margin: 10px 0  10px 20px ;
+        width: 72px;
+        height: 72px;
+    }
+    .web_logo .qrcode{
+        display: inline-block;
+        margin: 10px 0 10px 20px;
+        width: 72px;
+        height: 72px;
+        animation: heart 1.3s ease-in-out 2.7s infinite alternate;
+    }
+    .search-right {
+        margin-left: 68px;
+    }
+    @keyframes heart{
+        from{transform:translate(0,0)}
+        to{transform:translate(0,8px)}
+    }
+</style>
+<script>
+    $('.search_do').click(function (e) {
+        var keyword = $.trim($("input[name=keyword]").val());
+        if (keyword != "") {
+            $("#search_form").submit();
+        }
+    })
+</script>

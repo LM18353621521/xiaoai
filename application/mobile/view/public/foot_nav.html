@@ -1,0 +1,76 @@
+<style>
+    .bt_bottom1 {
+        width: 25%;
+    }
+</style>
+<div class="bt_bottom">
+    <div class="bt_bottom1">
+            <a href='javascript:nav_do(0,"{:url('Home/index')}");'>
+            {if condition ="strtolower(request()->controller()) == 'home'&& strtolower(request()->action()) == 'index'"}
+            <img class="btimg0" src="__STATIC__/mobile/home/images/footera-active.png">
+            <div class="fot1 color_style1">首页</div>
+            {else/}
+            <img class="btimg0" src="__STATIC__/mobile/home/images/footera.png">
+            <div class="fot1">首页</div>
+            {/if}
+        </a>
+    </div>
+    <div class="bt_bottom1">
+        <a href='javascript:nav_do(0,"{:url('Home/types')}");'>
+            {if condition ="strtolower(request()->controller()) == 'home'&& strtolower(request()->action()) =='types'""}
+            <img class="btimg0" src="__STATIC__/mobile/home/images/footerb-active.png">
+            <div class="fot1 color_style1">分类</div>
+            {else/}
+            <img class="btimg0" src="__STATIC__/mobile/home/images/footerb.png">
+            <div class="fot1">分类</div>
+            {/if}
+    </div>
+    <!--<div class="bt_bottom1">-->
+    <!--<a href="{:url('Home/distributgoods')}">-->
+    <!--{if condition ="strtolower(request()->controller()) == 'home'&& strtolower(request()->action()) == 'distributgoods'"}-->
+    <!--<img class="btimg0" src="__STATIC__/mobile/home/images/footerc-active.png">-->
+    <!--<div class="fot1 color_style1">赚奖金</div>-->
+    <!--{else/}-->
+    <!--<img class="btimg0" src="__STATIC__/mobile/home/images/footerc.png">-->
+    <!--<div class="fot1">赚奖金</div>-->
+    <!--{/if}-->
+    <!--</a>-->
+    <!--</div>-->
+    <div class="bt_bottom1">
+            <a href='javascript:nav_do(1,"{:url('Cart/cart')}");'>
+            {if condition ="strtolower(request()->controller()) == 'cart'&& strtolower(request()->action()) == 'cart'"}
+            <img class="btimg0" src="__STATIC__/mobile/home/images/footerd-active.png">
+            <div class="fot1 color_style1">购物车</div>
+            {else/}
+            <img class="btimg0" src="__STATIC__/mobile/home/images/footerd.png">
+            <div class="fot1">购物车</div>
+            {/if}
+        </a>
+    </div>
+    <div class="bt_bottom1">
+        <a href='javascript:nav_do(1,"{:url('Vip/index')}");'>
+            {if condition ="strtolower(request()->controller()) == 'vip'&& strtolower(request()->action()) == 'index'"}
+            <img class="btimg0" src="__STATIC__/mobile/home/images/footere-active.png">
+            <div class="fot1 color_style1">我的</div>
+            {else/}
+            <img class="btimg0" src="__STATIC__/mobile/home/images/footere.png">
+            <div class="fot1">我的</div>
+            {/if}
+        </a>
+    </div>
+</div>
+<script>
+    var is_login = {$is_login|default=0};
+    function nav_do(type,url) {
+        if (type == 1) {
+            if (is_login == 0) {
+                $.toptip('未登录，请先登录', 'error');
+                 $(".qiehuan_fu").show();
+            } else {
+                window.location.href =url;
+            }
+        } else {
+            window.location.href = url;
+        }
+    }
+</script>
