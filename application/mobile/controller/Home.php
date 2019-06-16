@@ -72,13 +72,10 @@ class Home extends Base
             $has_coupon['use_stime'] = date('Y.m.d', $has_coupon['use_stime']);
             $has_coupon['use_etime'] = date('Y.m.d', $has_coupon['use_etime']);
         }
-
-
         $categoryList = db(\tname::mall_category)->where(array('is_hidden' => 0, 'pid' => 0))->order("is_recommend desc,id")->limit(0, 3)->select();
         foreach ($categoryList as &$value) {
             $value['coverimg'] = imgurlToAbsolute($value['coverimg']);
         }
-
         $returndata = array(
             'carousel' => $carousel,
             'dataList' => $dataList,

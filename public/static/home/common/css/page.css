@@ -1,0 +1,40 @@
+
+.pagination{
+	overflow: hidden;
+	margin: 50px 0;
+	float: right;
+	padding: 0 2rem;
+}
+.pagination li.paginate_button{
+	display: inline;
+}
+.pagination li.paginate_button a{
+	display: inline-block;
+	margin-right: 10px;
+	height: 30px;
+	line-height: 30px;
+	padding:0 11px;
+	font-size: 14px;
+	color: #999;
+	border:1px solid #eee;
+}
+.pagination li.paginate_button.active a,.pagination li.paginate_button:hover a{
+	color: #fff;
+	background:var(--theme);
+	border:1px solid var(--theme);
+}
+.previous{
+
+}
+.disabled{
+
+}
+.num{
+
+}
+.next{
+
+}
+.end{
+
+}

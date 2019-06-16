@@ -57,8 +57,9 @@
                 <table class="table table-striped table-advance table-hover" id="data-table">
                     <thead>
                     <tr>
-                        <th style="max-width: 20px"><i></i><input type="checkbox" id="check_all" data-name="id">全选</th>
+                        <th style="max-width: 42px"><i></i><input type="checkbox" id="check_all" data-name="id">全选</th>
                         <th style="max-width: 30px"><i></i>ID</th>
+                        <th><i></i>排序</th>
                         <th><i></i>展示图</th>
                         <th><i></i>名称</th>
                         <th><i></i>分类</th>
@@ -81,6 +82,8 @@
                             <label>
                                 进行操作：
                                 <select name="oprate" size="1" class="form-control" style="width: 130px">
+                                    <option value="sort" data-tablename="mall_product" data-fieldname="sort" data-value="1" data-where="id" data-name="sort"
+                                            data-url="{:url('Member/updateAll')}" data-info="请选择数据">更改排序</option>
                                     <option value="update" data-tablename="mall_product" data-fieldname="is_hidden" data-value="1" data-where="id" data-name="id"
                                             data-url="{:url('Member/updateAll')}" data-info="请选择数据" data-text="确定批量删除吗？">批量删除
                                     </option>

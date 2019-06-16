@@ -1,0 +1,111 @@
+body {
+    background: #fff;
+    margin-bottom: 6.5rem;
+}
+
+header {
+    position: relative;
+    width: 100%;
+    height: 9em;
+    line-height: 12rem;
+    background: url(../images/header.jpg) no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 1.4rem;
+    box-shadow: 0 0 10px 2px #ddd;
+}
+
+header span {
+    font-size: 1.8rem;
+    margin-left: 1rem;
+    letter-spacing: 0.2rem;
+}
+
+header .rule {
+    position: absolute;
+    top: 1rem;
+    line-height: 2rem;
+    right: 2%;
+    padding: 0.3rem 1rem;
+    color: var(--main-color);
+    background: #fff;
+    border-radius: 20px;
+}
+
+.recharge {
+    width: 90%;
+    margin: 3rem auto;
+}
+
+.recharge div {
+    color: #b2b2b2;
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+    text-align: center;
+    border: 1px #b2b2b2 solid;
+    border-radius: 5px;
+}
+
+.recharge div:nth-child(odd) {
+    width: 46%;
+    float: left;
+}
+
+.recharge div:nth-child(even) {
+    width: 46%;
+    float: right;
+}
+
+.recharge div p:nth-child(1) {
+    width: 100%;
+    font-size: 1.6rem;
+}
+
+.recharge div p:nth-child(2) {
+    width: 100%;
+    font-size: 1.4rem;
+}
+
+.recharge .on {
+    color: var(--main-color) !important;
+    border: 1px var(--main-color) solid !important;
+}
+
+.money {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.money input {
+    width: 100%;
+    height: 2rem;
+    line-height: 2rem;
+    padding: 1rem 0;
+    border: 1px #ddd solid;
+    outline: 0;
+    text-align: center;
+    font-size: 1.6rem;
+    border-radius: 5px;
+    background: #fafafa;
+    color: #4c4c4c;
+
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #999;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #999;
+}
+
+input:-ms-input-placeholder {
+    color: #999;
+}
+
+input::-webkit-input-placeholder {
+    color: #999;
+}
+
+

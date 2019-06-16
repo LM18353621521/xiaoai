@@ -1,0 +1,175 @@
+body{
+    background: #f2f2f2;
+    /*padding-top:9rem;*/
+}
+
+
+
+.lists{
+  width: 100%;
+}
+.item{
+  width: 92%;
+  padding: 1.5rem 4%;
+  margin:0 auto 1rem;
+  background: #fff;
+  display: flex;
+  overflow: hidden;
+}
+.lt{
+  flex:0 0 9.2rem;
+  overflow: hidden;
+  height: 9rem;
+}
+.rt{
+  flex: 1;
+  overflow: hidden;
+  padding-left: 5%;
+  position: relative;
+}
+.lt img{
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+}
+.rt div:first-child{
+  font-size: 1.5rem;
+  height: 2.25rem;
+  line-height:2.25rem;
+  color: #4c4c4c;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  vertical-align: top;
+}
+
+.info{
+  width: 50%;
+  font-size: 1.5rem;
+  height: 2.4rem;
+  line-height:2.4rem;
+  color: #4c4c4c;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.info span{
+  color: #ff4a00;
+  margin-left:3px;
+}
+
+.btn-recommend{
+  position: absolute;
+  right: 0;
+  bottom: 2rem;
+  width: 32%;
+  height:3.2rem;
+  line-height: 3.2rem;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #fff;
+  overflow: hidden;
+  border-radius: 30px;
+  background: linear-gradient(to right,#b73ef1,#943ef1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.fuceng{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top:0;
+  z-index: 999999;
+  background: rgba(0,0,0,.5);
+}
+.fucenger{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top:0;
+  z-index: 9999999;
+}
+.baibga{
+   width: 100%;
+   position: fixed;
+   left: 0%;
+   background: #fff;
+   bottom:0%;
+   max-height:60%;
+   overflow: hidden;
+   z-index: 20000;
+   padding-bottom: 1rem;
+}
+.baibgb{
+   position: fixed;
+   left: 5%;
+   background: #fff;
+   bottom:5%;
+   top:5%;
+   right: 5%;
+   overflow: hidden;
+   z-index: 20000;
+   padding: 2.5rem;
+   border-radius: 5px;
+}
+.close-img{
+  position: absolute;
+  right: 2%;
+  top:.5rem;
+  width: 2.05rem;
+  height: 2.05rem;
+}
+.poster{
+  width: 100%;
+  height: 80%;
+  box-shadow: 0 0 15px #eee;
+}
+.poster-img{
+  width: 100%;
+  height: 100%;
+}
+.sure{
+  width:94%;
+  height:4rem;
+  line-height: 4rem;
+  font-size: 1.5rem;
+  color: #fff;
+  overflow: hidden;
+  margin:1rem auto;
+  text-align: center;
+  border-radius: 5px;  
+  background: linear-gradient(to right,#b73ef1,#943ef1);
+}
+.suretips{
+  text-align: center;
+  line-height:2rem;
+  font-size: 1.3rem;
+  color: #aaa;
+  overflow: hidden;
+}
+
+.img-tab{
+  overflow: hidden;
+}
+.wechat{
+  width: 50%;
+  float: left;
+}

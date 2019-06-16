@@ -361,6 +361,9 @@ class Home extends Applet
         $config['share_tips']="保存至相册可以分享到朋友圈";
         $config['share_btn_switch']=0;
 
+        $goodsInfo['description'] = str_replace("<img ", "<img class='img_w' ", $goodsInfo['description']);
+
+
         $returndata = array(
             'goodsInfo' => $goodsInfo,
             'filter_spec' => $filter_spec,

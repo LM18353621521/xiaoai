@@ -1,0 +1,265 @@
+
+body{
+	background: #F5F5F5;
+	padding-bottom: 6rem;
+	/*padding-top: 5rem;*/
+}
+
+
+
+.bot{
+	width: 100%;
+	display: block;
+	overflow: hidden;
+	/*position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;*/
+	background: white;
+	height: 5rem;
+	border-bottom: 1px solid #f8f8f8;
+}
+.bot1{
+	width: 25%;
+	display: block;
+	height: 5rem;
+	float: left;
+	text-align: center;
+	background: white;
+}
+.font1{
+	width: 100%;
+	height: 5rem;
+	font-size: 1.5rem;
+	text-align: center;
+	line-height: 5rem;
+	overflow: hidden;
+	color: #5c5c5c;
+}
+.color2{
+	color: #FF884C;
+}
+.shai{
+	height: 1.2rem;
+    width: auto;
+    margin-top: -1.7%;
+    vertical-align: middle;
+    margin-left:5%;
+}
+.jian{
+	height: 0.6rem;
+    width: auto;
+    margin-top: -1.7%;
+    vertical-align: middle;
+    margin-left:5%;
+}
+
+
+
+.lists{
+	width: 94%;
+	margin:1rem auto 0;
+}
+
+
+
+
+.uml1{
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    background: white;
+    padding:1rem 3%;
+    /*border-bottom: 1px solid #f8f8f8;*/
+}
+.uml11 img{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+.uml11{
+    width: 2.5rem;
+    float: left;
+    position: relative;
+    height: 2.5rem;
+    border-radius: 50%;
+}
+.uml12{
+	width: 87%;
+	margin-left: 4%;
+	float: left;
+	/*height: 12rem;*/
+}
+.lmist12{
+	width: 100%;
+	overflow: hidden;
+	height:2.5rem;
+}
+.pmrice1{
+	line-height: 2.5rem;
+	height: 2.5rem;
+	font-size: 1.5rem;
+	color: #4c4c4c;
+	display: block;
+	width: 50%;
+	overflow: hidden;
+	float: left;
+	/*padding:0 2%;*/
+}
+.pmricer{
+	line-height: 2.5rem;
+	height: 2.5rem;
+	font-size: 1.3rem;
+	color: #aaa;
+	display: block;
+	width: 50%;
+	overflow: hidden;
+	float: right;
+	text-align: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.swiper-container{
+	height: 15rem;
+}
+
+
+
+.fuwhite0{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top:15rem;
+    background: rgba(0,0,0,.5);
+    z-index: 10099990;
+    overflow: hidden;
+    display: none;
+}
+.tap0{
+    width: 100%;
+    background: #fff;
+    margin-top: 5rem;
+    max-height: 20rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.tap01{
+    width: 100%;
+    height: 5rem;
+    line-height:5rem;
+    padding:0 5%;
+    font-size: 1.5rem;
+    color: #6c6c6c;
+    overflow: hidden;
+    border-bottom: 1px solid #f8f8f8;
+}
+.sel0{
+    color: #FF884C;
+}
+
+
+
+
+
+
+
+.info{
+	width: 100%;
+	overflow: hidden;
+	padding:0 3%;
+	background: #fff;
+	padding-bottom: 1rem;
+}
+.info1{
+    width: 75%;
+    float: left;
+    position: relative;
+}
+.info2{
+    width: 25%;
+    float: left;
+    height: 4rem;
+    margin-top:1.45rem;
+    border-left: 1px solid #f8f8f8;
+    position: relative;
+}
+.info11{
+    width: 100%;
+    height: 2.3rem;
+    line-height: 2.3rem;
+    font-size: 1.5rem;
+    color: #4c4c4c;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.info12{
+    width: 100%;
+    height: 2.3rem;
+    line-height: 2.3rem;
+    font-size: 1.5rem;
+    color: #aaa;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.info11 img{
+	    height: 1rem;
+    width: auto;
+    margin-top: -1.3%;
+    vertical-align: middle;
+    margin-right: 4%;
+}
+.info12 img{
+	    height: 1rem;
+    width: auto;
+    margin-top: -1.3%;
+    vertical-align: middle;
+    margin-right: 4%;
+}
+.ke{
+	color: #aaa;
+	font-size: 1.3rem;
+	margin-left: 6%;
+}
+.ke span{
+	color: #FF884C;
+	padding:0 3%;
+}
+.info21{
+    width: 100%;
+    height:2rem;
+    color: #aaa;
+    font-size: 1.3rem;
+    text-align: center;
+    line-height: 2rem;
+    overflow: hidden;
+}
+.info22{
+    width: 100%;
+    height:2rem;
+    color: #FF884C;
+    font-size: 1.5rem;
+    text-align: center;
+    line-height: 2rem;
+    overflow: hidden;
+}

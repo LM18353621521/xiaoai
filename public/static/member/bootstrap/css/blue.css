@@ -1,0 +1,12 @@
+#sidebar{
+    background: #98CBFA;
+}
+ul.sidebar-menu li ul.sub li{
+    background: #85C1FF;
+}
+ul.sidebar-menu li.active a{
+    background: #85C1FF;
+}
+.nav-tabs{
+    background: #D3E8FD;
+}

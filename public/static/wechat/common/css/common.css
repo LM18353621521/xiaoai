@@ -1,0 +1,435 @@
+﻿/* CSS Document */
+* {
+    font-family: 微软雅黑, Arial, 宋体;
+    -webkit-text-size-adjust: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+}
+
+@media only screen and (min-width: 320px) {
+    html {
+        font-size: 55.5% !important;
+    }
+}
+
+@media only screen and (min-width: 375px) {
+    html {
+        font-size: 62.5% !important;
+    }
+}
+
+@media only screen and (min-width: 400px) {
+    html {
+        font-size: 68.5% !important;
+    }
+}
+
+@media only screen and (min-width: 481px) {
+    html {
+        font-size: 78% !important;
+    }
+}
+
+@media only screen and (min-width: 561px) {
+    html {
+        font-size: 90% !important;
+    }
+
+}
+
+@media only screen and (min-width: 641px) {
+    html {
+        font-size: 100% !important;
+    }
+}
+
+:root {
+    --main-color: #ff5500;
+    --main-bg: rgb(255, 255, 255);
+    --logo-border-color: rebeccapurple;
+    --header-height: 5rem;
+    --footer-height: 5rem;
+    --line-height: 5rem;
+    --content-padding: 10px 20px;
+    --base-line-height: 1.428571429;
+    --transition-duration: .35s;
+    --external-link: "external link";
+    --margin-top: calc(2vh + 20px);
+}
+
+header, footer, section, aside, nav, hgroup, figure, figcaption {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, blockquote, p {
+    padding: 0;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+/*h2{width:8em; display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;margin:0 auto;}
+*/
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    border: none;
+}
+
+input[type='text'], input[type='number'], input[type='password'], input[type='reset'], input[type='submit'], input[type='button'], input[type='tel'], button, textarea {
+    -webkit-appearance: none;
+}
+
+input-placeholder {
+    color: inherit;
+    font-size: inherit;
+}
+
+::-webkit-input-placeholder {
+    color: inherit;
+}
+
+:-moz-placeholder {
+    color: inherit;
+}
+
+::-moz-placeholder {
+    color: inherit;
+}
+
+:-ms-input-placeholder {
+    color: inherit;
+}
+
+.swiper-slide img {
+    width: 100%;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #999;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #999;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #999;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #999;
+}
+
+.mine
+    /*挨着的*/
+.footer1 {
+    width: 90%;
+    margin: 2rem auto;
+    background: var(--main-color);
+    font-size: 1.7rem;
+    color: #fff;
+    text-align: center;
+    height: 5rem;
+    line-height: 5rem;
+    border-radius: 5px;
+}
+
+/*分2个*/
+.footer2 {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    height: 5rem;
+    line-height: 5rem;
+    font-size: 1.7rem;
+}
+
+.footer2 div {
+    float: left;
+    text-align: center;
+    background: #fff;
+    overflow: hidden;
+}
+
+.footer2 div:nth-child(1) {
+    width: 65%;
+    padding-left: 5%;
+    text-align: left;
+    color: #333333;
+}
+
+.footer2 div span {
+    color: var(--main-color);
+}
+
+.footer2 div:nth-child(2) {
+    width: 30%;
+    background: var(--main-color);
+    color: #fff;
+}
+
+.footer2 .on {
+    background: #ccc !important;
+}
+
+.footer2 span {
+    color: var(--main-color);
+}
+
+.footer2 div a {
+    display: block;
+    color: #fff;
+}
+
+.footerup {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 5rem;
+    height: 4rem;
+    line-height: 4rem;
+    font-size: 1.4rem;
+    text-align: center;
+    background: #bfbfbf;
+    color: #575757;
+}
+
+.footerup img {
+    height: 2rem;
+    margin-top: -0.3rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+/*底部分类*/
+.footer3 {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #ffffff;
+    height: 5rem;
+}
+
+.footer3 ul {
+    box-shadow: 0px -1px 1px #f2f2f2;
+    overflow: hidden;
+}
+
+.footer3 ul li {
+    width: 25%;
+    margin: 0;
+    text-align: center;
+    float: left;
+}
+
+.footer3 ul li span {
+    display: block;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #898989;
+    line-height: 1.5rem;
+    margin-top: 0.4rem;
+}
+
+.footer3 ul li .imga img {
+    height: 2.5rem;
+}
+
+/*底部分类50%*/
+.footer4 {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 12rem;
+    height: 5rem;
+    line-height: 5rem;
+    font-size: 1.7rem;
+    overflow: hidden;
+}
+
+.footer4 div {
+    float: left;
+    text-align: center;
+    background: #fff;
+    overflow: hidden;
+    color: #fff;
+}
+
+.footer4 div:nth-child(1) {
+    width: 50%;
+    background: var(--main-color);
+}
+
+.footer4 div:nth-child(2) {
+    width: 50%;
+    background: #52d2c2;
+}
+
+.footer4 div a {
+    display: block;
+    color: #fff;
+}
+
+/*底部整块*/
+.footer5 {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: var(--main-color);
+    height: 5rem;
+    line-height: 5rem;
+    letter-spacing: 0.2rem;
+    font-size: 1.7rem;
+    color: #fff;
+    text-align: center;
+    border: none;
+}
+
+.footer5 a {
+    color: #fff;
+}
+
+/*底部90%整块*/
+.footer6 {
+    position: fixed;
+    bottom: 1rem;
+    width: 90%;
+    left: 5%;
+    background: var(--main-color);
+    height: 5rem;
+    line-height: 5rem;
+    letter-spacing: 0.2rem;
+    font-size: 1.7rem;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    display: block;
+}
+
+.footer6 a {
+    color: #fff;
+}
+
+/*2底部分类50%*/
+.footer7 {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0rem;
+    height: 2rem;
+    background: #f1f1f2;
+    padding: 1.5rem 0;
+    line-height: 2rem;
+    font-size: 1.7rem;
+    overflow: hidden;
+}
+
+.footer7 div {
+    float: left;
+    width: 49.3%;
+    text-align: center;
+    overflow: hidden;
+    color: var(--main-color);
+}
+
+.footer7 div a {
+    display: block;
+    color: var(--main-color);
+}
+
+.footer7 div:nth-child(1) {
+    border-right: 1px var(--main-color) solid;
+}
+
+/*底部90%整块带背景*/
+.footer10 {
+    position: fixed;
+    bottom: 0rem;
+    width: 100%;
+    left: 0%;
+    background: #fff;
+    height: 6rem;
+    line-height: 6rem;
+    letter-spacing: 0.2rem;
+    font-size: 1.7rem;
+    color: #fff;
+    text-align: center;
+}
+
+.footer10 a {
+    color: #fff;
+}
+
+.footer10 div {
+    width: 90%;
+    margin: 1rem 5%;
+    background: #2ea8e6;
+    color: #fff;
+    height: 4rem;
+    line-height: 4rem;
+    border-radius: 5px;
+}
+
+/*layer上中下 取消确定*/
+
+.font-14 {
+    font-size: 1.4rem;
+}
+
+.font-15 {
+    font-size: 1.5rem;
+}
+
+.font-16 {
+    font-size: 1.6rem;
+}
+
+.color-sh {
+    color: #a5a5a5;
+}
+
+.color-ff {
+    color: #fff;
+}
+
+.color-r {
+    color: var(--main-color);
+}
+
+.bg_f7 {
+    background: #f7f7f7;
+}
+
+.bg_r {
+    background: var(--main-color);
+}
+
+.layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    z-index: 200;
+}
+
+/*2017-10-15 add by lyy*/
+.hidden {
+    display: none
+}

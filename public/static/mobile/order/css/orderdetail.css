@@ -1,0 +1,411 @@
+body{
+  background: #f2f2f2;
+  padding-bottom: 7.5rem;
+}
+
+
+.top-banner{
+  padding:1rem 10%;
+  width: 100%;
+  background: #ff6aa4;
+  position: relative;
+}
+.top-bannera{
+  width: 100%;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  font-size: 1.8rem;
+  color: #fff;
+  overflow: hidden;
+}
+.top-bannera span{
+  margin-left: 4px;
+  font-size: 1.2rem;
+}
+.top-bannerb{
+  width: 100%;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  font-size:1.3rem;
+  color: #fff;
+  overflow: hidden;
+}
+.payed{
+  position: absolute;
+  width: 6rem;
+  height: 6rem;
+  right:10%;
+  top:.5rem;
+}
+
+
+
+.order-addr{
+  background: #fff;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  margin:0 auto;
+  padding:1rem 10%;
+  display: flex;
+}
+.addr{
+  width: 1.5rem;
+  height: 2rem;
+  flex: 0 0 1.1rem;
+  margin-top:1.8rem;
+}
+.toright{
+  position:absolute;
+  right:6%;
+  top:1.9rem;
+  width:1rem;
+  height:1.1rem;
+}
+.addr-box{
+  flex: 1;
+  margin-left: 0.75rem;
+  overflow: hidden;
+}
+.addr-name{
+  width: 100%;
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1.2rem;
+  color:var(--color);
+  overflow: hidden;
+}
+.addr-name span{
+  float: right;
+  font-size: 1.3rem;
+}
+
+.addr-info{
+  width: 100%;
+  line-height: 2rem;
+  font-size:1.2rem;
+  color:#707070;
+  overflow: hidden;
+}
+
+
+
+
+
+.lists{
+  width: 100%;
+  background: #fff;
+}
+.item{
+  width: 100%;
+  padding: 1rem 10%;
+  margin:0 auto .5rem;
+  background: #eeeeee;
+  overflow: hidden;
+  display: flex;
+  border-bottom: 1px solid #f8f8f8;
+}
+.item:last-child{
+  margin:0 auto 0;
+}
+.lt{
+  width:8.6rem;
+  flex: 0 0 8.6rem;
+  height: 8.6rem;
+  margin-right: 4%;
+}
+.rt{
+  flex: 1;
+}
+.lt img{
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+}
+.rt div.list-name{
+  width: 100%;
+  font-size: 1.5rem;
+  height: 4rem;
+  line-height:2rem;
+  color: #4c4c4c;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin-bottom: .5rem;
+}
+.rt div.list-info{
+  font-size: 1.3rem;
+  color: #aaa;
+  line-height: 2rem;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.rt div.list-info span{
+  margin-right: 1.5rem;
+}
+.rt div.list-money{
+  font-size:1.3rem;
+  height: 3rem;
+  line-height:3rem;
+  color: #444444;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.aa{
+  font-size: 1.5rem;
+  color: #ff4a00;
+}
+.aa span{
+
+}
+.bb{
+  float: right;
+  width: 28%;
+  text-align: right;
+  font-size: 1.5rem;
+  color: #4c4c4c;
+}
+
+
+.div-input{
+  width: 100%;
+  padding:0 10%;
+  overflow: hidden;
+  border-bottom: 1px solid #f2f2f2;
+  background: #fff;
+}
+.div-input-left{
+  width:25%;
+  height: 3.5rem;
+  line-height: 3.5rem;
+  font-size: 1.5rem;
+  color: #4c4c4c;
+  overflow: hidden;
+  float: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/* .div-input-right{
+  max-width:65%;
+  min-width:65%;
+  padding:0 5%;
+  margin-top:9rpx;
+  height: 35rpx;
+  line-height: 35rpx;
+  font-size: 1.5rem;
+  color: #4c4c4c;
+  background: #f2f2f2;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  float: left;
+} */
+
+
+.div-input-right{
+  width:65%;
+  padding:.5rem 5%;
+  margin-top:3px;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  color: #4c4c4c;
+  background: #f2f2f2;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  float: left;
+}
+
+
+.order-box{
+  width:100%;
+  background: #fff;
+  padding:0 10%;
+  overflow: hidden;
+}
+.order-left{
+  width:50%;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  font-size: 1.5rem;
+  color: #4c4c4c;
+  overflow: hidden;
+  float: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.order-right{
+  width:40%;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  font-size: 1.3rem;
+  color: #f80000;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  float: right;
+  text-align: right;
+}
+.small-fontSize{
+  font-size: 1.3rem!important;
+}
+.order-gray{
+  color: #707070!important;
+}
+.order-font-left{
+  text-align: left!important;
+}
+
+.ordera-left{
+  width:30%;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  font-size: 1.5rem;
+  color: #4c4c4c;
+  overflow: hidden;
+  float: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.ordera-right{
+  width:70%;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  font-size: 1.3rem;
+  color: #707070;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  float: right;
+}
+
+.order-code{
+  text-decoration: underline;
+}
+.order-copy{
+  margin-left: 1rem;
+  border:1px solid #f2f2f2;
+  display: inline-block;
+  width: 4rem;
+  height: 2.1rem;
+  font-size: 1.3rem;
+  line-height: 2.1rem;
+  text-align: center;
+}
+
+
+
+
+
+.ss{
+  width: 100%;
+  height:5rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  background: #fff;
+  border-top:1px solid #f8f8f8;
+}
+.sub{
+  position: absolute;
+  left: 32%;
+  top:3px;
+  background: #ED4F84;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+  font-size: 1.4rem;
+  color:#fff;
+}
+.s3{
+  float: left;
+  width: 40%;
+  height: 5rem;
+  text-align: center;
+  overflow:hidden;
+  font-size: 1.5rem;
+  color: #fff;
+  line-height: 5rem;
+}
+.s2{
+  float: left;
+  width: 30%;
+  height: 5rem;
+  text-align: center;
+  overflow:hidden;
+  font-size: 1.5rem;
+  color: #fff;
+  line-height: 5rem;
+  background: #8a8a88;
+}
+.s3{
+  float: left;
+  width: 30%;
+  height: 5rem;
+  text-align: center;
+  overflow:hidden;
+  font-size: 1.5rem;
+  color: #fff;
+  line-height: 5rem;
+  background: #ff6da8;
+}
+.btnimg0{
+  display: block;
+  margin:0 auto;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.ke{
+  float: left;
+  width: 20%;
+  height: 5rem;
+  background: #fff;
+}
+
+.keimg{
+  display: block;
+  margin:3px auto;
+  width: 2.5rem;
+  height:2.5rem;
+}
+.kefont{
+  width:100%;
+  height: 2rem;
+  text-align: center;
+  overflow:hidden;
+  font-size: 1.4rem;
+  color: #923ef1;
+  line-height: 2rem;
+}
+
+
+
+
+
+
+.order-code{
+  text-decoration: underline;
+}
+.order-copy{
+  margin-left: 1rem;
+  border:1px solid #f2f2f2;
+  display: inline-block;
+  width:4rem;
+  height: 2.1rem;
+  font-size: 1.3rem;
+  line-height: 2.1rem;
+  text-align: center;
+}
