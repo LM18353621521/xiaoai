@@ -1,4 +1,5 @@
-// pages/exchangeinfo/exchangeinfo.js
+// var WxParse = require('../../wxParse/wxParse.js');
+
 var app = getApp();
 Page({
   data: {
@@ -442,6 +443,9 @@ Page({
     })
   },
   onLoad: function(options) {
+    // var that = this;
+    // var article = '111';
+    // WxParse.wxParse('article', 'html', article, that, 5);
     console.log(options);
     var goods_id = options.id;
     if (typeof(options.share_id) == "undefined") {

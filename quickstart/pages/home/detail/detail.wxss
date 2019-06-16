@@ -76,7 +76,10 @@ rich-text{
   display: block;
   border-bottom: 1px solid #fff;
 }
-
+rich-text .img_w{
+  width: 100%;
+  height: auto;
+}
 
 .titl{
 	width:94%;
@@ -1054,7 +1057,7 @@ button::after {
   z-index: -1;
 }
 .hui-left{
-  width: 78%;
+  width: 75%;
   float: left;
   overflow: hidden;
 }
@@ -1097,14 +1100,14 @@ button::after {
   line-height: 40rpx;
 }
 .hui-right{
-  float: left;
-  width: 14%;
-  overflow: hidden;
-  padding:2rpx 3%;
-  padding-left: 5%;
-  font-size: 43rpx;
-  color: #fff;
-  text-align: center;
+  float:left;
+width:17%;
+overflow:hidden;
+padding:42rpx 3rpx;
+padding-left:7%;
+font-size:29rpx;
+color:#fff;
+text-align:center;
 }
 
 
