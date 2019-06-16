@@ -1,0 +1,52 @@
+body {
+    background: #f1f1f1;
+    margin-bottom: 12rem;
+}
+
+nav {
+    width: 100%;
+    margin-top: 1rem;
+}
+.footer1 input{
+    display: block;
+    color: #fff;
+    background: var(--main-color);
+    border-radius: 2px;
+    text-align: center;
+    overflow: hidden;
+    width:80%;
+    font-size: 1.5rem;
+    height:5rem;
+    border:none;
+    line-height:5rem;
+    margin:3rem auto;
+}
+nav ul {
+    width: 100%;
+}
+
+nav ul li {
+    width: 94%;
+    line-height: 5rem;
+    padding: 0 3%;
+    background: #fff;
+    border-bottom: 1px #f8f8f8 solid;
+    color: #4c4c4c;
+    font-size: 1.6rem;
+}
+
+nav ul li input {
+    line-height: 2rem;
+    color: #4c4c4c;
+    font-size: 1.6rem;
+    border: 0;
+    outline: 0;
+    float: right;
+    margin-top: 1.5rem;
+    text-align: right;
+}
+
+nav ul li > span {
+    float: right;
+    margin-right: 2%;
+}

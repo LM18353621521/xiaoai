@@ -1,0 +1,795 @@
+
+body{
+	background: #fff;
+}
+.wrap{
+	margin:0 auto;
+	width: 100%;
+	min-width: 1200px;
+	overflow: hidden;
+}
+.wrap-content{
+	width: 1200px;
+	height: 940px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.logo-link{
+	width: 1200px;
+	height: 80px;
+	overflow: hidden;
+}
+.logo-link>img{
+	width: 116.px;
+	height: 23px;
+	float: left;
+	margin-top: 20px;
+	margin-left: 17px;
+	overflow: hidden;
+
+}
+.link-one{
+	width: 80px;
+	height: 30px;
+	border: 1px solid #d9d9d9;
+	font-size: 12px;
+	line-height: 29px;
+	text-align: center;
+	color: #7f7f7f;
+	float: right;
+	margin-right: 10px;
+	margin-top: 34px;
+	overflow: hidden;
+}
+.link-two{
+	width: 100px;
+	height: 30px;
+	border: 1px solid #d9d9d9;
+	float: right;
+	margin-right: 60px;
+	margin-top: 34px;
+	overflow: hidden;
+}
+.link-two>img{
+	width: 25px;
+	height: 25px;
+	float: left;
+	margin: 2px 6px 2px 10px;
+}
+.contact-m{
+	font-size: 12px;
+	line-height: 29px;
+	color: #7f7f7f;
+	float: left;
+}
+.se-banner{
+	width: 1200px;
+	height: 170px;
+	float: left;
+	overflow: hidden;
+}
+.se-banner>img{
+	width: 98px;
+	height: 101px;
+	float: left;
+	margin-top: 15px;
+	margin-left: 15px;
+}
+.pay{
+	width: 50px;
+	height: 20px;
+	font-size: 12px;
+	line-height: 20px;
+	color: #7f7f7f;
+	float: left;
+	margin:20px 0 20px 20px;	
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.line{
+	width: 1px;
+	height: 12px;
+	background: #7f7f7f;
+	float: left;
+	margin: 25px 5px 20px 5px;
+}
+.no-shop{
+	max-width: 100px;
+	height: 20px;
+	font-size: 12px;
+	line-height: 20px;
+	color: #7f7f7f;
+	float: left;
+	margin:20px 0 20px 0;	
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.money{
+	width: 25%;
+	height: 50px;
+	font-size: 20px;
+	line-height: 50px;
+	color: #ef1010;
+	font-weight: bold;
+	float: right;
+	margin:20px 0 20px 0;	
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.money>span{
+	font-size: 12px;
+	color: #8f8f8f;
+}
+.se-bottle{
+	width: 1200px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.se-bottle-head{
+	width: 1200px;
+	height: 44px;
+	background: #f3f3f3;
+	border: 1px solid #e6e6e6;
+	overflow: hidden;
+}
+.head-shop{
+	width: 50%;
+	height: 44px;
+	line-height: 44px;
+	font-size: 12px;
+	color: #7f7f7f;
+	float: left;
+	margin-left: 50px;
+}
+.head-order{
+	width: 100px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 12px;
+    color: #7f7f7f;
+    text-align: center;
+    float: left;
+    margin-left: 50px;
+}
+.head-num{
+	width: 50px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 12px;
+    color: #7f7f7f;
+    text-align: center;
+    float: left;
+    margin-left: 78px;
+}
+.head-money{
+	width: 81px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 12px;
+    color: #7f7f7f;
+    text-align: center;
+    float: left;
+    margin-left: 60px;
+}
+.head-ji{
+	width: 78px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 12px;
+    color: #7f7f7f;
+    float: left;
+    margin-left: 19px;
+    text-align: center;
+}
+.table-order{
+	border: 1px solid #f2f2f2;
+}
+.product-list{
+	overflow: hidden;
+}
+.product-list>li{
+	overflow: hidden;
+	border-bottom: 1px solid #e6e6e6;
+}
+.product-list li:last-child{
+	overflow: hidden;
+	border-bottom: none;
+}
+.product-list>li>img{
+	width: 80px;
+	height: 80px;
+	float: left;
+	margin: 25px;
+}
+.list-one{
+	width: 300px;
+	height:60px;
+	line-height: 30px;
+	font-size: 12px;
+	color: #242424;
+	float: left;
+	margin-top: 20px;
+	 overflow:hidden; 
+	text-overflow:ellipsis;
+	display:-webkit-box; 
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:2;
+}
+.list-two{
+	width: 150px;
+	height:60px;
+	float: left;
+	margin: 20px 0 0 80px; 
+	overflow: hidden;
+}
+.list-two>p{
+	height: 30px;
+	line-height: 30px;
+	font-size: 12px;
+	color: #989898;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.list-three{
+	width: 100px;
+	height:60px;
+	line-height: 30px;
+	font-size: 12px;
+	color: #242424;
+	float: left;
+	margin: 20px 0 0 40px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	text-align: center;
+}
+.list-four{
+	width: 50px;
+	height:60px;
+	line-height: 30px;
+	font-size: 12px;
+	color: #242424;
+	float: left;
+	margin: 20px 0 0 80px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	text-align: center;
+}
+.list-four-five{
+	width: 80px;
+	height:60px;
+	line-height: 30px;
+	font-size: 12px;
+	color: #242424;
+	float: left;
+	margin: 20px 0 0 60px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	text-align: center;
+}
+.list-five{
+	width: 80px;
+	height:60px;
+	line-height: 30px;
+	font-size: 12px;
+	font-weight: bold;
+	color: #f41212;
+	float: right;
+	margin: 20px 30px 0 0;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	text-align: center;
+}
+
+
+
+
+.order-xie{
+	overflow: hidden;
+	margin:0 25px;
+}
+.input-order1{
+	width: 430px;
+	float: left;
+	overflow: hidden;
+}
+.order1-liu{
+	width:80px;
+	float: left;
+	height: 32px;
+	line-height: 32px;
+	font-size: 12px;
+	color: #333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.input-order1 input{
+	width: 300px;
+    float: right;
+    height: 30px;
+    border: 1px solid #d9d9d9;
+    font-size: 12px;
+    line-height: 30px;
+    padding: 0 10px;
+    color: #7f7f7f;
+    margin-left: 10px;
+    overflow: hidden;
+}
+.input-order2{
+	float: left;
+	width: 200px;
+	margin-left: 55px;
+}
+.order2-liu{
+	height: 25px;
+    line-height: 25px;
+    font-size: 12px;
+    color: #989898;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.input-order3{
+	width: 80px;
+    height: 60px;
+    line-height: 30px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #f41212;
+    float: right;
+    margin: 20px 0px 0 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+.zong{
+	height: 50px;
+	border-top:1px solid #ededed;
+	overflow: hidden;
+}
+.pay-btn{
+	width: 120px;
+    cursor: pointer;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    color: #fff;
+    background: #b730b0;
+    text-align: center;
+    overflow: hidden;
+    float: right;
+}
+.qian-zong{
+	height: 50px;
+	line-height: 50px;
+	font-size: 12px;
+	color: #666;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+    float: right;
+    margin-right: 20px;
+}
+.qian-zong span{
+	color: #f41212;
+	font-size: 18px; 
+}
+
+
+
+.tianxie-title{
+    height: 60px;
+    line-height: 60px;
+    font-size: 24px;
+    color: #2c1e21;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.tianxie-title span{
+	display: inline-block;
+    width: 8px;
+    height: 22px;
+    background: #b730b0;
+    margin-right: 15px;
+    vertical-align: middle;
+    margin-top: -5px;
+}
+.tianxie-box{
+	margin:0 auto;
+	width: 1178px;
+	overflow: hidden;
+	border:1px solid #f2f2f2;
+	padding:10px;
+}
+.tianxie-tit{
+	overflow: hidden;
+	margin:0 30px 20px;
+}
+.tianxie-info{
+	width: 50%;
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	font-size: 16px;
+	color: #333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.tianxie-add{
+	width: 50%;
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	font-size: 12px;
+	color: var(--theme);
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	text-align: right;
+	cursor: pointer;
+}
+.tianxie-list{
+	overflow: hidden;
+	margin:0 50px;
+}
+.tianxie-list-height{
+	max-height:200px;
+}
+.tianxie-list li{
+	margin-bottom: 10px;
+	overflow: hidden;
+	height: 30px;
+}
+.tianxie-list li.active,.tianxie-list li:hover{
+	background: #fff3f3;
+}
+.tianxie-name{
+	width: 140px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    border: 1px solid #f2f2f2;
+    float: left;
+    background: #fff;
+}
+.tianxie-name.active{
+	border: 1px solid var(--theme);
+}
+.tianxie-addr{
+	margin-left: 30px;	
+	width: 620px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 14px;
+    color: #333;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    float: left;
+}
+.tianxie-btn{
+	float: right;
+	width: 250px;
+	font-size: 0;
+	overflow: hidden;
+	text-align: right;
+	display: none;
+}
+.tianxie-list li:hover .tianxie-btn{
+	display: block;
+}
+.tianxie-item{
+	display: inline-block;
+	margin-right: 20px;
+	height: 28px;
+    line-height: 28px;
+    font-size: 14px;
+    color: var(--theme);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+.folder{
+	margin:0 30px;
+	height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+	color: #6a6a6a;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+.folder img{
+	width: 7px;
+	height: 7px;
+	vertical-align: middle;
+	margin-left: 5px;
+	margin-top:-2px;
+}
+
+.tianxie-list li.active .tianxie-default{
+	display: none;
+}
+
+
+
+
+
+
+.pay-box{
+	overflow: hidden;
+	margin-left: 30px;
+}
+.pay-tit{
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	font-size: 16px;
+	color: #333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.pay-wrap{
+	overflow: hidden;
+	margin-left: 10px;
+	margin-bottom: 20px;
+}
+.pay-item{
+	width: 90px;
+    height: 30px;
+    border: 1px solid #d9d9d9;
+    font-size: 12px;
+    line-height: 30px;
+    text-align: center;
+    color: #333;
+    float: left;
+    margin-right: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.pay-item.active{
+    border: 1px solid var(--theme);
+}
+.tianxie{
+	overflow: hidden;
+}
+
+
+
+/*fuceng*/
+.login-layer-content{
+	padding:0;
+	height: 550px;
+	margin-top:-275px;
+}
+.layer-close{
+	right: 10px;
+	top: 8px;
+}
+.layer-tit{
+	height:30px;
+	line-height:30px;
+	background: #f2f2f2;
+	padding:0 20px;
+	font-size: 14px;
+	color: #333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.input-box{
+	overflow: hidden;
+	margin:20px 55px 0;
+}
+.input-tit{
+	height:25px;
+	line-height:25px;
+	font-size: 12px;
+	color: #333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.input-tit span{
+	color: #f00;
+}
+.input-box input{
+	width: 260px;
+	height:30px;
+	line-height:30px;
+	border:1px solid #f2f2f2;
+	padding:0 10px;
+	font-size: 14px;
+	color: #333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	background-color: #fff;
+}
+.slect-box{
+	overflow: hidden;
+}
+.slect-box select{
+	width: 100px;
+	height:30px;
+	line-height:30px;
+	border:1px solid #f2f2f2;
+	padding:0 10px;
+	font-size: 14px;
+	color: #333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	float: left;
+	margin-right: 10px;
+}
+.layer-btn{
+	width: 120px;
+	height: 35px;
+	line-height: 35px;
+	font-size: 14px;
+	color: #fff;
+	border-radius: 5px;
+	margin-left: 50px;
+	margin-top: 50px;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	background-color: var(--theme);
+	cursor: pointer;
+}
+
+
+
+.tab-content{
+	overflow: hidden;
+	padding:0 40px;
+	max-height: 358px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+.tab-content li{
+	width: 173px;
+	margin-right: 13px;
+	overflow: hidden;
+	float: left;
+	margin-top: 20px;
+}
+.coupon-img{
+	position: relative;
+	width: 100%;
+	height: 89px;
+	overflow: hidden;
+	padding-top:10px;
+}
+.over{
+	background: url(../images/bga.png) no-repeat left top;
+	background-size: 100% 100%;
+}
+.come{
+	background: url(../images/bgb.png) no-repeat left top;
+	background-size: 100% 100%;
+}
+.coupon-money{
+	height: 35px;
+	line-height: 35px;
+	font-size: 28px;
+	color: #ee268a;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.over .coupon-money{
+	color: #9a9a9a;
+}
+.coupon-dateline{
+	height: 20px;
+	line-height: 20px;
+	font-size: 12px;
+	color: #3e3e3e;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.coupon-date{
+	height: 20px;
+	line-height: 20px;
+	font-size: 12px;
+	color: #3e3e3e;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.coupon-use{
+	width: 80px;
+	margin:15px auto;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	border-radius: 8px;
+	cursor: pointer;
+}
+.coupon-useing{
+	color: #fff;
+	background: #b730b0;
+}
+.coupon-used{
+	background: #d3d3d3;
+	color: #9a9a9a;
+}
+
+.layer-btn-wrap{
+	overflow:hidden;
+	text-align: center;
+	margin-top:35px;
+}
+.layer-btn-cancel{
+	width: 80px;
+	height: 30px;
+	color: #333;
+	line-height: 30px;
+	font-size: 14px;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	border:1px solid #eee;
+	cursor: pointer;
+	display: inline-block;
+	margin-right: 20px;
+}
+.layer-btn-sure{
+	display: inline-block;
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	background: var(--theme);
+	color: #fff;
+	cursor: pointer;
+}
+.coupon-layer-content{
+	width: 660px;
+	height: 420px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -350px;
+	margin-top: -230px;
+	background: #fff;
+	overflow: hidden;
+	padding: 30px 40px;
+}

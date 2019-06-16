@@ -1,0 +1,99 @@
+/* CSS Document */
+body {
+    background: #fff;
+    margin-bottom: 0.5rem;
+}
+
+nav {
+    width: 100%;
+    background: #fff;
+}
+
+nav ul {
+    width: 100%;
+    background: #fff;
+}
+
+nav ul li {
+    width: 94%;
+    padding: 1rem 3%;
+    margin: 0 auto;
+    background: #fff;
+    overflow: hidden;
+    border-bottom: 1px #ddd solid;
+}
+
+nav ul li .lt {
+    width: 25%;
+    float: left;
+}
+
+nav ul li .rt {
+    width: 72%;
+    float: right;
+}
+
+nav ul li .lt img {
+    width: 100%;
+    height: 9rem;
+}
+
+nav ul li .rt p {
+    width: 100%;
+    overflow: hidden;
+}
+
+nav ul li .rt p:nth-child(1) {
+    font-size: 1.6rem;
+    color: #414141;
+    margin-top: -0.3rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-overflow: -o-ellipsis-lastline;
+}
+
+nav ul li .rt p:nth-child(2) {
+    font-size: 1.4rem;
+    color: #999999;
+    margin-top: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-overflow: -o-ellipsis-lastline;
+}
+
+nav ul li .rt p:nth-child(3) {
+    font-size: 1.3rem;
+    text-align: right;
+    color: #999999;
+    margin-top: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-overflow: -o-ellipsis-lastline;
+}
+
+nav ul li .rt p span {
+    display: block;
+    width: 50%;
+    color: var(--main-color);
+    font-size: 1.4rem;
+    float: left;
+    margin-top: 0.5rem;
+}
+
+nav ul li .rt p span:last-child {
+    text-align: right;
+}
+
+nav ul li .rt p span a {
+    color:var(--main-color);
+}
+
+nav ul li .rt p span img {
+    height: 2rem;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+    margin-top: -0.5rem;
+}

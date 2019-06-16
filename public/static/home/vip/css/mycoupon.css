@@ -1,0 +1,191 @@
+body {
+	background: #f8f9fb;
+	padding-bottom: 45px;
+}
+
+.wrap {
+	margin: 0 auto;
+	width: 100%;
+	min-width: 1200px;
+	overflow: hidden;
+}
+
+.volume-wrapper {
+	margin: 0 auto;
+	width: 100%;
+	min-width: 1200px;
+	position: relative;
+	border-top: solid;
+	border-width: 1px;
+	border-top-color: #a15fbc;
+}
+
+.volume-wrapper-content {
+	margin: 0 auto;
+	width: 1200px;
+	margin-top: 20px;
+}
+
+.volume-content-top {
+	margin: 0 auto;
+	padding:15px 40px 0;
+	box-shadow: 2px 2px 10px #909090;
+}
+
+.user-info {
+	height: 70px;
+	line-height: 70px;
+	font-size: 14px;
+	color: #333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.user-info img{
+	width: 70px;
+	height: 70px;
+	vertical-align: middle;
+	margin-right: 10px;
+	margin-top:-2px;
+}
+
+.navbar-nav{
+	overflow: hidden;
+	margin-top: 20px;
+}
+.nav-item{
+	width: 90px;
+	float: left;
+	height: 60px;
+	line-height: 60px;
+	font-size: 16px;
+	text-align: center;
+	color: #2e2e2e;
+	margin-right: 20px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	border-bottom: 3px solid #fff;
+	cursor: pointer;
+}
+.nav-item.active{
+	border-bottom: 3px solid var(--theme);
+	color: var(--theme);
+}
+.volume-content-bottom{
+	margin: 30px auto;
+	border: 1px solid #ddd;
+}
+
+.nav-content{
+	padding:20px 40px 0;
+	/*overflow: hidden;*/
+	border-bottom: 2px solid #ddd;
+}
+.navs-item{
+	width: 90px;
+	float: left;
+	height: 40px;
+	line-height: 40px;
+	font-size: 16px;
+	text-align: center;
+	color: #6e6e6e;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	cursor: pointer;
+	position: relative;
+	bottom: -2px;
+}
+.navs-item.active{
+	border: 2px solid #ddd;
+	border-bottom: none;
+	background: #f8f9fb;
+}
+.navs-item:nth-child(2) span{
+	color: var(--theme);
+}
+
+.tab-content{
+	overflow: hidden;
+	padding:0 40px;
+	padding: 10px 0;
+	min-height: 100px;
+}
+.tab-content li{
+	width: 212px;
+	margin-right: 52px;
+	overflow: hidden;
+	float: left;
+	margin-top: 20px;
+}
+.coupon-img{
+	position: relative;
+	width: 212px;
+	height: 89px;
+	overflow: hidden;
+	padding-top:10px;
+}
+.over{
+	background: url(../images/bga.png) no-repeat left top;
+	background-size: 212px 89px;
+}
+.come{
+	background: url(../images/bgb.png) no-repeat left top;
+	background-size: 212px 89px;
+}
+.coupon-money{
+	height: 35px;
+	line-height: 35px;
+	font-size: 28px;
+	color: #ee268a;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.over .coupon-money{
+	color: #9a9a9a;
+}
+.coupon-dateline{
+	height: 20px;
+	line-height: 20px;
+	font-size: 12px;
+	color: #3e3e3e;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.coupon-date{
+	height: 20px;
+	line-height: 20px;
+	font-size: 12px;
+	color: #3e3e3e;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.coupon-use{
+	width: 80px;
+	margin:15px auto;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	border-radius: 8px;
+	cursor: pointer;
+}
+.coupon-useing{
+	color: #fff;
+	background: #b730b0;
+}
+.coupon-used{
+	background: #d3d3d3;
+	color: #9a9a9a;
+}
+

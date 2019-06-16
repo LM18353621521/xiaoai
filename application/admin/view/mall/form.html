@@ -144,6 +144,9 @@
     <td><input type="checkbox" name="id" value="{$vo.id}"></td>
     <td><a href="#">{$vo.id}</a></td>
     <td>
+        <input name="sort" data-id="{$vo.id}" type="text" size="1" class="form-control col-lg-1 data-sort" value="{$vo.sort}">
+    </td>
+    <td>
         <a  data-toggle="modal" href="#layer_image" data-image="{$vo.coverimg}">&nbsp;
             <img width="60" height="60" src="{$vo.coverimg}" onerror=src="__STATIC__/common/images/nopic.png" alt="">
         </a>

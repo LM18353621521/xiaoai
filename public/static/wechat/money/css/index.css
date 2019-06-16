@@ -1,0 +1,104 @@
+body {
+    background: #fff;
+    margin-bottom: 0.5rem;
+}
+
+header {
+    position: relative;
+    width: 100%;
+    padding: 1.5rem 0;
+    background: var(--main-color);
+    overflow: hidden;
+}
+
+header .top {
+    width: 35%;
+    margin: 0 auto;
+    height: 9rem;
+    text-align: center;
+    color: #fff;
+}
+
+header .top p:nth-child(1) {
+    width: 25%;
+    margin: 0 auto;
+    font-size: 1.4rem;
+    display: block;
+    padding: 0.3rem 1rem;
+}
+
+header .top p:nth-child(2) {
+    margin-top: 13%;
+    font-size: 3rem;
+    display: block;
+}
+
+header .rule {
+    position: absolute;
+    top: 1rem;
+    right: 0.8rem;
+    color: var(--main-color);
+    background: #fff;
+    border-radius: 2px;
+    text-align: center;
+    overflow: hidden;
+    width: 20%;
+    font-size: 1.5rem;
+    height: 2.3rem;
+    line-height: 2.3rem;
+}
+
+nav {
+    width: 100%;
+    padding-top: 1.5rem;
+}
+
+.navmid {
+    width: 100%;
+    margin: 0 auto;
+    font-size: 1.6rem;
+    text-align: center;
+    color: #ccc;
+}
+
+.navmid span {
+    letter-spacing: -0.1rem;
+}
+
+.navbn {
+    width: 90%;
+    margin: 0.5rem auto 0;
+    color: #4c4c4c;
+    font-size: 1.6rem;
+}
+
+.bnlist {
+    width: 100%;
+    padding: 1rem 0;
+    overflow: hidden;
+}
+
+.bnlist span {
+    display: block;
+    float: left;
+    color: #333333;
+}
+
+.bnlist span:nth-child(1) {
+    color: #808080;
+    width: 50%;
+}
+
+.bnlist span:nth-child(2) {
+    width: 22%;
+}
+
+.bnlist span:nth-child(3) {
+    width: 28%;
+    float: right;
+    text-align: right;
+}
+
+a {
+    display: block;
+}

@@ -1,0 +1,206 @@
+body {
+	background: #fff;
+	padding-bottom: 45px;
+}
+
+.wrap {
+	margin: 0 auto;
+	width: 100%;
+	min-width: 1200px;
+	overflow: hidden;
+}
+
+
+
+/*liebiao*/
+.discuss-list{
+	margin:25px auto 0;
+	width: 1200px;
+	overflow: hidden;
+	border-bottom:1px solid #f2f2f2;
+	padding-bottom: 20px;
+	display: flex;
+}
+.discuss-left{
+	width:200px;
+	padding:0 35px;
+	flex: 0 0 200px;
+	border-right:1px solid #f2f2f2;
+	overflow: hidden;
+	display: block;
+}
+.discuss-left>img{
+	width: 100px;
+	height: 100px;
+	display: block;
+	margin:0 auto 10px;
+}
+.discuss-box{
+}
+.discuss-info{	
+	line-height: 20px;
+	font-size: 12px;
+	color: #737373;
+	text-align: center;	
+	overflow:hidden; 
+	text-overflow:ellipsis;
+	display:-webkit-box; 
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:3;
+}
+.discuss-money{
+	height: 30px;
+	line-height: 30px;
+	font-size: 12px;
+	color: #333;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.discuss-detail{	
+	height: 20px;
+	line-height: 20px;
+	font-size: 12px;
+	color: #999;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.discuss-right{
+	flex: 1;
+	overflow: hidden;
+	margin-left: 35px;
+}
+.discuss-right-box{
+	overflow: hidden;
+	display: flex;
+}
+.discuss-tit{
+	flex: 0 0 90px;
+	width: 90px;
+	height: 20px;
+	line-height: 20px;
+	font-size: 12px;
+	color: #737373;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.discuss-wrap{
+	overflow: hidden;
+	flex: 1;
+	margin-bottom: 20px;
+	line-height: 20px;
+	font-size: 12px;
+	color: var(--theme);
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.discuss-wrap>img{
+	width: 15px;
+	height: 15px;
+	margin-right: 5px;
+	vertical-align: middle;
+	cursor: pointer;
+}
+.discuss-wrap>textarea{
+	height: 100px;
+	width: 644px;
+	resize: none;
+	padding:6px;	
+	line-height: 20px;
+	font-size: 12px;
+	color:#333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	border:1px solid #f2f2f2;
+}
+.upload-img{
+	width: 700px;
+	overflow: hidden;
+	margin-top:10px;
+}
+
+
+.discuss-btn{
+	width: 120px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 5px;
+    margin:0 auto;
+    margin-top: 50px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background-color: var(--theme);
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+/*图片上传*/
+.add-img{
+	width: 60px;
+	height: 60px;
+	float: left;
+	overflow: hidden;
+	position: relative;
+	cursor: pointer;
+}
+.add-bg{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+.add-img input{
+	width: 100%;
+	height: 100%;
+	background: none;
+	border:none;
+	opacity: 0;
+}
+
+
+
+.file-item{
+	width: 60px;
+	height: 60px;
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	position: relative;
+}
+.img-pic{
+	width: 100%;
+	height: 100%;
+}
+.file-del{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: rgba(0,0,0,.5);
+	height: 20px;
+	line-height: 20px;
+	font-size: 12px;
+	color: #fff;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	cursor: pointer;
+}

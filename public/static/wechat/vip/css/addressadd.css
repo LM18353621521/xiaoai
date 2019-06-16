@@ -1,0 +1,139 @@
+/* CSS Document */
+body{ background:#e6e6e6; margin-bottom:6rem;}
+.list{
+	width: 100%;
+	margin: 0 auto;
+	font-size: 1.6rem;
+	background: #fff;
+}	
+.list ul{
+	width: 100%;
+}	
+.list ul li{
+	position: relative;
+	width: 94%;
+    padding: 0 3%;
+	margin:0 auto;
+    color: #333;
+	line-height: 5rem;
+    overflow: hidden;
+	border-bottom: 1px #ddd solid;
+}	
+.list ul li:last-child{
+	border: 0;
+}
+.list ul li input{
+	width: 75%;
+    float: right;
+	font-size: 1.6rem;
+	height: 2rem;
+	line-height: 2rem;
+	padding: 1.6rem 5% 1.4rem 0;
+	border: 0;
+	outline: 0;
+	color: #4c4c4c;
+}
+.list ul li span{
+    display: block;
+    float: left;
+    width: 20%;
+}
+.list ul li img{
+	position: absolute;
+	height: 2rem;
+	top:1.5rem;
+	right: 0rem;
+}
+.select-area{
+	float: left;
+  	width: 80%;
+	height:5rem;
+	line-height:5rem;
+	font-size:1.6rem;
+	color:#4c4c4c;
+	over-flow:hidden;
+}
+.title{
+	width: 90%;
+	margin:1rem auto 0;
+	font-size: 1.8rem;
+	color: #4c4c4c;
+}
+.list ul li textarea{
+	width: 100%;
+	border: 0;
+	outline: 0;
+	margin:0.5rem 0;
+	font-size: 1.6rem;
+	color: #4c4c4c;
+}
+.title span{
+	font-size: 1.2rem;
+	color: #999;
+}
+
+nav{
+    position: relative;
+    top: 0;
+    width: 100%;
+    margin: 0rem auto;
+    font-size: 1.6rem;
+    background: #fff;
+    overflow: auto;
+}	
+nav ul{
+	width: 100%;
+}	
+nav ul li{
+
+	width: 94%;
+	margin:0 auto;
+	line-height: 5rem;
+	border-bottom: 1px #ddd solid;
+}
+nav ul li:last-child{border:0;}
+
+nav ul li img{
+	float:right;
+	height: 2rem;
+	margin-top:1.5rem;
+	margin-right: 0rem;
+}  
+
+.mo{
+    width: 100%;
+    margin:0.5rem auto 0;
+    height: 5rem;
+    background: #fff;
+    line-height: 5rem;
+    font-size: 1.6rem;
+    color: #666;
+}   
+p{
+        margin:0;
+        padding:0}
+.bg{
+    display: block;
+    height: 2.5rem;
+    width: 2.5rem;
+    float: left;
+    background-image:url(../images/no.png);
+    background-size: 100% 100%;}
+.bg1    {  background-image:url(../images/yes.png);}
+.add{
+    float: left;
+    overflow:hidden;
+     height: 2.5rem;
+    line-height:2.5rem;
+    margin:1.25rem 2%;}
+.add input{display:block;
+    opacity:0;} 
+.addrt{
+    width:75%;
+    float:left;
+    display:block;
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    }
+

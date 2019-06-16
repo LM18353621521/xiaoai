@@ -1,0 +1,661 @@
+body{
+    background: #fff2f7;
+}
+
+
+.toptit{
+   width:100%;
+   overflow: hidden;
+   position: relative;
+   padding-top:2rem;
+  height: 14.5rem;
+  margin-bottom: 2.5rem;
+}
+.vip-bg{
+  position: absolute;
+  left: 0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.head{
+    width: 6rem;
+    height: 6rem;
+    border:1px solid #fff;
+    border-radius: 50%;
+    display: block;
+    margin:0 auto;
+}
+.change-account{
+  position:absolute;
+  right:18%;
+  top:3.6rem;
+  width:20%;
+  height:2.5rem;
+  line-height:2.5rem;
+  font-size:1.3rem;
+  color:#fff;
+  overflow:hidden;
+  text-align:center;
+  border-radius:3px;
+  background:#9933ff;
+  box-shadow:2px 2px 8px #000;
+}
+.name{
+  width:100%;
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1.5rem;
+  color: #fff;
+  text-align:center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bind-text{
+  width: 100%;
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1.3rem;
+  color: #fff;
+  overflow: hidden;
+  text-align: center;
+}
+.bind-text span{
+  padding:0 .5rem;
+  height:3rem;
+  line-height:3rem;
+  font-size:1.3rem;
+  color:#fff;
+  overflow:hidden;
+  text-align:center;
+  border-radius:3px;
+  background: linear-gradient(to right,#ff6fa7,#ff8255);
+  margin-left: 5px;
+}
+
+
+
+
+
+
+.order-leftright {
+  width: 96%;
+  padding:0 2%;
+  margin: 0 auto;
+  height: 3rem;
+  overflow: hidden;
+  border-bottom: 1px solid var(--pinkcolor);
+}
+
+.order-left {
+  width: 50%;
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1.5rem;
+  color: #4c4c4c;
+  overflow: hidden;
+  float: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.order-right {
+  width: 50%;
+  width: 50%;
+  height: 3rem;
+  line-height: 3rem;
+  font-size:1.3rem;
+  color: #4c4c4c;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  float: left;
+  text-align: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.tabbox{
+   width:100%;
+   overflow: hidden;
+   margin-top:1.25rem;
+}
+.tab{
+   width:33.3%;
+   float: left;
+   overflow: hidden;
+}
+.taba{
+    width:2.5rem;
+    height:2.5rem;
+    margin:0 auto;
+    display: block;
+}
+.tabb{
+    width:100%;
+    height:2.5rem;
+    line-height:2.5rem;
+    font-size:1.3rem;
+    overflow:hidden;
+    text-overflow:elliplis;
+    white-space:no-wrap;
+    color:#CEBB93;
+    text-align: center;
+}
+
+
+
+
+.toptita{
+   width:88%;
+   padding:0 3% ;
+   overflow: hidden;
+   background: #fff;
+   border-radius: 6px;
+   margin:0 auto 2rem;
+  box-shadow:1px 1px 8px #333;
+}
+.atabbox{
+   width:100%;
+   overflow: hidden;
+   margin-top:2.4rem;
+}
+.atab{
+   width:33.3%;
+   float: left;
+   overflow: hidden;
+}
+.ataba{
+    width:100%;
+    height:2rem;
+    line-height:2rem;
+    font-size:1.6rem;
+    overflow:hidden;
+    text-overflow:elliplis;
+    white-space:no-wrap;
+    font-weight: bold;
+    color:#4c4c4c;
+    text-align: center;
+}
+.atabb{
+    width:100%;
+    height:3rem;
+    line-height:3rem;
+    font-size:1.3rem;
+    overflow:hidden;
+    text-overflow:elliplis;
+    white-space:no-wrap;
+    color:#aaa;
+    text-align: center;
+}
+
+.sub{
+  position:absolute;
+  right:26%;
+  top:0;
+  width:1.6rem;
+  height:1.6rem;
+  border-radius:50%;
+  background:#fe677f;
+  text-align:center;
+  line-height:1.6rem;
+  font-size:1.3rem;
+  color:#fff;
+}
+
+.tabd{
+   width:20%;
+   float: left;
+   overflow: hidden;
+   position: relative;
+}
+.tabad{
+    width:3rem;
+    height:3rem;
+    margin:0 auto;
+    display: block;
+}
+.tabbd{
+    width:100%;
+    height:3.5rem;
+    line-height:3.5rem;
+    font-size:1.3rem;
+    overflow:hidden;
+    text-overflow:elliplis;
+    white-space:no-wrap;
+    color:#282828;
+    text-align: center;
+}
+
+
+
+.member {
+  width: 50%;
+  padding: 0 3%;
+  margin:1.5rem auto;
+  height:4rem;
+  line-height: 4rem;
+  color: #BEA46D;
+  font-family: "黑体";
+  font-size: 1.5rem;
+  overflow: hidden;
+  text-align: center;
+    border-radius:25px;
+   border:1px solid  #CEBB93; 
+}
+.member img {
+  height: 3rem;
+  width: 3rem;
+  margin-top: -4%;
+  vertical-align: middle;
+  margin-right: 2%;
+}
+
+
+
+.vip-leftright{
+    width:94%;
+  padding:0 3%;
+  margin:0 auto;
+    height: 3.5rem;
+  background: #fff;
+    overflow: hidden;
+  border-bottom: 1px solid #eaeaea;
+}
+button.vip-leftright{
+  padding:0;
+}
+.vip-left{
+    width: 50%;
+    height: 3.5rem;
+    line-height: 3.5rem;
+    font-size: 1.5rem;
+    color: #4c4c4c;
+    overflow: hidden;
+    float: left;
+  white-space: nowrap;
+    text-overflow: ellipsis;
+  text-align: left;
+}
+.vip-right{
+    width: 50%;
+    height:3.5rem;
+    line-height: 3.5rem;
+    font-size: 1.5rem;
+    color: #aaa;
+    overflow: hidden;
+  white-space: nowrap;
+    text-overflow: ellipsis;
+    float: left;
+    text-align: right;
+}
+.vip-left img{
+    height:2.5rem; 
+    width:2.5rem;
+    margin-top: -4%;
+    vertical-align: middle;
+    margin-right: 4%;
+}
+.vip-right img{
+    width:0.7rem;
+    margin-top: -3%;
+    vertical-align: middle;
+    /* margin-right: 4%; */
+}
+button{
+  margin:0;
+  padding:0;
+  width:100%;
+}
+
+
+
+.logo{
+  width: 100%;
+  margin:2rem auto 0;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  font-size: 1.7rem;
+  color: #4c4c4c;
+  overflow: hidden;
+  text-align: center;
+}
+
+
+.logos{
+  width: 100%;
+  margin:0 auto 3.5rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  font-size: 1.6rem;
+  color: var(--pinkcolor);
+  overflow: hidden;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.baibga{
+   width:90%;
+   position: fixed;
+   left:5%;
+   top: 15%;
+   background: #fff;
+   height:60%;
+   overflow: hidden;
+   z-index: 20000;
+   border-radius: 5px;
+}
+.login-title{
+  background: #ff6ea9;
+  height: 3.5rem;
+  line-height: 3.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #fff;
+  position: relative;
+}
+.login-title img{
+  position: absolute;
+  right: 3%;
+  top:1.25rem;
+  width: 1.5rem;
+  height: 1.25rem;
+}
+
+
+.box{
+   width:100%;
+   margin:0 auto;
+   overflow: hidden;
+   border-bottom: 1px solid #f8f8f8;
+}
+.boxa{
+   width: 30%;
+   margin:0 10%;
+   height: 3.5rem;
+   line-height: 3.5rem;
+   color: #4c4c4c;
+   font-size: 1.4rem;
+   text-align: center;
+   overflow: hidden;
+   float: left;
+}
+.boxsel{
+   border-bottom: 2px solid #ff6ea9;
+}
+
+
+
+
+
+
+
+.login-leftright {
+  width: 80%;
+  margin: 0 auto;
+  height: 5rem;
+  overflow: hidden;
+  border-bottom: 1px solid #f8f8f8;
+  position: relative;
+}
+
+.login-left {
+  width: 20%;
+  height: 5rem;
+  line-height: 5rem;
+  font-size: 1.4rem;
+  color: #4c4c4c;
+  overflow: hidden;
+  float: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.login-right {
+  width: 80%;
+  width: 80%;
+  height: 5rem;
+  line-height: 5rem;
+  font-size: 1.4rem;
+  color: #4c4c4c;
+  overflow: hidden;
+  border:none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  float: left;
+}
+.eye{
+  position: absolute;
+  right: 0;
+  top:1.4rem;
+  width: 2.4rem;
+  height: 1.7rem;
+}
+
+
+
+
+
+
+.set-leftright {
+  width: 80%;
+  margin: 0 auto;
+  height: 5rem;
+  overflow: hidden;
+}
+
+.set-left {
+  width: 50%;
+  height: 5rem;
+  line-height: 5rem;
+  font-size: 1.5rem;
+  color: #4c4c4c;
+  overflow: hidden;
+  float: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.set-right {
+  width: 50%;
+  height: 5rem;
+  line-height: 5rem;
+  font-size: 1.5rem;
+  color: #4c4c4c;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  float: left;
+  text-align: right;
+}
+
+.set-left img {
+  width: 1rem;
+  height: 1.5rem;
+  margin-top: -1%;
+  vertical-align: middle;
+  margin-right: 3%;
+}
+
+.set-right img {
+  width:.8rem;
+  height: 1.5rem;
+  margin-top: -2%;
+  vertical-align: middle;
+  margin-right: 3%;
+}
+
+
+.my-flex{
+  width: 90%;
+  display: flex;
+  overflow: hidden;
+  height: 2rem;
+  margin:.5rem auto 2rem;
+}
+.my-flex-line{
+  flex: 1;
+  height: 1px;
+  background: #f8f8f8;
+  margin-top:1rem;
+}
+.my-flex-mid{
+  font-size: 1.3rem;
+  color: #999;
+  text-align: center;
+  width: 25%;
+  line-height: 2rem;
+  height: 2rem;
+}
+
+.my-qq{
+  display: block;
+  margin:0 auto;
+  width:1.75rem ;
+  height:2.1rem ;
+  padding-bottom: 2.5rem;
+}
+
+
+
+
+.btnbtn{
+   overflow: hidden;
+   background: #eeeeee;
+   width:50%;
+   margin:0 auto;
+    height:3.5rem;
+   line-height: 3.5rem;
+   font-size: 1.5rem;
+   text-align: center;
+   color: #999;
+   border-radius: 5px;
+}
+.btnbtna{
+   overflow: hidden;
+   background: var(--pinkcolor);
+   width:50%;
+   margin:2rem auto 0;
+    height:3.5rem;
+   line-height: 3.5rem;
+   font-size: 1.5rem;
+   text-align: center;
+   color: #fff;
+   border-radius: 1px;
+}
+
+.phone-bg{
+  background: #f8f8f8;
+  padding-top:.5rem;
+  padding-bottom:.5rem;
+}
+.form1{
+    display: none;
+}
+.form1:first-child{
+    display: block;
+}
+.form1 input,.form1 picker{
+   width:74%;
+   width:74%;
+   height:5rem;
+   line-height: 5rem;
+   font-size: 1.5rem;
+   color: #4c4c4c;
+   padding:0 3%;
+   border-radius: 3px;
+   position: relative;
+   overflow: hidden;
+}
+.box1{
+   width: 80%;
+   width: 80%;
+   margin:0  auto;
+   height:4rem;
+   line-height: 4rem;
+   font-size: 1.5rem;
+   color: #4c4c4c;
+   border:1px solid #f2f2f2;
+   border-radius: 3px;
+   margin-bottom: 0.75rem;
+   position: relative;
+   overflow: hidden;
+}
+.box1 input{
+   width:100%;
+   width:100%;
+   display: block;
+   height:4rem;
+   line-height: 4rem;
+   font-size: 1.5rem;
+   color: #4c4c4c;
+   padding:0 0;
+   padding-left:3%;
+   border-radius: 5px;
+   background:#fff;
+   border: none;
+}
+.box1 input.code-yan{
+   width: 62%;
+   width: 62%;
+   float: left;
+    display: block;
+   height:4rem;
+   line-height: 4rem;
+   font-size: 1.5rem;
+   color: #4c4c4c;
+   padding:0 0;
+   padding-left:3%;
+   border-radius: 5px;
+   background:#fff;
+}
+.box1 .get{
+    width: 32%;
+    margin-left: 3%;
+    float: left;
+   height:3.8rem;
+   line-height: 3.8rem;
+   font-size: 1.5rem;
+   box-sizing: border-box;
+   text-align: center;
+   color: var(--pinkcolor);
+   background: #fff;
+   border:1px solid var(--pinkcolor);
+   box-sizing: border-box;
+}
+
+
+.baibga{
+    height: auto;
+}

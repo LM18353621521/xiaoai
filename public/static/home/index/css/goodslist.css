@@ -1,0 +1,257 @@
+body {
+    background: #f8f9fb;
+    padding-bottom: 45px;
+}
+
+.wrap {
+    margin: 0 auto;
+    width: 100%;
+    min-width: 1200px;
+    overflow: hidden;
+}
+
+.classify-wrapper {
+    margin: 10px auto;
+    width: 1200px;
+    overflow: hidden;
+}
+
+.crumds {
+    margin: 10px auto;
+    width: 1200px;
+    overflow: hidden;
+}
+
+.crumds a {
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    color: #666;
+}
+
+.crumds a.current {
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    color: var(--theme);
+    display: inline-block;
+    background: #fff;
+    border: 1px solid var(--theme);
+    padding: 0 10px;
+}
+
+.crumds a.current img {
+    margin-left: 5px;
+    margin-top: -2px;
+}
+
+.crumds span {
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    margin: 0 10px;
+}
+
+/*搜索*/
+.search-list-box {
+    width: 1200px;
+    overflow: hidden;
+    margin: 20px auto 20px;
+    background: #fff;
+}
+
+.search-list-box li {
+    margin: 0 20px;
+    overflow: hidden;
+    border-bottom: 1px dashed var(--borderColor);
+    display: flex;
+}
+
+.search-list-box li:last-child {
+    border-bottom: none;
+}
+
+.search-tit {
+    flex: 0 0 90px;
+    width: 90px;
+    float: left;
+    height: 60px;
+    line-height: 60px;
+    font-size: 14px;
+    color: #909090;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.search-list {
+    flex: 1;
+    overflow: hidden;
+    font-size: 0;
+    height: 60px;
+}
+
+.search-list p {
+    height: 60px;
+    line-height: 60px;
+    font-size: 14px;
+    color: #333;
+    margin-right: 50px;
+    float: left;
+    cursor: pointer;
+}
+
+.search-list p.active {
+    color: var(--theme);
+}
+
+.search-list p:hover {
+    color: var(--theme);
+}
+
+/*列表*/
+.product-box {
+    overflow: hidden;
+    background: #fff;
+    padding: 10px 10px;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.product-condition {
+    width: 352px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    font-size: 0;
+}
+
+.product-condition li {
+    display: inline-block;
+    padding: 0 10px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    border: 1px solid #eee;
+}
+
+.product-condition li.active {
+    background: var(--theme);
+    color: #fff;
+    border: 1px solid var(--theme);
+}
+
+.product-condition li:nth-child(even) {
+    border-left: none;
+}
+
+.product-condition li:nth-child(old) {
+    border-right: none;
+}
+
+.product-list {
+    overflow: hidden;
+    background: #fff;
+}
+
+.product-list li {
+    float: left;
+    margin-right: 13px;
+    margin-bottom: 13px;
+    width: 284px;
+    overflow: hidden;
+    padding: 5px;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+}
+
+.product-list li:hover {
+    border: 1px solid #eee;
+}
+
+.product-list li img {
+    width: 100%;
+    height: 290px;
+    margin-bottom: 10px;
+}
+
+.price {
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    color: var(--theme);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.name {
+    height: 40px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #2e2e2e;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    margin-bottom: 10px;
+}
+
+.info {
+    overflow: hidden;
+}
+
+.salenum {
+    float: left;
+    max-width: 48%;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    color: #6f6f6f;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-right: 2%;
+}
+
+.info span {
+    color: #215c86;
+}
+
+.discuss {
+    float: left;
+    max-width: 48%;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    color: #333;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-right: 2%;
+}
+
+.new-list {
+    width: 253px;
+    height: 115px;
+    line-height: 115px;
+    font-size: 24px;
+    color: #2c1e21;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.new-list span {
+    display: inline-block;
+    width: 8px;
+    height: 22px;
+    background: #b730b0;
+    margin-right: 15px;
+    vertical-align: middle;
+    margin-top: -5px;
+}
