@@ -1044,71 +1044,133 @@ button::after {
     margin-top: 1.5rem;
 }
 
+/*.hui-box {*/
+    /*width: 80%;*/
+    /*padding: .5rem 3% 0;*/
+    /*margin: 0 auto;*/
+    /*overflow: hidden;*/
+    /*position: relative;*/
+    /*height: 7.5rem;*/
+/*}*/
+
+/*.huibg {*/
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*top: 0;*/
+    /*width: 100%;*/
+    /*z-index: -1;*/
+/*}*/
+
+/*.hui-left {*/
+    /*width: 78%;*/
+    /*float: left;*/
+    /*overflow: hidden;*/
+/*}*/
+
+/*.hui-left-one {*/
+    /*height: 3.5rem;*/
+    /*overflow: hidden;*/
+    /*padding: 0 3%;*/
+/*}*/
+
+/*.hui-types {*/
+    /*float: left;*/
+    /*width: 20%;*/
+    /*overflow: hidden;*/
+    /*font-size: 1.1rem;*/
+    /*color: #aaa;*/
+    /*line-height: 2.5rem;*/
+/*}*/
+
+/*.hui-money {*/
+    /*float: left;*/
+    /*width: 48%;*/
+    /*overflow: hidden;*/
+    /*text-align: center;*/
+    /*font-size: 3.6rem;*/
+    /*color: #999;*/
+    /*line-height: 3.6rem;*/
+/*}*/
+
+/*.hui-allmoney {*/
+    /*float: left;*/
+    /*width: 35%;*/
+    /*overflow: hidden;*/
+    /*font-size: 1.6rem;*/
+    /*color: #3e3e3e;*/
+    /*line-height: 11rem;*/
+/*}*/
+
+/*.hui-left-two {*/
+    /*text-align: right;*/
+    /*padding: 0 3%;*/
+    /*overflow: hidden;*/
+    /*font-size: 1rem;*/
+    /*color: #aaa;*/
+    /*line-height: 2rem;*/
+    /*margin-top: -0.3rem;*/
+/*}*/
+
 .hui-box {
     width: 80%;
-    padding: .5rem 3% 0;
+    padding: 0rem 3% 0;
     margin: 0 auto;
     overflow: hidden;
     position: relative;
     height: 7.5rem;
 }
-
 .huibg {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    z-index: -1;
+position: absolute;
+left: 0;
+top: 0;
+width: 100%;
+z-index: -1;
 }
-
 .hui-left {
-    width: 78%;
+    width: 80%;
     float: left;
     overflow: hidden;
 }
-
 .hui-left-one {
     height: 3.5rem;
     overflow: hidden;
-    padding: 0 3%;
+    /* padding: 0 3%; */
 }
-
 .hui-types {
     float: left;
     width: 20%;
     overflow: hidden;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #aaa;
-    line-height: 2.5rem;
+    line-height: 3rem;
 }
-
 .hui-money {
     float: left;
-    width: 48%;
+    width: 40%;
     overflow: hidden;
     text-align: center;
-    font-size: 3.6rem;
+    font-size: 2.5rem;
     color: #999;
     line-height: 3.6rem;
 }
-
 .hui-allmoney {
     float: left;
-    width: 35%;
-    overflow: hidden;
-    font-size: 1.6rem;
-    color: #3e3e3e;
-    line-height: 11rem;
-}
-
-.hui-left-two {
-    text-align: right;
-    padding: 0 3%;
+    width: 40%;
     overflow: hidden;
     font-size: 1rem;
+    color: #3e3e3e;
+    line-height: 3rem;
+}
+.hui-left-two {
+    text-align: right;
+    /* padding: 0 3%; */
+    overflow: hidden;
+    width: 100%;
+    font-size: 0.8rem;
     color: #aaa;
     line-height: 2rem;
     margin-top: -0.3rem;
+    margin-left: -0.3rem;
 }
 
 .hui-right {

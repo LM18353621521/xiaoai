@@ -3,7 +3,7 @@
 {block name="body"}
 <script language="javascript">
     $(document).ready(function () {
-        UM.getEditor('editor');
+        UM.getEditor('editor',{ initialFrameWidth: null , autoHeightEnabled: false});
         load_one_img_init();
         //加载二级分类
         var load_next_level = function(){
@@ -289,7 +289,7 @@
                                             <div class="form-group">
                                                 <label class="control-label col-lg-2">详情</label>
                                                 <div class="col-lg-10">
-                                                    <script type="text/plain" id="editor" name="description" style="width:1000px;height:240px;">{$data.description}</script>
+                                                    <script type="text/plain" id="editor" name="description" style="width:1000px;max-height:2240px;">{$data.description}</script>
                                                 </div>
                                             </div>
 
