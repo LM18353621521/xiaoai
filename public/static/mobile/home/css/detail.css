@@ -376,10 +376,12 @@ body {
     overflow: hidden;
     float: left;
 }
-.leleft em{
+
+.leleft em {
     font-style: normal;
 }
-.leleft .cur_spec{
+
+.leleft .cur_spec {
     display: inline-block;
     width: 60%;
 }
@@ -1044,139 +1046,86 @@ button::after {
     margin-top: 1.5rem;
 }
 
-/*.hui-box {*/
-    /*width: 80%;*/
-    /*padding: .5rem 3% 0;*/
-    /*margin: 0 auto;*/
-    /*overflow: hidden;*/
-    /*position: relative;*/
-    /*height: 7.5rem;*/
-/*}*/
-
-/*.huibg {*/
-    /*position: absolute;*/
-    /*left: 0;*/
-    /*top: 0;*/
-    /*width: 100%;*/
-    /*z-index: -1;*/
-/*}*/
-
-/*.hui-left {*/
-    /*width: 78%;*/
-    /*float: left;*/
-    /*overflow: hidden;*/
-/*}*/
-
-/*.hui-left-one {*/
-    /*height: 3.5rem;*/
-    /*overflow: hidden;*/
-    /*padding: 0 3%;*/
-/*}*/
-
-/*.hui-types {*/
-    /*float: left;*/
-    /*width: 20%;*/
-    /*overflow: hidden;*/
-    /*font-size: 1.1rem;*/
-    /*color: #aaa;*/
-    /*line-height: 2.5rem;*/
-/*}*/
-
-/*.hui-money {*/
-    /*float: left;*/
-    /*width: 48%;*/
-    /*overflow: hidden;*/
-    /*text-align: center;*/
-    /*font-size: 3.6rem;*/
-    /*color: #999;*/
-    /*line-height: 3.6rem;*/
-/*}*/
-
-/*.hui-allmoney {*/
-    /*float: left;*/
-    /*width: 35%;*/
-    /*overflow: hidden;*/
-    /*font-size: 1.6rem;*/
-    /*color: #3e3e3e;*/
-    /*line-height: 11rem;*/
-/*}*/
-
-/*.hui-left-two {*/
-    /*text-align: right;*/
-    /*padding: 0 3%;*/
-    /*overflow: hidden;*/
-    /*font-size: 1rem;*/
-    /*color: #aaa;*/
-    /*line-height: 2rem;*/
-    /*margin-top: -0.3rem;*/
-/*}*/
-
 .hui-box {
-    width: 80%;
-    padding: 0rem 3% 0;
+    width: 94%;
     margin: 0 auto;
     overflow: hidden;
     position: relative;
     height: 7.5rem;
 }
+
 .huibg {
-position: absolute;
-left: 0;
-top: 0;
-width: 100%;
-z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
+
 .hui-left {
-    width: 80%;
+    width: 72%;
     float: left;
+    margin-top: 0.3rem;
+    height: 5.8rem;
     overflow: hidden;
+    margin-left: 4%;
 }
+
 .hui-left-one {
-    height: 3.5rem;
+    height: 4rem;
     overflow: hidden;
-    /* padding: 0 3%; */
 }
+
 .hui-types {
     float: left;
     width: 20%;
     overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     font-size: 1rem;
     color: #aaa;
-    line-height: 3rem;
+    line-height: 4rem;
 }
+
 .hui-money {
     float: left;
-    width: 40%;
-    overflow: hidden;
+    width: 43%;
     text-align: center;
     font-size: 2.5rem;
     color: #999;
-    line-height: 3.6rem;
+    line-height: 4rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
+
 .hui-allmoney {
     float: left;
-    width: 40%;
+    width: 37%;
     overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     font-size: 1rem;
     color: #3e3e3e;
-    line-height: 3rem;
+    line-height: 4rem;
 }
+
 .hui-left-two {
     text-align: right;
-    /* padding: 0 3%; */
     overflow: hidden;
     width: 100%;
     font-size: 0.8rem;
     color: #aaa;
-    line-height: 2rem;
-    margin-top: -0.3rem;
-    margin-left: -0.3rem;
+    line-height: 1.8rem;
+    white-space: nowrap;
+    height: 2rem;
 }
 
 .hui-right {
     float: left;
     width: 22%;
-    margin-top: .8rem;
+    margin-top: .9rem;
     overflow: hidden;
     padding: 0.1rem 3%;
     padding-left: 5%;
@@ -1194,13 +1143,19 @@ z-index: -1;
     float: left;
 }
 
-.discuss-active .discuss-tita{
+.discuss-active .discuss-tita {
     color: var(--pinkcolor) !important;
 }
-.discuss-active .discuss-titb{
+
+.discuss-active .discuss-titb {
     color: var(--pinkcolor) !important;
 }
-.tab .rich-text img{
+
+.tab .rich-text img {
     width: 100%;
     height: auto;
+    width: 100%;
+    height: auto;
+    vertical-align: bottom||top||text-bottom;
+    display: block;
 }

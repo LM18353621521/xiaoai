@@ -33,24 +33,24 @@
                                 <div class="form">
 
                                     <div class="form-group">
-                                        <label class="control-label col-lg-2">快递方式</label>
+                                        <label class="control-label col-lg-2">短信平台</label>
                                         <div class="col-lg-6">
-                                            <select class="form-control m-bot15" name="express_switch" required="required">
-                                                <option value="2" {eq name="data.express_switch" value="1">快递100</option>
+                                            <select class="form-control m-bot15" name="sms_ provider" required="required">
+                                                <option value="2" {eq name="data.sms_ provider" value="1">聚合数据</option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-lg-2">快递100Key</label>
+                                        <label class="control-label col-lg-2">短信签名</label>
                                         <div class="col-lg-6">
-                                            <input class="form-control" type="text" name="kd100_key"  value="{$data.kd100_key}"/>
+                                            <input class="form-control" type="text" name="signName"  value="{$data.signName}"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-lg-2">快递100Key</label>
+                                        <label class="control-label col-lg-2">apiKey</label>
                                         <div class="col-lg-6">
-                                            <input class="form-control" type="text" name="kd100_customer"  value="{$data.kd100_customer}"/>
+                                            <input class="form-control" type="text" name="apiKey"  value="{$data.apiKey}"/>
                                         </div>
                                     </div>
 

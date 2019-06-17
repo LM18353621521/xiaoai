@@ -97,6 +97,7 @@ class Config extends Member
                 'base' => '基本设置',
                 'shopping' => '购物流程设置',
                 'express' => '物流配置',
+                'sms' => '短信设置',
                 'slogen' => 'PC底部标签',
             );
             $config = tpCache($inc_type);

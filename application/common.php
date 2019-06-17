@@ -812,22 +812,24 @@ function sendSmsAli($uid, $mobilephone, $content, $code = null, $type = 0)
 function sendSmsjh($mobile, $content = null, $code = null, $type = 1)
 {
     $smsApi = new \juhe\JuheApi();
+    $config = tpCache('sms');
     $tpl_ids = array(
-        '1' => '108608',//验证码
-        '2' => '108608',//验证码
-        '3' => '108608',//验证码
-        '4' => '108608',//验证码
+        '1' => '108608',//模板ID
+        '2' => '108608',//模板ID
+        '3' => '108608',//模板ID
+        '4' => '108608',//模板ID
     );
     $tpl_values = array(
-        '1' => '#code#=' . $code . '&#company#=晓爱科技',
-        '2' => '#code#=' . $code . '&#company#=晓爱科技',
-        '3' => '#code#=' . $code . '&#company#=晓爱科技',
-        '4' => '#code#=' . $code . '&#company#=晓爱科技',
+        '1' => '#code#=' . $code . "&#company#={$config['signName']}",
+        '2' => '#code#=' . $code . "&#company#={$config['signName']}",
+        '3' => '#code#=' . $code . "&#company#={$config['signName']}",
+        '4' => '#code#=' . $code . "&#company#={$config['signName']}",
     );
 
     $tpl_id = $tpl_ids[$type];
     $tpl_value = $tpl_values[$type];
     $params = array(
+        'key'=>$config['apiKey'],
         'mobile' => $mobile, //接受短信的用户手机号码
         'tpl_id' => $tpl_id, //您申请的短信模板ID，根据实际情况修改
         'tpl_value' => $tpl_value,//您设置的模板变量，根据实际情况修改
@@ -1882,8 +1884,25 @@ function tpCache($config_key, $data = array())
  */
 function queryExpress($postcom, $getNu)
 {
-    $url = "https://m.kuaidi100.com/query?type=" . $postcom . "&postid=" . $getNu . "&id=1&valicode=&temp=0.49738534969422676";
-    $resp = httpRequest($url, "GET");
+    $config =tpCache('express');
+    $key = $config['kd100_key'];//客户授权key
+    $customer =$config['kd100_customer'];//查询公司编号
+    $param = array (
+        'com' => $postcom,			//快递公司编码
+        'num' => $getNu,	//快递单号
+        'phone' => '',				//手机号
+        'from' => '',				//出发地城市
+        'to' => '',					//目的地城市
+        'resultv2' => '1'			//开启行政区域解析
+    );
+    //请求参数
+    $post_data = array();
+    $post_data["customer"] = $customer;
+    $post_data["param"] = json_encode($param);
+    $sign = md5($post_data["param"].$key.$post_data["customer"]);
+    $post_data["sign"] = strtoupper($sign);
+    $url = 'http://poll.kuaidi100.com/poll/query.do';	//实时查询请求地址
+    $resp = httpRequest($url, "POST");
     return json_decode($resp, true);
 }
 
