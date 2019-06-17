@@ -11,6 +11,10 @@ return [
                 '_child' => ['config']
             ],
             [
+                'name' => '快递编码',
+                '_child' => ['express_list','express_add']
+            ],
+            [
                 'name' => '运费设置',
                 '_child' => ['freight_list','freight_add']
             ],

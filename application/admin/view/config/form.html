@@ -57,4 +57,21 @@
 </tr>
 {/volist}
 {/if}
+{if condition ="strtolower(request()->action()) == 'express_list'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td>
+        {$vo.id}
+    </td>
+    <td>{$vo.express_name}</td>
+    <td>{$vo.kuaidinaio}</td>
+    <td>{$vo.kuaidi100}</td>
+    <td style="text-align: center" data-pid="{$vo.id}">
+        <a href="{:url('Config/express_add',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-pencil"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}
 

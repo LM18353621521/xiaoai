@@ -162,6 +162,42 @@ class Config extends Member
         }
     }
 
+    //快递公司编码
+    public function express_list()
+    {
+        if (request()->isPost()) {
+            $dataList = db(\tname::express)->alias('a')
+                ->order('sort asc,a.id asc')->select();
+            $this->assign('dataList', $dataList);
+            $html = $this->fetch('config/form');
+            return ajaxSuccess($html);
+        }
+        return $this->fetch();
+    }
+    /**
+     * 编辑运费
+     * @return array|mixed|string
+     */
+    public function express_add()
+    {
+        if (request()->isPost()) {
+            $data = input('post.');
+            $res = dataUpdate(\tname::express, $data);
+            if (!$res) {
+                return ajaxFalse();
+            }
+            return ajaxSuccess();
+        } else {
+            $id = input('param.id', 0);
+            $data = db(\tname::express)->alias('a')
+                ->field('a.*')
+                ->where(array('a.id' => $id))
+                ->find();
+            $this->assign('data', $data);
+            return $this->fetch();
+        }
+    }
+
     public function carousel()
     {
         if (request()->isPost()) {

@@ -1902,7 +1902,8 @@ function queryExpress($postcom, $getNu)
     $sign = md5($post_data["param"].$key.$post_data["customer"]);
     $post_data["sign"] = strtoupper($sign);
     $url = 'http://poll.kuaidi100.com/poll/query.do';	//实时查询请求地址
-    $resp = httpRequest($url, "POST");
+    $resp = httpRequest($url, "POST",$post_data);
+//    dump($resp);
     return json_decode($resp, true);
 }
 
