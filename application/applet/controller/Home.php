@@ -12,16 +12,6 @@ use app\common\logic\FunLogic;
 
 class Home extends Applet
 {
-    public function test()
-    {
-        $GoodsLogic = new GoodsLogic();
-        $categoryList = $GoodsLogic->getNextCategory(7);
-
-        $goodsList = $GoodsLogic->getGoodsList(0, null, 'sales', "desc");
-
-        dump($goodsList);
-    }
-
     /**
      * 切换账号
      */
@@ -85,7 +75,8 @@ class Home extends Applet
         }
 
         $config = tpCache('web');
-        $config['happly_switch']=1;
+        $applet_check_switch = tpCache('base.applet_check_switch');
+        $config['happly_switch']=$applet_check_switch;
         $config['logo'] = imgurlToAbsolute( $config['logo']);
 
         $returndata = array(
@@ -180,8 +171,9 @@ class Home extends Applet
     public function distributgoods()
     {
 
+        $applet_check_switch = tpCache('base.applet_check_switch');
         $config['share_tips']="保存至相册可以分享到朋友圈";
-        $config['share_btn_switch']=1;
+        $config['share_btn_switch']=$applet_check_switch;
         $returndata = array(
             'config' => $config,
         );

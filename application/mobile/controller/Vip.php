@@ -218,46 +218,29 @@ class Vip extends Base
         if ($check_bind && $check_bind['id'] != $user['vip_id']) {
             return json(ajaxFalse('该手机号码已被绑定，请重新输入'));
         }
-
         //验证码信息
         $codeinfo = session('codeinfo');
-//        dump($codeinfo);
-
         if ($codeinfo['check_mobile'] != $mobile) {
             return ajaxFalse('请输入正确的手机号码');
         }
         if ($codeinfo['check_code'] != $code) {
             return ajaxFalse('请输入正确的验证码');
         }
-
         $data = array(
             'id' => $vip['id'],
             'mobile' => $mobile,
         );
-
         $res = dataUpdate(\tname::vip, $data);
 
         if (!$res) {
             return json(ajaxFalse('绑定失败，请稍后重试'));
         }
-
         $ids = db(\tname::vip)->where(array('mobile' => $mobile))->column('id');
-
         $ids = implode(',', $ids);
         //测试环境手动配置
-        $userinfo = array(
-            'vip_id' => $vip['id'],
-            'vip_ids' => $ids,
-            'openid' => 'okuRis1pF6mqQXikrHdv07fBJiM4',
-            'nickname' => 'PC端测试账号',
-            'sex' => 1,
-            'province' => '天津',        //省份
-            'city' => '南开',        //城市
-            'country' => '中国',        //国家
-            'language' => 'zh_CN',
-            'headimgurl' => 'http://wx.qlogo.cn/mmopen/IcgOoUqN7GwSjlHLJ52VmWLNrNiaEBRYhdpyWAuceAiaCkgGGnLKToUJIiaoXE1YTeUVjEpiaiajVoCFIKictpMJkfM2k6lgKkxMIH/0',
-            'unionid' => 'uniontest',    //一般无用
-        );
+        $userinfo =$vip;
+        $userinfo['vip_id']=$vip['id'];
+        $userinfo['vip_ids']=$ids;
         session('userinfo', $userinfo);
         return json(ajaxSuccess($userinfo, "绑定成功！"));
     }

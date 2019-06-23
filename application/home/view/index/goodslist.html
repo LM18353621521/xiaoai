@@ -77,7 +77,7 @@
         </ul>
         <div class="product-box">
             <ul class="product-condition">
-                <a href="<?php echo urldecode(url('Index/goodsList',array_merge($search,array('sort'=>'')),''));?>">
+                <a href="<?php echo urldecode(url('Index/goodsList',array_merge($search,array('sort'=>'sort')),''));?>">
                 <li class="{if condition="$Request.param.sort eq ''"}active{/if}"> 综合</li>
                 </a>
                 <a href="<?php echo urldecode(url('Index/goodsList',array_merge($search,array('sort'=>'sales')),''));?>">

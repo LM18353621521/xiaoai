@@ -34,6 +34,16 @@
                             <div class="tab-pane active" id="base">
                                 <div class="form">
 
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2">小程序审核期</label>
+                                        <div class="col-lg-2">
+                                            <select class="form-control m-bot15" name="applet_check_switch" required="required">
+                                                <option value="0" {eq name="data.applet_check_switch" value="0"}selected{/eq}>开启</option>
+                                                <option value="1" {eq name="data.applet_check_switch" value="1"}selected{/eq}>关闭</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group one-img">
                                         <label class="control-label col-lg-2">小程序二维码</label>
                                         <div class="col-lg-10">
@@ -49,7 +59,6 @@
                                             {/if}
                                         </div>
                                     </div>
-
 
                                     <div class="form-group one-img">
                                         <label class="control-label col-lg-2">商品海报背景图</label>

@@ -28,16 +28,13 @@ class Api extends Applet
             return json(ajaxFalse($sms_time_out . '秒内不允许重复发送'));
         }
 
-
         $code=createverifycode(6);
         $content="";
         $ajaxdata = [
             'code_mobile' => $mobile,
             'code_code'=>$code
         ];
-        return json(ajaxSuccess($ajaxdata,"验证码已发送至：".$mobile."，请注意查收"));
         $result=sendSmsjh($mobile,$content,$code);//发送短信
-
         if($result['error_code']){
             return json(ajaxFalse('验证码发送失败，请稍后重试'));
         }
@@ -46,6 +43,14 @@ class Api extends Applet
             'code_code'=>$code
         ];
         return json(ajaxSuccess($ajaxdata,"验证码已发送至：".$mobile."，请注意查收"));
+    }
+
+    /**
+     * 收集FormID
+     */
+    public function getFormId(){
+        $_post = input('post.');
+        getFromId($_post['vip_id']);
     }
 
 }

@@ -25,7 +25,6 @@ class Index extends Base
             $this->vip_id = session('vip_id');
             $this->vip_id = session('vip_id');
         }
-
         $this->assign('user', $user);
     }
 
@@ -50,18 +49,14 @@ class Index extends Base
         $this->assign('flash_list', $flash_list);
         //最新商品
         $newList = $this->getNewGoods();
-
         $today = strtotime(date("Y-m-d", time()));
         $intDiff = $today + 86400 - time();
         $this->assign('intDiff', $intDiff);
-
         $h = date('G');
         if ($h < 11) $time_show = '早上好';
         else if ($h < 13) $time_show = '中午好';
         else if ($h < 17) $time_show = '下午好';
         else $time_show = '晚上好';
-
-
         $this->assign('carousel', $carousel);
         $this->assign('newList', $newList);
         $this->assign('title', "商城首页");
@@ -95,7 +90,7 @@ class Index extends Base
             'is_publish' => 1,
             'is_new' => 1,
         );
-        $order = "id desc";
+        $order = "sort asc,id desc";
         $dataList = db(\tname::mall_product)
             ->field('id,category_id,name,coverimg,price,(sales_config+sales_actual) as sales,brief')
             ->where($where)
@@ -107,7 +102,6 @@ class Index extends Base
         return $newList = array_chunk($dataList, 8);
 //        dump($newList);
     }
-
 
     /**
      * 猜你喜欢
@@ -186,22 +180,16 @@ class Index extends Base
         $comment['medium'] = db(\tname::mall_comment)->where(array('product_id' => $goods_id, 'is_show' => 1, 'star' => ['eq', 3]))->count();
         //差评
         $comment['bad'] = db(\tname::mall_comment)->where(array('product_id' => $goods_id, 'is_show' => 1, 'star' => ['lt', 3]))->count();
-
         $goodsInfo['comment_num_text'] = comment_num_show($goodsInfo['comment_count']);
-
         $comment['total_text'] = comment_num_show($comment['total']);
         $comment['good_text'] = comment_num_show($comment['good']);
         $comment['medium_text'] = comment_num_show($comment['medium']);
         $comment['bad_text'] = comment_num_show($comment['bad']);
-
         //好评率
         $comment['good_rate'] = $comment['total'] == 0 ? 100 : (ceil($comment['good'] / $comment['total']) * 100);
-
         //看了又看
         $look_see = $GoodsLogic->get_look_see($goodsInfo);
-
         $hot_sale = $GoodsLogic->get_hot_sale($goodsInfo);
-
         //评论
         $where = array(
             'product_id' => $goods_id,
@@ -221,7 +209,6 @@ class Index extends Base
             }
         }
         $this->assign('commentList', $commentList);
-
         $this->assign('comment', $comment);
         $this->assign('goodsInfo', $goodsInfo);
         $this->assign('filter_spec', $filter_spec);
@@ -240,7 +227,6 @@ class Index extends Base
      * 商品规格
      * @return \think\response\Json
      */
-
     public function activity()
     {
         $GoodsLogic = new GoodsLogic();
@@ -252,15 +238,14 @@ class Index extends Base
             $goods['market_price'] = $goods_spec_price['market_price'];
             $goods['stock'] = $goods_spec_price['store_count'];
         }
-
-        if($goods['prom_type']==1){
-            if($goods_spec_price){
+        if ($goods['prom_type'] == 1) {
+            if ($goods_spec_price) {
                 $goodsPromLogic = new \app\common\logic\FlashSaleLogic($goods, $goods_spec_price);
-            }else{
-                $goodsPromLogic = new \app\common\logic\FlashSaleLogic($goods,null);
+            } else {
+                $goodsPromLogic = new \app\common\logic\FlashSaleLogic($goods, null);
             }
             //检查活动是否有效
-            if($goodsPromLogic->checkActivityIsAble()){
+            if ($goodsPromLogic->checkActivityIsAble()) {
                 $result = $goodsPromLogic->getActivityGoodsInfo();
                 $goods['old_price'] = $goods['price'];
                 $goods['price'] = $result['activity_price'];
@@ -268,7 +253,7 @@ class Index extends Base
                 $goods['buy_limit'] = $result['buy_limit'];
                 $goods['intDiff'] = $result['end_time'] - time();
                 $goods['prom_type'] = 1;
-            }else{
+            } else {
             }
         }
         $returndata = array(
@@ -276,7 +261,6 @@ class Index extends Base
         );
         return ajaxSuccess($returndata);
     }
-
 
     /**
      * 商品评论ajax分页
@@ -290,21 +274,20 @@ class Index extends Base
             'is_show' => 1,
             'status' => 1,
         );
-        switch ($commentType){
+        switch ($commentType) {
             case 1:
-                $where['star']= array('gt',3);
+                $where['star'] = array('gt', 3);
                 break;
             case 2:
-                $where['star']= array('eq',3);
+                $where['star'] = array('eq', 3);
                 break;
             case 3:
-                $where['star']= array('lt',3);
+                $where['star'] = array('lt', 3);
                 break;
         }
         $count = db(\tname::mall_comment)->where($where)->count();
         $page = new AjaxPage($count, 10);
         $show = $page->show();
-
         $list = db(\tname::mall_comment)
             ->where($where)->order('id')->limit($page->firstRow . ',' . $page->listRows)->select();
         foreach ($list as $k => &$val) {
@@ -319,14 +302,12 @@ class Index extends Base
         return $this->fetch();
     }
 
-
     /**
      *
      */
     public function goodslist()
     {
         error_reporting(E_ERROR | E_PARSE);
-
         $search = input("");
         $where = array(
             'is_publish' => 1,
@@ -360,15 +341,12 @@ class Index extends Base
                 break;
         }
         $sort .= "a.id desc";
-
         $count = db(\tname::mall_product)->alias('a')->where($where)->count();
         $page = new Page($count, 16);
-
         $goods_list = db(\tname::mall_product)->alias('a')
             ->field('a.id,a.name,a.coverimg,a.price,(a.sales_config+a.sales_actual) as sales,a.comment_count')
             ->where($where)->order($sort)
             ->limit($page->firstRow . ',' . $page->listRows)->select();
-
         //热门推荐
         $where_recommend = array(
             'is_publish' => 1,
@@ -377,9 +355,8 @@ class Index extends Base
         );
         $recommend_list = db(\tname::mall_product)->alias('a')
             ->field('a.id,a.name,a.coverimg,a.price,(a.sales_config+a.sales_actual) as sales,a.comment_count')
-            ->where($where_recommend)->order('id')
+            ->where($where_recommend)->order('sort asc,id')
             ->limit(4)->select();
-
         $this->assign('goods_list', $goods_list);
         $this->assign('recommend_list', $recommend_list);// 赋值分页输出
         $this->assign('page', $page);// 赋值分页输出
@@ -388,7 +365,6 @@ class Index extends Base
         return $this->fetch();
     }
 
-
     /**
      *限时秒杀
      */
@@ -396,7 +372,6 @@ class Index extends Base
     {
         error_reporting(E_ERROR | E_PARSE);
         $search = input("");
-
         $todays = strtotime(date("Y-m-d", time()));
         $todaye = $todays + 86400;
         $now = time();
@@ -412,7 +387,6 @@ class Index extends Base
             $percent = $val['buy_num'] / $val['goods_num'];
             $val['percent'] = ceil($percent);
         }
-
         //热门推荐
         $where_recommend = array(
             'is_publish' => 1,
@@ -423,16 +397,13 @@ class Index extends Base
             ->field('a.id,a.name,a.coverimg,a.price,(a.sales_config+a.sales_actual) as sales,a.comment_count')
             ->where($where_recommend)->order('id')
             ->limit(4)->select();
-
         foreach ($recommend_list as &$val) {
             $val['sales_text'] = comment_num_show($val['sales']);
             $val['comment_count_text'] = comment_num_show($val['comment_count']);
         }
-
         $today = strtotime(date("Y-m-d", time()));
         $intDiff = $today + 86400 - time();
         $this->assign('intDiff', $intDiff);
-
         $this->assign('flash_list', $flash_list);
         $this->assign('recommend_list', $recommend_list);// 赋值分页输出
         return $this->fetch();
@@ -445,6 +416,4 @@ class Index extends Base
         $this->assign('article', $article);
         return $this->fetch();
     }
-
-
 }

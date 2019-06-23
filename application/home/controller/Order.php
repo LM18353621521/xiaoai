@@ -30,7 +30,6 @@ class Order extends Base
         if (empty($user)) {
             $this->error('你还没有登录，请先登录');
         }
-
     }
 
     public function order_list()
@@ -41,11 +40,10 @@ class Order extends Base
         $vip_ids = session('vip_ids');
         $pdata = input('');
         $status = input('param.status', 0);
-
         $sort = "create_time desc";
         $where['vip_id'] = array('in', $vip_ids);
         $where['user_hide'] = 0;
-        switch ($status) {
+        switch (intval($status)) {
             case 1:
                 $where['status'] = 0;
                 break;
@@ -58,11 +56,11 @@ class Order extends Base
             case 4:
                 $where['status'] = 3;
                 $where['is_comment'] = 0;
+                break;
             case 5:
                 $where['status'] = -2;
                 break;
         }
-
         $count = db(\tname::mall_order)->alias('a')->where($where)->count();
         $page = new Page($count, 5);
         $dataList = db(\tname::mall_order)->alias('a')
@@ -74,7 +72,6 @@ class Order extends Base
             $val['orderlog'] = $orderlog;
         }
         $count_order = $OrderLogic->get_order_num($vip_ids);
-
         $this->assign('dataList', $dataList);
         $this->assign('page', $page);// 赋值分页输出
         $this->assign('status', $status);
@@ -103,20 +100,17 @@ class Order extends Base
             '-3' => "已退款",
         );
         $order['status_text'] = $order_status[$order['status']];
-
         $wuliu = array('message' => 'fail', 'data' => []);
         if ($order['status'] > 2) {
             $BasicLogic = new \app\common\logic\BasicLogic();
             $wuliu = $BasicLogic->queryExpress($order['express_id'], $order['express_number']);
         }
         $this->assign('wuliu', $wuliu);
-
         $cancel_time = tpCache('shopping.cancel_time');
         $diff_time = $cancel_time * 3600 - (time() - $order['create_time']);
         $sub_time['hour'] = intval($diff_time / 3600);
         $sub_time['min'] = intval(($diff_time % 3600) / 60);
         $this->assign('sub_time', $sub_time);
-
         //配送方式
         $express = db(\tname::express)->where('id', $order['express_id'])->find();
         $pay_type = Config('pay_type');
@@ -126,7 +120,6 @@ class Order extends Base
         $this->assign('title', '订单详情');
         return $this->fetch();
     }
-
 
     /**
      * 订单支付
@@ -148,14 +141,12 @@ class Order extends Base
             '-3' => "已退款",
         );
         $order['status_text'] = $order_status[$order['status']];
-
         $wuliu = array('message' => 'fail', 'data' => []);
         if ($order['status'] > 2) {
             $BasicLogic = new \app\common\logic\BasicLogic();
             $wuliu = $BasicLogic->queryExpress($order['express_id'], $order['express_number']);
         }
         $this->assign('wuliu', $wuliu);
-
         //配送方式
         $express = db(\tname::express)->where('id', $order['express_id'])->find();
         $pay_type = Config('pay_type');
@@ -178,7 +169,7 @@ class Order extends Base
         //生成订单
         $OrderLogic = new \app\common\logic\OrderLogic();
         $pdata['order_source'] = 'pc';
-        $result = $OrderLogic->orderAdd($pdata,"pc");
+        $result = $OrderLogic->orderAdd($pdata, "pc");
         if ($result['status'] != 1) {
             return json(ajaxFalse($result['msg']));
         }
@@ -253,7 +244,6 @@ class Order extends Base
         return ajaxFalse();
     }
 
-
     public function wx_qrcode()
     {
         $user = session('userinfo');
@@ -269,7 +259,6 @@ class Order extends Base
 //        $money = 0.01;
         $order_number = $order['order_number'];
         $result = wxPay(2, "", $money, $order_number, $url, '下单', 'NATIVE', 'applet');
-
         vendor('phpqrcode.phpqrcode');//引入插件类
         header('Content-Type: text/html; charset=utf-8');
         $code_url = $result['code_url'];
@@ -326,7 +315,6 @@ class Order extends Base
         return json(ajaxSuccess($order, $result['msg']));
     }
 
-
     /**
      * 评价
      */
@@ -375,7 +363,6 @@ class Order extends Base
         return $this->fetch();
     }
 
-
     /**
      * 处理支付的反馈结果——订单支付完成    2018-10-19
      */
@@ -410,6 +397,4 @@ class Order extends Base
         $OrderLogic = new OrderLogic();
         $OrderLogic->order_pay_sucsess($order);
     }
-
-
 }

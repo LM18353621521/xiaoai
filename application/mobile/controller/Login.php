@@ -174,7 +174,6 @@ class Login extends Base
     }
 
     private function login_session($vip){
-
         if($vip['mobile']){
             $ids = db(\tname::vip)->where(array('mobile'=>$vip['mobile']))->column('id');
         }else{

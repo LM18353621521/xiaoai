@@ -584,6 +584,17 @@ function sendtemplate($uid, $data, $type = 'wechat')
     $Message = new \wechat\Message();
     $Message->template($template, $access_token, array('uid' => $uid));
 }
+/**
+ * 小程序发送模板消息
+ */
+function applet_template($template)
+{
+    $access_token = getaccesstoken(2, 'applet');
+    $url = 'https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token=' . $access_token;
+    $result = httpdata($url, $template);
+    return $result;
+}
+
 
 //微信支付  2018-02-06
 //$openid 微信号 $money 入账金额 $ordernumber 订单号 $body 备注
@@ -814,10 +825,10 @@ function sendSmsjh($mobile, $content = null, $code = null, $type = 1)
     $smsApi = new \juhe\JuheApi();
     $config = tpCache('sms');
     $tpl_ids = array(
-        '1' => '108608',//模板ID
-        '2' => '108608',//模板ID
-        '3' => '108608',//模板ID
-        '4' => '108608',//模板ID
+        '1' => 166131,//模板ID
+        '2' => 166131,//模板ID
+        '3' => 166131,//模板ID
+        '4' => 166131,//模板ID
     );
     $tpl_values = array(
         '1' => '#code#=' . $code . "&#company#={$config['signName']}",
@@ -831,7 +842,7 @@ function sendSmsjh($mobile, $content = null, $code = null, $type = 1)
     $params = array(
         'key'=>$config['apiKey'],
         'mobile' => $mobile, //接受短信的用户手机号码
-        'tpl_id' => $tpl_id, //您申请的短信模板ID，根据实际情况修改
+        'tpl_id' => intval($tpl_id), //您申请的短信模板ID，根据实际情况修改
         'tpl_value' => $tpl_value,//您设置的模板变量，根据实际情况修改
     );
     $result = $smsApi->juhecurl($params, 1);
@@ -2079,3 +2090,25 @@ function getSubstr($string, $start, $length)
         return $string;
     }
 }
+
+/**
+ * 收集form_id
+ */
+function getFromId($vip_id,$form_id=null){
+    if(empty($form_id)){
+        $form_id = input('formId',null);
+        if(empty($form_id)){
+            return false;
+        }
+    }
+    if($form_id=="the formId is a mock one"){
+        return false;
+    }
+    $data = array(
+        'vip_id'=>$vip_id,
+        'from_id'=>$form_id,
+        'create_time'=>time(),
+    );
+    $res = dataUpdate(\tname::weixin_formid,$data);
+}
+

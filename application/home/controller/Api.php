@@ -134,7 +134,6 @@ class Api extends Controller
                 'check_code' => $code
             ];
             session('codeinfo', $ajaxdata);
-            return json(ajaxSuccess($ajaxdata, "验证码已发送至：" . $mobile . "，请注意查收"));
             $result = sendSmsjh($mobile, $content, $code);//发送短信
 
             if ($result['error_code']) {

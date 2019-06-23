@@ -18,7 +18,7 @@ class Order extends Applet
         $result =$OrderLogic->getOrderList($pdata['vip_ids'],$pdata['status'],$pdata['keyword'],$pdata['sort'],$pdata['asc'],$pdata['page'],$pdata['pagenum']);
         return json(ajaxSuccess($result));
     }
-    /**
+    /**orderadd
      * 订单详情
      */
     public function orderdetail(){
@@ -38,6 +38,7 @@ class Order extends Applet
      */
     public function orderadd(){
         $pdata = input('post.');
+        getFromId($pdata['vip_id']);
         //生成订单
         $OrderLogic = new \app\common\logic\OrderLogic();
         $pdata['order_source']='applet';
@@ -48,18 +49,16 @@ class Order extends Applet
         return json(ajaxSuccess($result['order'],$result['msg']));
     }
 
-
-
     public function order_pay(){
         $pdata = input('post.');
         $OrderLogic = new OrderLogic();
         $pdata['pay_type']="wxpay";
-
+        getFromId($pdata['vip_id']);
         $order =$OrderLogic->getOrderInfo($pdata['vip_id'],$pdata['order_id']);
         $order['status']=1;
         $order['pay_time']=date("Y-m-d H:i:s",time());
-
         $result = $OrderLogic->orderPay($pdata);
+        getFromId($pdata['vip_id'],$result[2]);
         $ajaxdata = array(
             'ret' => 1,
             'data' => $result[1],

@@ -57,6 +57,8 @@ class Member extends Controller
         }
 
         isset($auths_group) ? $auths_group : $auths_group = 'all';
+        $webInfo =tpCache('web');
+        $this->assign('webInfo', $webInfo);
         $this->assign('auths_group', $auths_group);
     }
 

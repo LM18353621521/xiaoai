@@ -36,9 +36,6 @@ class User extends Controller
                     $user = db(\tname::system_user)->find($uid); //登录用户
                     session('user_auth', $user);
 
-                    $wxconfig = db(\tname::weixin_config)->where(array('type'=>"wechat"))->field('name')->find();
-                    session('web_name', $wxconfig['name']);
-
                     //判断用户是否是普通
                     if ($user['usertype'] != 2 && $user['usertype'] != 1) {
                         $this->destory();

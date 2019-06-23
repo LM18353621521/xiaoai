@@ -18,6 +18,8 @@ class tname
 	const weixin_news = 'weixin_news';
 	//微信链接表
 	const weixin_url = 'weixin_url';
+    //微信链接表
+    const weixin_formid = 'weixin_formid';
 
 
 	//后台用户表

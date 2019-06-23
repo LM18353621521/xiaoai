@@ -37,11 +37,11 @@
             <div data-original-title="wechat" data-placement="right" class="icon-reorder tooltips"></div>
         </div>
         <!--logo-->
-        <a href="{:url('Index/index')}" class="logo">We<span>Chat</span></a>
+        <a href="{:url('Index/index')}" class="logo">Xiao<span>Ai</span></a>
         <!-- 菜单 -->
         <div class="nav notify-row pull-middle" id="top_menu">
             <ul class="nav top-menu">
-                <li>{$Think.session.web_name}</li>
+                <!--<li>{$webInfo['web_name']}</li>-->
             </ul>
         </div>
         <!-- 搜索和登录 -->
@@ -52,7 +52,7 @@
                 <!--</a>-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <img alt="" src="__STATIC__/member/bootstrap/img/avatar1_small.jpg">
+                        <img width="32" alt="" src="{$webInfo['logo']|default='__STATIC__/member/bootstrap/img/avatar1_small.jpg'}">
                         <span class="username">{$Think.session.loginer_auth.username}</span>
                         <b class="caret"></b>
                     </a>
