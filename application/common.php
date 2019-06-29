@@ -2106,9 +2106,24 @@ function getFromId($vip_id,$form_id=null){
     }
     $data = array(
         'vip_id'=>$vip_id,
-        'from_id'=>$form_id,
+        'form_id'=>$form_id,
         'create_time'=>time(),
     );
     $res = dataUpdate(\tname::weixin_formid,$data);
 }
+
+/**
+ * 获取绑定手机号的所有ID
+ */
+ function getVipIds($vip_id,$vip=[]){
+     if(empty($vip)){
+         $vip = db(\tname::vip)->where(array('id'=>$vip_id))->find();
+     }
+     if ($vip['mobile']) {
+         $ids = db(\tname::vip)->where(array('mobile' => $vip['mobile']))->column('id');
+     } else {
+         $ids = [$vip['id']];
+     }
+     return $ids;
+ }
 

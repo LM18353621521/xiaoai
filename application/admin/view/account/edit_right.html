@@ -1,0 +1,181 @@
+{extend name="public/left"/}
+
+{block name="body"}
+<style>
+    .action-list{
+        max-width: 600px;
+    }
+    .action-list li{
+        min-width: 150px;
+        float: left;
+    }
+    .action-list li input{
+       display: inline-block;
+    }
+</style>
+<script language="javascript">
+    $(document).ready(function () {
+        UM.getEditor('editor');
+    });
+    $(document).ready(common_obj.form_submit);
+
+    function chkbox_bind(){
+        $('input:checkbox').change(function () {
+            var is_check = $(this).prop('checked');
+            var ncode = $('#controller').val();
+            var row_id = ncode+'_'+ $(this).val();
+            if(is_check){
+                var a = [];
+                $('#rightList .form-control').each(function(i,o){
+                    if($(o).val() != ''){
+                        a.push($(o).val());
+                    }
+                });
+                if(ncode !== ''){
+                    var temp = ncode+'@'+ $(this).val();
+                    if($.inArray(temp,a) != -1){
+                        return ;
+                    }
+                }else{
+                    layer.alert("请选择控制器" , {icon:2,time:1000});
+                    return;
+                }
+                var strtr = "<tr id="+row_id+">";
+                if(ncode!= ''){
+                    strtr += '<td><input type="text" name="right[]" value="'+ncode+'@'+ $(this).val()+'" class="form-control"  style="width:300px;"></td>';
+                }else{
+                    strtr += '<td><input type="text" name="right[]" value="" class="form-control"  style="width:300px;"></td>';
+                }
+                strtr += '<td style="text-align: center;"><a href="javascript:;" class="ncap-btn" onclick="$(this).parent().parent().remove();">删除</a></td>';
+                $('#rightList').append(strtr);
+            }else{
+                $("#"+row_id).remove();
+            }
+        });
+    }
+    chkbox_bind();
+    function get_act_list(obj){
+        $.ajax({
+            url: "{:url('Account/ajax_get_action',array('type'=>0))}",
+            type:'get',
+            data: {'controller':$(obj).val()},
+            dataType:'html',
+            success:function(res){
+                $('.action-list').empty().append(res);
+                chkbox_bind();
+                updateActCheck();
+            }
+        });
+    }
+    function updateActCheck() {
+        var acts = $('input.form-control');
+        var controller = $('#controller').val();
+        $('input:checkbox').each(function(){
+            var act = controller +'@'+ $(this).val();
+            for (var i = 0; i < acts.length; i++) {
+                if ($(acts[i]).val() === act) {
+                    $(this).attr('checked', true);
+                    break;
+                }
+            }
+        });
+    }
+    function adsubmit(){
+        if($('input[name=name]').val() == ''){
+            layer.msg('权限名称不能为空！', {icon: 2,time: 1000});
+            return false;
+        }
+        if($('input[name="right[]"').val() == ''){
+            layer.msg('权限码不能为空！', {icon: 2,time: 1000});
+            return false;
+        }
+        $('#data-form').submit();
+    }
+</script>
+<section class="wrapper" style="margin-top:0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="form">
+                        <form class="cmxform form-horizontal tasi-form" id="data-form">
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">所属类型</label>
+                                <div class="col-lg-3">
+                                    <select class="form-control m-bot15"  id="type-select" name="type" onchange="handleTypeChange()">
+                                        {volist name="modules" id="module"}
+                                            <option value="{$key}" {if condition="$Request.param.type==$key"}selected{/if}>{$module.title} - {$module.name}</option>
+                                        {/volist}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">权限名称</label>
+                                <div class="col-lg-3">
+                                    <input class="form-control" type="text" name="name" required="required" value="{$data.name}"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">所属分组</label>
+                                <div class="col-lg-3">
+                                    <select class="form-control m-bot15"  id="group" name="group">
+                                        {foreach name="group" item="vo" key="key"}
+                                            <option value="{$key}" {if condition="$data['group'] eq $key"}selected{/if}>{$vo}</option>
+                                        {/foreach}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">添加权限码</label>
+                                <div class="col-lg-3">
+                                    <select class="form-control m-bot15"  id="controller" name="controller" onchange="get_act_list(this)">
+                                        <option value="">选择控制器</option>
+                                        {foreach name="planList" item="vo"}
+                                            <option value="{$vo}">{$vo}</option>
+                                        {/foreach}
+                                    </select>
+                                </div>
+                                <div class="col-lg-7">
+                                    <ul class="action-list">
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">权限码</label>
+                                <div class="col-lg-6">
+                                    <table>
+                                        <tr><th style="width:80%;height: 30px">权限码</th><th style="width: 50px;text-align: center;" >操作</th></tr>
+                                        <tbody id="rightList">
+                                        {foreach name="data['right']" item="vo"}
+                                        <tr id="{:str_replace('@','_',$vo)}">
+                                            <td><input name="right[]" type="text" value="{$vo}" class="form-control"  style="width:300px;"></td>
+                                            <td style="text-align: center;"><a class="ncap-btn" href="javascript:;" onclick="$(this).parent().parent().remove();">删除</a></td>
+                                        </tr>
+                                        {/foreach}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <input type="hidden" name="id" value="{$data.id}">
+
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <input class="btn btn-danger" type="button" onclick="adsubmit()" value="提交保存">
+                                    <!--<a href="{:url('News/news',array('bk'=>1))}">
+                                        <button class="btn btn-default" type="button">返回</button>
+                                    </a>-->
+                                </div>
+                            </div>
+                        </form>
+                        <input type="hidden" id="do_action" value="{:url('Account/edit_right')}">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+{/block}

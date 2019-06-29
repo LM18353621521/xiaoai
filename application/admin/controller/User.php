@@ -1,11 +1,13 @@
 <?php
+
 namespace app\admin\controller;
+
 use think\Controller;
 use think\captcha\Captcha;
+use think\Request;
 
-class User extends Controller
+class User extends Member
 {
-
     /**
      * 登录    2017-10-15
      */
@@ -29,6 +31,10 @@ class User extends Controller
 
             $loginer = db(\tname::system_loginer)->find($loginerid);
             session('loginer_auth', $loginer);
+
+            $auth_group = db(\tname::auth_group)->where(array('id'=>$loginer['type']))->find();
+            $this->handleLogin($loginer, $auth_group['rules']);
+            $this->handMenu();
             $uid = $loginer['uid'];
             if ($uid > 0) {
                 $res2 = $Login->usercheck($uid);
@@ -41,7 +47,6 @@ class User extends Controller
                         $this->destory();
                         return array('ret' => 0, 'msg' => '权限错误');
                     }
-
                     return array('ret' => 1, 'url' => url('Index/index'));
                 } else {
                     switch ($res2) {
@@ -73,6 +78,24 @@ class User extends Controller
         } else {
             return $this->fetch();
         }
+    }
+
+    public function handleLogin($admin, $actList)
+    {
+        $this->sessionRoleRights($admin, $actList);
+        session('admin_id', $admin['id']);
+        adminLog('后台登录');
+    }
+
+    public function handMenu(){
+        $menuList =getMenuArr();
+        session('menuList',$menuList);
+    }
+
+    public function sessionRoleRights($admin, $actList)
+    {
+        $roleRights = $actList;
+        session('act_list', $roleRights);
     }
 
     /**

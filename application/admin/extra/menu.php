@@ -3,7 +3,7 @@
 return [
     [
         'group' => 'config',
-        'name' => '基础设置',
+        'name' => '系统设置',
         'icon' => 'icon-cog',
         '_child' => [
             [
@@ -42,7 +42,7 @@ return [
     ],
     [
         'group' => 'wechat',
-        'name' => '我的微信',
+        'name' => '微信设置',
         'icon' => 'icon-comments',
         '_child' => [
 //            [
@@ -94,17 +94,22 @@ return [
 
     [
         'group' => 'account',
-        'name' => '账号列表',
+        'name' => '权限管理',
         'icon' => 'icon-reorder',
         '_child' => [
             [
-                'name' => '权限列表',
+                'name' => '管理员列表',
+                '_child' => ['account','accountadd']
+            ],
+            [
+                'name' => '角色管理',
                 '_child' => ['auth','authadd']
             ],
             [
-                'name' => '账号列表',
-                '_child' => ['account','accountadd']
+                'name' => '权限列表',
+                '_child' => ['right_list','edit_right']
             ],
+
         ]
     ],
 
@@ -229,10 +234,6 @@ return [
 //                'name' => '余额日志',
 //                '_child' => ['log', 'moneyadd']
 //            ],
-//            [
-//                'name' => '提现列表',
-//                '_child' => ['withdraw']
-//            ]
 //        ]
 //    ],
 
@@ -297,12 +298,16 @@ return [
     ],
     [
         'group' => 'vip',
-        'name' => '用户管理',
+        'name' => '会员管理',
         'icon' => 'icon-user',
         '_child' => [
             [
                 'name' => '用户列表',
                 '_child' => ['vip']
+            ],
+            [
+                'name' => '提现列表',
+                '_child' => ['withdraw']
             ],
             [
                 'name' => '意见反馈',

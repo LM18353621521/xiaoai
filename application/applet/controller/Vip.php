@@ -14,15 +14,13 @@ class Vip extends Applet
         $pdata = input('post.');
         $vip = db(\tname::vip)->where(['uid' => WID, 'id' => $pdata['vip_id']])->find();
         $vip['headimg'] = $vip['headimgurl'];
-
         $config = tpCache('base');
         $config['logo'] = imgurlToAbsolute(tpCache('web.logo'));
         $config['slogen'] = tpCache('web.slogen');
-
         $config['bind_tips'] = "找不到订单？绑定手机试试";
-
         $OrderLogic = new \app\common\logic\OrderLogic();
-        $order_status = $OrderLogic->get_order_num($pdata['vip_ids']);
+        $vip_ids = getVipIds($pdata['vip_id']);
+        $order_status = $OrderLogic->get_order_num($vip_ids);
 
         $ajaxdata = [
             'vip' => $vip,
@@ -97,8 +95,32 @@ class Vip extends Applet
         $config['withdraw_tips'] = "提现金额将会以微信公众号红包的形式放至您的微信中，领取后提现至零钱包";
         //佣金收益
         $income['income_all'] = $vip['income_all'];
-        $income_wei = db(\tname::distribution_income)->where(array('vip_id' => $pdata['vip_id']))->sum('money');
+        $where_wei= array(
+            'status'=>0,
+            'order_status'=>1,
+            'distributor_vip_id'=>$pdata['vip_id'],
+        );
+        $income_wei = db(\tname::distribution_income)->where($where_wei)->sum('money');
         $income['income_wei'] = sprintf("%.2f", $income_wei);
+        //本月总佣金
+        $month_start = strtotime('this month');
+        $month_end = time();
+        $where_month = array(
+            'create_time'=>['between',[$month_start,$month_end]],
+            'status'=>['gt',0],
+            'order_status'=>['gt',0],
+            'distributor_vip_id'=>$pdata['vip_id'],
+        );
+        $month_all = db(\tname::distribution_income)->where($where_month)->sum('money');
+        $income['month_all'] = sprintf("%.2f", $month_all);
+        //本月已返
+        $where_month = array(
+            'create_time'=>['between',[$month_start,$month_end]],
+            'status'=>1,
+            'distributor_vip_id'=>$pdata['vip_id'],
+        );
+        $month_fan = db(\tname::distribution_income)->where($where_month)->sum('money');
+        $income['month_fan'] = sprintf("%.2f", $month_fan);
 
         $ajaxdata = [
             'vip' => $vip,
@@ -179,7 +201,7 @@ class Vip extends Applet
         if (!$res) {
             return json(ajaxFalse('！提现失败，请稍后重试'));
         }
-        $res1 = dataChangeLog(WID, "income", "withdraw", $pdata['vip_id'], -$pdata['money'], 0, "提现扣除");
+        $res1 = dataChangeLog(WID, "income", "withdraw", $pdata['vip_id'], -$pdata['money'], $res, "提现扣除");
         return json(ajaxSuccess('！提现成功'));
 
     }

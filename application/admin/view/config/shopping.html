@@ -47,9 +47,14 @@
 
                                     <div class="form-group">
                                         <label class="control-label col-lg-2">订单取消时间</label>
-                                        <div class="col-lg-6">
-                                            <input class="form-control" type="number" name="cancel_time" required="required"
-                                                   value="{$data.cancel_time}" step="1" min="1"/>
+                                        <div class="col-lg-2">
+                                            <select class="form-control m-bot15" name="cancel_time" required="required">
+                                                <option value="5" {eq name="data.cancel_time" value="5"}selected{/eq}>5分钟</option>
+                                                <option value="30" {eq name="data.cancel_time" value="20"}selected{/eq}>30分钟</option>
+                                                {for start="1" end="25" name="times"}
+                                                <option value="{$times*60}" {eq name="data.cancel_time" value="$times*60"}selected{/eq}>{$times}小时</option>
+                                                {/for}
+                                            </select>
                                             <span class="help-block">*下单后多少分钟未付款，订单自动取消</span>
                                         </div>
                                     </div>
@@ -57,9 +62,12 @@
 
                                     <div class="form-group">
                                         <label class="control-label col-lg-2">自动收货时间</label>
-                                        <div class="col-lg-6">
-                                            <input class="form-control" type="number" name="confirm_time" required="required"
-                                                   value="{$data.confirm_time}" step="1" min="1"/>
+                                        <div class="col-lg-2">
+                                            <select class="form-control m-bot15" name="confirm_time" required="required">
+                                                {for start="1" end="31" name="times"}
+                                                <option value="{$times}" {eq name="data.confirm_time" value="$times"}selected{/eq}>{$times}天</option>
+                                                {/for}
+                                            </select>
                                             <span class="help-block">*订单发货后多少天未确认收货，订单自动确认收货</span>
                                         </div>
                                     </div>

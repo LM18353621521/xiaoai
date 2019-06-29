@@ -218,4 +218,16 @@ class Api extends Controller
     }
 
 
+    /**
+     * 提醒支付
+     */
+    public function taskMinute(){
+        $OrderLogic = new \app\common\logic\OrderLogic();
+        //未付款-提醒付款
+        $OrderLogic->orderRemindPay();
+        //未支付-自动取消
+        $OrderLogic->orderAutoCancel();
+    }
+
+
 }

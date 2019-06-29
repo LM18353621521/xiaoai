@@ -13,10 +13,9 @@ class Index extends Member
         if (UID) {
             $loginer = db(\tname::system_loginer)->find(LID);
             $this->assign('loginer', $loginer);
-//            dump($loginer);exit;
             return $this->fetch();
         } else {
-            return $this->redirect('User/login');
+            return $this->redirect('User/index');
         }
     }
 
@@ -54,7 +53,6 @@ class Index extends Member
     {
         db(\tname::auth_rule)->where(array('id' => array('gt', 0)))->delete();
         $menu = config('menu');
-
         foreach ($menu as $k => $v) {
             foreach ($v['_child'] as $k1 => $v1) {
                 foreach ($v1['_child'] as $k2 => $v2) {
@@ -74,7 +72,6 @@ class Index extends Member
                 }
             }
         }
-
         db(\tname::auth_rule)->insertAll($auth);
         dump('success');
     }

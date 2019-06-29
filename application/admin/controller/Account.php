@@ -1,5 +1,8 @@
 <?php
+
 namespace app\admin\controller;
+
+use app\common\logic\ModuleLogic;
 
 class Account extends Member
 {
@@ -13,7 +16,8 @@ class Account extends Member
             $search = input('post.');
             $where = array(
                 'status' => 1,
-                'is_hidden' => 0
+                'is_hidden' => 0,
+                'id'=>['gt',1]
             );
             $dataList = db(\tname::auth_group)->where($where)->order('id desc')->paginate(500);
 
@@ -34,10 +38,10 @@ class Account extends Member
     {
         if (request()->isPost()) {
             $data = input('post.');
-            $data['rules'] = implode(',',$data['rules']);
+            $data['rules'] = implode(',', $data['rules']);
             $data['uid'] = UID;
             $res = dataUpdate(\tname::auth_group, $data);
-            if(!$res){
+            if (!$res) {
                 return ajaxFalse();
             }
             return ajaxSuccess();
@@ -46,19 +50,20 @@ class Account extends Member
             $data = db(\tname::auth_group)->find($id);
 
             $where = [
-                'status'=>1
+                'status' => 1
             ];
-            $loginer  =db(\tname::system_loginer)->find(LID);
-            if($loginer['type'] != 0){
+            $loginer = db(\tname::system_loginer)->find(LID);
+            if ($loginer['type'] != 0) {
                 $group = db(\tname::auth_group)->find($loginer['type']);
-                $where['id'] = array('in',$group['rules']);
-
+                $where['id'] = array('in', $group['rules']);
             }
-            $ruleList = db(\tname::auth_rule)->where($where)->select();
-            foreach($ruleList as $k=>$v){
-                $auth[$v['group_name']][] = $v;
+            $right_list = db(\tname::system_menu)->order('id')->select();
+            foreach ($right_list as $k => $v) {
+                $auth[$v['group']][] = $v;
             }
-
+            //admin权限组
+            $group = (new ModuleLogic)->getPrivilege(0);
+            $this->assign('group',$group);
             $this->assign('data', $data);
             $this->assign('auth', $auth);
             return $this->fetch();
@@ -76,25 +81,28 @@ class Account extends Member
             $where = array(
                 'uid' => UID,
                 'status' => array('egt', 0),
-                'rank' => array('gt', 1)
             );
-            if ($search['stime']&&$search['etime']) {
+            if ($search['stime'] && $search['etime']) {
                 $where['a.create_time'] = array('between time', [$search['stime'], $search['etime']]);
             }
 
             if ($search['keyword']) {
                 $where['username'] = array('like', '%' . $search['keyword'] . '%');
             }
-
-            $dataList = db(\tname::system_loginer)->where($where)->order('id desc')->paginate(50, false, array('page' => $search['page']));
-
+            $dataList = db(\tname::system_loginer)->where($where)->order('id asc')->paginate(50, false, array('page' => $search['page']));
             $this->assign('dataList', $dataList);
+
+            $groupList = db(\tname::auth_group)->where(array('is_hidden' => 0, 'status' => 1))->column('id,title');
+            $this->assign('groupList', $groupList);
+
             $html = $this->fetch('account/form');
             $attach = array(
                 'page' => $dataList->render()
             );
             return ajaxSuccess($html, '', '', $attach);
         }
+
+
         return $this->fetch();
     }
 
@@ -152,11 +160,135 @@ class Account extends Member
             $id = input('param.id', 0);
             $data = db(\tname::system_loginer)->find($id);
 
-            $groupList = db(\tname::auth_group)->where(array('is_hidden'=>0,'status'=>1))->select();
+            $groupList = db(\tname::auth_group)->where(array('is_hidden' => 0, 'status' => 1))->select();
 
             $this->assign('data', $data);
             $this->assign('groupList', $groupList);
             return $this->fetch();
         }
     }
+
+
+    function right_list()
+    {
+        if (request()->isPost()) {
+            $search = input('post.');
+            $type = input('type', 0);
+            $where['type'] = $type;
+            $name = input('name');
+            if (!empty($name)) {
+                $where['name|right'] = array('like', "%$name%");
+            }
+            $dataList = db(\tname::system_menu)->where($where)->order('id desc')->paginate(20, false, array('page' => $search['page']));
+            $this->assign('dataList', $dataList);
+
+            $moduleLogic = new ModuleLogic;
+            if (!$moduleLogic->isModuleExist($type)) {
+                $this->error('权限类型不存在');
+            }
+            $modules = $moduleLogic->getModules();
+            $group = $moduleLogic->getPrivilege($type);
+            $this->assign('group', $group);
+            $this->assign('modules', $modules);
+            $html = $this->fetch('account/form');
+            $attach = array(
+                'page' => $dataList->render()
+            );
+            return ajaxSuccess($html, '', '', $attach);
+        }
+        return $this->fetch();
+    }
+
+    public function edit_right()
+    {
+        $type = input('type', 0);  //0:平台权限资源;1:商家权限资源
+        $moduleLogic = new ModuleLogic;
+        if (!$moduleLogic->isModuleExist($type)) {
+            $this->error('模块不存在或不可见');
+        }
+        if (request()->isPost()) {
+            $data = input('post.');
+            if (!isset($data['right'])) {
+                return ajaxFalse('请添加权限码');
+            }
+            $data['right'] = implode(',', $data['right']);
+            if (!empty($data['id'])) {
+                db(\tname::system_menu)->where(array('id' => $data['id']))->update($data);
+            } else {
+                if (db(\tname::system_menu)->where(array('type' => $data['type'], 'name' => $data['name']))->count() > 0) {
+                    $this->error('该权限名称已添加，请检查', url('Account/right_list'));
+                }
+                unset($data['id']);
+                dataUpdate(\tname::system_menu,$data);
+            }
+            return ajaxSuccess();
+            exit;
+        }
+        $id = input('id');
+
+        $info = db(\tname::system_menu)->where(array('id' => $id))->find();
+        if ($id) {
+            $info['right'] = explode(',', $info['right']);
+        }
+        $this->assign('data', $info);
+
+        $modules = $moduleLogic->getModules();
+        $group = $moduleLogic->getPrivilege($type);
+        $planPath = APP_PATH . $modules[$type]['name'] . '/controller';
+        $planList = array();
+        $dirRes = opendir($planPath);
+        while ($dir = readdir($dirRes)) {
+            if (!in_array($dir, array('.', '..', '.svn'))) {
+                $planList[] = basename($dir, '.php');
+            }
+        }
+        $this->assign('modules', $modules);
+        $this->assign('planList', $planList);
+        $this->assign('group', $group);
+        return $this->fetch();
+    }
+
+    function ajax_get_action()
+    {
+        $control = input('controller');
+        $type = input('type',0);
+        $module = (new ModuleLogic)->getModule($type);
+        if (!$module) {
+            exit('模块不存在或不可见');
+        }
+
+        $selectControl = [];
+        $className = "app\\".$module['name']."\\controller\\".$control;
+        $methods = (new \ReflectionClass($className))->getMethods(\ReflectionMethod::IS_PUBLIC);
+        foreach ($methods as $method) {
+            if ($method->class == $className) {
+                if ($method->name != '__construct' && $method->name != '_initialize') {
+                    $selectControl[] = $method->name;
+                }
+            }
+        }
+        $html = '';
+        foreach ($selectControl as $val){
+            $html .= "<li><label><input class='checkbox' name='act_list' value=".$val." type='checkbox'>".$val."</label></li>";
+            if($val && strlen($val)> 18){
+                $html .= "<li></li>";
+            }
+        }
+        exit($html);
+    }
+    public function right_del(){
+        $data = input('post.');
+        $id= $data['id'];
+        if(!empty($id)){
+            $res = db(\tname::system_menu)->where(['id'=>$id])->delete();
+            if (!$res) {
+                return ajaxFalse();
+            }
+            return ajaxSuccess('', '');
+        }else{
+            return ajaxFalse('参数有误');
+        }
+    }
+
+
 }

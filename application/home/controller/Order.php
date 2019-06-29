@@ -37,12 +37,14 @@ class Order extends Base
         error_reporting(E_ERROR | E_PARSE);
         $user = session('userinfo');
         $OrderLogic = new OrderLogic();
-        $vip_ids = session('vip_ids');
+        $vip_ids = getVipIds($user['vip_id'],$user);
         $pdata = input('');
         $status = input('param.status', 0);
         $sort = "create_time desc";
         $where['vip_id'] = array('in', $vip_ids);
         $where['user_hide'] = 0;
+        $where['is_hidden'] = 0;
+
         switch (intval($status)) {
             case 1:
                 $where['status'] = 0;

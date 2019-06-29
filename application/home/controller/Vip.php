@@ -80,9 +80,10 @@ class Vip extends Base
         if ($vip) {
             $vip['headimg'] = $vip['headimgurl'];
         }
+        $vip_ids = getVipIds($vip['id']);
         $config = tpCache('base');
         $OrderLogic = new \app\common\logic\OrderLogic();
-        $order_status = $OrderLogic->get_order_num($user['vip_id']);
+        $order_status = $OrderLogic->get_order_num($vip_ids);
         $this->assign('vip', $vip);
         $this->assign('order_status', $order_status);
         $this->assign('config', $config);

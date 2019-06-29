@@ -2,7 +2,6 @@
 namespace app\applet\controller;
 class Api extends Applet
 {
-
     public function sendSmsCode(){
         $pdata =input('');
         $mobile = $pdata['mobile'];
@@ -44,7 +43,6 @@ class Api extends Applet
         ];
         return json(ajaxSuccess($ajaxdata,"验证码已发送至：".$mobile."，请注意查收"));
     }
-
     /**
      * 收集FormID
      */

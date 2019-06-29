@@ -15,7 +15,8 @@ class Order extends Applet
     {
         $OrderLogic = new OrderLogic();
         $pdata=input('');
-        $result =$OrderLogic->getOrderList($pdata['vip_ids'],$pdata['status'],$pdata['keyword'],$pdata['sort'],$pdata['asc'],$pdata['page'],$pdata['pagenum']);
+        $vip_ids = getVipIds($pdata['vip_id']);
+        $result =$OrderLogic->getOrderList($vip_ids,$pdata['status'],$pdata['keyword'],$pdata['sort'],$pdata['asc'],$pdata['page'],$pdata['pagenum']);
         return json(ajaxSuccess($result));
     }
     /**orderadd

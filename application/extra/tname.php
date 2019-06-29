@@ -28,6 +28,8 @@ class tname
 	const system_loginer = 'system_loginer';
 	//管理员日志表
 	const admin_log = 'admin_log';
+	//权限资源表
+    const  system_menu='system_menu';
 
 	//邮件设置
 	const email_config = 'email_config';

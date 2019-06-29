@@ -28,11 +28,11 @@ class Order extends Base
     {
         $user = session('userinfo');
         $vip =db(\tname::vip)->where(array('id'=>$user['vip_id']))->find();
-        $vip_ids = session('vip_ids');
+        $vip_ids = getVipIds($vip['vip_id'],$vip);
         if(request()->post()){
             $OrderLogic = new OrderLogic();
             $pdata=input('');
-            $vip_ids = session('vip_ids');
+            $vip_ids = getVipIds($vip['vip_id'],$vip);
             $pdata['vip_id']=array('in',$vip_ids);
             $pdata['pagenum']=10;
 
@@ -46,9 +46,7 @@ class Order extends Base
             );
             return ajaxSuccess($html, '', '', $attach);
         }
-
         $order_tab =array('全部','待付款','待发货','已发货','已完成','售后');
-
         $status = input('param.status',0);
         $this->assign('vip',$vip);
         $this->assign('status',$status);

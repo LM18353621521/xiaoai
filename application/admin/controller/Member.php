@@ -2,6 +2,7 @@
 namespace app\admin\controller;
 
 use think\Controller;
+use think\Request;
 
 class Member extends Controller
 {
@@ -10,7 +11,6 @@ class Member extends Controller
     {
 //        $this->error('当前页面不存在', controller('Index/index'));
     }
-
     /**
      * 构造函数    2017-10-15
      */
@@ -19,48 +19,74 @@ class Member extends Controller
         $this->login();    //获取登录信息
         $menu = config('menu');
         $loginer = session('loginer_auth');
-
-        if ($loginer['rank'] != 1) {
-            $group = db(\tname::auth_group)->find($loginer['type']);
-            $controller_action = BIND_MODULE . '.php/' . strtolower(request()->controller()) . '/' . strtolower(request()->action());
-            $auths = db(\tname::auth_rule)->where(array('id' => array('in', $group['rules'])))->column('name');
-            $group = db(\tname::auth_rule)->field('control_name,group_name')->where(array('id' => array('in', $group['rules'])))->select();
-            $controller_group = [];
-            $auths_group = [];
-            foreach ($group as $key => $value) {
-                $auths_group[] = $value['group_name'];
-                $controller_group[$value['group_name']][] = $value['control_name'];
-            }
-            foreach ($menu as $key => &$value) {
-                if (!in_array($value['group'], $auths_group)) {
-                    unset($menu[$key]);
-                } else {
-                    foreach ($value['_child'] as $k => &$v) {
-                        if (!in_array($v['_child'][0], $controller_group[$value['group']])) {
-                            unset($menu[$key]['_child'][$k]);
-                        }
-                    }
-                }
-            }
-            if (strtolower(request()->controller()) == 'index') {
-                if (strtolower(request()->action()) == 'authcreate') {
-                } else {
-                    config('menu', $menu);
-                }
-            } else {
-                config('menu', $menu);
-            }
-
-            if (!(in_array($controller_action, $auths) || in_array(strtolower(request()->controller()), array('index', 'user', 'member')))) {
-                $this->error('未授权访问!');
-            }
-        }
-
+        $menuList = session('menuList');
+        $this->check_priv();
         isset($auths_group) ? $auths_group : $auths_group = 'all';
         $webInfo =tpCache('web');
         $this->assign('webInfo', $webInfo);
+        $this->assign('menuList', $menuList);
         $this->assign('auths_group', $auths_group);
     }
+
+
+    public function check_priv()
+    {
+        $ctl = $this->request->controller();
+        $act = $this->request->action();
+        $act_list = session('act_list');
+        //无需验证的操作
+        $uneed_check = array('login','logout','vertifyHandle','vertify','imageUp','upload','videoUp','delupload','login_task','cleancache');
+        if($ctl == 'Index'||$ctl == 'User' || $act_list == 'all'){
+            //后台首页控制器无需验证,超级管理员无需验证
+            return true;
+        }elseif((request()->isAjax() && $this->verifyAjaxRequest($act)) || strpos($act,'ajax')!== false || in_array($act,$uneed_check)){
+            //部分ajax请求不需要验证权限
+            $res = $this->verifyAction();
+            if($res['status'] == -1){
+                $this->error($res['msg'],$res['url']);
+            };
+            return true;
+        }else{
+            $res = $this->verifyAction();
+            if($res['status'] == -1){
+                $this->error($res['msg'],$res['url']);
+            };
+        }
+    }
+    /**
+     * 要验证的ajax
+     * @param $act
+     * @return bool
+     */
+    private function verifyAjaxRequest($act){
+        $verifyAjaxArr = ['delGoodsCategory','delGoodsAttribute','delBrand','delGoods'];
+        if(request()->isAjax() && in_array($act,$verifyAjaxArr)){
+            $res = $this->verifyAction();
+            if($res['status'] == -1){
+                $this->ajaxReturn($res);
+            }else{
+                return true;
+            };
+        }else{
+            return true;
+        }
+    }
+    private function verifyAction(){
+        $ctl = $this->request->controller();
+        $act = $this->request->action();
+        $act_list = session('act_list');
+        $right = db(\tname::system_menu)->where("id", "in", $act_list)->cache(true)->column('right');
+        $role_right = '';
+        foreach ($right as $val){
+            $role_right .= $val.',';
+        }
+        $role_right = explode(',', $role_right);
+        //检查是否拥有此操作权限
+        if(!in_array($ctl.'@'.$act, $role_right)){
+            return ['status'=>-1,'msg'=>'您没有操作权限['.($ctl.'@'.$act).'],请联系超级管理员分配权限','url'=>url('Index/index')];
+        }
+    }
+
 
     /**
      * 获取登录信息    2017-10-15
@@ -71,7 +97,7 @@ class Member extends Controller
         $user = session('user_auth');
         define('LID', $loginer['id']);
         define('UID', $user['id']);
-        if (!UID) {
+        if (!UID&&($this->request->controller()!="User"&&$this->request->action()!='index')) {
             return $this->redirect('User/index');
         }
     }
@@ -82,7 +108,6 @@ class Member extends Controller
     public function updatefield()
     {
         $data = input('post.');
-
         $updatedata = array(
             'id' => $data['id'],
             $data['fieldname'] => $data['afterchange']

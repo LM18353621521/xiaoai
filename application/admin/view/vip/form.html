@@ -64,3 +64,45 @@
 </tr>
 {/volist}
 {/if}
+
+{if condition ="strtolower(request()->action()) == 'withdraw'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td><input type="checkbox" name="id" value="{$vo.id}"></td>
+    <td><a href="#">{$key+1}</a></td>
+    <td>{$vo.nickname}</td>
+    <td>{$vo.money}</td>
+    <td>{$vo.create_time|date="Y-m-d H:i",###}</td>
+    <td  data-pid="{$vo.id}">
+        {if condition="$vo.status == 0"}
+            待审核
+        {elseif condition="$vo.status == 1"/}
+            审核通过
+        {elseif condition="$vo.status == -1"/}
+            审核未通过
+        {/if}
+    </td>
+    <td>
+        {if condition="$vo.status != 0"}
+        {$vo.check_time|date="Y-m-d H:i",###}
+        {/if}
+    </td>
+    <td data-pid="{$vo.id}">
+        {if condition="$vo.status == 0"}
+        <a href="#deal" data-url="{:url('Vip/withdrawcheck')}" data-tablename="money_withdraw" data-fieldname="status" data-value="1">
+            同意
+        </a>
+        |
+        <a href="#deal" data-url="{:url('Vip/withdrawcheck')}" data-tablename="money_withdraw" data-fieldname="status" data-value="-1">
+            拒绝
+        </a>
+        {else/}
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="money_withdraw" data-fieldname="is_hidden" data-value="1"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+        {/if}
+    </td>
+</tr>
+{/volist}
+{/if}

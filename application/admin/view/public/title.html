@@ -1,4 +1,4 @@
-{volist name=":config('menu')" id="vo"}
+{volist name="menuList" id="vo"}
 {if condition ="strtolower(request()->controller()) == $vo.group"}
 <header class="tab-head">
     <ul class="nav nav-tabs">
