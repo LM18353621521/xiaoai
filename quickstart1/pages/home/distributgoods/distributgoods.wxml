@@ -1,0 +1,62 @@
+
+<view class='{{showfuceng==0?"hidecontainer":""}}'>
+<!--列表  -->
+<view class='lists'>
+  <view class='item' wx:for="{{list}}">
+    <view class="lt">
+        <image src="{{item.coverimg}}"/>
+    </view>
+    <view class="rt">
+        <view>{{item.name}}</view>
+        <view class='info'>价格：<text>￥{{item.price}}</text></view>
+        <view class='info'>奖励：<text>￥{{item.income}}</text></view>
+        <view class='info'>比例：<text>{{item.first_percent}}%</text></view>
+        <button class='btn-recommend' bindtap="share_do" data-index='{{index}}' wx:if="{{config.share_btn_switch==1}}">
+          <image src='../../../images/share.png'></image>
+        </button>
+    </view>
+  </view>
+  <!-- <view class='item'>
+    <view class="lt">
+        <image src="../../../images/product-list.jpg"/>
+    </view>
+    <view class="rt">
+        <view>VR飞机杯真实体验真人3D环绕声叫爽翻VR飞机杯真实体验真人3D环绕声叫爽翻VR飞机杯真实体验真人3D环绕声叫爽翻</view>
+        <view class='info'>价格：<text>￥159</text></view>
+        <view class='info'>佣金：<text>￥159</text></view>
+        <view class='info'>返佣比例：<text>6%</text></view>
+        <button class='btn-recommend'>我要推荐</button>
+    </view>
+  </view> -->
+</view>
+
+<view class="more"><image mode='widthFix' src="../../../images/jiazai.png"/>{{more_tips}}</view>
+</view>
+
+
+<!--f2 -->
+<view class='fuceng {{f2==0?"hidden":""}}'>
+<view class="fuer" bindtap="hidef2"></view>
+<view class='baibgb'>
+<image class="close-img" bindtap="hidef2" src="../../../images/close-pink.jpg"/>
+<view class="poster"><image class="poster-img" src="{{poster_img}}"/></view>
+<view class='sure' bindtap="save_poster">保存图片</view>
+<view class='suretips'>{{config.share_tips}}</view>
+</view>
+</view> 
+
+<!--f3 -->
+<view class='fuceng {{f3==0?"hidden":""}}'>
+<view class="fuer" bindtap="hidef3"></view>
+<view class='baibga'>
+<view class="img-tab">
+      <button class="button_btn" open-type='share'>
+        <image mode='widthFix' class="wechat" src="../../../images/wechats.png" />
+      </button>
+      <button class="button_btn" bindtap='shre_friend_circle'>
+        <image bindtap='showf2x' mode='widthFix' class="wechat" src="../../../images/codes.png" />
+      </button>
+</view>
+<view class='sure' bindtap="hidef3">关闭</view>
+</view>
+</view> 

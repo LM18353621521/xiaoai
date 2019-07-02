@@ -1,0 +1,13 @@
+<view>
+<view class="addr-box" wx:for="{{addressList}}" bindtap='address_edit' data-address_id='{{item.id}}'>
+  <view class="addr-box-left">{{item.linkman}}</view>
+  <view class="addr-box-mid">
+    <view class="addr-mida">{{item.linkman}}<text>{{item.linktel}}</text></view>
+    <view class="addr-midb"><text wx:if="{{item.is_default==1}}">默认</text> {{item.province}} {{item.city}} {{item.district}} {{item.address}}</view>
+  </view>
+  <view hidden="{{action==1?'':'hidden'}}" class="addr-box-right" catchtap='address_edit' data-address_id='{{item.id}}' >编辑</view>
+  <view hidden="{{action==2?'':'hidden'}}" class="addr-box-right" catchtap='address_edit' data-address_id='{{item.id}}' >选择</view>
+</view>
+</view>
+
+<view class='add' bindtap='address_edit'  data-address_id='0' ><image src="../../../images/add.jpg" />添加新地址</view>

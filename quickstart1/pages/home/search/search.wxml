@@ -1,0 +1,45 @@
+<view class="topsearch">
+  <image class="sear" src="../../../images/search.png" />
+  <!-- <image bindtap='clearInput' class="sear-close {{inputvalue==0?'hidden':''}}" src="../../../images/search-close.png" value="{{inputVal}}" /> -->
+  <input bindinput="input_keyword"  class="searchh" placeholder-style='color:#ccc;' type="text" placeholder="商品搜索" />
+  <view class="btns" bindtap='search_do'>搜索</view>
+</view>
+<!--搜索时显示  -->
+<view class='history {{search==0?"hidden":""}}'>
+    <view class='history-title'>历史搜索</view>
+    <view class='history-box'>
+      <view class='history-label' wx:for="{{keywordList}}" bindtap='keyword_btn' data-keyword='{{item}}'  >{{item}}</view>
+    </view>
+    <view wx:if="{{keywordList.length>0}}" class='clear-history' bindtap="clearHistory"><image src="../../../images/del.png" />清空历史搜索</view>
+</view>
+
+<!--点击搜索显示  -->
+<view class='search-list {{search==1?"hidden":""}}'>
+     <view class="box">
+        <view bindtap="press" class="boxa {{current == 0 ? 'boxsel':''}}" data-current="0">综合</view>
+        <view bindtap="press" class="boxa {{current == 1 ? 'boxsel':''}}" data-current="1">上新</view>
+      </view>
+
+      <!--没有找到商品显示  -->
+      <view class="formbox  {{searchres==0?'hidden':''}}">
+          <image class='cart' src="../../../images/my-cart.jpg" />
+          <view class='history-tips'>没有找到你想要的商品</view>
+          <view class='history-tips'>换个搜索词试试</view>
+      </view>
+
+
+      <!--找到商品显示  -->
+      <scroll-view class="formbox {{searchres==1?'hidden':''}}" scroll-y>
+          <view class="plane1" wx:for="{{con}}">
+            <view class="fir">
+              <image src="{{item.src}}" class="goodsxin" />
+              <view class="rightxin">
+                <view class="xintit">{{item.tit}}</view>
+                <view class="xinaddr"><span>￥</span>{{item.money}}</view>
+              </view>
+              <image class="carta" src="../../../images/cart.png" />
+            </view>
+          </view>
+          <view class='more'>更换搜索词查找更多商品</view>
+      </scroll-view>
+</view>

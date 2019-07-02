@@ -116,12 +116,12 @@
   <view class="ss">
     <view class="ke">
       <navigator open-type='switchTab' url='/pages/home/index/index' hover-class='none'>
-        <image class="keimg" src="../../../images/footer-home.png" />
+        <image class="keimg" src="../../../images/footera-active.png" />
         <view class="kefont" style='color:var(--purplecolor);'>首页</view>
       </navigator>
     </view>
     <view class="ke" bindtap='cart_do'>
-      <image class="keimg" src="../../../images/cart.png" />
+      <image class="keimg" src="../../../images/footerd-active.png" />
       <view class="kefont" style='color:var(--pinkcolor);'>购物车</view>
     </view>
     <view class="s2" bindtap='showfu'>加入购物车</view>

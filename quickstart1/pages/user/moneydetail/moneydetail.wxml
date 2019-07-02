@@ -1,0 +1,66 @@
+<view class="scroll-view_H">
+   <view class="scroll-view-item_H">
+    <view class="title {{tabcurrent == index ? 'titlesel':''}}" bindtap="singelbtn" wx:for="{{titarr}}" data-index="{{index}}" >{{item.tit}}</view>
+  </view>
+</view>
+
+
+<view class='item {{tabcurrent==0?"":"hidden"}}'>
+  <view class='list-item'>
+      <view class='money-title'>名称：电动飞机杯</view>
+      <view class='money-box'>
+        <view class='money-box-left'>价格</view>
+        <view class='money-box-right'>￥99</view>
+      </view>
+      <view class='money-box'>
+        <view class='money-box-left'>成交时间</view>
+        <view class='money-box-right'>2018-02-05 18.05.12</view>
+      </view>
+      <view class='money-box'>
+        <view class='money-box-left'>合计佣金</view>
+        <view class='money-box-right'>￥99</view>
+      </view>
+  </view>
+  <view class='list-item'>
+      <view class='money-title'>名称：电动飞机杯</view>
+      <view class='money-box'>
+        <view class='money-box-left'>价格</view>
+        <view class='money-box-right'>￥99</view>
+      </view>
+      <view class='money-box'>
+        <view class='money-box-left'>成交时间</view>
+        <view class='money-box-right'>2018-02-05 18.05.12</view>
+      </view>
+      <view class='money-box'>
+        <view class='money-box-left'>合计佣金</view>
+        <view class='money-box-right'>￥99</view>
+      </view>
+  </view>
+</view>
+
+
+
+<view class='item {{tabcurrent==1?"":"hidden"}}'>
+  <view class='list-item'>
+      <view class='money-title'>中国建设银行</view>
+      <view class='money-box'>
+        <view class='money-box-left'>尾号9265</view>
+        <view class='money-box-right'>-2356.00</view>
+      </view>
+      <view class='money-box'>
+        <view class='money-box-left'>2018-02-05 18.05.12</view>
+        <view class='money-box-right'>成功</view>
+      </view>
+  </view>
+  <view class='list-item'>
+      <view class='money-title'>中国建设银行</view>
+      <view class='money-box'>
+        <view class='money-box-left'>尾号9265</view>
+        <view class='money-box-right'>-2356.00</view>
+      </view>
+      <view class='money-box'>
+        <view class='money-box-left'>成功</view>
+        <view class='money-box-right'>2018-02-05 18.05.12</view>
+      </view>
+  </view>
+</view>

@@ -134,7 +134,7 @@ rich-text {
   position: absolute;
   left: 32%;
   top: 5rpx;
-  background: #ff567f;
+  background: #B82F89;
   width: 40rpx;
   height: 40rpx;
   line-height: 40rpx;
@@ -177,7 +177,7 @@ rich-text {
   font-size: 30rpx;
   color: #fff;
   line-height: 100rpx;
-  background: var(--pinkcolor);
+  background: #ff3399;
 }
 
 .btnimg0 {

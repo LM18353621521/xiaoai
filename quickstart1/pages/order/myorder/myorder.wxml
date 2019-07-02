@@ -1,0 +1,95 @@
+<view class='top-head'>
+  <view class='bind' hidden="{{bind_hide}}">
+    <view class='bind-left'>找不到订单？绑定手机号试试</view>
+    <view class='bind-right' bindtap="showf4">绑定</view>
+  </view>
+
+  <view class="scroll-view_H">
+    <view class="scroll-view-item_H">
+      <view class="title {{tabcurrent == index ? 'titlesel':''}}" bindtap="singelbtn" wx:for="{{titarr}}" data-index="{{index}}">{{item.tit}}</view>
+    </view>
+  </view>
+</view>
+
+<view class='li' wx:for="{{list}}" wx:for-item="item" wx:for-index="index" bindtap='detail_do' data-index='{{index}}' >
+  <view class='code-leftright'>
+    <view class='code-left'>订单编号：{{item.order_number}}</view>
+    <view class='code-right' wx:if="{{item.status==0}}">未付款</view>
+    <view class='code-right' wx:if="{{item.status==1}}">已付款</view>
+    <view class='code-right' wx:if="{{item.status==2}}">已发货</view>
+    <view class='code-right' wx:if="{{item.status==3&&item.is_comment==0}}">待评价</view>
+    <view class='code-right' wx:if="{{item.status==3&&item.is_comment==1}}">已评价</view>
+    <view class='code-right' wx:if="{{item.status==-1}}">已取消</view>
+    <view class='code-right' wx:if="{{item.status==-2}}">申请退款</view>
+    <view class='code-right' wx:if="{{item.status==-3}}">已退款</view>
+  </view>
+  <view class='lists'>
+    <view class='item' wx:for="{{item.orderlog}}" wx:for-item="subitem" wx:for-index="subindex">
+      <view class="lt">
+        <image src="{{subitem.coverimg}}" />
+      </view>
+      <view class="rt">
+        <view class='first'>
+          <view class='first-left'>{{subitem.goods_name}}</view>
+          <view class='first-right'>￥{{subitem.goods_price}}</view>
+        </view>
+        <view class='sec'>
+          <view class='sec-left'>
+            <text>{{subitem.key_name}}</text>
+          </view>
+          <view class='sec-right'>x{{subitem.buy_num}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="gongji">共计{{item.total_number}}件商品 合计：
+    <text>￥{{item.total_price}}元</text>
+  </view>
+  <view class="yunfei">含运费：￥{{item.express_fee}}元</view>
+  <view class="datebox1">
+    <view class="date00 gray-active" wx:if="{{item.status==0}}" catchtap='cancel_do' data-index='{{index}}'>取消订单</view>
+    <view class="date00 pink-active" wx:if="{{item.status==0}}" catchtap='detail_do' data-index='{{index}}'>去付款</view>
+    <view class="date00 pink-active" wx:if="{{item.status==1}}" catchtap='refund_do' data-index='{{index}}'>申请退款</view>
+    <view class="date00 pink-active" wx:if="{{item.status==2}}" catchtap='refund_do' data-index='{{index}}'>申请退款</view>
+    <view class="date00 pink-active" wx:if="{{item.status==2}}" catchtap='confirm_do' data-index='{{index}}'>确认收货</view>
+    <view class="date00 pink-active" wx:if="{{item.status==3&&item.is_comment==0}}" catchtap='comment_do' data-index='{{index}}'>去评价</view>
+    <view class="date00 pink-active" wx:if="{{item.status==-1}}" catchtap='del_do' data-index='{{index}}'>删除订单</view>
+    <view class="date00 pink-active" wx:if="{{item.status==-3}}" catchtap='del_do' data-index='{{index}}'>删除订单</view>
+    <view class="date00 gray-active" wx:if="{{item.status==3&&item.is_comment==1}}" catchtap='del_do' data-index='{{index}}'>删除订单</view>
+    <view class="date00 pink-active" wx:if="{{item.status==2}}" catchtap='express_do' data-index='{{index}}'>查看物流</view>
+    <view class="date00 pink-active" wx:if="{{item.status==3}}" catchtap='express_do' data-index='{{index}}'>查看物流</view>
+    <!-- <view class="date00 gray-active">{{item.btnb}}</view> -->
+  </view>
+</view>
+
+<view class="more"><image mode='widthFix' src="../../../images/jiazai.png"/>{{more_tips}}</view>
+
+
+
+<view class="none-box" hidden="no_order==1?'true':'false'">
+  <image src='../../../images/none.png' class='none'></image>
+  <view class="none-text">您还没有相关订单</view>
+</view>
+
+<!-- 绑定浮层 -->
+<view class='fuceng {{f4==0?"hidden":""}}'>
+  <view class="fuer" bindtap="hidef4"></view>
+  <view class='baibga'>
+    <view class='login-title'>绑定手机
+      <image bindtap="hidef4" src="../../../images/my-close.jpg" />
+    </view>
+    <view class="formbox">
+      <view class="form1 phone-bg">
+        <view class="box1">
+          <input type="number" value='{{mobile}}' bindinput='input_mobile' maxlength='11'  placeholder="请输入您的手机号" placeholder-style="color:#ccc;font-size:26rpx;" />
+        </view>
+        <view class="box1">
+          <input class='code-yan' value='{{code}}' type="number" bindinput='input_code' maxlength='6' placeholder="请输入验证码" placeholder-style="color:#ccc;font-size:26rpx;" />
+          <view class="get {{selected1?'':'hidden'}}" bindtap='getcode'>发送验证码</view>
+          <view class="get {{selected?'':'hidden'}}" bindtap="countdown">{{second}}s</view>
+        </view>
+        <view class="btnbtna" bindtap="bind_mobile_do">绑定</view>
+      </view>
+    </view>
+  </view>
+</view>

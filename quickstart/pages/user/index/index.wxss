@@ -213,9 +213,9 @@ page{
   text-align:center;
   line-height:32rpx;
   font-size:26rpx;
-  color:#fe677f;
+  color:#B82F89;
   padding: 0 1rpx;
-  border: 1rpx solid #fe677f;
+  border: 1rpx solid #B82F89;
 }
 
 .tabd{

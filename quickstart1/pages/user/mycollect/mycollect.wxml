@@ -1,0 +1,20 @@
+<!--列表  -->
+<view class='lists'>
+  <view class='item' wx:for="{{list}}" bindtap='detail_do' data-index='{{index}}'>
+    <view class="lt">
+      <image src="{{item.coverimg}}" />
+    </view>
+    <view class="rt">
+      <view>{{item.name}}</view>
+       <view class='money'>
+       <text>￥{{item.price}}</text>
+        <!-- <text>123</text> -->
+        <image catchtap='del' data-index='{{index}}' class='del_icon' src="../../../images/del.png"/>
+       </view>
+      <view class='person'>{{item.sales}}人付款</view>
+    </view>
+  </view>
+</view>
+
+<view class="more">
+  <image mode='widthFix' src="../../../images/jiazai.png" />{{more_tips}}</view>

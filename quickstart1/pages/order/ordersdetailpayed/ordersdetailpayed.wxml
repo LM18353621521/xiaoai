@@ -1,0 +1,102 @@
+<view class="top-banner">
+  <view class="top-bannera">订单状态：买家已付款</view>
+  <view class="top-bannerb">物流状态：买家发货中</view>
+  <image class='payed' src="../../../images/payed.png" />
+</view>
+
+
+<view class='order-addr'>
+  <image class='addr' src="../../../images/addr.png" />
+  <image class='toright' src="../../../images/toright.png" />
+  <view class='addr-box'>
+    <view class='addr-name'>收货人：李三 <text>2454121254512121</text></view>
+    <view class='addr-info'>收货地址：上海市徐汇区街道的方式开发商</view>
+  </view>
+</view>
+
+
+
+<view class='lists'>
+  <view class='item' wx:for="{{goodslist}}">
+    <view class="lt">
+        <image src="{{item.img}}"/>
+    </view>
+    <view class="rt">
+        <view class='list-name'>{{item.name}}</view>
+        <view class='list-info'>
+          <text>颜色:{{item.color}}</text>
+          <text>尺寸:{{item.size}}</text>
+        </view>
+        <view class='list-money'>
+          <text class='aa'>￥<text>{{item.price}}</text></text>
+          <text class='bb'>x{{item.num}}</text>
+        </view>
+    </view>
+  </view>
+</view>
+
+
+<!-- <view class='view-input'>
+  <view class='view-input-left'>买家留言</view>
+  <input class="view-input-right" type="text" placeholder="买家请留言" placeholder-style="color:#ccc;" />
+</view> -->
+<view class='view-input'>
+  <view class='view-input-left'>买家留言</view>
+  <view class='view-input-right'>买家无留言</view>
+</view>
+
+
+
+<view class='order-box'>
+  <view class='order-left small-fontSize'>共2件商品 合计</view>
+  <view class='order-right'>￥336.00</view>
+</view>
+<view class='order-box'>
+  <view class='order-left'>运费</view>
+  <view class='order-right order-gray'>￥336.00</view>
+</view>
+<view class='order-box'>
+  <view class='order-left'>优惠金额</view>
+  <view class='order-right'>￥336.00</view>
+</view>
+<view class='order-box'>
+  <view class='order-left'>实付款</view>
+  <view class='order-right'>￥336.00</view>
+</view>
+
+
+
+<view class='order-box'>
+  <view class='ordera-left'>支付方式：</view>
+  <view class='ordera-right'>佣金支付</view>
+</view>
+<view class='order-box'>
+  <view class='ordera-left'>订单编号：</view>
+  <view class='ordera-right'>sfsfsfsf</view>
+</view>
+<view class='order-box'>
+  <view class='ordera-left'>下单时间：</view>
+  <view class='ordera-right'>2018-05-30 15:00:00</view>
+</view>
+<view class='order-box'>
+  <view class='ordera-left'>付款时间：</view>
+  <view class='ordera-right'>2018-05-30 15:00:00</view>
+</view>
+
+
+
+
+<view class="ss">
+  <view class="ke">
+      <image class="keimg" src="../../../images/footer-home.png"/>
+      <view class="kefont">首页</view>
+  </view>
+  <view class="ke">
+    <button open-type="contact">
+      <image class="keimg" src="../../../images/footer-ear.png"/>
+      <view class="kefont">客服</view>
+    </button>
+  </view>
+  <view class="s2">申请退款</view>
+  <view class="s3">确认收货</view>
+</view>

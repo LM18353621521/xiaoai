@@ -1,0 +1,17 @@
+.list{
+  overflow: hidden;
+  height: 170rpx;
+  line-height: 170rpx;
+  font-size: var(--fontSize);
+  color: #5c5757;
+  width: 94%;
+  margin:0 auto;
+  border-bottom: 1px solid #f8f8f8;
+}
+.list image{
+  vertical-align: middle;
+  width: 100rpx;
+  height: 100rpx;
+  margin-top:-3rpx;
+  margin-right:30px;
+}

@@ -1,0 +1,179 @@
+<view class="toptit">
+  <image class="vip-bg" src="../../../images/vip-bg.jpg" />
+  <image class="head" src="{{vip.headimgurl}}" />
+  <!-- <view class="change-account" bindtap='showf3'>更换账号</view> -->
+  <view class="name">{{vip.nickname}}</view>
+  <view class="bind-text" hidden="{{bind_hide}}">{{config.bind_tips}}
+    <text bindtap="showf4">绑定</text>
+  </view>
+</view>
+<view class="toptita">
+  <view class="tabbox">
+    <view class="tabd">
+      <navigator url='/pages/order/myorder/myorder?type=1' hover-class='none'>
+        <image class="tabad" src="../../../images/icon01.png" />
+        <view class="tabbd">待付款</view>
+        <view class="sub" wx:if="{{order_status[0]>0}}">{{order_status[0]}}</view>
+      </navigator>
+    </view>
+    <view class="tabd">
+      <navigator url='/pages/order/myorder/myorder?type=2' hover-class='none'>
+        <image class="tabad" src="../../../images/icon02.png" />
+        <view class="tabbd">待发货</view>
+        <view class="sub" wx:if="{{order_status[1]>0}}">{{order_status[1]}}</view>
+      </navigator>
+    </view>
+    <view class="tabd">
+      <navigator url='/pages/order/myorder/myorder?type=3' hover-class='none'>
+        <image class="tabad" src="../../../images/icon03.png" />
+        <view class="tabbd">待收货</view>
+        <view class="sub" wx:if="{{order_status[2]>0}}">{{order_status[2]}}</view>
+      </navigator>
+    </view>
+    <view class="tabd">
+      <navigator url='/pages/order/myorder/myorder?type=5' hover-class='none'>
+        <image class="tabad" src="../../../images/icon04.png" />
+        <view class="tabbd">退款|售后</view>
+        <view class="sub" wx:if="{{order_status[4]>0}}">{{order_status[4]}}</view>
+      </navigator>
+    </view>
+    <view class="tabd">
+      <view class='line5'>
+        <navigator url='/pages/order/myorder/myorder?type=5' hover-class='none'>
+          <image class="tabad" src="../../../images/icon05.png" />
+          <view class="tabbd">全部订单</view>
+        </navigator>
+      </view>
+
+    </view>
+  </view>
+</view>
+<view class="toptita listb">
+  <view class="tabbox">
+    <view class="tabd">
+      <navigator url='/pages/user/addrlist/addrlist' hover-class='none'>
+        <image class="tabad" src="../../../images/icon06.png" />
+        <view class="tabbd">收货地址</view>
+      </navigator>
+    </view>
+    <view class="tabd">
+      <navigator url='/pages/user/mycoupon/mycoupon' hover-class='none'>
+        <image class="tabad" src="../../../images/icon07.png" />
+        <view class="tabbd">我的优惠券</view>
+      </navigator>
+    </view>
+    <view class="tabd">
+      <navigator url='/pages/user/mycollect/mycollect' hover-class='none'>
+        <image class="tabad" src="../../../images/icon08.png" />
+        <view class="tabbd">我的关注</view>
+      </navigator>
+    </view>
+    <view class="tabd">
+      <navigator url='/pages/user/distribution/distribution' hover-class='none'>
+        <image class="tabad" src="../../../images/icon09.png" />
+        <view class="tabbd">分销中心</view>
+      </navigator>
+    </view>
+    <view class="tabd">
+      <button open-type='contact' hover-class='none'>
+        <image class="tabad" src="../../../images/icon10.png" />
+        <view class="tabbd">联系客服</view>
+      </button>
+    </view>
+  </view>
+</view>
+<view class='logo'>
+  <image src="{{config.logo}}"></image>
+</view>
+<view class='logos'>{{config.slogen}}</view>
+
+<!--登录浮层  -->
+<view class='fuceng {{f3==0?"hidden":""}}'>
+  <view class="fuer" bindtap="hidef3"></view>
+  <view class='baibga'>
+    <view class='login-title'>晓爱商城登录
+      <image bindtap="hidef3" src="../../../images/my-close.jpg" />
+    </view>
+    <view class="box">
+      <view bindtap="press" class="boxa {{current == 0 ? 'boxsel':''}}" data-current="0">账号密码登录</view>
+      <view bindtap="press" class="boxa {{current == 1 ? 'boxsel':''}}" data-current="1">短信验证码登录</view>
+    </view>
+    <view class="formbox">
+      <view class="form1 {{current == 0 ? '':'hidden'}}">
+        <view class='login-leftright'>
+          <view class='login-left'>账号</view>
+          <input class="login-right" type="text" placeholder="用户名/邮箱/已验证手机" placeholder-style="color:#ccc;" />
+        </view>
+        <view class='login-leftright'>
+          <view class='login-left'>密码</view>
+          <input class="login-right" type="text" placeholder="请输入密码" placeholder-style="color:#ccc;" />
+          <image class='eye' src="../../../images/my-eye.png" />
+        </view>
+        <view class='set-leftright'>
+          <view class='set-left'>
+            <image src="../../../images/my-clock.png" />忘记密码？</view>
+          <view class='set-right'>
+            <image src="../../../images/my-phone.png" />手机快速登录</view>
+        </view>
+        <view class="btnbtn" bindtap="hidef3">登录</view>
+        <view class='my-flex'>
+          <view class='my-flex-line'></view>
+          <view class='my-flex-mid'>其他方式登录</view>
+          <view class='my-flex-line'></view>
+        </view>
+        <image class="my-qq" src="../../../images/my-qq.png" />
+      </view>
+      <view class="form1 phone-bg {{current == 1 ? '':'hidden'}}">
+        <view class="box1">
+          <input type="number" bindinput='input_mobile' maxlength='11' placeholder="请输入您的手机号" placeholder-style="color:#ccc;font-size:26rpx;" />
+        </view>
+        <view class="box1">
+          <input class='code-yan' type="number" maxlength='6' placeholder="请输入验证码" placeholder-style="color:#ccc;font-size:26rpx;" />
+          <view class="get {{selected1?'':'hidden'}}" bindtap='getcode'>发送验证码</view>
+          <view class="get {{selected?'':'hidden'}}" bindtap="countdown">{{second}}s</view>
+        </view>
+        <view class="btnbtna" bindtap="login_do">登录</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 绑定浮层 -->
+<view class='fuceng {{f4==0?"hidden":""}}'>
+  <view class="fuer" bindtap="hidef4"></view>
+  <view class='baibga'>
+    <view class='login-title'>绑定手机
+      <image bindtap="hidef4" src="../../../images/my-close.jpg" />
+    </view>
+    <view class="formbox">
+      <view class="form1 phone-bg">
+        <view class="box1">
+          <input type="number" value='{{mobile}}' bindinput='input_mobile' maxlength='11' placeholder="请输入您的手机号" placeholder-style="color:#ccc;font-size:26rpx;" />
+        </view>
+        <view class="box1">
+          <input class='code-yan' value='{{code}}' type="number" bindinput='input_code' maxlength='6' placeholder="请输入验证码" placeholder-style="color:#ccc;font-size:26rpx;" />
+          <view class="get {{selected1?'':'hidden'}}" bindtap='getcode'>发送验证码</view>
+          <view class="get {{selected?'':'hidden'}}" bindtap="countdown">{{second}}s</view>
+        </view>
+        <view class="btnbtna" bindtap="bind_mobile_do">绑定</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="fuceng {{auth_hide==0? 'hidden':''}}">
+  <view class="fuer" bindtap="close"></view>
+  <view class="fucengbox">
+    <view class="fucengtit">微信授权</view>
+    <view class='leftrightf'>
+      <image class='leftf' src="{{config.logo}}" />
+      <view class='rightf'>XXXX官方+申请获取以下权限:</view>
+    </view>
+    <view class='span'>
+      <text></text>获得你的公开信息(昵称、头像等)</view>
+    <view class="fucengbtn">
+      <view class="fucengbtn1" bindtap="close">拒绝</view>
+      <button class="fucengbtn2" bindtap="close" open-type="getUserInfo" bindgetuserinfo="authUserInfo">允许</button>
+    </view>
+  </view>
+</view>

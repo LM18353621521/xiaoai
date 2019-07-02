@@ -1,0 +1,106 @@
+<!--轮播图  -->
+<swiper indicator-dots="true" autoplay="true" circular="true" interval="5000" duration="1000" indicator-color="rgba(255,255,255,.5)" indicator-active-color="#fff">
+  <block wx:for="{{carousel}}">
+    <swiper-item>
+      <image src="{{item.imgpath}}" class="slide-image" />
+    </swiper-item>
+  </block>
+</swiper>
+<view class='searchbox'>
+  <navigator url='/pages/home/search/search' hover-class='none'>
+    <input type='text' class='search' disabled='disabled' name="keyword" placeholder='商品搜索' bindconfirm="search_do" placeholder-style='font-size:24rpx;color:#ccc;'></input>
+    <image src="../../../images/search.png" class="searchimg" />
+  </navigator>
+</view>
+<!--菜单  -->
+<view class="box scroll_box">
+  <scroll-view class="scroll-view_x" scroll-x style="width: auto;overflow:hidden;">
+    <view class='item_list' wx:if="{{config.happly_switch==1}}">
+      <navigator url='/pages/home/happy/happy' hover-class='none'>
+        <image src="../../../images/menua.png" />
+        <view class="viewinfotit">开心一刻</view>
+      </navigator>
+    </view>
+    <!-- <view class='item_list'>
+      <image src="../../../images/menub.png" />
+      <view class="viewinfotit">活动</view>
+    </view> -->
+    <view class='item_list' wx:for="{{categoryList}}">
+      <navigator url='/pages/home/goodsList/goodsList?category_id={{item.id}}' hover-class='none'>
+        <image src="{{item.coverimg}}" />
+        <view class="viewinfotit">{{item.name}}</view>
+      </navigator>
+    </view>
+  </scroll-view>
+</view>
+<!-- <view class='box'>
+  <view class="viewinfo" wx:if="{{happy_open==1}}">
+    <navigator url='/pages/home/happy/happy' hover-class='none'>
+      <image src="../../../images/menua.png" />
+      <view class="viewinfotit">开心一刻</view>
+    </navigator>
+  </view>
+  <view class="viewinfo">
+    <image src="../../../images/menub.png" />
+    <view class="viewinfotit">活动</view>
+  </view>
+  <view class="viewinfo" wx:for="{{categoryList}}">
+    <navigator url='/pages/home/goodsList/goodsList?category_id={{item.id}}' hover-class='none'>
+      <image src="{{item.coverimg}}" />
+      <view class="viewinfotit">{{item.name}}</view>
+    </navigator>
+  </view>
+</view> -->
+<!--列表  -->
+<view class='product-list-title'>热门推荐</view>
+<view class='product-list-box'>
+  <view class="roduct_list_box100">
+    <view class="iste1" wx:for="{{list}}">
+      <navigator url='/pages/home/detail/detail?id={{item.id}}' hover-class='none'>
+        <image class="eft11" src="{{item.coverimg}}" />
+        <view class="ight1w">
+          <view class="ight12w">{{item.name}}</view>
+          <view class="ightw">
+            <view class="ightw1">￥{{item.price}}
+              <text>{{item.sales}}人付款</text>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+  <view class="more">
+    <image mode='widthFix' src="../../../images/jiazai.png" />{{more_tips}}</view>
+</view>
+
+<!--优惠券  -->
+<view class="coupon" wx:if="{{has_coupon.id}}">
+  <view class="a1">
+    <navigator url='/pages/user/coupon/coupon' hover-class='none'>
+      <image class='coupon-bg' src="../../../images/coupon.png" />
+      <view class="a11">
+        <view class="a01">￥{{has_coupon.money}}</view>
+        <view class="a02">使用期限</view>
+        <view class="a02">{{has_coupon.use_stime}}-{{has_coupon.use_etime}}</view>
+      </view>
+      <view class="a12">立即领券</view>
+    </navigator>
+  </view>
+</view>
+
+<view class="fuceng {{auth_hide==0? 'hidden':''}}">
+  <view class="fuer" bindtap="close"></view>
+  <view class="fucengbox">
+    <view class="fucengtit">微信授权</view>
+    <view class='leftrightf'>
+      <image class='leftf' src="{{config.logo}}" />
+      <view class='rightf'>{{config.web_name}}官方申请获取以下权限:</view>
+    </view>
+    <view class='span'>
+      <text></text>获得你的公开信息(昵称、头像等)</view>
+    <view class="fucengbtn">
+      <view class="fucengbtn1" bindtap="close">拒绝</view>
+      <button class="fucengbtn2" bindtap="close" open-type="getUserInfo" bindgetuserinfo="authUserInfo">允许</button>
+    </view>
+  </view>
+</view>

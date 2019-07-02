@@ -1,0 +1,59 @@
+<view class="scroll-view_H">
+  <view class="scroll-view-item_H">
+    <view wx:for="{{titarr}}" class="title {{tabcurrent == item.type ? 'titlesel':''}}" bindtap="singelbtn" data-type="{{item.type}}" data-index="{{index}}">{{item.tit}}</view>
+  </view>
+</view>
+
+<view class='content'>
+  <view class='content-item {{tabcurrent=="video"?"":"hidden"}}'>
+    <view class='item' wx:for="{{video_list}}">
+      <view class='tit'>{{item.title}}</view>
+
+      <view class='media-box'>
+        <video class="myVideo" poster="../../../images/media.jpg" id="myVideo" src="{{item.video_url}}" show-center-play-btn enable-danmu controls>
+        </video>
+        <!-- <image class="play" src="../../../images/play.png" /> -->
+      </view>
+      <view class='date'>{{item.dayfast}}发布</view>
+    </view>
+    <!-- <view class='item'>
+      <view class='tit'>夫妻搞笑视频</view>
+      <view class='media-box'>
+        <video class="myVideo" poster="../../../images/media.jpg" id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400">
+          <cover-view class="controls">
+            <cover-image class="play" src="../../../images/play.png" />
+          </cover-view>
+        </video>
+        <image class="play" src="../../../images/play.png" />
+      </view>
+      <view class='date'>{{item.dayfast}}发布</view>
+    </view> -->
+    <view class="more">
+      <image mode='widthFix' src="../../../images/jiazai.png" />{{video_more_tips}}
+    </view>
+  </view>
+  <view class='content-item {{tabcurrent=="image"?"":"hidden"}}'>
+    <view class='item' wx:for="{{image_list}}">
+      <view class='tit'>{{item.title}}</view>
+      <view class='media-box'>
+        <image class="media" src="{{item.img_url}}" />
+      </view>
+      <view class='date'>{{item.dayfast}}发布</view>
+    </view>
+    <view class="more">
+      <image mode='widthFix' src="../../../images/jiazai.png" />{{image_more_tips}}
+    </view>
+  </view>
+  <view class='content-item {{tabcurrent=="text"?"":"hidden"}}'>
+    <view class='item' wx:for="{{text_list}}">
+      <view class='tit'>{{item.title}}</view>
+      <view class='media-box'>
+        <rich-text class='fu-text' nodes="{{item.content}}"></rich-text>
+      </view>
+      <view class='date'>{{item.dayfast}}发布</view>
+    </view>
+    <view class="more">
+      <image mode='widthFix' src="../../../images/jiazai.png" />{{text_more_tips}}
+    </view>
+  </view>
+</view>

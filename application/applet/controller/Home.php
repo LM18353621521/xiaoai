@@ -85,7 +85,7 @@ class Home extends Applet
             'has_coupon' => $has_coupon,
             'categoryList' => $categoryList,
             'config'=>$config,
-            'show_coupon'=>1,
+            'show_coupon'=>0,
         );
         return json(ajaxSuccess($returndata));
     }
