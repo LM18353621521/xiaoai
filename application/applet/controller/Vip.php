@@ -361,9 +361,8 @@ class Vip extends Applet
         $p = $page ? $page : 0;
         $vip_id = $pdata['vip_id'];
         $where = array(
-            'vip_id' => array('in', $pdata['vip_ids']),
+            'vip_id' => array('in', [$vip_id]),
         );
-
         switch ($pdata['status']) {
             case 0:
                 break;

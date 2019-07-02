@@ -39,24 +39,22 @@ Page({
    */
   pay_do: function(data) {
     var that = this;
-    console.log(data)
     if (that.data.can_cliak == 0) {
       return false
     }
     that.setData({
       can_click: 0,
     })
-
     var index = that.data.index;
     var tabcurrent = that.data.tabcurrent;
     var user = wx.getStorageSync('user');
     var id = that.data.id;
     app.operation("Order/order_pay", {
+      formId: data.detail.formId,
       order_id: id
     }, function(data) {
       var payargs = data.data;
       var order = data.order;
-      console.log(data);
       wx.requestPayment({
         timeStamp: payargs.timeStamp,
         nonceStr: payargs.nonceStr,
@@ -373,10 +371,7 @@ Page({
    */
   onLoad: function(options) {
     wx.hideShareMenu({});
-    console.log(options);
     this.setData(options);
-
-
   },
 
   /**
@@ -389,7 +384,6 @@ Page({
       order_id: this.data.id,
     };
     app.getData('Order/orderdetail', this, data, function(data) {
-      console.log(data)
       var order = data.data.order;
       if (order.status == 0) {
         count_down(that, order.cancel_subtime);

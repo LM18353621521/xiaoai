@@ -36,8 +36,6 @@ var vip_obj = {
                 }
             }, 'json');
 
-
-
         })
         
         //qq登录

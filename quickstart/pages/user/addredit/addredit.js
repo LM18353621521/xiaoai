@@ -34,7 +34,6 @@ Page({
    */
   address_save: function(e) {
     var that = this;
-    console.log(e);
     var id = that.data.address_id;
     var data = {
       id: that.data.address_id,
@@ -46,7 +45,6 @@ Page({
       address: e.detail.value.address,
       is_default: that.data.is_default,
     }
-    console.log(data);
     if (data.linkman == "") {
       app.alert('请输入收货人');
       return false;
@@ -68,9 +66,7 @@ Page({
         var pages = getCurrentPages();
         var Page = pages[pages.length - 1]; //当前页
         var prevPage = pages[pages.length - 2]; //上一个页面
-        console.log(prevPage);
         var addressList = prevPage.data.addressList //取上页data里的数据也可以修改
-        console.log(addressList);
         addressList = data.addressList
         wx.showToast({
           title: data.msg,
@@ -99,14 +95,11 @@ Page({
   bindRegionSure: function(e) {
     var sureIndex = e.detail.value;
     var region = this.data.region;
-    console.log(region);
-    console.log(sureIndex);
     this.setData({
       province_code: region[0][sureIndex[0]]['code'],
       city_code: region[1][sureIndex[1]]['code'],
       district_code: region[2][sureIndex[2]]['code'],
     });
-    console.log(region[0][sureIndex[0]]['code']);
   },
 
   /**
@@ -127,15 +120,12 @@ Page({
 
   bindMultiPickerColumnChange: function(e) {
     var that = this;
-    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
     var region = this.data.region;
     var column = e.detail.column;
     var value = e.detail.value;
-    console.log(region);
     var sureIndex = this.data.sureIndex;
     switch (column) {
       case 0:
-        console.log(region[column][value]);
         var data = {
           parent_id: region[0][value]['id'],
         };
@@ -162,12 +152,10 @@ Page({
             sureIndex: sureIndex
           })
         });
-        console.log(this.data.sureIndex)
         break;
     }
   },
   bindRegionChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       region: e.detail.value
     })
@@ -201,7 +189,6 @@ Page({
     }
     var region = this.data.region;
     app.getData('Address/addressInfo', that, data, function(data) {
-      console.log(data);
       region[0] = data.data.province;
       region[1] = data.data.city;
       region[2] = data.data.district;

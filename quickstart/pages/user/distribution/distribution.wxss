@@ -108,15 +108,11 @@ page{
   margin-left: 10rpx;
 }
 .black-font{
-  color: #4c4c4c!important;
+  /* color: #4c4c4c!important; */
 }
 .text-right{
   text-align: right;
 }
-
-
-
-
 
 .swiper-tab {
   width: 100%;

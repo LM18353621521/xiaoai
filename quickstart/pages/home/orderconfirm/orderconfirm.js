@@ -70,7 +70,6 @@ Page({
    * 提交订单
    */
   order_submit: function(e) {
-    console.log(e);
     var that = this;
     var data = {
       action: that.data.action,
@@ -82,8 +81,8 @@ Page({
       coupon_id: that.data.coupon_id,
       pay_type: that.data.pay_type,
       remark: e.detail.value.remark,
+      formId: e.detail.formId
     }
-    console.log(data);
     if (!data.address_id) {
       app.alert("请选择收货地址");
       return false;
@@ -92,8 +91,7 @@ Page({
       app.alert("请选择支付方式");
       return false;
     }
-    app.operation('Order/orderadd', data, function(data) {
-      console.log(data);
+    app.operation('Order/orderadd', data, function(data) {      
       var order = data.data;
       if (data.ret == 1) {
         if (order.pay_type == "income") {
@@ -121,7 +119,6 @@ Page({
    * 订单支付
    */
   order_pay: function(data) {
-    console.log(data)
     var that = this;
     var user = wx.getStorageSync('user');
     var id = data.id;
@@ -129,7 +126,6 @@ Page({
       order_id: id
     }, function(data) {
       var payargs = data.data;
-      console.log(data);
       wx.requestPayment({
         timeStamp: payargs.timeStamp,
         nonceStr: payargs.nonceStr,
@@ -174,7 +170,6 @@ Page({
     var index = e.currentTarget.dataset.index;
     var addressList = this.data.addressList;
     var address_id = addressList[index].id;
-    console.log(addressList[index])
     that.setData({
       f5: 0,
       sel_address: addressList[index],
@@ -183,7 +178,6 @@ Page({
       id: address_id,
     }
     app.operation('Home/count_repress_fee', data, function(data) {
-      console.log(data);
       if (data.ret == 1) {
         that.setData({
           express_fee: data.data,
@@ -202,7 +196,6 @@ Page({
    */
   address_save: function(e) {
     var that = this;
-    console.log(e);
     var id = that.data.address_id;
     var data = {
       id: that.data.address_id,
@@ -214,7 +207,6 @@ Page({
       address: e.detail.value.address,
       is_default: that.data.is_default,
     }
-    console.log(data);
     if (data.linkman == "") {
       app.alert('请输入收货人');
       return false;
@@ -258,14 +250,11 @@ Page({
   bindRegionSure: function(e) {
     var sureIndex = e.detail.value;
     var region = this.data.region;
-    console.log(region);
-    console.log(sureIndex);
     this.setData({
       province_code: region[0][sureIndex[0]]['code'],
       city_code: region[1][sureIndex[1]]['code'],
       district_code: region[2][sureIndex[2]]['code'],
     });
-    console.log(region[0][sureIndex[0]]['code']);
   },
 
   /**
@@ -286,15 +275,12 @@ Page({
 
   bindMultiPickerColumnChange: function(e) {
     var that = this;
-    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
     var region = this.data.region;
     var column = e.detail.column;
     var value = e.detail.value;
-    console.log(region);
     var sureIndex = this.data.sureIndex;
     switch (column) {
       case 0:
-        console.log(region[column][value]);
         var data = {
           parent_id: region[0][value]['id'],
         };
@@ -321,19 +307,14 @@ Page({
             sureIndex: sureIndex
           })
         });
-        console.log(this.data.sureIndex)
         break;
     }
   },
-
-
   bindMultiPickerChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       multiIndex: e.detail.value
     })
   },
-
   startplace: function(e) {
     this.setData({
       start: e.detail.value
@@ -428,7 +409,6 @@ Page({
     })
   },
   showf4: function(e) {
-    console.log(e)
     var showfuceng = this.data.showfuceng;
     this.setData({
       f4: 1,
@@ -512,7 +492,6 @@ Page({
   },
 
   onLoad: function(options) {
-    console.log(options);
     // options.action = 'buy_cart';
     // options.goods_id = 18;
     // options.item_id = 381;
@@ -533,9 +512,7 @@ Page({
       cart_ids: that.data.cart_ids,
     }
     app.getData('Home/orderconfirm', that, data, function(data) {
-      console.log(data);
       var total_count = data.data.total_count;
-      console.log(total_count);
       that.setData({
         express_fee: total_count.express_fee,
       })
@@ -546,7 +523,6 @@ Page({
     }
     var region = this.data.region;
     app.getData('Address/addressInfo', that, data1, function(data) {
-      console.log(data);
       region[0] = data.data.province;
       region[1] = data.data.city;
       region[2] = data.data.district;

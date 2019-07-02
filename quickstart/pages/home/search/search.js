@@ -35,7 +35,6 @@ Page({
    *商品 搜索
    */
   search_do: function(e) {
-    console.log(e);
     var keyword = this.data.keyword;
     if (!keyword) {
       wx.showToast({
@@ -137,7 +136,6 @@ Page({
     app.getData('Home/get_search', this, {
       loading: 0
     }, function(data) {
-      console.log(data)
     })
   },
 

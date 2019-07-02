@@ -27,7 +27,6 @@ Page({
       goods_id: goodsInfo.id,
     }
     app.getData('Home/create_poster', that, data, function (data) {
-      console.log(data);
       that.showf2();
       wx.hideLoading();
       that.setData({
@@ -39,7 +38,6 @@ Page({
    *保存图片
    */
   save_poster: function (e) {
-    console.log(e);
     var that = this;
     if (that.data.can_click == 0) {
       return false;
@@ -49,7 +47,6 @@ Page({
     })
     var that = this;
     app.getData('Vip/create_user_poster', that, {}, function (data) {
-      console.log(data);
       var poster_img = data.data.poster_img;
       setTimeout(function(){
         that.save_img_loc(poster_img);
@@ -66,7 +63,6 @@ Page({
     wx.downloadFile({
       url: imgSrc,
       success: function (res) {
-        console.log(res);
         //图片保存到本地
         wx.saveImageToPhotosAlbum({
           filePath: res.tempFilePath,
@@ -79,23 +75,17 @@ Page({
             that.showf2();
           },
           fail: function (err) {
-            console.log(err);
             if (err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
-              console.log("当初用户拒绝，再次发起授权")
               wx.openSetting({
                 success(settingdata) {
-                  console.log(settingdata)
                   if (settingdata.authSetting['scope.writePhotosAlbum']) {
-                    console.log('获取权限成功，给出再次点击图片保存到相册的提示。')
                   } else {
-                    console.log('获取权限失败，给出不给权限就无法正常使用的提示')
                   }
                 }
               })
             }
           },
           complete(res) {
-            console.log(res);
           }
         })
       }
@@ -129,7 +119,6 @@ Page({
       can_click: 0,
     })
     app.operation('Vip/withdraw', data, function(res) {
-      console.log(data);
       if (res.ret == 1) {
         wx.showToast({
           title: res.msg,
@@ -153,7 +142,6 @@ Page({
    * 输入提箱金额
    */
   set_money: function(e) {
-    console.log(e.detail.value);
     this.setData({
       money: e.detail.value,
     })
@@ -193,9 +181,7 @@ Page({
    * 授权
    */
   authUserInfo: function(e) {
-
     var that = this;
-    console.log(e)
     wx.getUserInfo({
       lang: 'zh_CN',
       success: function(res) {
@@ -211,7 +197,6 @@ Page({
           nickname: res.userInfo.nickName,
           share_id: share_id,
         }, function(data) {
-          console.log(data)
           app.globalData.userInfo = res.userInfo
           typeof cb == "function" && cb(app.globalData.userInfo)
           wx.setStorageSync('userInfo', res.userInfo);
@@ -221,7 +206,6 @@ Page({
         })
       },
       fail: function(e) {
-        console.log(e);
       }
     })
   },

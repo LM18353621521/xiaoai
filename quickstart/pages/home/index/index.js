@@ -73,9 +73,6 @@ Page({
       }
     })
   },
-
-
-
   close: function (e) {
     this.setData({
       hide: 0,
@@ -114,7 +111,6 @@ Page({
   onReady: function () {
     var that =this;
     getList(this,1);
-
     app.getData('Home/index', this, { loading: 1 }, function (data) {
       console.log(data)
     })

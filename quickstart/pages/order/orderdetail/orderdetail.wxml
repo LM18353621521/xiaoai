@@ -155,12 +155,18 @@
     </button>
   </view>
   <block wx:if="{{order.status==0}}">
-    <view class="s2" bindtap='cancel_do'>取消订单</view>
-    <view class="s3" bindtap='pay_do'>立即支付</view>
+    <form bindsubmit="pay_do" report-submit="true">
+      <view class="s2" bindtap='cancel_do'>取消订单</view>
+      <!-- <view class="s3" bindtap='pay_do'>立即支付</view> -->
+      <button class="s3" form-type='submit'>立即支付</button>
+    </form>
   </block>
   <block wx:if="{{order.status==1}}">
-    <view class="s2" bindtap='refund_do'>申请退款</view>
-    <view class="s3">提醒发货</view>
+    <form bindsubmit="refund_do" report-submit="true">
+      <!-- <view class="s2" bindtap='refund_do'>申请退款</view> -->
+      <button class="s3" form-type='submit'>申请退款</button>
+      <view class="s3">提醒发货</view>
+    </form>
   </block>
   <block wx:if="{{order.status==2}}">
     <view class="s2" bindtap='refund_do'>申请退款</view>

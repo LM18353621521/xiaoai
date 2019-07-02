@@ -74,7 +74,7 @@
 </view>
 
 <!--优惠券  -->
-<view class="coupon" wx:if="{{has_coupon.id}}">
+<view class="coupon" wx:if="{{show_coupon==1&&has_coupon.id}}">
   <view class="a1">
     <navigator url='/pages/user/coupon/coupon' hover-class='none'>
       <image class='coupon-bg' src="../../../images/coupon.png" />

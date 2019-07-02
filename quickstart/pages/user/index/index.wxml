@@ -1,10 +1,13 @@
 <view class="toptit">
-  <image class="vip-bg" src="../../../images/vip-bg.jpg" />
+  <!-- <image class="vip-bg" src="../../../images/vip-bg.jpg" /> -->
   <image class="head" src="{{vip.headimgurl}}" />
   <!-- <view class="change-account" bindtap='showf3'>更换账号</view> -->
   <view class="name">{{vip.nickname}}</view>
   <view class="bind-text" hidden="{{bind_hide}}">{{config.bind_tips}}
     <text bindtap="showf4">绑定</text>
+  </view>
+  <view class='bind-text' hidden='{{bind_hide==0}}'>{{vip.mobile}}
+    <text bindtap='edit_mobile'>更换号码</text>
   </view>
 </view>
 <view class="toptita">
@@ -39,7 +42,7 @@
     </view>
     <view class="tabd">
       <view class='line5'>
-        <navigator url='/pages/order/myorder/myorder?type=5' hover-class='none'>
+        <navigator url='/pages/order/myorder/myorder?type=0' hover-class='none'>
           <image class="tabad" src="../../../images/icon05.png" />
           <view class="tabbd">全部订单</view>
         </navigator>

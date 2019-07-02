@@ -24,7 +24,6 @@ Page({
       },
     ],
     list: [],
-
     f4: 0,
     selected: false,
     selected1: true,
@@ -32,7 +31,6 @@ Page({
     //切换账号
     mobile: "",
     code: "",
-
     //验证码
     code_mobile: "",
     code_code: "",
@@ -71,7 +69,6 @@ Page({
       loading: 0,
       mobile: mobile
     }, function(data) {
-      console.log(data);
       if (data.ret == 1) {
         wx.showToast({
           title: data.msg,
@@ -125,7 +122,6 @@ Page({
       mobile: mobile,
       type: 1
     }, function(data) {
-      console.log(data);
       if (data.ret == 1) {
         wx.showToast({
           title: data.msg,
@@ -162,7 +158,6 @@ Page({
    * 输入手机号
    */
   input_mobile: function(e) {
-    console.log(e);
     var mobile = e.detail.value;
     this.setData({
       mobile: mobile,
@@ -172,13 +167,11 @@ Page({
    * 输入验证码
    */
   input_code: function(e) {
-    console.log(e);
     var code = e.detail.value;
     this.setData({
       code: code,
     });
   },
-
 
   showf4: function() {
     this.setData({
@@ -485,12 +478,10 @@ Page({
     app.getData('Order/check_bind_mobile', this, {
       loading: 0
     }, function(data) {
-      console.log(data)
       var bind_hide = true;
       if (!data.data.vip.mobile) {
         bind_hide = false;
       }
-      console.log(bind_hide)
       that.setData({
         bind_hide: bind_hide,
       })
@@ -560,9 +551,7 @@ var getList = function(that, page) {
     asc: 'desc',
     pagenum: 10,
   }
-  console.log(data)
   app.getList('Order/myorder', that, data, page, function(data) {
-    console.log(data);
     if (page == 1 && data.data.length == 0) {
       no_order = 1;
       more_tips = '暂无数据~';
@@ -571,7 +560,6 @@ var getList = function(that, page) {
     } else {
       more_tips = '上拉加载更多';
     }
-
     that.setData({
       no_order: no_order,
       can_click: 1,
@@ -587,7 +575,6 @@ function countdown(that) {
   });
   var second = that.data.second;
   if (second == 0) {
-    // console.log("Time Out...");
     that.setData({
       selected: false,
       selected1: true,

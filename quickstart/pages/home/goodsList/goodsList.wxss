@@ -56,8 +56,8 @@ page{
   float: left;
 }
 .titlesel{
-   border-bottom:6px solid #923ef1;
-   color: #923ef1;
+   border-bottom:6px solid #B82F89;
+   color: #B82F89;
 }
 
 
@@ -118,6 +118,3 @@ page{
   height:40rpx;
 	line-height:40rpx;
 }
-
-
-

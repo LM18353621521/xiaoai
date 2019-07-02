@@ -1,4 +1,3 @@
-<!-- <import src="../../wxParse/wxParse.wxml"/>  -->
 <view class='{{showfuceng==0?"hidecontainer":""}}'>
 
   <swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000" indicator-color="#fff" indicator-active-color="#ff3399">
@@ -72,10 +71,7 @@
     <view class='line1'></view>
   </view>
   <view class="tab {{current == 0 ? 'show':''}}">
-     <rich-text nodes="{{goodsInfo.description}}" bindtap="tap"></rich-text> 
-    <!-- <view class="wxParse">
-      <template is="wxParse" data="{{wxParseData:goodsInfo.description}}"/>
-    </view> -->
+    <rich-text nodes="{{goodsInfo.description}}" bindtap="tap"></rich-text>
   </view>
   <view class="tab {{current == 1 ? 'show':''}}">
     <view class="discuss-wrapper">
@@ -171,8 +167,11 @@
     </view>
     <view class="other-num">剩余库存{{stock}}件</view>
     <view class="btnp">
-      <view class='add-cart' bindtap='cart_add'>加入购物车</view>
-      <view class='buy-cart' bindtap='buy_now'>立即购买</view>
+    <form bindsubmit="buy_now" report-submit="true">
+          <view class='add-cart' bindtap='cart_add'>加入购物车</view>
+      <!-- <view class='buy-cart' bindtap='buy_now'>立即购买</view> -->
+       <button class='buy-cart' form-type='submit' >立即购买</button>
+    </form>
     </view>
   </view>
 </view>

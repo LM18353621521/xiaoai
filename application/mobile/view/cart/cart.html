@@ -46,21 +46,53 @@
     </div>
 {/empty}
 
+<!--登录浮层   s-->
+{include file="public/login_layer"/}
+
+{if condition="$is_login neq 1"}
+    <div class="login-tip">
+        <p>您还未登录，请先登录。</p>
+        <a href="javascript:login_do();">立即登录</a>
+    </div>
+{/if}
+<style>
+    .login-tip{
+        width: 100%;
+        text-align: center;
+        padding: 5px 0;
+        font-size: 1.4rem;
+        color: #999;
+    }
+    .login-tip a{
+        background: #B82F89;
+        display: inline-block;
+        color: #FFF;
+        border: 1px solid #B82F89;
+        border-radius: 6px;
+        padding: 0 10px;
+        margin: 5px 0;
+    }
+
+</style>
+
 <!--底部导航   s-->
 {include file="public/foot_nav"/}
 <!--底部导航   e-->
-
     <script type="text/javascript">
+        function login_do(){
+            $(".qiehuan_fu").show();
+        }
+
         $(function(){
-            function accMul(arg1,arg2){ 
-                var m=0,s1=arg1.toString(),s2=arg2.toString(); 
-                try{m+=s1.split(".")[1].length}catch(e){} 
-                try{m+=s2.split(".")[1].length}catch(e){} 
-                return Number(s1.replace(".",""))*Number(s2.replace(".",""))/Math.pow(10,m) 
-            } 
-            //给Number类型增加一个mul方法，调用起来更加方便。 
-            Number.prototype.mul = function (arg){ 
-                return accMul(arg, this); 
+            function accMul(arg1,arg2){
+                var m=0,s1=arg1.toString(),s2=arg2.toString();
+                try{m+=s1.split(".")[1].length}catch(e){}
+                try{m+=s2.split(".")[1].length}catch(e){}
+                return Number(s1.replace(".",""))*Number(s2.replace(".",""))/Math.pow(10,m)
+            }
+            //给Number类型增加一个mul方法，调用起来更加方便。
+            Number.prototype.mul = function (arg){
+                return accMul(arg, this);
             }
 
             // 算总钱数
@@ -80,8 +112,6 @@
                 $(".buy-num").text("("+shuliangzong+")");
                 $(".ji").text(qianzong);
             }
-
         });
     </script>
-
     {/block}

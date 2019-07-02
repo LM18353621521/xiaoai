@@ -199,15 +199,24 @@
          * 退出登录
          */
         $(".login_out").click(function () {
-            $.post("/Mobile/Login/login_out", {}, function (data) {
-                if (data.ret == 1) {
-                    $.toast(data.msg,1500,function () {
-                        window.location.href="/mobile/Home/index";
+            $.confirm({
+                title: '提示',
+                text: '确认退出登录吗?',
+                onOK: function () {
+                    $.post("/Mobile/Login/login_out", {}, function (data) {
+                        if (data.ret == 1) {
+                            $.toast(data.msg,1500,function () {
+                                window.location.href="/mobile/Home/index";
+                            });
+                        } else {
+                            layer.msg(data.msg,{icon:2});
+                        }
                     });
-                } else {
-                    layer.msg(data.msg,{icon:2});
+                },
+                onCancel: function () {
                 }
             });
+
         });
 
         //qq登录

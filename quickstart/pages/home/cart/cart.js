@@ -27,7 +27,6 @@ Page({
         cart_ids.push(cartList[i].id);
       }
     }
-
     if (cart_ids.length == 0) {
       app.alert('！请选择购买商品');
       that.setData({
@@ -35,10 +34,11 @@ Page({
       })
       return false;
     }
+    app.operation('api/getFormId', { formId: e.detail.formId }, function () {
+    });
     that.setData({
       can_click: 0,
     })
-    console.log(cart_ids);
     var user = wx.getStorageSync('user');
     var data = {
       vip_id: user.vip_id,
@@ -48,6 +48,15 @@ Page({
     }
     wx.navigateTo({
       url: '/pages/home/orderconfirm/orderconfirm?action=buy_cart',
+    });
+  },
+  /**
+   * 去详情
+   */
+  detail_do:function(e){
+    var id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/home/detail/detail?id='+id,
     });
   },
 
@@ -70,7 +79,6 @@ Page({
       type: 1,
     };
     app.operation('Cart/ajax_cart_update', data, function(data) {
-      console.log(data);
       var order = data.data;
       if (data.ret == 1) {
         cartList[index].number++;
@@ -110,7 +118,6 @@ Page({
       type: 2,
     };
     app.operation('Cart/ajax_cart_update', data, function(data) {
-      console.log(data);
       var order = data.data;
       if (data.ret == 1) {
         cartList[index].number--;
@@ -229,7 +236,6 @@ Page({
     var that = this;
     var data = {};
     app.getData('Cart/cart', that, data, function(data) {
-      console.log(data);
       countCartPrice(that, data.data.cartList);
     })
   },
@@ -238,14 +244,11 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-
   },
-
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-
   },
 
   /**

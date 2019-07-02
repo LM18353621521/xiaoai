@@ -1,5 +1,4 @@
 App({
-  // HOST: 'https://zhanhui.lu.broteam.cn/',
   HOST: 'http://www.gzxi.com/',
   HOST: 'https://www.gzxi.cn/',
     globalData: {
@@ -9,23 +8,17 @@ App({
     },
 
   onLaunch: function(options) {
-    console.log(11);
-    console.log(options);
-    console.log(11);
     if (typeof(options.query.share_id) != "undefined") {
-      console.log(options.query.share_id)
       wx.setStorageSync("share_id", options.query.share_id);
     }
     var app = this;
     var user = wx.getStorageSync('user') || {};
-    console.log(user);
     var userInfo = wx.getStorageSync('userInfo') || {};
     if ((!user.openid || Date.parse(new Date()) / 1000 > (user.expires_in - 600))&&user.login_vip_type!=3) {
       wx.login({
         success: function(res) {
           if (res.code) {
             var share_id = wx.getStorageSync('share_id');
-            console.log("share_id:" + share_id)
             app.operation('Applet/getopenid', {
               code: res.code,
               share_id: share_id,
@@ -39,7 +32,6 @@ App({
               //   s
               //   expires_in: Date.parse(new Date()) / 1000 + data.data.expires_in - 200,
               // };
-              console.log(obj);
               wx.setStorageSync('user', obj); //存储openid
               // app.getUserInfo();
             });
@@ -53,7 +45,6 @@ App({
 
   onShow: function(options) {
     var user = wx.getStorageSync('user');
-    console.log(user);
   },
   onHide: function() {},
 

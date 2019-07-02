@@ -13,7 +13,7 @@
 		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.4",
+	"libVersion": "2.2.0",
 	"appid": "wxe8bb40f5f44f1303",
 	"projectname": "quickstart",
 	"isGameTourist": false,

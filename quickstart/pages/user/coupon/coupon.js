@@ -34,7 +34,6 @@ Page({
       id: couponList[index].id,
     }
     app.operation("home/getcoupon", data, function (data) {
-      console.log(data);
       if (data.ret == 1) {
         couponList[index].has = 1;
         wx.showToast({
@@ -128,7 +127,6 @@ var getList = function (that, page) {
     asc: 'desc',
     pagenum: 10,
   }
-  console.log(data)
   app.getList('home/couponList', that, data, page, function (data) {
     if (page == 1 && data.data.length == 0) {
       no_order = 1;

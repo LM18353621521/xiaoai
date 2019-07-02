@@ -152,6 +152,6 @@ textarea{
    font-size:var(--fontSize);
    text-align: center;
    overflow: hidden;
-   background: linear-gradient(to right,#b73ef1,#943ef1);
+   background: linear-gradient(to right,#B82F89,#943ef1);
    border-radius: 6px;
 }

@@ -14,7 +14,6 @@ Page({
    */
   onLoad: function (options) {
     wx.hideShareMenu({});
-    console.log(options);
     this.setData(options)
   },
 
@@ -35,7 +34,6 @@ Page({
       order_id: this.data.id,
     }
     app.getData('Order/wuliu', this, data, function (data) {
-      console.log(data);
     })
   },
 

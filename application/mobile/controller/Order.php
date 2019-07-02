@@ -28,11 +28,11 @@ class Order extends Base
     {
         $user = session('userinfo');
         $vip =db(\tname::vip)->where(array('id'=>$user['vip_id']))->find();
-        $vip_ids = getVipIds($vip['vip_id'],$vip);
+        $vip_ids = getVipIds($vip['id'],$vip);
         if(request()->post()){
             $OrderLogic = new OrderLogic();
             $pdata=input('');
-            $vip_ids = getVipIds($vip['vip_id'],$vip);
+            $vip_ids = getVipIds($vip['id'],$vip);
             $pdata['vip_id']=array('in',$vip_ids);
             $pdata['pagenum']=10;
 

@@ -30,7 +30,6 @@ Page({
   },
 
   headertaps: function (e) {
-    console.log(e);
     this.setData({
       _active: e.target.dataset.idx
     });
@@ -110,7 +109,6 @@ var getList = function (that, page) {
     asc: 'desc',
     pagenum: 10,
   }
-  console.log(data)
   app.getList('vip/mycoupon', that, data, page, function (data) {
     if (page == 1 && data.data.length == 0) {
       no_order = 1;

@@ -14,7 +14,6 @@ Page({
    * 添加编辑
    */
   address_edit:function(e){
-    console.log(e)
     var address_id = e.currentTarget.dataset.address_id;
     var user = wx.getStorageSync('user');
     wx.navigateTo({
@@ -41,9 +40,7 @@ Page({
       vip_id:user.vip_id,
     }
     app.getData('Address/addressList', that, data, function(data){
-      console.log(data);
     })
-    console.log(user);   
   },
 
   /**

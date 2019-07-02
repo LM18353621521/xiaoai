@@ -31,13 +31,13 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#B82F89",
     "navigationBarTitleText": "晓爱商城",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#999",
-    "selectedColor": "#b73ef1",
+    "selectedColor": "#B82F89",
     "borderStyle": "white",
     "backgroundColor": "white",
     "navigationBarTextStyle": "white",

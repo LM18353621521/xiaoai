@@ -1,4 +1,4 @@
-<form bindsubmit='order_submit'>
+<form bindsubmit='order_submit' report-submit="true">
 <view class='{{showfuceng==0?"hidecontainer":""}}'>
 
   <view class='order-addrs' bindtap='showf5'>
@@ -15,13 +15,8 @@
         <text>请选择收货地址</text>
       </view>
     </view>
-
   </view>
-
   <!-- <view class='addr' bindtap='showf3'>请选择收货地址</view> -->
-
-
-
   <view class='lists'>
     <view class='item' wx:for="{{cartList}}">
       <view class="lt">
@@ -39,8 +34,6 @@
       </view>
     </view>
   </view>
-
-
   <view class="two" bindtap='showf1'>
     <view class="lefttwo">选择优惠券</view>
     <view class="righttwo">

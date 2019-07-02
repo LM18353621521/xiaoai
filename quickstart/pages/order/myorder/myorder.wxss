@@ -105,8 +105,8 @@ page {
 }
 
 .titlesel {
-  border-bottom: 2px solid #923ef1;
-  color: #923ef1;
+  border-bottom: 2px solid #B82F89;
+  color: #B82F89;
 }
 
 .gongji {
@@ -262,8 +262,8 @@ page {
 }
 
 .purple {
-  border: 1px solid #923ef1;
-  color: #923ef1;
+  border: 1px solid #B82F89;
+  color: #B82F89;
 }
 
 .sky-blue {

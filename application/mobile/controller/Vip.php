@@ -214,8 +214,8 @@ class Vip extends Base
         $code = $pdata['code'];
         $vip = db(\tname::vip)->where(array('id' => $user['vip_id']))->find();
         //检查是否已经被绑定
-        $check_bind = db(\tname::vip)->where(array('mobile' => $mobile, 'source' => 2))->find();
-        if ($check_bind && $check_bind['id'] != $user['vip_id']) {
+        $check_bind = db(\tname::vip)->where(array('mobile' => $mobile, 'source' => $user['source']))->find();
+        if ($check_bind) {
             return json(ajaxFalse('该手机号码已被绑定，请重新输入'));
         }
         //验证码信息
@@ -546,7 +546,7 @@ class Vip extends Base
             $asc = $asc ? $asc : "asc";
             $p = $page ? $page : 0;
             $where = array(
-                'vip_id' => array('in', $vip_ids),
+                'vip_id' => array('in', [$user['vip_id']]),
             );
 
             switch ($post['status']) {

@@ -64,7 +64,6 @@ Page({
    * 输入提箱金额
    */
   set_money: function (e) {
-    console.log(e.detail.value);
     this.setData({
       money: e.detail.value,
     })
@@ -88,8 +87,6 @@ Page({
       fuhide: 0,
     })
   },
-
-
   swichNav: function (e) {
     var that = this;
     var status = e.target.dataset.current;
@@ -97,14 +94,12 @@ Page({
       status: status,
       show: status
     });
-
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
   },
 
   /**
@@ -113,7 +108,6 @@ Page({
   onReady: function () {
     var that = this;
     app.getData('Vip/withdrawlist', this, { loading: 1 }, function (data) {
-      console.log(data)
     });
     getList(this, 1);
   },
@@ -178,7 +172,6 @@ var getList = function (that, page) {
     asc: 'desc',
     pagenum: 20,
   }
-  console.log(data)
   app.getList('Vip/withdraw_log', that, data, page, function (data) {
     if (page == 1 && data.data.length == 0) {
       no_order = 1;

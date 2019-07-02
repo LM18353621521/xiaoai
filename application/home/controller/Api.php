@@ -118,15 +118,14 @@ class Api extends Controller
         if ($data && (time() - $data['create_time']) < $sms_time_out) {
             return json(ajaxFalse($sms_time_out . '秒内不允许重复发送'));
         }
-
         //绑定
         if ($type == 1) {
+            $userInfo = session('userinfo');
             //检查是否已经被绑定
-            $check_bind = db(\tname::vip)->where(array('mobile' => $mobile, 'source' => 2))->find();
-            if ($check_bind && $check_bind['id'] != $pdata['vip_id']) {
+            $check_bind = db(\tname::vip)->where(array('mobile' => $mobile, 'source' => $userInfo['source']))->find();
+            if ($check_bind) {
                 return json(ajaxFalse('该手机号码已被绑定，请重新输入'));
             }
-
             $code = createverifycode(6);
             $content = "";
             $ajaxdata = [

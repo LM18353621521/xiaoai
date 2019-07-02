@@ -4,7 +4,7 @@ page{
   --bigFont:34rpx;
   --color:#4c4c4c;
   --pinkcolor:#ff3399;
-  --purplecolor:#923ef1;
+  --purplecolor:#B82F89;
 }
 
 /*字体基本样式  */

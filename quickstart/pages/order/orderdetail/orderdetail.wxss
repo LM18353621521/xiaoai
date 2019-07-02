@@ -398,6 +398,6 @@ page{
 	text-align: center;
     overflow:hidden;
     font-size: 28rpx;
-    color: #923ef1;
+    color: #B82F89;
     line-height: 40rpx; 
 }

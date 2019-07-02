@@ -197,14 +197,16 @@ body {
     position: absolute;
     right: 10%;
     top: -0.5rem;
-    width: 1.6rem;
-    height: 1.6rem;
-    border-radius: 50%;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 10rem;
     text-align: center;
-    line-height: 1.6rem;
+    line-height: 1.5rem;
     font-size: 1.3rem;
     color: #fe677f;
+    vertical-align: middle;
     border: 1px solid #fe677f;
+    letter-spacing: normal;
 }
 
 .tabd {
@@ -239,7 +241,7 @@ body {
     overflow: hidden;
     text-overflow: elliplis;
     white-space: no-wrap;
-    color: #bfbfbf;
+    color: #6f6f6f;
     text-align: center;
 }
 

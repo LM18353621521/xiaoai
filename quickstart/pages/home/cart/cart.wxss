@@ -255,5 +255,5 @@ page{
 	color: #fff;
 	overflow: hidden;
   border-radius: 30px;
-  background: linear-gradient(to right,#b73ef1,#943ef1);
+  background: linear-gradient(to right,#B82F89,#943ef1);
 }

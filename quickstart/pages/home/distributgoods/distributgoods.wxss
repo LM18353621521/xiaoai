@@ -62,16 +62,16 @@ page{
   position: absolute;
   right: 0;
   bottom: 40rpx;
-  width: 120rpx;
+  width: 105rpx;
 	height:60rpx;
 	line-height: 60rpx;
 	text-align: center;
 	font-size: var(--fontSize);
 	color: #fff;
 	overflow: hidden;
-  border-radius: 30px;
-  border: 3rpx solid #b73ef1;
-  /* background: linear-gradient(to right,#b73ef1,#943ef1); */
+  border-radius: 8px;
+  border: 3rpx solid #B82F89;
+  /* background: linear-gradient(to right,#B82F89,#943ef1); */
 }
 .btn-recommend image{
   width: 54rpx;
@@ -161,7 +161,7 @@ page{
   margin: 20rpx auto;
   text-align: center;
   border-radius: 5px;
-  background: linear-gradient(to right, #b73ef1, #943ef1);
+  background: linear-gradient(to right, #B82F89, #943ef1);
 }
 
 .suretips {

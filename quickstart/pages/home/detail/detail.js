@@ -1,5 +1,4 @@
-// var WxParse = require('../../wxParse/wxParse.js');
-
+// pages/exchangeinfo/exchangeinfo.js
 var app = getApp();
 Page({
   data: {
@@ -21,7 +20,7 @@ Page({
     goodsInfo: [],
     filter_spec: [],
     goods_spec_price: [],
-    spec_img:'',
+    spec_img: '',
     has_collect: 0,
     collect_num: 0,
     item_id: 0,
@@ -91,7 +90,6 @@ Page({
       goods_id: goodsInfo.id,
     }
     app.getData('Home/create_poster', that, data, function(data) {
-      console.log(data);
       that.showf2();
       wx.hideLoading();
       that.setData({
@@ -149,7 +147,6 @@ Page({
    * 立即购买
    */
   buy_now: function(e) {
-    console.log(e)
     var that = this;
     if (that.can_click == 0) {
       return false
@@ -164,10 +161,11 @@ Page({
       item_id: that.data.item_id,
       buy_num: that.data.num,
     }
+    app.operation('api/getFormId', {formId: e.detail.formId},function(){      
+    });
     wx.navigateTo({
       url: '/pages/home/orderconfirm/orderconfirm?action=buy_now&goods_id=' + data.goods_id + '&item_id=' + data.item_id + '&buy_num=' + data.buy_num,
     })
-
   },
   /**
    * 去购物车
@@ -199,6 +197,7 @@ Page({
     }
     app.operation("Cart/cart_update", data, function(data) {
       console.log(data);
+      console.log(1)
       if (data.ret == 1) {
         wx.showToast({
           title: data.msg,
@@ -206,7 +205,8 @@ Page({
         var cart_num = that.data.cart_num;
         cart_num += that.data.num;
         that.setData({
-          cart_num: cart_num
+          cart_num: cart_num,
+          hidefu: 0
         })
       } else {
         app.alert(data.msg);
@@ -443,9 +443,6 @@ Page({
     })
   },
   onLoad: function(options) {
-    // var that = this;
-    // var article = '111';
-    // WxParse.wxParse('article', 'html', article, that, 5);
     console.log(options);
     var goods_id = options.id;
     if (typeof(options.share_id) == "undefined") {
@@ -511,7 +508,7 @@ Page({
         cur_spec: cur_spec,
         stock: goodsInfo.stock,
         price: goodsInfo.price,
-        spec_img:goodsInfo.coverimg,
+        spec_img: goodsInfo.coverimg,
       })
       initGoodsPrice(that);
     })
@@ -604,7 +601,7 @@ var initGoodsPrice = function(that) {
     var stock = goods_spec_price[spec_key]['store_count'];
     var price = goods_spec_price[spec_key]['price'];
     var spec_img = goodsInfo['coverimg'];
-    if (goods_spec_price[spec_key]['spec_img']){
+    if (goods_spec_price[spec_key]['spec_img']) {
       spec_img = goods_spec_price[spec_key]['spec_img'];
     }
   }

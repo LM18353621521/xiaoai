@@ -44,10 +44,7 @@ Page({
     var source = this.data.source;
     var ol_index = app.globalData.ol_index;
     var orderlog = this.data.orderlog;
-    console.log(orderlog);
-
     var orderlog_json = JSON.stringify(orderlog);
-
     app.formSubmit('Order/comment_do', that, {
       order_id: that.data.id,
       niming: that.data.niming,
@@ -89,11 +86,9 @@ Page({
    * 设置评语
    */
   set_content: function(e) {
-    console.log(e);
     var orderlog = this.data.orderlog;
     var index = e.currentTarget.dataset.index;
     orderlog[index]['content'] = e.detail.value;
-    console.log(orderlog);
     this.setData({
       orderlog: orderlog,
     });
@@ -167,7 +162,6 @@ Page({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function(res) {
-        console.log(res);
         var tempFilePaths = res.tempFilePaths;
         for (var i = 0; i < tempFilePaths.length; i++) {
           if (imgs.length < 9) {
@@ -195,8 +189,7 @@ Page({
 
   },
   previewImage: function(e) {
-    var current = e.target.dataset.src
-
+    var current = e.target.dataset.src;
     wx.previewImage({
       current: current,
       urls: this.data.imageList
@@ -207,7 +200,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options);
     wx.hideShareMenu({});
     this.setData(options)
   },
@@ -224,7 +216,6 @@ Page({
     app.getData('Order/comment', this, data, function(data) {
       var comment = [];
       var orderlog = data.data.orderlog;
-      console.log(orderlog);
       var starlist = [
         '../../../images/star-active.png',
         '../../../images/star-active.png',

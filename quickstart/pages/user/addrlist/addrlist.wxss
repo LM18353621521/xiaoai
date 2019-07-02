@@ -41,7 +41,7 @@
   padding:0 20rpx;
   background: #feebff;
   font-size: var(--fontSize);
-  color: #923ef1;
+  color: #B82F89;
   height: 30rpx;
   line-height: 30rpx;
   border-radius: 30px;
@@ -63,7 +63,7 @@
    width:100%;
    height:100rpx;
    line-height: 100rpx;
-   color: #923ef1;
+   color: #B82F89;
    font-size:var(--fontSize);
    overflow: hidden;
    text-align: center;

@@ -17,6 +17,7 @@ page{
    padding-top:40rpx;
   height: 290rpx;
   margin-bottom: 50rpx;
+  background: #B82F89;
 }
 .vip-bg{
   position: absolute;
@@ -206,13 +207,14 @@ page{
   position:absolute;
   right:16%;
   top:-10rpx;
-  min-width:32rpx;
+  min-width:28rpx;
   height:32rpx;
-  border-radius:16%;
+  border-radius:32rpx;
   text-align:center;
   line-height:32rpx;
   font-size:26rpx;
   color:#fe677f;
+  padding: 0 1rpx;
   border: 1rpx solid #fe677f;
 }
 
@@ -223,7 +225,7 @@ page{
    margin: 15rpx 0 15rpx;
 }
 .tabd .line5{
-   border-left: 1rpx solid #bfbfbf;
+   border-left: 1rpx solid #6f6f6f;
 }
 .tabad{
     width:60rpx;
@@ -238,7 +240,7 @@ page{
     overflow:hidden;
     text-overflow:elliplis;
     white-space:no-wrap;
-    color:#bfbfbf;
+    color:#6f6f6f;
     text-align: center;
 }
 .listb{

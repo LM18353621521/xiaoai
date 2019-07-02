@@ -15,7 +15,6 @@ Page({
    *商品 搜索
    */
   search_do: function (e) {
-    console.log(e);
     var keyword = e.detail.value;
     if (!keyword) {
       wx.showToast({
@@ -37,7 +36,6 @@ Page({
   getCategoryChild:function(e){
     var pid=this.data.pid;
     app.getData('Home/categoryChild', this, { loading: 0,pid:pid}, function (data) {
-      console.log(data);
     })
   },
   radiobtn: function (e) {

@@ -10,7 +10,7 @@ body{
 	/*padding-top: 5rem;*/
     --pinkcolor:#ff3399;
   	--color:#4c4c4c;
-    --purplecolor:#923ef1;
+    --purplecolor:#B82F89;
     --orange:#ff4a00;
 }
 .bai{
@@ -340,7 +340,7 @@ body{
 	text-align: center;
     overflow:hidden;
     font-size: 1.2rem;
-    color: #aaa;
+    color: #6f6f6f;
     line-height: 2rem; 
 }
 .color_style1{

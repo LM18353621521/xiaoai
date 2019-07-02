@@ -10,7 +10,7 @@
       <view class='tit'>{{item.title}}</view>
 
       <view class='media-box'>
-        <video class="myVideo" poster="../../../images/media.jpg" id="myVideo" src="{{item.video_url}}" show-center-play-btn enable-danmu controls>
+        <video class="myVideo"  id="myVideo" src="{{item.video_url}}" show-center-play-btn enable-danmu controls>
         </video>
         <!-- <image class="play" src="../../../images/play.png" /> -->
       </view>

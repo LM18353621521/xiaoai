@@ -7,6 +7,9 @@
     });
 </script>
 <style>
+    .toptit{
+        background: #B82F89;
+    }
     .sub {
         display: none;
     }
@@ -28,53 +31,82 @@
         width: 2rem;
         height: 2rem;
     }
+    .login-tip{
+        width: 100%;
+        text-align: center;
+        padding: 5px 0;
+        font-size: 1.4rem;
+        color: #FFF;
+    }
+    .login-tip a{
+        background: #FFF;
+        display: inline-block;
+        color: #B82F89;
+        border: 1px solid #fff;
+        border-radius: 6px;
+        padding: 0 10px;
+        margin: 5px 0;
+    }
+</style>
+<style>
 
 </style>
 <body>
 <div class="toptit">
+    {if condition="$is_login eq 1"}
     <div class="login_out"><img src="__STATIC__/mobile/common/images/exit.png" alt=""></div>
-    <img class="vip-bg" src="__STATIC__/mobile/home/images/vip-bg.jpg"/>
+    {/if}
+    <!--<img class="vip-bg" src="__STATIC__/mobile/home/images/vip-bg.jpg"/>-->
     <div class="upload_box no_img head" id="upload_box1">
         <label for="ImgUpload1">
-            <input name="file" onchange="handleFiles(this)" id="ImgUpload1" type="file" accept="image/*"
-                   style="opacity: 0; position: absolute;"/>
-            <img class="head" id="ImgDetailDiv1" src="{$vip.headimgurl}"/>
+            {if condition="$is_login eq 1"}
+            <input name="file" onchange="handleFiles(this)" id="ImgUpload1" type="file" accept="image/*"  style="opacity: 0; position: absolute;"/>
+            {/if}
+            <img class="head" id="ImgDetailDiv1" src="{$vip.headimgurl|default=''}"/>
             <input type="hidden" name="file" id="ImgPath1" value="">
         </label>
     </div>
-
     <!--<div class="change-account">更换账号</div>-->
-    <div class="name">{$vip.nickname}</div>
-    {if condition="!$vip.mobile"}
-    <div class="bind-text">找不到订单号？绑定手机试试 <span class="bind_do">绑定</span></div>
+    {if condition="$is_login eq 1"}
+        <div class="name">{$vip.nickname}</div>
+        {if condition="!$vip.mobile"}
+        <div class="bind-text">找不到订单号？绑定手机试试 <span class="bind_do">绑定</span></div>
+        {else/}
+        <div class="bind-text">{$vip.mobile} <span class="edit_mobile_do">更换号码</span></div>
+        {/if}
+    {else}
+        <div class="login-tip">
+            <p>您还未登录，请先登录。</p>
+            <a href="javascript:login_do();">立即登录</a>
+        </div>
     {/if}
 </div>
 
 <div class="toptita">
     <div class="tabbox">
         <div class="tabd">
-            <a href="{:url('Order/myorder',array('status'=>1))}">
+            <a href='javascript:check_login(1,"{:url('Order/myorder',array('status'=>1))}");'>
                 <img class="tabad" src="__STATIC__/mobile/common/images/icon01.png"/>
                 <div class="tabbd">待付款</div>
                 <div class="sub order_num0">0</div>
             </a>
         </div>
         <div class="tabd">
-            <a href="{:url('Order/myorder',array('status'=>2))}">
+            <a href='javascript:check_login(1,"{:url('Order/myorder',array('status'=>2))}");'>
                 <img class="tabad" src="__STATIC__/mobile/common/images/icon02.png"/>
                 <div class="tabbd">待发货</div>
                 <div class="sub order_num1">0</div>
             </a>
         </div>
         <div class="tabd">
-            <a href="{:url('Order/myorder',array('status'=>3))}">
+            <a href='javascript:check_login(1,"{:url('Order/myorder',array('status'=>3))}");'>
                 <img class="tabad" src="__STATIC__/mobile/common/images/icon03.png"/>
                 <div class="tabbd">待收货</div>
                 <div class="sub order_num2">0</div>
             </a>
         </div>
         <div class="tabd">
-            <a href="{:url('Order/myorder',array('status'=>4))}">
+            <a href='javascript:check_login(1,"{:url('Order/myorder',array('status'=>4))}");'>
                 <img class="tabad" src="__STATIC__/mobile/common/images/icon04.png"/>
                 <div class="tabbd">售后|退款</div>
                 <div class="sub order_num3">0</div>
@@ -82,7 +114,7 @@
         </div>
         <div class="tabd">
             <div class="line5s">
-            <a href="{:url('Order/myorder',array('status'=>0))}">
+            <a href='javascript:check_login(1,"{:url('Order/myorder',array('status'=>0))}");'>
                 <img class="tabad" src="__STATIC__/mobile/common/images/icon05.png"/>
                 <div class="tabbd">全部订单</div>
             </a>
@@ -93,19 +125,19 @@
 <div class="toptita">
     <div class="tabbox listb">
         <div class="tabd">
-            <a href="{:url('Vip/addrlist')}">
+            <a href='javascript:check_login(1,"{:url('Vip/addrlist')}");'>
                 <img class="tabad" src="__STATIC__/mobile/common/images/icon06.png"/>
                 <div class="tabbd">收货地址</div>
             </a>
         </div>
         <div class="tabd">
-            <a href="{:url('Vip/mycoupon')}">
+            <a href='javascript:check_login(1,"{:url('Vip/mycoupon')}");'>
                 <img class="tabad" src="__STATIC__/mobile/common/images/icon07.png"/>
                 <div class="tabbd">我的优惠券</div>
             </a>
         </div>
         <div class="tabd">
-            <a href="{:url('Vip/mycollect')}">
+            <a href='javascript:check_login(1,"{:url('Vip/mycollect')}");'>
                 <img class="tabad" src="__STATIC__/mobile/common/images/icon08.png"/>
                 <div class="tabbd">我的关注</div>
             </a>
@@ -131,8 +163,19 @@
 
 <script type="text/javascript">
     var is_login = "{$is_login}";
-    if (is_login==0) {
+    function login_do(){
         $(".qiehuan_fu").show();
+    }
+    function check_login(type,url) {
+        if (type == 1) {
+            if (is_login == 0) {
+                $.toptip('未登录，请先登录', 'error');
+            } else {
+                window.location.href =url;
+            }
+        } else {
+            window.location.href = url;
+        }
     }
     function clearNoNum(obj, point, length) {
         if (point == 0) {

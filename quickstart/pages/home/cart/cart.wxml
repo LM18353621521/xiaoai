@@ -1,7 +1,7 @@
-<form bindsubmit='cart_submit'>
+<form bindsubmit='cart_submit' report-submit="true">
   <block wx:for="{{cartList}}">
-    <view class="lists {{item.number==0?'hidden':''}}">
-      <image src="{{item.selected==1?'../../../images/yes.png':'../../../images/no.png'}}" data-index="{{index}}" bindtap='sele' class="sele" />
+    <view bindtap='detail_do' data-id='{{item.goods_id}}' class="lists {{item.number==0?'hidden':''}}">
+      <image src="{{item.selected==1?'../../../images/yes.png':'../../../images/no.png'}}" data-index="{{index}}" catchtap='sele' class="sele" />
       <image src="{{item.coverimg}}" class="listsleft" />
       <view class="listsright">
         <view class="lists1">{{item.name}}</view>
@@ -9,9 +9,9 @@
         <view class="border">
           <view class="border11">￥{{item.price}}</view>
           <view class='addbox'>
-            <view class="border14" data-index="{{index}}" bindtap='reduce'>-</view>
+            <view class="border14" data-index="{{index}}" catchtap='reduce'>-</view>
             <input disabled='true' class='border13' value='{{item.number}}'></input>
-            <view class="border12" data-index="{{index}}" bindtap='add'>+</view>
+            <view class="border12" data-index="{{index}}" catchtap='add'>+</view>
           </view>
         </view>
       </view>
@@ -22,6 +22,6 @@
       <image src="{{select_all==1?'../../../images/yes.png':'../../../images/no.png'}}"bindtap='seleall' class="seleall" />全选
       <text>合计：<text>￥{{total_count.total_price}}</text></text>
     </view>
-    <button class="btnu2" form-type='submit'>立即付款({{total_count.total_num}})</button>
+      <button class="btnu2" form-type='submit'>立即付款({{total_count.total_num}})</button>
   </view>
 </form>
