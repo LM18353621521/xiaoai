@@ -512,11 +512,20 @@ Page({
       cart_ids: that.data.cart_ids,
     }
     app.getData('Home/orderconfirm', that, data, function(data) {
-      var total_count = data.data.total_count;
-      that.setData({
-        express_fee: total_count.express_fee,
-      })
-      count_pay_money(that);
+      if(data.ret==1){
+        var total_count = data.data.total_count;
+        that.setData({
+          express_fee: total_count.express_fee,
+        })
+        count_pay_money(that);
+      }else{
+        app.alert(data.msg,function(){
+          wx.navigateBack({
+            delta: 1
+          })
+        });
+        
+      }   
     });
     var data1 = {
       address_id: that.data.address_id,

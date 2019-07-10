@@ -164,6 +164,11 @@
                                             商品规格
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="#description" data-toggle="tab">
+                                            商品详情
+                                        </a>
+                                    </li>
                                     <!--<li class="">-->
                                         <!--<a href="#recent" data-toggle="tab">-->
                                             <!--Recents-->
@@ -181,44 +186,54 @@
                                 <div class="tab-content tasi-tab">
                                     <div class="tab-pane active" id="popular">
                                         <div class="form">
-
                                             <div class="form-group">
                                                 <label class="control-label col-lg-2">名称</label>
-                                                <div class="col-lg-10">
+                                                <div class="col-lg-4">
                                                     <input class="form-control" type="text" name="name" required="required" value="{$data.name}"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-lg-2">价钱</label>
-                                                <div class="col-lg-10">
-                                                    <input class="form-control" type="number" name="price" required="required" value="{$data.price}" step="0.01"
-                                                           min="0.00"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-lg-2">原价</label>
-                                                <div class="col-lg-10">
+                                                <label class="control-label col-lg-2">市场价</label>
+                                                <div class="col-lg-4">
                                                     <input class="form-control" type="number" name="price_origial" required="required" value="{$data.price_origial}"
                                                            step="0.01" min="0.00"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <label class="control-label col-lg-2">售价</label>
+                                                <div class="col-lg-4">
+                                                    <input class="form-control" type="number" name="price" required="required" value="{$data.price}" step="0.01"
+                                                           min="0.00"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-lg-2">代理商优惠</label>
+                                                <div class="col-lg-4">
+                                                    {foreach name="agentLevel" item="vo"}
+                                                    <div style="padding: 10px 0 5px;">{$vo.name}：</div>
+                                                    <input class="form-control" type="number" name="agent_less[{$vo.id}]" required="required" value="{$data['agent_less'][$vo.id]|default=0}" step="0.01" min="0.00"/>
+                                                    {/foreach}
+                                                    <span class="help-block color-error">*此数值为在原价格基础上的优惠金额，单位：元</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
                                                 <label class="control-label col-lg-2">库存</label>
-                                                <div class="col-lg-10">
+                                                <div class="col-lg-4">
                                                     <input class="form-control" type="number" name="stock" required="required" value="{$data.stock}"
                                                            step="1" min="0"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label col-lg-2">默认销量</label>
-                                                <div class="col-lg-10">
+                                                <div class="col-lg-4">
                                                     <input class="form-control" type="number" name="sales_config" required="required" value="{$data.sales_config}"
                                                            step="1" min="0"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label col-lg-2">分类</label>
-                                                <div class="col-lg-5">
+                                                <div class="col-lg-3">
                                                     <select class="form-control m-bot15" name="category_id" required="required"
                                                             data-tablename="mall_category" data-nextlevelid="{$data.category_id_two}">
                                                         {volist name="categoryList" id="vo"}
@@ -226,7 +241,7 @@
                                                         {/volist}
                                                     </select>
                                                 </div>
-                                                <div class="col-lg-5">
+                                                <div class="col-lg-3">
                                                     <select class="form-control m-bot15" name="category_id_two" required="required">
 
                                                     </select>
@@ -271,19 +286,10 @@
 
                                             <div class="form-group">
                                                 <label class="control-label col-lg-2">简介</label>
-                                                <div class="col-lg-10">
+                                                <div class="col-lg-5">
                                                     <textarea class="form-control" cols="60" rows="5" name="brief">{$data.brief}</textarea>
                                                 </div>
                                             </div>
-
-                                            <div class="form-group">
-                                                <label class="control-label col-lg-2">详情</label>
-                                                <div class="col-lg-10">
-                                                    <script type="text/plain" id="editor" name="description" style="width:1000px; height: 460px;">{$data.description}</script>
-                                                </div>
-                                            </div>
-
-
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="comments">
@@ -306,12 +312,16 @@
                                         <!--   商品规格列表  start-->
                                         <div class="form-group" id="goods_spec_input">
                                         </div>
-
                                         <!--   商品规格列表  end-->
 
                                     </div>
-                                    <div class="tab-pane " id="recent">
-                                        Recent Item goes here
+                                    <div class="tab-pane " id="description">
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2">商品详情</label>
+                                                <div class="col-lg-10">
+                                                    <script type="text/plain" id="editor" name="description" style="width:1000px; height: 460px;">{$data.description}</script>
+                                                </div>
+                                           </div>
                                     </div>
                                 </div>
                             </div>

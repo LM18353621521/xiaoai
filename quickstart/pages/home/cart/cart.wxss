@@ -156,7 +156,7 @@ page{
    float: left;
    height:60rpx;
    line-height: 60rpx;
-   color: #ff4a00;
+   color: #e5308a;
    font-size: var(--fontSize);
    overflow: hidden;
 }
@@ -185,7 +185,7 @@ page{
   flex: 1;
    height:40rpx;
    line-height: 40rpx;
-   color: #666;
+   color: #e5308a;
    font-family: "黑体";
    font-size: 20rpx;
    overflow: hidden;
@@ -242,7 +242,7 @@ page{
   padding-right: 10px;
 }
 .btnu1 text text{
-	color: #ff4a00;
+	color: #e5308a;
 }
 .btnu2{
 	width: 30%;
@@ -254,6 +254,6 @@ page{
 	font-size: var(--fontSize);
 	color: #fff;
 	overflow: hidden;
-  border-radius: 30px;
-  background: linear-gradient(to right,#B82F89,#943ef1);
+  border-radius: 10px;
+  background: linear-gradient(to right,#e5308a,#943ef1);
 }

@@ -8,10 +8,10 @@ body{
 	background: #fff;
 	padding-bottom: 5rem;
 	/*padding-top: 5rem;*/
-    --pinkcolor:#ff3399;
+    --pinkcolor:#e53080;
   	--color:#4c4c4c;
-    --purplecolor:#B82F89;
-    --orange:#ff4a00;
+    --purplecolor:#e5308a;
+    --orange:#e5308a;
 }
 .bai{
 	background: #fff;
@@ -440,7 +440,7 @@ body{
 	border-radius: 5px;
 }
 .login-title {
-	background: #ff6ea9;
+	background: #e5308a;
 	height: 3.5rem;
 	line-height: 3.5rem;
 	text-align: center;
@@ -477,7 +477,7 @@ body{
 }
 
 .boxsel {
-	border-bottom: 2px solid #ff6ea9;
+	border-bottom: 2px solid #e5308a;
 }
 
 .login-leftright {

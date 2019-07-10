@@ -16,7 +16,7 @@ Page({
   /**
    * 提现
    */
-  withdraw_do: function (e) {
+  withdraw_do: function(e) {
     var that = this;
     if (that.data.can_cliak == 0) {
       return false
@@ -39,7 +39,7 @@ Page({
     that.setData({
       can_click: 0,
     })
-    app.operation('Vip/withdraw', data, function (res) {
+    app.operation('Vip/withdraw', data, function(res) {
       if (res.ret == 1) {
         wx.showToast({
           title: res.msg,
@@ -63,13 +63,13 @@ Page({
   /**
    * 输入提箱金额
    */
-  set_money: function (e) {
+  set_money: function(e) {
     this.setData({
       money: e.detail.value,
     })
   },
 
-  swichNav: function (e) {
+  swichNav: function(e) {
     var that = this;
     var status = e.target.dataset.current;
     this.setData({
@@ -77,17 +77,17 @@ Page({
     });
     getList(this, 1);
   },
-  show: function (e) {
+  show: function(e) {
     this.setData({
       fuhide: 1,
     })
   },
-  close: function (e) {
+  close: function(e) {
     this.setData({
       fuhide: 0,
     })
   },
-  swichNav: function (e) {
+  swichNav: function(e) {
     var that = this;
     var status = e.target.dataset.current;
     this.setData({
@@ -99,63 +99,65 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
+    wx.hideShareMenu({})
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
     var that = this;
-    app.getData('Vip/withdrawlist', this, { loading: 1 }, function (data) {
-    });
+    app.getData('Vip/withdrawlist', this, {
+      loading: 1
+    }, function(data) {});
     getList(this, 1);
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     getList(this, 0);
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })
 
-var getList = function (that, page) {
+var getList = function(that, page) {
   if (that.data.can_click == 0) return false;
   var more_tips = '正在加载中...';
   var no_order = 0;
@@ -172,7 +174,7 @@ var getList = function (that, page) {
     asc: 'desc',
     pagenum: 20,
   }
-  app.getList('Vip/withdraw_log', that, data, page, function (data) {
+  app.getList('Vip/withdraw_log', that, data, page, function(data) {
     if (page == 1 && data.data.length == 0) {
       no_order = 1;
       more_tips = '暂无数据~';

@@ -89,9 +89,7 @@ body{
     text-align: right;
 }
 .title12 img{
-    height: 1.4rem;
     width: auto;
-    margin-top: -1.2%;
     vertical-align: middle;
     margin-right: 6%;
 }
@@ -99,14 +97,16 @@ body{
 
 .save-addr{
     display: block;
+    border: none;
     width:94%;
+    margin:0 auto;
     height:2rem;
-    line-height: 2rem;
-    font-size: 1rem;
-    color: #fff;
-    overflow: hidden;
-    margin:1rem auto;
-    text-align: center;
-    border-radius: 5px;  
-    background: linear-gradient(to right,#b73ef1,#943ef1);
+    line-height:2rem;
+    color:#fff;
+    font-size:var(--fontSize);
+    overflow:hidden;
+    text-align:center;
+    margin-top:2rem;
+    border-radius:6px;
+    background:linear-gradient(to right, #e5308a, #943ef1);
 }

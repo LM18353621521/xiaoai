@@ -100,7 +100,7 @@
   height: 60rpx;
   line-height: 60rpx;
   font-size: var(--fontSize);
-  color: #B82F89;
+  color: #e5308a;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

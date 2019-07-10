@@ -111,6 +111,51 @@
 </div>
 
 
+<!--更改手机号码第一步  -->
+<div class='fuceng change_one_fu'>
+    <div class="fuer"></div>
+    <div class='baibga'>
+        <div class='login-title'>请完成验证<img src="__STATIC__/mobile/home/images/my-close.jpg"/></div>
+        <div class="formbox">
+            <div class="form1 phone-bg">
+                <div class="box1">
+                    <input type="number" id="change_one_mobile" name="mobile" value="{$user.mobile}" readonly onpaste="clearNoNum(this,1,11)"
+                           onkeyup='clearNoNum(this,0,11)' placeholder="请输入您的手机号"/>
+                </div>
+                <div class="box1">
+                    <input class='code-yan' id="change_one_code" name="code" type="text" onpaste="clearNoNum(this,0,11)"
+                           onkeyup='clearNoNum(this,0,6)' placeholder="请输入验证码"/>
+                    <div class="get" id="get_change_one_code">发送验证码</div>
+                </div>
+                <div class="btnbtna" id="change_mobile_one">下一步</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--更改手机号码第二步  -->
+<div class='fuceng change_two_fu'>
+    <div class="fuer"></div>
+    <div class='baibga'>
+        <div class='login-title'>验证新手机号码<img src="__STATIC__/mobile/home/images/my-close.jpg"/></div>
+        <div class="formbox">
+            <div class="form1 phone-bg">
+                <div class="box1">
+                    <input type="number" id="change_two_mobile" name="mobile" value=""  onpaste="clearNoNum(this,1,11)"
+                           onkeyup='clearNoNum(this,0,11)' placeholder="请输入新的手机号码"/>
+                </div>
+                <div class="box1">
+                    <input class='code-yan' id="change_two_code" name="code" type="text" onpaste="clearNoNum(this,0,11)"
+                           onkeyup='clearNoNum(this,0,6)' placeholder="请输入验证码"/>
+                    <div class="get" id="get_change_two_code">发送验证码</div>
+                </div>
+                <div class="btnbtna" id="change_mobile_two">确认修改</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <script>
     function clearNoNum(obj, point, length) {
         if (point == 0) {
@@ -297,9 +342,6 @@
             });
         });
 
-
-
-
         can_get_code=1;
         //获取验证码
         $("#get_reg_code").click(function () {
@@ -449,6 +491,7 @@
         $('.bind_do').click(function () {
             $(".bind_fu").show();
         })
+
         $(".boxa").click(function () {
             $(".boxa").removeClass("boxsel");
             $(this).addClass("boxsel");
@@ -458,5 +501,163 @@
         $(".close_layer").click(function () {
             $(".fuceng").hide();
         })
+
+        //修改手机号码第一步
+        $('.change_do').click(function () {
+            $(".change_one_fu").show();
+        })
+        //获取验证码
+        $("#get_change_one_code").click(function () {
+            var that =$(this);
+            var mobile = $("#change_one_mobile").val();
+            if (mobile == '') {
+                $.toast('手机号码不能为空','text');
+                return false;
+            }
+            if (can_get_code != 1) {
+                return false;
+            }
+            can_get_code = 0;
+            $.post('/Home/Api/sendSmsCode', {mobile: mobile, type: 5}, function (data) {
+                if (data.ret == 1) {
+                    $.toast(data.msg, 'text');
+                    //发送成功
+                    time = 60;//秒
+                    countdown = time;
+                    var setSmsTime = function () {
+                        if (countdown == 0) {
+                            can_get_code = 1;
+                            that.css('background', '#fff').text('发送验证码');
+                            countdown = time;
+                            clearInterval(aa);
+                        } else {
+                            that.css('background', '#fff').text(countdown + 's');
+                            countdown--;
+                        }
+                    }
+                    var aa = setInterval(function () {
+                        setSmsTime()
+                    }, 1000);
+                } else {
+                    can_get_code = 1;
+                    $.toast(data.msg,'text');
+                    return false;
+                }
+            }, 'json');
+        });
+        //验证验证码
+        $("#change_mobile_one").click(function () {
+            var mobile = $("#change_one_mobile").val();
+            var code = $("#change_one_code").val();
+            if (mobile == '') {
+                $.toptip('手机号码不能为空','error');
+                return false;
+            }
+            if (!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(mobile))) {
+                $.toptip('手机号码有误，请重新输入','error');
+                return false;
+            }
+            if (code == '') {
+                $.toptip('请输入您收到的验证码','error');
+                return false;
+            }
+            if (can_click != 1) {
+                return false;
+            }
+            can_click = 0;
+            $.post('/mobile/Vip/change_mobile_one', {mobile: mobile, code: code}, function (data) {
+                if (data.ret == 1) {
+                    can_click = 1;
+                    $.toast(data.msg, 1500, function () {
+                        $(".change_one_fu").hide();
+                        $(".change_two_fu").show();
+                        can_get_code = 1;
+                    });
+                } else {
+                    can_click = 1;
+                    $.toast(data.msg,'text');
+                    return false;
+                }
+            }, 'json');
+        });
+        //修改手机号码第二步
+        $('.change_two_do').click(function () {
+            $(".change_two_fu").show();
+        })
+        //获取验证码
+        $("#get_change_two_code").click(function () {
+            var that =$(this);
+            var mobile = $("#change_two_mobile").val();
+            if (mobile == '') {
+                $.toast('手机号码不能为空','text');
+                return false;
+            }
+            if (can_get_code != 1) {
+                return false;
+            }
+            can_get_code = 0;
+            $.post('/Home/Api/sendSmsCode', {mobile: mobile, type: 6}, function (data) {
+                if (data.ret == 1) {
+                    $.toast(data.msg, 'text');
+                    //发送成功
+                    time = 60;//秒
+                    countdown = time;
+                    var setSmsTime = function () {
+                        if (countdown == 0) {
+                            can_get_code = 1;
+                            that.css('background', '#fff').text('发送验证码');
+                            countdown = time;
+                            clearInterval(aa);
+                        } else {
+                            that.css('background', '#fff').text(countdown + 's');
+                            countdown--;
+                        }
+                    }
+                    var aa = setInterval(function () {
+                        setSmsTime()
+                    }, 1000);
+                } else {
+                    can_get_code = 1;
+                    $.toast(data.msg,'text');
+                    return false;
+                }
+            }, 'json');
+        });
+        //获取验证码
+        $("#change_mobile_two").click(function () {
+            var mobile = $("#change_two_mobile").val();
+            var code = $("#change_two_code").val();
+            if (mobile == '') {
+                $.toptip('手机号码不能为空','error');
+                return false;
+            }
+            if (!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(mobile))) {
+                $.toptip('手机号码有误，请重新输入','error');
+                return false;
+            }
+            if (code == '') {
+                $.toptip('请输入您收到的验证码','error');
+                return false;
+            }
+            if (can_click != 1) {
+                return false;
+            }
+            can_click = 0;
+            $.post('/mobile/Vip/change_mobile_two', {mobile: mobile, code: code}, function (data) {
+                if (data.ret == 1) {
+                    can_click = 1;
+                    $(".fuceng").hide();
+                    $.toast(data.msg, 1500, function () {
+                        window.location.reload();
+                    });
+                } else {
+                    can_click = 1;
+                    $.toast(data.msg,'text');
+                    return false;
+                }
+            }, 'json');
+        });
+
+
     });
 </script>

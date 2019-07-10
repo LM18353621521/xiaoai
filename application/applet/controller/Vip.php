@@ -345,6 +345,30 @@ class Vip extends Applet
     }
 
     /**
+     * 修改手机号码
+     * @return \think\response\Json
+     */
+    public function change_mobile()
+    {
+        $userLogic =new \app\common\logic\UserLogic();
+        $pdata = input('post.');
+        $mobile = $pdata['mobile'];
+        $vip = db(\tname::vip)->where(array('id' => $pdata['vip_id']))->find();
+        $result = $userLogic->changeMobile($vip['mobile'],$mobile);
+        if ($result['status']==0) {
+            return json(ajaxFalse($result['msg']));
+        }
+        $ids = db(\tname::vip)->where(array('mobile' => $mobile))->column('id');
+        $ids = implode(',', $ids);
+        $login_info = array(
+            'vip_id' => $vip['id'],
+            'openid' => $vip['openid'],
+            'vip_ids' => $ids,
+        );
+        return json(ajaxSuccess($login_info, $result['msg']));
+    }
+
+    /**
      * 我的优惠券
      * @return \think\response\Json
      */

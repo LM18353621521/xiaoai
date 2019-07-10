@@ -352,7 +352,8 @@ class Home extends Applet
 
 
         $config['share_tips']="保存至相册可以分享到朋友圈";
-        $config['share_btn_switch']=0;
+        $applet_check_switch = tpCache('base.applet_check_switch');
+        $config['share_btn_switch']=$applet_check_switch;
 
         $goodsInfo['description'] = str_replace("<img ", "<img class='img_w' ", $goodsInfo['description']);
 

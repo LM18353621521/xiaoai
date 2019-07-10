@@ -35,8 +35,8 @@ page {
 }
 
 .active {
-  border-bottom: 5rpx solid #B82F89;
-  color: #B82F89;
+  border-bottom: 5rpx solid #e5308a;
+  color: #e5308a;
 }
 
 .coupon-ul {

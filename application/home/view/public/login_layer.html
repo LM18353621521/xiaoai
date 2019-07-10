@@ -174,6 +174,59 @@
         </div>
     </div>
 </div>
+
+<!-- 修改手机浮层 1-->
+<div class="login-layer change_one">
+    <form action="" id="change_one_form">
+        <div class="login-layer-content">
+            <img class="layer-close" src="__STATIC__/home/common/images/layer-close.png">
+            <div class="tab-title-wrapper">
+                <p class="tab-title active">请完成验证</p>
+            </div>
+            <div class="layer-two-tab">
+                <div class="layer-tab-one">
+                    <div class="layer-tab-item">
+                        <div class="layer-input-box margin-top">
+                            <input type="text" placeholder="请输入手机号码" name="mobile" value="{$user.mobile}" readonly id="change_one_mobile">
+                        </div>
+                        <div class="layer-input-box">
+                            <input type="text" placeholder="请输入验证码" name="code" id="change_one_code">
+                            <p class="get-num get_bind_code" id="get_change_one_code">发送验证码</p>
+                        </div>
+                        <p class="login-btn change_mobile_one">下一步</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- 修改手机浮层 2-->
+<div class="login-layer change_two">
+    <form action="" id="change_two_form">
+        <div class="login-layer-content">
+            <img class="layer-close" src="__STATIC__/home/common/images/layer-close.png">
+            <div class="tab-title-wrapper">
+                <p class="tab-title active">请验证新手机号码</p>
+            </div>
+            <div class="layer-two-tab">
+                <div class="layer-tab-one">
+                    <div class="layer-tab-item">
+                        <div class="layer-input-box margin-top">
+                            <input type="text" placeholder="请输入手机号码" name="mobile" value="" id="change_two_mobile">
+                        </div>
+                        <div class="layer-input-box">
+                            <input type="text" placeholder="请输入验证码" name="code" id="change_two_code">
+                            <p class="get-num get_bind_code" id="get_change_two_code">发送验证码</p>
+                        </div>
+                        <p class="login-btn change_mobile_two">确认修改</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
 <script>
     var is_login = "{$is_login}";
     //账号登录
@@ -365,6 +418,163 @@
             });
         });
 
+        //修改手机1
+        $(".change_mobile").click(function (e) {
+            $(".change_one").show();
+        });
+        //获取验证码
+        $("#get_change_one_code").click(function () {
+            var that =$(this);
+            var mobile = $("#change_one_mobile").val();
+            if (mobile == '') {
+                layer.msg('手机号码不能为空', {icon: 2});
+                return false;
+            }
+            if (can_get_code != 1) {
+                return false;
+            }
+            can_get_code=0;
+            $.post('/Home/Api/sendSmsCode', {mobile: mobile,type:5}, function (data) {
+                if (data.ret == 1) {
+                    //发送成功
+                    time = 60;//秒
+                    countdown = time;
+                    var setSmsTime = function () {
+                        if (countdown == 0) {
+                            can_get_code = 1;
+                            $('#get_change_one_code').css('background', '#e5308a').text('获取验证码');
+                            countdown = time;
+                            clearInterval(aa);
+                        } else {
+                            $('#get_change_one_code').css('background', '#ccc').text(countdown + 's');
+                            countdown--;
+                        }
+                    }
+                    var aa = setInterval(function () {
+                        setSmsTime()
+                    }, 1000);
+                } else {
+                    can_get_code = 1;
+                    layer.msg(data.msg,{icon:2});
+                    return false;
+                }
+            }, 'json');
+        });
+        //验证验证码
+        $(".change_mobile_one").click(function () {
+            var mobile = $("#change_one_mobile").val();
+            var code = $("#change_one_code").val();
+            if (mobile == '') {
+                layer.msg('手机号码不能为空', {icon: 2});
+                return false;
+            }
+            if (!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(mobile))) {
+                layer.msg('手机号码有误，请重新输入', {icon: 2});
+                return false;
+            }
+            if (code == '') {
+                layer.msg('请输入您收到的验证码', {icon: 2});
+                return false;
+            }
+            if (can_click != 1) {
+                return false;
+            }
+            can_click = 0;
+            $.post('/Home/Vip/change_mobile_one', {mobile: mobile, code: code}, function (data) {
+                if (data.ret == 1) {
+                    can_click = 1;
+                    layer.msg(data.msg,{icon:1},function () {
+                        $(".change_one").hide();
+                        $(".change_two").show();
+                        can_get_code = 1;
+                    });
+                } else {
+                    can_click = 1;
+                    layer.msg(data.msg, {icon: 2});
+                    return false;
+                }
+            }, 'json');
+        });
+        //修改手机号码第二步
+        $('.change_two_do').click(function () {
+            $(".change_two_fu").show();
+        })
+        //获取验证码
+        $("#get_change_two_code").click(function () {
+            var that =$(this);
+            var mobile = $("#change_two_mobile").val();
+            if (mobile == '') {
+                layer.msg('手机号码不能为空', {icon: 2});
+                return false;
+            }
+            if (can_get_code != 1) {
+                return false;
+            }
+            can_get_code = 0;
+            $.post('/Home/Api/sendSmsCode', {mobile: mobile,type:6}, function (data) {
+                if (data.ret == 1) {
+                    layer.msg(data.msg, {icon: 1});
+                    //发送成功
+                    time = 60;//秒
+                    countdown = time;
+                    var setSmsTime = function () {
+                        if (countdown == 0) {
+                            can_get_code = 1;
+                            $('#get_change_two_code').css('background', '#e5308a').text('获取验证码');
+                            countdown = time;
+                            clearInterval(aa);
+                        } else {
+                            $('#get_change_two_code').css('background', '#ccc').text(countdown + 's');
+                            countdown--;
+                        }
+                    }
+                    var aa = setInterval(function () {
+                        setSmsTime()
+                    }, 1000);
+                } else {
+                    can_get_code = 1;
+                    layer.msg(data.msg,{icon:2});
+                    return false;
+                }
+            }, 'json');
+        });
+        //获取验证码
+        $(".change_mobile_two").click(function () {
+            var mobile = $("#change_two_mobile").val();
+            var code = $("#change_two_code").val();
+            if (mobile == '') {
+                layer.msg('手机号码不能为空', {icon: 2});
+                return false;
+            }
+            if (!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(mobile))) {
+                layer.msg('手机号码有误，请重新输入', {icon: 2});
+                return false;
+            }
+            if (code == '') {
+                layer.msg('请输入您收到的验证码', {icon: 2});
+                return false;
+            }
+            if (can_click != 1) {
+                return false;
+            }
+            can_click = 0;
+            $.post('/Home/Vip/change_mobile_two', {mobile: mobile, code: code}, function (data) {
+                if (data.ret == 1) {
+                    can_click = 1;
+                    $(".change_one").hide();
+                    $(".change_two").hide();
+                    layer.msg(data.msg,{icon:1},function () {
+                        window.location.reload();
+                    });
+                } else {
+                    can_click = 1;
+                    layer.msg(data.msg, {icon: 2});
+                    return false;
+                }
+            }, 'json');
+        });
+
+
     });
     function weixin_login() {
         var weixin ="{$weixin_login_info['oauth_url']}";
@@ -391,7 +601,7 @@
                 var setSmsTime = function () {
                     if (countdown == 0) {
                         can_get_code = 1;
-                        $('#get_find_code').css('background', '#b730b0').text('获取验证码');
+                        $('#get_find_code').css('background', '#e5308a').text('获取验证码');
                         countdown = time;
                         clearInterval(aa);
                     } else {
@@ -410,7 +620,6 @@
         }, 'json');
     }
 
-    var so
     function get_bind_code() {
         if(can_get_code==0){return false};
         var mobile = $("#bind_mobile").val();
@@ -423,7 +632,7 @@
                 var setSmsTime = function () {
                     if (countdown == 0) {
                         can_get_code = 1;
-                        $('#get_bind_code').css('background', '#b730b0').text('获取验证码');
+                        $('#get_bind_code').css('background', '#e5308a').text('获取验证码');
                         countdown = time;
                         clearInterval(aa);
                     } else {

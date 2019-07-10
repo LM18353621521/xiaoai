@@ -22,7 +22,7 @@
                         <p class="base-tit">头像：</p>
                         <div class="base-right">
                             <div class="base-head">
-                                <img id="pic" src="{$vip.headimgurl|default='__STATIC__/home/common/images/head.jpg'}">
+                                <img id="pic" src="{$user.headimgurl|default='__STATIC__/home/common/images/head.jpg'}">
                                 <input id="upload" name="file" accept="image/*" type="file" style="display: none"/>
                                 <input type="hidden" name="head_pic" value="">
                             </div>
@@ -32,13 +32,13 @@
                     <div class="base-wrap">
                         <p class="base-tit">用户名：</p>
                         <div class="base-right">
-                            <p class="base-name">{$vip.mobile}</p>
+                            <p class="base-name">{$user.mobile}</p>
                         </div>
                     </div>
                     <div class="base-wrap">
                         <p class="base-tit">昵称：</p>
                         <div class="base-right">
-                            <input type="text" class="base-input" name="nickname" value="{$vip.nickname}">
+                            <input type="text" class="base-input" name="nickname" value="{$user.nickname}">
                         </div>
                     </div>
                     <!--<div class="base-wrap">-->
@@ -49,9 +49,9 @@
                     <!--</div>-->
                     <div class="base-wrap">
                         <p class="base-tit">性别</p>
-                        <input type="hidden" name="sex" value="{$vip.sex}">
+                        <input type="hidden" name="sex" value="{$user.sex}">
                         <div class="base-right">
-                            {if condition="$vip.sex eq 1"}
+                            {if condition="$user.sex eq 1"}
                             <p class="radio-sex" sex="1"><img src="__STATIC__/home/common/images/radio-yes.jpg">男</p>
                             <p class="radio-sex" sex="2"><img src="__STATIC__/home/common/images/radio-no.png">女</p>
                             {else/}
@@ -63,11 +63,13 @@
                     <div class="base-wrap">
                         <p class="base-tit">手机</p>
                         <div class="base-right user_mobile">
-                            {if condition="$vip.mobile"}
-                            <p class="base-name">{$vip.mobile}</p>
+                            {if condition="$user.mobile"}
+                            <p class="base-name">{$user.mobile}</p>
                             {/if}
                             {if condition="$is_bind eq 0"}
                             <p class="bind_mobile"><a href="javascript:;">绑定手机</a></p>
+                            {else/}
+                            <p class="change_mobile"><a href="javascript:;">更换号码</a></p>
                             {/if}
                         </div>
                         </div>

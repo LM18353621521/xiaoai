@@ -386,6 +386,6 @@ page{
 	text-align: center;
     overflow:hidden;
     font-size: 28rpx;
-    color: #B82F89;
+    color: #e5308a;
     line-height: 40rpx; 
 }

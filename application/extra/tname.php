@@ -157,5 +157,10 @@ class tname
 	 */
 	//抢购，秒杀
 	const flash_sale="flash_sale";
+
+	//代理商
+    const agent_user="agent_user";
+    //代理商等级
+    const agent_level="agent_level";
 	
 }

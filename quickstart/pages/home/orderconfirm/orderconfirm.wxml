@@ -140,10 +140,10 @@
       </view>
       <view class="len">
         <view class="lenleft">详细地址</view>
-        <input class="lenright" type="text" name="address" value='{{addressInfo.address}}'   placeholder="请输入具体街道门牌号"  placeholder-style='color:#ccc;' />
+        <input class="lenright" type="text" name="address" value='{{addressInfo.address}}'   placeholder="请输入详细地址"  placeholder-style='color:#ccc;' />
       </view>
       <view class="anonymity">
-        <view class="anonymityleft">是否设置为默认地址</view>
+        <view class="anonymityleft">设为默认地址</view>
         <image class="anonymityright" bindtap="set_default" mode="widthFix" src="{{is_default==1 ? '../../../images/tabyes.png' : '../../../images/tabno.png' }}" />
       </view>
       <button class='btn-fixed-bottom' formType="submit">保存地址</button>

@@ -284,15 +284,22 @@ return [
 //            ]
         ]
     ],
-
     [
-        'group' => 'statistics',
-        'name' => '数据统计',
-        'icon' => 'icon-bar-chart',
+        'group' => 'agent',
+        'name' => '代理商管理',
+        'icon' => 'icon-user',
         '_child' => [
             [
-                'name' => '数据统计',
-                '_child' => ['statistics']
+                'name' => '代理商列表',
+                '_child' => ['index','detail']
+            ],
+            [
+                'name' => '代理商等级',
+                '_child' => ['level_list','edit_level']
+            ],
+            [
+                'name' => '充值记录',
+                '_child' => ['recharge_list']
             ],
         ]
     ],
@@ -315,4 +322,16 @@ return [
             ]
         ]
     ],
+    [
+        'group' => 'statistics',
+        'name' => '数据统计',
+        'icon' => 'icon-bar-chart',
+        '_child' => [
+            [
+                'name' => '数据统计',
+                '_child' => ['statistics']
+            ],
+        ]
+    ],
+
 ];

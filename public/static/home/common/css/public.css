@@ -142,11 +142,11 @@ html,body{
     margin-top: -2px;
 }
 .login-before{
-    color: #b730b0;
+    color: #e5308a;
 }
 .login-after {
     cursor: pointer;
-    color: #b730b0;
+    color: #e5308a;
 }
 
 .after-line {
@@ -249,7 +249,7 @@ html,body{
     height: 34px;
     background: #fff;
     padding: 0 10px;
-    border: 1px solid #b730b0;
+    border: 1px solid #e5308a;
     float: left;
 }
 
@@ -261,7 +261,7 @@ html,body{
     line-height: 36px;
     font-size: 14px;
     color: #fff;
-    background: #b730b0;
+    background: #e5308a;
     text-align: center;
     overflow: hidden;
     border-top-right-radius: 8px;
@@ -362,7 +362,7 @@ html,body{
     border-top-right-radius: 10px;
     white-space: nowrap;
     text-overflow: ellipsis;
-    background: #b730b0;
+    background: #e5308a;
 }
 
 .banner-left {
@@ -420,11 +420,11 @@ html,body{
 }
 
 .serach-list a:hover {
-    color: #b730b0 !important;
+    color: #e5308a !important;
 }
 
 .menu-sec-list li:hover {
-    color: #b730b0 !important;
+    color: #e5308a !important;
 }
 
 /**/

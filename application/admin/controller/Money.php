@@ -33,10 +33,8 @@ class Money extends Member
                 'is_hidden' => 0
             );
             $dataList = db(\tname::money_card)->where($where)->order('sort')->paginate(500);
-
             $this->assign('dataList', $dataList);
             $html = $this->fetch('money/form');
-
             return ajaxSuccess($html);
         }
         return $this->fetch();

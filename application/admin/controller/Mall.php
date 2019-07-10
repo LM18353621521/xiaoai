@@ -357,13 +357,14 @@ class Mall extends Member
             if(isset($data['imgpath'])){
                 $data['imgpath'] = serializeMysql($data['imgpath']);
             }
-
+            if(isset($data['agent_less'])){
+                $data['agent_less'] = serializeMysql($data['agent_less']);
+            }
             $res = dataUpdate(\tname::mall_product, $data);
             if (!$res) {
                 return ajaxFalse();
             }
             $goods_id = $data['id'] ? $data['id'] : $res;
-
             $this->afterSave($goods_id);
             return ajaxSuccess();
         } else {
@@ -372,7 +373,9 @@ class Mall extends Member
             if ($id) {
                 $data['imgpath'] = serializeMysql($data['imgpath'], 1);
             }
-
+            if($data['agent_less']){
+                $data['agent_less'] = serializeMysql($data['agent_less'], 1);
+            }
             $where = array(
                 'uid' => UID,
                 'is_hidden' => 0,
@@ -380,6 +383,10 @@ class Mall extends Member
             );
             $categoryList = db(\tname::mall_category)->where($where)->order('sort')->select();
             $goods_type = db(\tname::goods_type)->order('id desc')->select();
+
+            //代理商等级
+            $agentLevel = db(\tname::agent_level)->order('id asc')->select();
+            $this->assign('agentLevel', $agentLevel);
             $this->assign('goods_type', $goods_type);
             $this->assign('categoryList', $categoryList);
             $this->assign('data', $data);
@@ -431,46 +438,16 @@ class Mall extends Member
 
                 if ($specGoodsPrice) {
                     db(\tname::goods_spec_price)->where(['goods_id' => $goods_id, 'key' => $k])->update($data);
-//                    Db::name('spec_goods_price')->where(['goods_id' => $goods_id, 'key' => $k])->update($data);
                 } else {
                     db(\tname::goods_spec_price)->insert($data);
-//                    Db::name('spec_goods_price')->insert($data);
                 }
-
-//                if(!empty($specGoodsPrice) && $v['store_count'] != $specGoodsPrice['store_count'] && $eidt_goods_id>0){
-//                    $stock = $v['store_count'] - $specGoodsPrice['store_count'];
-//                }else{
-//                    $stock = $v['store_count'];
-//                }
-//                //记录库存日志
-//                update_stock_log(session('admin_id'),$stock,array('goods_id'=>$goods_id,'goods_name'=>I('goods_name'),'spec_key_name'=>$v['key_name']));
-//                // 修改商品后购物车的商品价格也修改一下
-//                M('cart')->where("goods_id = $goods_id and spec_key = '$k'")->save(array(
-//                    'market_price' => $v['market_price'], //市场价
-//                    'goods_price' => $v['price'], // 本店价
-//                    'member_goods_price' => $v['price'], // 会员折扣价
-//                ));
-
             }
             if ($keyArr) {
                 db(\tname::goods_spec_price)->where('goods_id', $goods_id)->whereNotIn('key', $keyArr)->delete();
-//                Db::name('spec_goods_price')->where('goods_id',$goods_id)->whereNotIn('key',$keyArr)->delete();
             }
         } else {
             db(\tname::goods_spec_price)->where(['goods_id' => $goods_id])->delete();
-//            Db::name('spec_goods_price')->where(['goods_id' => $goods_id])->delete();
         }
-
-//        // 商品规格图片处理
-//        if(I('item_img/a'))
-//        {
-//            M('SpecImage')->where("goods_id = $goods_id")->delete(); // 把原来是删除再重新插入
-//            foreach (I('item_img/a') as $key => $val)
-//            {
-//                M('SpecImage')->insert(array('goods_id'=>$goods_id ,'spec_image_id'=>$key,'src'=>$val));
-//            }
-//        }
-//        refresh_stock($goods_id); // 刷新商品库存
     }
 
 

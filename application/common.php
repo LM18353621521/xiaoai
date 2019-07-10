@@ -829,14 +829,17 @@ function sendSmsjh($mobile, $content = null, $code = null, $type = 1)
         '2' => 166131,//模板ID
         '3' => 166131,//模板ID
         '4' => 166131,//模板ID
+        '5' => 166131,//模板ID
+        '6' => 166131,//模板ID
     );
     $tpl_values = array(
         '1' => '#code#=' . $code . "&#company#={$config['signName']}",
         '2' => '#code#=' . $code . "&#company#={$config['signName']}",
         '3' => '#code#=' . $code . "&#company#={$config['signName']}",
         '4' => '#code#=' . $code . "&#company#={$config['signName']}",
+        '5' => '#code#=' . $code . "&#company#={$config['signName']}",
+        '6' => '#code#=' . $code . "&#company#={$config['signName']}",
     );
-
     $tpl_id = $tpl_ids[$type];
     $tpl_value = $tpl_values[$type];
     $params = array(

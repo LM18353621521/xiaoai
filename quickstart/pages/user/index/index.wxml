@@ -7,7 +7,7 @@
     <text bindtap="showf4">绑定</text>
   </view>
   <view class='bind-text' hidden='{{bind_hide==0}}'>{{vip.mobile}}
-    <text bindtap='edit_mobile'>更换号码</text>
+    <text bindtap='showf5'>更换号码</text>
   </view>
 </view>
 <view class="toptita">
@@ -155,7 +155,7 @@
         </view>
         <view class="box1">
           <input class='code-yan' value='{{code}}' type="number" bindinput='input_code' maxlength='6' placeholder="请输入验证码" placeholder-style="color:#ccc;font-size:26rpx;" />
-          <view class="get {{selected1?'':'hidden'}}" bindtap='getcode'>发送验证码</view>
+          <view class="get {{selected1?'':'hidden'}}" data-type='1' bindtap='getcode'>发送验证码</view>
           <view class="get {{selected?'':'hidden'}}" bindtap="countdown">{{second}}s</view>
         </view>
         <view class="btnbtna" bindtap="bind_mobile_do">绑定</view>
@@ -163,6 +163,52 @@
     </view>
   </view>
 </view>
+
+<!-- 修改手机号码第一步 -->
+<view class='fuceng {{f5==0?"hidden":""}}'>
+  <view class="fuer" bindtap="hidef5"></view>
+  <view class='baibga'>
+    <view class='login-title'>请完成验证
+      <image bindtap="hidef5" src="../../../images/my-close.jpg" />
+    </view>
+    <view class="formbox">
+      <view class="form1 phone-bg">
+        <view class="box1">
+          <input type="number" value='{{vip.mobile}}' disabled='true' bindinput='input_mobile' maxlength='11' placeholder="请输入您的手机号" placeholder-style="color:#ccc;font-size:26rpx;" />
+        </view>
+        <view class="box1">
+          <input class='code-yan' value='{{code}}' type="number" bindinput='input_code' maxlength='6' placeholder="请输入验证码" placeholder-style="color:#ccc;font-size:26rpx;" />
+          <view class="get {{selected1?'':'hidden'}}" data-type='5' bindtap='getcode'>发送验证码</view>
+          <view class="get {{selected?'':'hidden'}}" bindtap="countdown">{{second}}s</view>
+        </view>
+        <view class="btnbtna" bindtap="change_mobile_one">下一步</view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 修改手机号第二步 -->
+<view class='fuceng {{f6==0?"hidden":""}}'>
+  <view class="fuer" bindtap="hidef6"></view>
+  <view class='baibga'>
+    <view class='login-title'>请验证新手机号
+      <image bindtap="hidef6" src="../../../images/my-close.jpg" />
+    </view>
+    <view class="formbox">
+      <view class="form1 phone-bg">
+        <view class="box1">
+          <input type="number" value='{{mobile}}' bindinput='input_mobile' maxlength='11' placeholder="请输入新的手机号码" placeholder-style="color:#ccc;font-size:26rpx;" />
+        </view>
+        <view class="box1">
+          <input class='code-yan' value='{{code}}' type="number" bindinput='input_code' maxlength='6' placeholder="请输入验证码" placeholder-style="color:#ccc;font-size:26rpx;" />
+          <view class="get {{selected1?'':'hidden'}}" data-type='6' bindtap='getcode'>发送验证码</view>
+          <view class="get {{selected?'':'hidden'}}" bindtap="countdown">{{second}}s</view>
+        </view>
+        <view class="btnbtna" bindtap="change_mobile_two">确认修改</view>
+      </view>
+    </view>
+  </view>
+</view>
+
 
 <view class="fuceng {{auth_hide==0? 'hidden':''}}">
   <view class="fuer" bindtap="close"></view>

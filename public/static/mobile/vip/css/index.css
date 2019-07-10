@@ -9,6 +9,7 @@ body {
     padding-top: 2rem;
     height: 14.5rem;
     margin-bottom: 2.5rem;
+    background:linear-gradient(to bottom,#e5308a,#943ef1);
 }
 
 .vip-bg {
@@ -203,9 +204,9 @@ body {
     text-align: center;
     line-height: 1.5rem;
     font-size: 1.3rem;
-    color: #fe677f;
+    color: #e5308a;
     vertical-align: middle;
-    border: 1px solid #fe677f;
+    border: 1px solid #e5308a;
     letter-spacing: normal;
 }
 
@@ -370,7 +371,7 @@ button {
 }
 
 .login-title {
-    background: #ff6ea9;
+    background: #e5308a;
     height: 3.5rem;
     line-height: 3.5rem;
     text-align: center;
@@ -407,7 +408,7 @@ button {
 }
 
 .boxsel {
-    border-bottom: 2px solid #ff6ea9;
+    border-bottom: 2px solid #e5308a;
 }
 
 .login-leftright {

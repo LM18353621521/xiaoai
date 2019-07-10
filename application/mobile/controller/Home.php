@@ -11,6 +11,10 @@ use app\common\logic\GoodsLogic;
 
 class Home extends Base
 {
+    public function _initialize(){
+        parent::_initialize();
+
+    }
     public function test()
     {
         return $this->fetch();

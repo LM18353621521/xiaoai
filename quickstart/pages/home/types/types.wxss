@@ -75,7 +75,7 @@
 .leftsel{
   background: #fff;
   border-bottom: none;
-  border-left:6px solid #B82F89;
+  border-left:6px solid #e5308a;
   box-sizing: border-box;
 }
 .tablerightj{

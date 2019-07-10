@@ -118,7 +118,7 @@ page {
 
 .track_shipflow_item.cur .track_shipflow_item_status {
   color: #fff;
-  background-color: #B82F89;
+  background-color: #e5308a;
 }
 
 .track_shipflow_item.cur .track_shipflow_item_status.type_dot::after {
@@ -132,17 +132,17 @@ page {
   width: 18px;
   height: 18px;
   border-radius: 9px;
-  border: 1px solid #B82F89;
+  border: 1px solid #e5308a;
 }
 
 .track_shipflow_item::after {
   content: "";
-  background: -webkit-linear-gradient(bottom, #969696, #B82F89);
+  background: -webkit-linear-gradient(bottom, #969696, #e5308a);
   background: linear-gradient(0deg, rgb(0, 0, 102), rgb(0, 0, 102));
 }
 
 .track_shipflow_item.cur .track_shipflow_item_msg {
-  color: #B82F89;
+  color: #e5308a;
 }
 
 .track_shipflow_item_status.type_dot {

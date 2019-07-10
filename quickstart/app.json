@@ -1,6 +1,7 @@
 {
-  "pages": [    
+  "pages": [
     "pages/home/index/index",
+    "pages/user/distribution/distribution",
     "pages/user/coupon/coupon",
     "pages/user/index/index",
     "pages/user/mycoupon/mycoupon",
@@ -17,7 +18,6 @@
     "pages/home/goodsList/goodsList",
     "pages/home/types/types",
     "pages/user/withdrawlist/withdrawlist",
-    "pages/user/distribution/distribution",
     "pages/user/myqrcode/myqrcode",
     "pages/user/addredit/addredit",
     "pages/user/addrlist/addrlist",
@@ -31,13 +31,13 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#B82F89",
+    "navigationBarBackgroundColor": "#e5308a",
     "navigationBarTitleText": "晓爱商城",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#999",
-    "selectedColor": "#B82F89",
+    "selectedColor": "#e5308a",
     "borderStyle": "white",
     "backgroundColor": "white",
     "navigationBarTextStyle": "white",

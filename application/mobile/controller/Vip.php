@@ -25,8 +25,6 @@ class Vip extends Base
             dump($res);
         }
         Db::commit();
-
-
 //        $ps = db(\tname::region)->where(array('parent_id'=>0))->select();
 //        dump($ps);
 //        $region=[];
@@ -65,6 +63,10 @@ class Vip extends Base
     public function index()
     {
         $user = session('userinfo');
+        if(!empty($user)){
+            $AgentLogic = new \app\common\logic\AgentLogic();
+            $AgentLogic->createAgent($user['mobile']);
+        }
         $pdata = input('post.');
         $vip = db(\tname::vip)->where(['uid' => WID, 'id' => $user['vip_id']])->find();
         if ($vip) {
@@ -243,6 +245,64 @@ class Vip extends Base
         $userinfo['vip_ids']=$ids;
         session('userinfo', $userinfo);
         return json(ajaxSuccess($userinfo, "绑定成功！"));
+    }
+
+    /**
+     * 修改手机第一步，检查验证码
+     */
+    public function change_mobile_one(){
+        $user = session('userinfo');
+        $pdata = input('post.');
+        $mobile = $pdata['mobile'];
+        $code = $pdata['code'];
+        $vip = db(\tname::vip)->where(array('id' => $user['vip_id']))->find();
+        //检查是否已经被绑定
+        $check_bind = db(\tname::vip)->where(array('mobile' => $mobile, 'source' => $user['source']))->find();
+        if ($check_bind && $check_bind['id'] != $user['vip_id']) {
+            return json(ajaxFalse('该手机号码已被绑定，请重新输入'));
+        }
+        //验证码信息
+        $codeinfo = session('codeinfo');
+        if ($codeinfo['check_mobile'] != $mobile) {
+            return ajaxFalse('请输入正确的手机号码');
+        }
+        if ($codeinfo['check_code'] != $code) {
+            return ajaxFalse('请输入正确的验证码');
+        }
+        return json(ajaxSuccess('', "验证成功"));
+    }
+    /**
+     * 修改手机号码
+     * @return \think\response\Json
+     */
+    public function change_mobile_two()
+    {
+        $userLogic =new \app\common\logic\UserLogic();
+        $user = session('userinfo');
+        $pdata = input('post.');
+        $mobile = $pdata['mobile'];
+        $code = $pdata['code'];
+        //验证码信息
+        $codeinfo = session('codeinfo');
+        if ($codeinfo['check_mobile'] != $mobile) {
+            return ajaxFalse('请输入正确的手机号码');
+        }
+        if ($codeinfo['check_code'] != $code) {
+            return ajaxFalse('请输入正确的验证码');
+        }
+        $vip = db(\tname::vip)->where(array('id' => $user['vip_id']))->find();
+        $result = $userLogic->changeMobile($vip['mobile'],$mobile);
+        if ($result['status']==0) {
+            return json(ajaxFalse($result['msg']));
+        }
+        $ids = db(\tname::vip)->where(array('mobile' => $mobile))->column('id');
+        $ids = implode(',', $ids);
+        //测试环境手动配置
+        $userinfo =$vip;
+        $userinfo['vip_id']=$vip['id'];
+        $userinfo['vip_ids']=$ids;
+        session('userinfo', $userinfo);
+        return json(ajaxSuccess('', "修改成功"));
     }
 
 

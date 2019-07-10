@@ -54,7 +54,7 @@ page{
   -webkit-box-orient: vertical;
 }
 .info text{
-  color: #ff4a00;
+  color: #e5308a;
   margin-left:5rpx;
 }
 
@@ -69,9 +69,9 @@ page{
 	font-size: var(--fontSize);
 	color: #fff;
 	overflow: hidden;
-  border-radius: 8px;
-  border: 3rpx solid #B82F89;
-  /* background: linear-gradient(to right,#B82F89,#943ef1); */
+  border-radius: 5px;
+  border: 3rpx solid #e5308a;
+  /* background: linear-gradient(to right,#e5308a,#943ef1); */
 }
 .btn-recommend image{
   width: 54rpx;
@@ -161,7 +161,7 @@ page{
   margin: 20rpx auto;
   text-align: center;
   border-radius: 5px;
-  background: linear-gradient(to right, #B82F89, #943ef1);
+  background: linear-gradient(to right, #e5308a, #943ef1);
 }
 
 .suretips {

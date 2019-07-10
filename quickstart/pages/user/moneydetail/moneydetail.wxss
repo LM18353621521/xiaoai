@@ -33,8 +33,8 @@ page{
   float: left;
 }
 .titlesel{
-   border-bottom:2px solid #B82F89;
-   color: #B82F89;
+   border-bottom:2px solid #e5308a;
+   color: #e5308a;
 }
 
 

@@ -1,11 +1,11 @@
 App({
   HOST: 'http://www.gzxi.com/',
   HOST: 'https://www.gzxi.cn/',
-    globalData: {
-      vip_id: 0,
-      ol_index:0,
-      cartList: [],
-    },
+  globalData: {
+    vip_id: 0,
+    ol_index: 0,
+    cartList: [],
+  },
 
   onLaunch: function(options) {
     if (typeof(options.query.share_id) != "undefined") {
@@ -14,7 +14,7 @@ App({
     var app = this;
     var user = wx.getStorageSync('user') || {};
     var userInfo = wx.getStorageSync('userInfo') || {};
-    if ((!user.openid || Date.parse(new Date()) / 1000 > (user.expires_in - 600))&&user.login_vip_type!=3) {
+    if ((!user.openid || Date.parse(new Date()) / 1000 > (user.expires_in - 600)) && user.login_vip_type != 3) {
       wx.login({
         success: function(res) {
           if (res.code) {
@@ -24,15 +24,15 @@ App({
               share_id: share_id,
             }, function(data) {
               console.log(data);
-              var obj=data.data;
-              obj.expires_in=Date.parse(new Date()) / 1000 + data.data.expires_in - 200,
-              //   openid: data.data.openid,
-              //   vip_id: data.data.vip_id,
-              //   wx_vip_id: data.data.wx_vip_id,
-              //   s
-              //   expires_in: Date.parse(new Date()) / 1000 + data.data.expires_in - 200,
-              // };
-              wx.setStorageSync('user', obj); //存储openid
+              var obj = data.data;
+              obj.expires_in = Date.parse(new Date()) / 1000 + data.data.expires_in - 200,
+                //   openid: data.data.openid,
+                //   vip_id: data.data.vip_id,
+                //   wx_vip_id: data.data.wx_vip_id,
+                //   s
+                //   expires_in: Date.parse(new Date()) / 1000 + data.data.expires_in - 200,
+                // };
+                wx.setStorageSync('user', obj); //存储openid
               // app.getUserInfo();
             });
           } else {

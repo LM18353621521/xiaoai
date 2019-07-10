@@ -9,5 +9,4 @@
   <view hidden="{{action==2?'':'hidden'}}" class="addr-box-right" catchtap='address_edit' data-address_id='{{item.id}}' >选择</view>
 </view>
 </view>
-
-<view class='add' bindtap='address_edit'  data-address_id='0' ><image src="../../../images/add.jpg" />添加新地址</view>
+<view class='add add-btn' bindtap='address_edit'  data-address_id='0' >添加新地址</view>

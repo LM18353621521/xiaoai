@@ -133,7 +133,7 @@ class Api extends Controller
                 'check_code' => $code
             ];
             session('codeinfo', $ajaxdata);
-            $result = sendSmsjh($mobile, $content, $code);//发送短信
+            $result = sendSmsjh($mobile, $content, $code,$type);//发送短信
 
             if ($result['error_code']) {
                 return json(ajaxFalse('验证码发送失败，请稍后重试'));
@@ -154,7 +154,7 @@ class Api extends Controller
             }
             $code = createverifycode(6);
             $content = "";
-            $result = sendSmsjh($mobile, $content, $code);//发送短信
+            $result = sendSmsjh($mobile, $content, $code,$type);//发送短信
             if ($result['error_code']) {
                 return json(ajaxFalse('验证码发送失败，请稍后重试'));
             }
@@ -169,8 +169,7 @@ class Api extends Controller
         if ($type == 3) {
             $code = createverifycode(6);
             $content = "";
-            $result = sendSmsjh($mobile, $content, $code);//发送短信
-
+            $result = sendSmsjh($mobile, $content, $code,$type);//发送短信
             if ($result['error_code']) {
                 return json(ajaxFalse('验证码发送失败，请稍后重试'));
             }
@@ -199,7 +198,7 @@ class Api extends Controller
 
             $code = createverifycode(6);
             $content = "";
-            $result = sendSmsjh($mobile, $content, $code,4);//发送短信
+            $result = sendSmsjh($mobile, $content, $code,$type);//发送短信
 
             if ($result['error_code']) {
                 return json(ajaxFalse('验证码发送失败，请稍后重试'));
@@ -211,11 +210,44 @@ class Api extends Controller
             session('codeinfo', $ajaxdata);
             return json(ajaxSuccess($ajaxdata, "验证码已发送至：" . $mobile . "，请注意查收"));
         }
-
-
-
+        if($type==5){
+            $user = session('userinfo');
+            $hasOldMobile=db(\tname::vip)->where(array('mobile' => $mobile, 'source' => $user['source']))->find();
+            if(empty($hasOldMobile)){
+                return json(ajaxFalse('手机号码不正确'));
+            }
+            $code = createverifycode(6);
+            $content = "";
+            $result = sendSmsjh($mobile, $content, $code,$type);//发送短信
+            if ($result['error_code']) {
+                return json(ajaxFalse('验证码发送失败，请稍后重试'));
+            }
+            $ajaxdata = [
+                'check_mobile' => $mobile,
+                'check_code' => $code
+            ];
+            session('codeinfo', $ajaxdata);
+            return json(ajaxSuccess($ajaxdata, "验证码已发送至：" . $mobile . "，请注意查收"));
+        }
+        if($type==6){
+            $has_mobile = db(\tname::vip)->where(array('mobile'=>$mobile))->find();
+            if($has_mobile){
+                return json(ajaxFalse('该手机号码已被使用，请重新输入'));
+            }
+            $code = createverifycode(6);
+            $content = "";
+            $result = sendSmsjh($mobile, $content, $code,$type);//发送短信
+            if ($result['error_code']) {
+                return json(ajaxFalse('验证码发送失败，请稍后重试'));
+            }
+            $ajaxdata = [
+                'check_mobile' => $mobile,
+                'check_code' => $code
+            ];
+            session('codeinfo', $ajaxdata);
+            return json(ajaxSuccess($ajaxdata, "验证码已发送至：" . $mobile . "，请注意查收"));
+        }
     }
-
 
     /**
      * 提醒支付

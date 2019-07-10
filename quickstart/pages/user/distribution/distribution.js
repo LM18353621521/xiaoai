@@ -17,7 +17,7 @@ Page({
   /**
    * 生成分享图片
    */
-  create_poster: function () {
+  create_poster: function() {
     wx.showLoading({
       title: '正在生成海报...',
     })
@@ -26,7 +26,7 @@ Page({
     var data = {
       goods_id: goodsInfo.id,
     }
-    app.getData('Home/create_poster', that, data, function (data) {
+    app.getData('Home/create_poster', that, data, function(data) {
       that.showf2();
       wx.hideLoading();
       that.setData({
@@ -37,7 +37,7 @@ Page({
   /**
    *保存图片
    */
-  save_poster: function (e) {
+  save_poster: function(e) {
     var that = this;
     if (that.data.can_click == 0) {
       return false;
@@ -46,27 +46,27 @@ Page({
       title: '正在生成海报...',
     })
     var that = this;
-    app.getData('Vip/create_user_poster', that, {}, function (data) {
+    app.getData('Vip/create_user_poster', that, {}, function(data) {
       var poster_img = data.data.poster_img;
-      setTimeout(function(){
+      setTimeout(function() {
         that.save_img_loc(poster_img);
-      },500);
+      }, 500);
     })
     // that.save_img_loc(that.data.poster_img);
   },
   /**
- * 保存图片到相册
- */
-  save_img_loc: function (img_path) {
+   * 保存图片到相册
+   */
+  save_img_loc: function(img_path) {
     var that = this;
     var imgSrc = img_path;
     wx.downloadFile({
       url: imgSrc,
-      success: function (res) {
+      success: function(res) {
         //图片保存到本地
         wx.saveImageToPhotosAlbum({
           filePath: res.tempFilePath,
-          success: function (data) {
+          success: function(data) {
             wx.showToast({
               title: '保存成功',
               icon: 'success',
@@ -74,19 +74,16 @@ Page({
             })
             that.showf2();
           },
-          fail: function (err) {
+          fail: function(err) {
             if (err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
               wx.openSetting({
                 success(settingdata) {
-                  if (settingdata.authSetting['scope.writePhotosAlbum']) {
-                  } else {
-                  }
+                  if (settingdata.authSetting['scope.writePhotosAlbum']) {} else {}
                 }
               })
             }
           },
-          complete(res) {
-          }
+          complete(res) {}
         })
       }
     })
@@ -205,8 +202,7 @@ Page({
           auth_hide: 0,
         })
       },
-      fail: function(e) {
-      }
+      fail: function(e) {}
     })
   },
 
@@ -214,7 +210,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    wx.hideShareMenu({})
   },
 
   /**

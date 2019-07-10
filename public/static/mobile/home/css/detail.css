@@ -127,7 +127,7 @@ body {
     left: 0;
     overflow: hidden;
     background: #fff;
-    border-top: 1px solid #f8f8f8;
+    border-top: 0px solid #f8f8f8;
     z-index: 100;
 }
 
@@ -166,7 +166,7 @@ body {
     font-size: 1.5rem;
     color: #fff;
     line-height: 5rem;
-    background: var(--purplecolor);
+    background:linear-gradient(to right,#e5308a,#943ef1);
 }
 
 .s3 {
@@ -178,7 +178,7 @@ body {
     font-size: 1.5rem;
     color: #fff;
     line-height: 5rem;
-    background: var(--pinkcolor);
+    background:linear-gradient(to right,#e5308a,#943ef1);
 }
 
 .btnimg0 {
@@ -275,7 +275,7 @@ body {
     height: 2.5rem;
     line-height: 2.5rem;
     font-size: 1.5rem;
-    color: #FF547D;
+    color: #e5308a;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -619,7 +619,7 @@ body {
     width: 3.5rem;
     float: right;
     line-height: 3rem;
-    color: #4c4c4c;
+    color: #e5308a;
     font-size: 1.3rem;
     overflow: hidden;
     text-align: center;
@@ -655,7 +655,7 @@ body {
     overflow: hidden;
     color: #fff;
     text-align: center;
-    background: var(--purplecolor);
+    background:linear-gradient(to right,#e5308a,#943ef1);
     float: left;
 }
 
@@ -667,7 +667,7 @@ body {
     overflow: hidden;
     color: #fff;
     text-align: center;
-    background: var(--pinkcolor);
+    background:linear-gradient(to right,#e5308a,#943ef1);
     float: left;
 }
 
@@ -1013,7 +1013,7 @@ button::after {
     margin: 1rem auto;
     text-align: center;
     border-radius: 5px;
-    background: linear-gradient(to right, #b73ef1, #943ef1);
+    background:linear-gradient(to right,#e5308a,#943ef1);
 }
 
 .suretips {
@@ -1156,6 +1156,6 @@ button::after {
     height: auto;
     width: 100%;
     height: auto;
-    vertical-align: bottom||top||text-bottom;
+    vertical-align: bottom | | top | | text-bottom;
     display: block;
 }

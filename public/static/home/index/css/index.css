@@ -236,7 +236,7 @@ body {
     line-height: 30px;
     height: 30px;
     font-size: 24px;
-    color: #b730b0;
+    color: #e5308a;
 }
 
 .left {
@@ -275,7 +275,7 @@ body {
     display: inline-block;
     width: 8px;
     height: 22px;
-    background: #b730b0;
+    background: #e5308a;
     margin-right: 15px;
     vertical-align: middle;
     margin-top: -5px;
@@ -310,7 +310,7 @@ body {
 }
 
 .swiper-item:hover {
-    border: 1px solid #b730b0;
+    border: 1px solid #e5308a;
 }
 
 .swiper-item img {
@@ -358,7 +358,7 @@ body {
 }
 
 .swiper-containerb .swiper-pagination-bullet-active {
-    background: #b730b0;
+    background: #e5308a;
 }
 
 .swiper-containerb .swiper-pagination-bullet {

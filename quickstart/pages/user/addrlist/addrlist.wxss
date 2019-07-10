@@ -1,52 +1,59 @@
-.addr-box{
+.addr-box {
   overflow: hidden;
   border-bottom: 1px solid #f2f2f2;
-  padding:30rpx 3%;
+  padding: 30rpx 3%;
   display: flex;
 }
-.addr-box-left{
-  flex:0 0 64rpx;
+
+.addr-box-left {
+  flex: 0 0 64rpx;
   width: 64rpx;
   height: 64rpx;
   font-size: 26rpx;
   text-align: center;
   color: #fff;
   line-height: 64rpx;
-  background: #b9bbbd;
+  background: #e5308a;
   border-radius: 50%;
-  margin-top:24rpx;
+  margin-top: 24rpx;
   margin-right: 20rpx;
 }
-.addr-box-mid{
+
+.addr-box-mid {
   flex: 1;
   overflow: hidden;
 }
-.addr-mida{
+
+.addr-mida {
   font-size: var(--fontSize);
   color: #4c4c4c;
-  line-height:40rpx;
+  line-height: 40rpx;
 }
-.addr-mida text{
+
+.addr-mida text {
   font-size: 24rpx;
   color: #909090;
   margin-left: 10rpx;
 }
-.addr-midb{
+
+.addr-midb {
   font-size: var(--fontSize);
   color: #4c4c4c;
   line-height: 40rpx;
-  padding:10rpx 0;
+  padding: 10rpx 0;
 }
-.addr-midb text{
-  padding:0 20rpx;
+
+.addr-midb text {
+  padding: 0 20rpx;
   background: #feebff;
   font-size: var(--fontSize);
-  color: #B82F89;
+  color: #e5308a;
   height: 30rpx;
   line-height: 30rpx;
   border-radius: 30px;
 }
-.addr-box-right{
+
+.addr-box-right {
   flex: 0 0 104rpx;
   width: 104rpx;
   height: 47rpx;
@@ -56,21 +63,25 @@
   text-align: center;
   overflow: hidden;
   border-left: 1px solid #f2f2f2;
-  margin-top:40rpx;
+  margin-top: 40rpx;
 }
 
-.add{
-   width:100%;
-   height:100rpx;
-   line-height: 100rpx;
-   color: #B82F89;
-   font-size:var(--fontSize);
-   overflow: hidden;
-   text-align: center;
-   margin-top:100rpx;
+.add {
+  width: 94%;
+    margin:0 auto;
+  height: 90rpx;
+  line-height: 90rpx;
+  color: #fff;
+  font-size: var(--fontSize);
+  overflow: hidden;
+  text-align: center;
+  margin-top: 100rpx;
+  border-radius: 6px;
+  background: linear-gradient(to right, #e5308a, #943ef1);
 }
-.add image{
-  width:80rpx;
+
+.add image {
+  width: 80rpx;
   height: 80rpx;
   margin-right: 20rpx;
   vertical-align: middle;

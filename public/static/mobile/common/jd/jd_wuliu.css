@@ -2354,12 +2354,12 @@ body {
 
 .track_shipflow_item.cur::after {
     background: -webkit-linear-gradient(bottom, #e8e8ed, #e64b4e);
-    background: linear-gradient(0deg, #969696, #B82F89)
+    background: linear-gradient(0deg, #969696, #e5308a)
 }
 
 .track_shipflow_item.cur .track_shipflow_item_status {
     color: #fff;
-    background-color: #B82F89
+    background-color: #e5308a
 }
 
 .track_shipflow_item.cur .track_shipflow_item_status.type_dot::after {
@@ -2373,11 +2373,11 @@ body {
     width: 18px;
     height: 18px;
     border-radius: 9px;
-    border: 1px solid #B82F89
+    border: 1px solid #e5308a
 }
 
 .track_shipflow_item.cur .track_shipflow_item_msg_text, .track_shipflow_item.cur .track_shipflow_item_msg_time {
-    color: #B82F89
+    color: #e5308a
 }
 
 .track_shipflow_item_status {

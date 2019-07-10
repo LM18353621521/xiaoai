@@ -134,7 +134,7 @@ rich-text {
   position: absolute;
   left: 32%;
   top: 5rpx;
-  background: #B82F89;
+  background: #e5308a;
   width: 40rpx;
   height: 40rpx;
   line-height: 40rpx;
@@ -165,7 +165,7 @@ rich-text {
   font-size: 30rpx;
   color: #fff;
   line-height: 100rpx;
-  background: var(--purplecolor);
+  background:linear-gradient(to right,#e5308a,#943ef1);
 }
 
 .s3 {
@@ -177,7 +177,7 @@ rich-text {
   font-size: 30rpx;
   color: #fff;
   line-height: 100rpx;
-  background: #ff3399;
+  background:linear-gradient(to right,#e5308a,#943ef1);
 }
 
 .btnimg0 {
@@ -635,7 +635,7 @@ rich-text {
   overflow: hidden;
   color: #fff;
   text-align: center;
-  background: var(--purplecolor);
+  background:linear-gradient(to right,#e5308a,#943ef1);
   float: left;
 }
 
@@ -647,7 +647,7 @@ rich-text {
   overflow: hidden;
   color: #fff;
   text-align: center;
-  background: var(--pinkcolor);
+  background:linear-gradient(to right,#e5308a,#943ef1);
   float: left;
 }
 
@@ -997,7 +997,7 @@ button::after {
   margin: 20rpx auto;
   text-align: center;
   border-radius: 5px;
-  background: linear-gradient(to right, #B82F89, #943ef1);
+  background: linear-gradient(to right, #e5308a, #943ef1);
 }
 
 .suretips {

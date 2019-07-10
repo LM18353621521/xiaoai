@@ -1,23 +1,57 @@
 <view class="uycenter_head2">
-  <image class="uybg" src="../../../images/center-bg.jpg" />
+  <!-- <image class="uybg" src="../../../images/center-bg.jpg" /> -->
   <image class="head" src="{{vip.headimg}}" />
   <view class="uylmenu">
-    <view class="uylmenu11">{{vip.nickname}}<text bindtap="showa">邀请海报</text></view>
+    <view class="uylmenu11">{{vip.nickname}}
+      <text bindtap="showa">邀请海报</text>
+    </view>
     <view class="uylmenu12">{{vip.mobilephone}}</view>
-    <view class="uylmenu12">账户余额<text>(元)</text></view>
-    <view class="uylmenu11">{{vip.income}}<text bindtap="show">提现</text></view>
+    <view class="uylmenu12">账户余额
+      <text>(元)</text>
+    </view>
+    <view class="uylmenu11">{{vip.income}}
+      <text bindtap="show">提 现</text>
+    </view>
   </view>
 </view>
 <view class='tabs'>
-  <view class='item black-font'><text class='label'>本月已返</text>{{income.month_all}}<text class='yuan'>元</text></view>
-  <view class='item text-right'><text class='label'>本月已返</text>{{income.month_fan}}<text class='yuan'>元</text></view>
-  <view class='item'><text class='label'>累计佣金</text>{{income.income_all}}<text class='yuan'>元</text></view>
-  <view class='item text-right'><text class='label'>待返佣金</text>{{income.income_wei}}<text class='yuan'>元</text></view>
+  <view class='item black-font'>
+    <text>本月佣金</text>\t
+    <text class='income'>{{income.month_all}}</text>
+  </view>
+  <view class='item text-right'>
+    <text>本月已返</text>\t
+    <text class='income'>{{income.month_fan}}</text>
+  </view>
+    <view class='item black-font'>
+    <text>累计佣金</text>\t
+    <text class='income'>{{income.income_all}}</text>
+  </view>
+  <view class='item text-right'>
+    <text>待返佣金</text>\t
+    <text class='income'>{{income.income_wei}}</text>
+  </view>
+  <!-- <view class='item black-font'>
+    <text class='label'>本月已返</text>{{income.month_all}}
+    <text class='yuan'>元</text>
+  </view>
+  <view class='item text-right'>
+    <text class='label'>本月已返</text>{{income.month_fan}}
+    <text class='yuan'>元</text>
+  </view>
+  <view class='item'>
+    <text class='label'>累计佣金</text>{{income.income_all}}
+    <text class='yuan'>元</text>
+  </view>
+  <view class='item text-right'>
+    <text class='label'>待返佣金</text>{{income.income_wei}}
+    <text class='yuan'>元</text>
+  </view> -->
 </view>
 
 <view class="swiper-tab">
-   <view class="swiper-tab-list {{status==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">收入记录</view>
-   <view class="swiper-tab-list {{status==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">待返佣金</view>
+  <view class="swiper-tab-list {{status==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">收入记录</view>
+  <view class="swiper-tab-list {{status==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">待返佣金</view>
 </view>
 
 <!--1-->
@@ -61,44 +95,46 @@
 
 <!--提现浮层  -->
 <view class="fuceng {{fuhide==0? 'hidden':''}}">
-   <view class="fuer" bindtap="close"></view>
-   <view class="fucengbox">
-      <image class="img-head" mode="widthFix" src="{{vip.headimg}}" />
-      <image class="img-close" bindtap="close" src="../../../images/close.png" />
-      <view class="tit-info">
-        <view class="tit-name">{{vip.nickname}}</view>
-        <!-- <view class="tit-name">{{vip.income}}</view> -->
-      </view>
-      <view class="box-fu">
-        <view class="box-info">可提现金额</view>
-        <view class="box-money">{{vip.income}}</view>
-      </view>
-      <view class='fu-leftright'>
-        <view class='fu-left'>提现金额:</view>
-        <input class="fu-right" type="digit" value='{{money}}' bindinput='set_money' placeholder="￥0.00（元）" placeholder-style="color:#ccc;" />
-      </view>
-      <view class='gray-backgound'>
-        <view class="fu-info">{{config.withdraw_tips}}</view>
-        <view class="fu-btn" bindtap="withdraw_do">提现</view>
-        <navigator url='/pages/user/withdrawlist/withdrawlist' hover-class='none'><view class="box-withdraw">历史提现</view></navigator>
-        
-      </view>
-   </view>
+  <view class="fuer" bindtap="close"></view>
+  <view class="fucengbox">
+    <image class="img-head" mode="widthFix" src="{{vip.headimg}}" />
+    <image class="img-close" bindtap="close" src="../../../images/close.png" />
+    <view class="tit-info">
+      <view class="tit-name">{{vip.nickname}}</view>
+      <!-- <view class="tit-name">{{vip.income}}</view> -->
+    </view>
+    <view class="box-fu">
+      <view class="box-info">可提现金额</view>
+      <view class="box-money">{{vip.income}}</view>
+    </view>
+    <view class='fu-leftright'>
+      <view class='fu-left'>提现金额:</view>
+      <input class="fu-right" type="digit" value='{{money}}' bindinput='set_money' placeholder="￥0.00（元）" placeholder-style="color:#ccc;" />
+    </view>
+    <view class='gray-backgound'>
+      <view class="fu-info">{{config.withdraw_tips}}</view>
+      <view class="fu-btn" bindtap="withdraw_do">提现</view>
+      <navigator url='/pages/user/withdrawlist/withdrawlist' hover-class='none'>
+        <view class="box-withdraw">历史提现</view>
+      </navigator>
+
+    </view>
+  </view>
 </view>
 
 <!--邀请海报浮层  -->
 <view class="fuceng {{fuhidea==0? 'hidden':''}}">
-   <view class="fuer" bindtap="closea"></view>
-   <view class="fucengboxa">
-      <image class="img-close" bindtap="closea" src="../../../images/close-pink.jpg" />
-      <image class="wechat-code" mode="widthFix" src="{{vip.qrcode}}" />
-      <view class="code-box">
-        <view class="code-tit">{{config.text_tips1}}</view>
-        <view class="code-info">{{config.text_tips2}}</view>
-        <view class="code-info">保存至相册可以分享到朋友圈</view>
-      </view>
-      <view class="save-btn" bindtap="save_poster">保存图片</view>
-   </view>
+  <view class="fuer" bindtap="closea"></view>
+  <view class="fucengboxa">
+    <image class="img-close" bindtap="closea" src="../../../images/close-pink.jpg" />
+    <image class="wechat-code" mode="widthFix" src="{{vip.qrcode}}" />
+    <view class="code-box">
+      <view class="code-tit">{{config.text_tips1}}</view>
+      <view class="code-info">{{config.text_tips2}}</view>
+      <view class="code-info">保存至相册可以分享到朋友圈</view>
+    </view>
+    <view class="save-btn" bindtap="save_poster">保存图片</view>
+  </view>
 </view>
 
 <view class="fuceng {{auth_hide==0? 'hidden':''}}">

@@ -1,128 +1,134 @@
-page{
-   font-family: "黑体";
-   box-sizing: border-box;
-   padding-bottom: 100rpx;
-} 
-.uybg{
-	position: absolute;
-	left: 0;
-	top: 0;
-	z-index: -1;
-	width: 100%;
-	height: 100%;
+page {
+  font-family: "黑体";
+  box-sizing: border-box;
+  padding-bottom: 100rpx;
+}
+
+.uybg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-.top-banner{
+.top-banner {
   position: relative;
-    padding:40rpx 0 0;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+  padding: 40rpx 0 0;
+  background: linear-gradient(to bottom, #e5308a, #943ef1);
 }
-.uycenter_head2{
-    width:100%;
-    overflow: hidden;
-    padding:0 12% ;
-    position: relative;
-    display: flex;
-} 
 
-.uylmenu{
+.uycenter_head2 {
+  width: 100%;
+  overflow: hidden;
+  padding: 0 12%;
+  position: relative;
+  display: flex;
+}
+
+.uylmenu {
   flex: 1;
   margin-left: 5%;
-  overflow:hidden;
+  overflow: hidden;
 }
-.uylmenu1{
-    width:100%;
-    overflow: hidden;
+
+.uylmenu1 {
+  width: 100%;
+  overflow: hidden;
 }
-.uylmenu11{
-    width: 100%;
-    height:50rpx;
-    line-height:50rpx;
-    font-size:var(--fontSize);
-    color: #fff;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+
+.uylmenu11 {
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: var(--fontSize);
+  color: #fff;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
-.uylmenu11 text{
+
+.uylmenu11 text {
   margin-left: 8%;
   display: inline-block;
-  padding:0 15rpx;
+  padding: 0 15rpx;
   font-size: 26rpx;
   line-height: 40rpx;
-  margin-top:5rpx;
+  margin-top: 5rpx;
   background: #ec3839;
-  box-shadow:  0 0 15rpx #d35584;
-  border-radius: 20rpx;
+  box-shadow: 0 0 15rpx #d35584;
+  border-radius: 10rpx;
 }
-.uylmenu12{
-    width:100%;
-    height:60rpx;
-    line-height:60rpx;
-    font-size:var(--fontSize);
-    color: #fff;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+
+.uylmenu12 {
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: var(--fontSize);
+  color: #fff;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
-.uylmenu12 text{
+
+.uylmenu12 text {
   font-size: 26rpx;
 }
 
-.head{
+.head {
   flex: 0 0 130rpx;
   width: 130rpx;
   height: 130rpx;
-  border:2px solid rgba(255, 255, 255, 1);
+  border: 2px solid rgba(255, 255, 255, 1);
   border-radius: 50%;
 }
 
-
-.tabs{
-  padding:20rpx 12% 0;
+.tabs {
+  padding: 20rpx 12% 0;
   background: #fff;
   font-size: 0;
 }
-.item{
+
+.item {
   display: inline-block;
-  width:50%;
-  height:70rpx;
-  line-height:70rpx;
-  font-size:var(--fontSize);
+  width: 50%;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: var(--fontSize);
   color: #ec3839;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  margin-bottom:20rpx;
+  margin-bottom: 20rpx;
 }
-.label{
+
+.label {
   margin-right: 10rpx;
   display: inline-block;
-  padding:0 10rpx;
+  padding: 0 10rpx;
   font-size: 26rpx;
   color: #fff;
   line-height: 40rpx;
   background: #ff62a2;
-  box-shadow:  0 0 15rpx #d35584;
+  box-shadow: 0 0 15rpx #d35584;
   border-radius: 10rpx;
 }
-.yuan{
+
+.yuan {
   font-size: 26rpx;
   color: #aaa;
   margin-left: 10rpx;
 }
-.black-font{
-  color: #4c4c4c!important;
+
+.black-font {
+  color: #4c4c4c !important;
 }
-.text-right{
+
+.text-right {
   text-align: right;
 }
-
-
-
-
 
 .swiper-tab {
   width: 100%;
@@ -135,9 +141,9 @@ page{
   width: 50%;
   float: left;
   color: #4c4c4c;
-  font-size:var(--fontSize);
+  font-size: var(--fontSize);
   text-align: center;
-  line-height:100rpx;
+  line-height: 100rpx;
   border-bottom: 1px solid #f8f8f8;
 }
 
@@ -153,9 +159,9 @@ page{
 }
 
 .top {
-  width:100%;
+  width: 100%;
   overflow: hidden;
-   margin-top:20rpx; 
+  margin-top: 20rpx;
   color: #fff;
   font-size: 28rpx;
   height: 100rpx;
@@ -194,77 +200,85 @@ page{
 }
 
 .list .bn .sub_list {
-  width:100%;
+  width: 100%;
   overflow: hidden;
-  padding:10rpx 0;
+  padding: 10rpx 0;
 }
 
 .list .bn .sub_list view {
   width: 27.3%;
-  padding:0 3%;
+  padding: 0 3%;
   float: left;
   text-align: center;
   font-size: 26rpx;
   line-height: 40rpx;
   word-break: break-all;
-  color: #999; 
+  color: #999;
   display: table-cell;
   vertical-align: middle;
 }
-.odd{
+
+.odd {
   background: #f3f3f3;
 }
+
 .red-color {
-  color: #ff3333!important;
-}
-.black-color{
-  color: #4c4c4c!important;
+  color: #f33 !important;
 }
 
+.black-color {
+  color: #4c4c4c !important;
+}
 
-.img-head{
+.img-head {
   width: 150rpx;
   height: 150rpx;
   position: absolute;
   left: 50%;
   margin-left: -75rpx;
-  border:1px solid #fff;
+  border: 1px solid #fff;
   border-radius: 50%;
-  top:-75rpx;
+  top: -75rpx;
 }
-.img-close{
+
+.img-close {
   position: absolute;
   right: 3%;
-  top:2%;
+  top: 2%;
   width: 50rpx;
   height: 50rpx;
 }
-.tit-info{
+
+.tit-info {
   width: 100%;
   background: var(--pinkcolor);
-  padding-top:80rpx;
+  padding-top: 80rpx;
   border-top-left-radius: 9px;
   border-top-right-radius: 9px;
   padding-bottom: 15rpx;
 }
-.tit-name{
+
+.tit-name {
   font-size: 26rpx;
   color: #fff;
   text-align: center;
   line-height: 45rpx;
 }
-.box-fu{
+
+.box-fu {
   width: 94%;
-  margin:20rpx auto;
+  margin: 20rpx auto;
   border-bottom: 1px solid #f8f8f8;
 }
-.box-info{
+
+.box-info {
   font-size: 26rpx;
   color: #656565;
   text-align: center;
   line-height: 50rpx;
 }
-.box-money{
+
+.box-money {
   font-size: 30rpx;
   color: var(--pinkcolor);
   font-weight: bold;
@@ -272,11 +286,9 @@ page{
   line-height: 70rpx;
 }
 
-
-
 .fu-leftright {
   width: 94%;
-  padding:0 3%;
+  padding: 0 3%;
   margin: 0 auto;
   height: 120rpx;
   overflow: hidden;
@@ -300,28 +312,31 @@ page{
   height: 120rpx;
   line-height: 120rpx;
   font-size: 30rpx;
-  color: #4c4c4c;
+  color: #e53080;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   float: left;
 }
-.gray-backgound{
+
+.gray-backgound {
   background: #f0f0f0;
   border-bottom-left-radius: 9px;
   border-bottom-right-radius: 9px;
 }
-.fu-info{
+
+.fu-info {
   width: 94%;
-  margin:0 auto;
+  margin: 0 auto;
   font-size: 20rpx;
   color: #aaa;
   text-align: center;
   line-height: 40rpx;
 }
-.fu-btn{
-  width:30%;
-  margin:70rpx auto 20rpx;
+
+.fu-btn {
+  width: 80%;
+  margin: 70rpx auto 20rpx;
   height: 70rpx;
   line-height: 70rpx;
   font-size: 30rpx;
@@ -329,13 +344,17 @@ page{
   color: #fff;
   overflow: hidden;
   text-align: center;
-   border-radius: 20px;
-   background: var(--pinkcolor);
+  border-radius: 10px;
+  background: linear-gradient(to right, #e5308a, #943ef1);
 }
-.box-withdraw{
+
+.box-withdraw {
   font-size: 26rpx;
   color: #777;
   text-align: center;
   line-height: 70rpx;
   text-decoration: underline;
+}
+.fucengbox{
+  border-radius: 20rpx;
 }

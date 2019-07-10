@@ -19,7 +19,7 @@ class Member extends Controller
         $this->login();    //获取登录信息
         $menu = config('menu');
         $loginer = session('loginer_auth');
-        $menuList = session('menuList');
+        $menuList  =getMenuArr();
         $this->check_priv();
         isset($auths_group) ? $auths_group : $auths_group = 'all';
         $webInfo =tpCache('web');

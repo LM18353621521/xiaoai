@@ -29,7 +29,7 @@ var home_obj = {
                     var setSmsTime = function () {
                         if (countdown == 0) {
                             can_get_code = 1;
-                            $('#get_code').css('background', '#b730b0').text('获取验证码');
+                            $('#get_code').css('background', '#e5308a').text('获取验证码');
                             countdown = time;
                             clearInterval(aa);
                         } else {

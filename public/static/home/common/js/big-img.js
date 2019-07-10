@@ -60,7 +60,7 @@ jq142(function($){
 		if ($(this).attr("id") != "onlickImg") {
 			window.clearTimeout(midChangeHandler);
 			midChange($(this).attr("src").replace("small", "mid"));
-			$(this).css({ "border": "1px solid #b730b0" });
+			$(this).css({ "border": "1px solid #e5308a" });
 		}
 	}).bind("mouseout", function(){
 		if($(this).attr("id") != "onlickImg"){

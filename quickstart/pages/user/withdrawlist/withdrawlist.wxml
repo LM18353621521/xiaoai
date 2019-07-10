@@ -1,5 +1,5 @@
 <view class='top-banner'>
-  <image class="uybg" src="../../../images/center-bg.jpg" />
+  <!-- <image class="uybg" src="../../../images/center-bg.jpg" /> -->
   <view class="uycenter_head2">
     <image class="head" src="{{vip.headimg}}" />
     <view class="uylmenu">
@@ -9,7 +9,7 @@
         <text>(元)</text>
       </view>
       <view class="uylmenu11">{{vip.income}}
-        <text bindtap="show">提现</text>
+        <text bindtap="show">提 现</text>
       </view>
     </view>
   </view>

@@ -7,9 +7,6 @@
     });
 </script>
 <style>
-    .toptit{
-        background: #B82F89;
-    }
     .sub {
         display: none;
     }
@@ -72,7 +69,7 @@
         {if condition="!$vip.mobile"}
         <div class="bind-text">找不到订单号？绑定手机试试 <span class="bind_do">绑定</span></div>
         {else/}
-        <div class="bind-text">{$vip.mobile} <span class="edit_mobile_do">更换号码</span></div>
+        <div class="bind-text">{$vip.mobile} <span class="change_do">更换号码</span></div>
         {/if}
     {else}
         <div class="login-tip">
@@ -152,7 +149,7 @@
 </div>
 
 <div class='logo'><img src="{$config.logo}" alt=""></div>
-<div class='logos'>晓爱让生活拥有更多精彩</div>
+<div class='logos'>{$config.slogen}</div>
 
 
 <!--底部导航   s-->
