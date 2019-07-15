@@ -1,4 +1,4 @@
-.imgbg{
+.imgbg {
   width: 100%;
   height: 100%;
   z-index: -1;
@@ -7,145 +7,141 @@
   top: 0;
 }
 
-
-
-.leftrightq{
-	width:94%;
-  padding:0 3%;
-  margin:0 auto;
-	height: 100rpx;
+.leftrightq {
+  width: 94%;
+  padding: 0 3%;
+  margin: 0 auto;
+  height: 100rpx;
   position: relative;
   background: #fff;
-	overflow: hidden;
+  overflow: hidden;
   border-bottom: 1px solid #f8f8f8;
 }
-.leftrightq:last-child{
+
+.leftrightq:last-child {
   border-bottom: none;
 }
-.leftq{
-	width:20%;
-	height: 100rpx;
-	line-height: 100rpx;
-	font-size: var(--fontSize);
-	color: #8c8c8c;
-	overflow: hidden;
-	float: left;
+
+.leftq {
+  width: 20%;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: var(--fontSize);
+  color: #8c8c8c;
+  overflow: hidden;
+  float: left;
   white-space: nowrap;
-	text-overflow: ellipsis;
+  text-overflow: ellipsis;
 }
-.rightq{
-	min-width: 80%;
+
+.rightq {
+  min-width: 80%;
   max-width: 80%;
-	height:100rpx;
-	line-height: 100rpx;
-	font-size: var(--fontSize);
-	color: #4c4c4c;
-	overflow: hidden;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: var(--fontSize);
+  color: #4c4c4c;
+  overflow: hidden;
   white-space: nowrap;
-	text-overflow: ellipsis;
-	float: left;
-}
-.leftrightq image{
-    width:14rpx;
-    position: absolute;
-    right: 3%;
-    top:40%;
+  text-overflow: ellipsis;
+  float: left;
 }
 
+.leftrightq image {
+  width: 14rpx;
+  position: absolute;
+  right: 3%;
+  top: 40%;
+}
 
-
-
-
-.box{
+.box {
   width: 94%;
-  margin:20rpx auto 100rpx;
+  margin: 20rpx auto 100rpx;
   box-shadow: 0 0 8px #ddd;
   border-radius: 6px;
   background: #fff;
-  padding:10rpx 0;
+  padding: 10rpx 0;
 }
 
-
-
-.submit{
-  width:94%;
-  margin:0 auto;
-   height:90rpx;
-   line-height:90rpx;
-   color: #fff;
-   font-size:var(--fontSize);
-   text-align: center;
-   overflow: hidden;
-   background: linear-gradient(to right,#e5308a,#943ef1);
-   border-radius: 6px;
+.submit {
+  width: 94%;
+  margin: 0 auto;
+  height: 90rpx;
+  line-height: 90rpx;
+  color: #fff;
+  font-size: var(--fontSize);
+  text-align: center;
+  overflow: hidden;
+  background: linear-gradient(to right, #e5308a, #943ef1);
+  border-radius: 6px;
 }
 
+.twow {
+  overflow: hidden;
+  width: 94%;
+  padding: 0 3%;
+  background: #fff;
+  margin: 0 auto;
+  position: relative;
+}
 
+.leftw {
+  width: 26%;
+  float: left;
+  overflow: hidden;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #4c4c4c;
+  font-size: var(--fontSize);
+}
 
-.twow{
-   overflow: hidden;
-   width:94%;
-   padding:0 3%;
-   background: #fff;
-   margin:0 auto;
-   position: relative;
+.rightw {
+  min-width: 70%;
+  max-width: 70%;
+  padding-right: 4%;
+  float: left;
+  overflow: hidden;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #4c4c4c;
+  font-size: var(--fontSize);
+  border: none;
 }
-.leftw{
-   width: 26%;
-   float: left;
-    overflow: hidden;
-   height:100rpx;
-   line-height: 100rpx;
-   color: #4c4c4c;
-   font-size: var(--fontSize);
-}
-.rightw{
-   min-width: 70%;
-   max-width:70%;
-   padding-right: 4%;
-   float: left;
-    overflow: hidden;
-   height:100rpx;
-   line-height: 100rpx;
-   color: #4c4c4c;
-   font-size: var(--fontSize);
-   border:none;
-}
-.get{
+
+.get {
   width: 26%;
   overflow: hidden;
-   height:100rpx;
-   line-height: 100rpx;
-   color: #FFCC00;
-   font-size: var(--fontSize);
-   position: absolute;
-   right: 3%;
-   top:0;
-   z-index: 999;
-   background: #fff;
-   text-align: right;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #fc0;
+  font-size: var(--fontSize);
+  position: absolute;
+  right: 3%;
+  top: 0;
+  z-index: 999;
+  background: #fff;
+  text-align: right;
 }
 
-
-
-
-
-.anonymity{
-   width:94%;
-   background: #fff;
-   padding:0 3%;
-   overflow: hidden;
+.anonymity {
+  width: 94%;
+  background: #fff;
+  padding: 0 3%;
+  overflow: hidden;
 }
-.anonymityleft{
-   width:50%;
-   float: left;
-   font-size: var(--fontSize);
-   color: #8c8c8c;
-   line-height:100rpx;
-   height: 100rpx;
-   overflow: hidden;
+
+.anonymityleft {
+  width: 50%;
+  float: left;
+  font-size: var(--fontSize);
+  color: #8c8c8c;
+  line-height: 100rpx;
+  height: 100rpx;
+  overflow: hidden;
 }
-.anonymityright{
-   float: right;
-   width: 90rpx;
+
+.anonymityright {
+  float: right;
+  width: 90rpx;
+  margin-top: 33rpx;
 }

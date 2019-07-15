@@ -1,54 +1,54 @@
 <form bindsubmit='order_submit' report-submit="true">
-<view class='{{showfuceng==0?"hidecontainer":""}}'>
+  <view class='{{showfuceng==0?"hidecontainer":""}}'>
 
-  <view class='order-addrs' bindtap='showf5'>
-    <image class='addrs' src="../../../images/addr.png" />
-    <image class='toright' src="../../../images/toright.png" />
-    <view class='addrs-box' wx:if="{{sel_address.id}}">
-      <view class='addrs-name'>收货人：{{sel_address.linkman}}
-        <text>{{sel_address.linktel}}</text>
-      </view>
-      <view class='addrs-info'>收货地址：{{sel_address.province}}{{sel_address.city}}{{sel_address.district}}{{sel_address.address}}</view>
-    </view>
-    <view class='addrs-box' wx:if="{{!sel_address.id}}">
-      <view class='addrs-name'>
-        <text>请选择收货地址</text>
-      </view>
-    </view>
-  </view>
-  <!-- <view class='addr' bindtap='showf3'>请选择收货地址</view> -->
-  <view class='lists'>
-    <view class='item' wx:for="{{cartList}}">
-      <view class="lt">
-        <image src="{{item.coverimg}}" />
-      </view>
-      <view class="rt">
-        <view class='list-name'>{{item.name}}</view>
-        <view class='list-info'>
-          <text>{{item.key_name}}</text>
+    <view class='order-addrs' bindtap='showf5'>
+      <image class='addrs' src="../../../images/addr.png" />
+      <image class='toright' src="../../../images/toright.png" />
+      <view class='addrs-box' wx:if="{{sel_address.id}}">
+        <view class='addrs-name'>收货人：{{sel_address.linkman}}
+          <text>{{sel_address.linktel}}</text>
         </view>
-        <view class='list-money'>
-          <text class='aa'>￥<text>{{item.price}}</text></text>
-          <text class='bb'>x{{item.buy_num}}</text>
+        <view class='addrs-info'>收货地址：{{sel_address.province}}{{sel_address.city}}{{sel_address.district}}{{sel_address.address}}</view>
+      </view>
+      <view class='addrs-box' wx:if="{{!sel_address.id}}">
+        <view class='addrs-name'>
+          <text>请选择收货地址</text>
         </view>
       </view>
     </view>
-  </view>
-  <view class="two" bindtap='showf1'>
-    <view class="lefttwo">选择优惠券</view>
-    <view class="righttwo">
-      {{coupon_sel_name}}
-      <image src="../../../images/right.png"></image>
+    <!-- <view class='addr' bindtap='showf3'>请选择收货地址</view> -->
+    <view class='lists'>
+      <view class='item' wx:for="{{cartList}}">
+        <view class="lt">
+          <image src="{{item.coverimg}}" />
+        </view>
+        <view class="rt">
+          <view class='list-name'>{{item.name}}</view>
+          <view class='list-info'>
+            <text>{{item.key_name}}</text>
+          </view>
+          <view class='list-money'>
+            <text class='aa'>￥<text>{{item.price}}</text></text>
+            <text class='bb'>x{{item.buy_num}}</text>
+          </view>
+        </view>
+      </view>
     </view>
-  </view>
-  <view class="two">
-    <view class="lefttwo">配送方式</view>
-    <view class="righttwo">
-      快递
-      <image src="../../../images/right.png"></image>
+    <view class="two" bindtap='showf1'>
+      <view class="lefttwo">选择优惠券</view>
+      <view class="righttwo">
+        {{coupon_sel_name}}
+        <image src="../../../images/right.png"></image>
+      </view>
     </view>
-  </view>
-  <!-- <view class="le">
+    <view class="two">
+      <view class="lefttwo">配送方式</view>
+      <view class="righttwo">
+        快递
+        <image src="../../../images/right.png"></image>
+      </view>
+    </view>
+    <!-- <view class="le">
     <view class="leleft">配送方式</view>
     <view class="leright">
       <view class='express_type' bindchange="startplace" value="{start}}" range="{{startlocal}}">
@@ -58,44 +58,44 @@
     <image src="../../../images/right.png"></image>
   </view> -->
 
-  <view class="search">
-    <view class="searchl">买家留言</view>
-    <input placeholder-style="color:#bbb;" name="remark" class="searchr" auto-focus placeholder="填写备注" />
-  </view>
-
-  <view class="two" bindtap='showf6'>
-    <view class="lefttwo">付款方式</view>
-    <view class="righttwo">
-      {{pay_name}}
-      <image src="../../../images/right.png"></image>
+    <view class="search">
+      <view class="searchl">买家留言</view>
+      <input placeholder-style="color:#bbb;" name="remark" class="searchr" auto-focus placeholder="填写备注" />
     </view>
-  </view>
+
+    <view class="two" bindtap='showf6'>
+      <view class="lefttwo">付款方式</view>
+      <view class="righttwo">
+        {{pay_name}}
+        <image src="../../../images/right.png"></image>
+      </view>
+    </view>
 
 
-  <view class='order-box'>
-    <view class='order-left small-fontSize'>共{{total_count.total_num}}件商品 合计</view>
-    <view class='order-right'>￥{{total_count.goods_price}}</view>
-  </view>
-  <view class='order-box'>
-    <view class='order-left'>运费</view>
-    <view class='order-right order-gray'>￥{{express_fee}}</view>
-  </view>
-  <view class='order-box'>
-    <view class='order-left'>优惠金额</view>
-    <view class='order-right'>￥{{coupon_money}}</view>
-  </view>
-  <view class='order-box'>
-    <view class='order-left'>实付款</view>
-    <view class='order-right'>￥{{pay_money}}</view>
-  </view>
+    <view class='order-box'>
+      <view class='order-left small-fontSize'>共{{total_count.total_num}}件商品 合计</view>
+      <view class='order-right'>￥{{total_count.goods_price}}</view>
+    </view>
+    <view class='order-box'>
+      <view class='order-left'>运费</view>
+      <view class='order-right order-gray'>￥{{express_fee}}</view>
+    </view>
+    <view class='order-box'>
+      <view class='order-left'>优惠金额</view>
+      <view class='order-right'>￥{{coupon_money}}</view>
+    </view>
+    <view class='order-box'>
+      <view class='order-left'>实付款</view>
+      <view class='order-right'>￥{{pay_money}}</view>
+    </view>
 
-</view>
-<view class="btn-page-bottom">
-  <view class='btn-left'>实付款
-    <text>￥{{pay_money}}</text>
   </view>
-  <button class='btn-right' form-type='submit'>去支付</button>
-</view>
+  <view class="btn-page-bottom">
+    <view class='btn-left'>实付款
+      <text>￥{{pay_money}}</text>
+    </view>
+    <button class='btn-right' form-type='submit'>去支付</button>
+  </view>
 
 </form>
 
@@ -124,23 +124,20 @@
       <view class='baitit'>填写收货地址</view>
       <view class="len">
         <view class="lenleft">收货人姓名</view>
-        <input class="lenright" name="linkman" value='{{addressInfo.linkman}}'  placeholder="请输入"   type="text" placeholder-style='color:#ccc;' />
+        <input class="lenright" name="linkman" value='{{addressInfo.linkman}}' placeholder="请输入" type="text" placeholder-style='color:#ccc;' />
       </view>
       <view class="len">
         <view class="lenleft">手机号</view>
-        <input class="lenright" type="number" name="linktel" value='{{addressInfo.linktel}}'  placeholder="请输入"  placeholder-style='color:#ccc;' />
+        <input class="lenright" type="number" name="linktel" value='{{addressInfo.linktel}}' placeholder="请输入" placeholder-style='color:#ccc;' />
       </view>
+
       <view class="len">
         <view class="lenleft">所在地区</view>
-            <picker  class="lenright" mode="multiSelector" bindchange="bindRegionSure" bindcolumnchange="bindMultiPickerColumnChange"  range="{{region}}" range-key='name'>
-      <view class="picker">
-        {{region[0][sureIndex[0]]['name']}} {{region[1][sureIndex[1]]['name']}} {{region[2][sureIndex[2]]['name']}}
-      </view>
-    </picker>
+        <input class="lenright" placeholder="选择" disabled='true' value="{{province}}-{{city}}-{{county}}" focus="{{focus}}" bindtap="open" />
       </view>
       <view class="len">
         <view class="lenleft">详细地址</view>
-        <input class="lenright" type="text" name="address" value='{{addressInfo.address}}'   placeholder="请输入详细地址"  placeholder-style='color:#ccc;' />
+        <input class="lenright" type="text" name="address" value='{{addressInfo.address}}' placeholder="请输入详细地址" placeholder-style='color:#ccc;' />
       </view>
       <view class="anonymity">
         <view class="anonymityleft">设为默认地址</view>
@@ -168,7 +165,7 @@
     <view class='baitit'>选择收货地址</view>
     <view class='box'>
       <view wx:for="{{addressList}}">
-        <view class='addr0'  bindtap='sel_address' data-index="{{index}}">
+        <view class='addr0' bindtap='sel_address' data-index="{{index}}">
           <view class='addr01'>{{item.linkman}}
             <text>{{item.linktel}}</text>
           </view>
@@ -202,8 +199,22 @@
     </view>
     <view class='btn-fixed-bottom' bindtap="hidef6">确定</view>
   </view>
+</view>
 
-
-
-
+<view wx:if="{{condition}}" class="citypicker">
+  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindChange" class="citybody">
+    <view class="cityheader">
+      <view bindtap="close" class="city-cancel">取消</view>
+      <view bindtap="sure" class="city-true">确定</view>
+    </view>
+    <picker-view-column>
+      <view wx:for="{{provinces}}" wx:key="item" style="line-height: 50px;padding-left:10px;">{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{citys}}" wx:key="item" style="line-height: 50px;padding-left:10px;">{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{countys}}" wx:key="item" style="line-height: 50px;padding-left:10px;">{{item}}</view>
+    </picker-view-column>
+  </picker-view>
 </view>

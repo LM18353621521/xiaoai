@@ -1,4 +1,5 @@
-// pages/user/applyaddr/applyaddr.js
+//获取应用实例
+var tcity = require("../../../utils/citys.js");
 var app = getApp();
 Page({
   data: {
@@ -10,41 +11,126 @@ Page({
     selected1: true,
     // region: ['广东省', '广州市', '海珠区'],
     customItem: '全部',
-    multiArray: [
-      ['无脊柱动物', '脊柱1动物'],
-      ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物'],
-      ['猪肉绦虫', '吸血虫']
-    ],
-    region: [
-      [],
-      [],
-      []
-    ],
-    sureIndex: [0, 0, 0],
-    selectIndex: [0, 0, 0],
-    province: [],
     is_default: 0,
     province_code: '',
     city_code: '',
     district_code: '',
+    provinces: [],
+    province: "",
+    citys: [],
+    city: "",
+    countys: [],
+    county: '',
+    value: [0, 0, 0],
+    values: [0, 0, 0],
+    condition: false
   },
+  bindChange: function (e) {
+    //console.log(e);
+    var val = e.detail.value
+    var t = this.data.values;
+    var cityData = this.data.cityData;
 
+    if (val[0] != t[0]) {
+      console.log('province no ');
+      const citys = [];
+      const countys = [];
+
+      for (let i = 0; i < cityData[val[0]].sub.length; i++) {
+        citys.push(cityData[val[0]].sub[i].name)
+      }
+      for (let i = 0; i < cityData[val[0]].sub[0].sub.length; i++) {
+        countys.push(cityData[val[0]].sub[0].sub[i].name)
+      }
+
+      this.setData({
+        province: this.data.provinces[val[0]],
+        city: cityData[val[0]].sub[0].name,
+        citys: citys,
+        county: cityData[val[0]].sub[0].sub[0].name,
+        countys: countys,
+        values: val,
+        value: [val[0], 0, 0]
+      })
+      return;
+    }
+    if (val[1] != t[1]) {
+      console.log('city no');
+      const countys = [];
+
+      for (let i = 0; i < cityData[val[0]].sub[val[1]].sub.length; i++) {
+        countys.push(cityData[val[0]].sub[val[1]].sub[i].name)
+      }
+      this.setData({
+        city: this.data.citys[val[1]],
+        county: cityData[val[0]].sub[val[1]].sub[0].name,
+        countys: countys,
+        values: val,
+        value: [val[0], val[1], 0]
+      })
+      return;
+    }
+    if (val[2] != t[2]) {
+      console.log('county no');
+      this.setData({
+        county: this.data.countys[val[2]],
+        values: val
+      })
+      return;
+    }
+  },
+  open: function () {
+    console.log(12);
+    this.setData({
+      condition: 1,
+    })
+  },
+  sure: function () {
+    var value = this.data.value;
+    var values = this.data.values;
+    console.log(value);
+    console.log(values);
+    var cityData = this.data.cityData;
+
+    var province_code = cityData[values[0]].code;
+    var city_code = cityData[values[0]].sub[values[1]].code;
+    var district_code = cityData[values[0]].sub[values[1]].sub[values[2]].code;
+    this.setData({
+      condition: !this.data.condition,
+      province_code: province_code,
+      city_code: city_code,
+      district_code: district_code,
+    })
+  },
+  close: function () {
+    this.setData({
+      condition: !this.data.condition
+    })
+  },
   /**
    * 保存地址
    */
   address_save: function(e) {
     var that = this;
+    console.log(e);
     var id = that.data.address_id;
+    var cityData = this.data.cityData;
+    var values = this.data.values;
+    var province_code = cityData[values[0]].code;
+    var city_code = cityData[values[0]].sub[values[1]].code;
+    var district_code = cityData[values[0]].sub[values[1]].sub[values[2]].code;
+
     var data = {
       id: that.data.address_id,
       linkman: e.detail.value.linkman,
       linktel: e.detail.value.linktel,
-      province_code: that.data.province_code,
-      city_code: that.data.city_code,
-      district_code: that.data.district_code,
+      province_code: province_code,
+      city_code: city_code,
+      district_code: district_code,
       address: e.detail.value.address,
       is_default: that.data.is_default,
     }
+    console.log(data);
     if (data.linkman == "") {
       app.alert('请输入收货人');
       return false;
@@ -66,7 +152,9 @@ Page({
         var pages = getCurrentPages();
         var Page = pages[pages.length - 1]; //当前页
         var prevPage = pages[pages.length - 2]; //上一个页面
+        console.log(prevPage);
         var addressList = prevPage.data.addressList //取上页data里的数据也可以修改
+        console.log(addressList);
         addressList = data.addressList
         wx.showToast({
           title: data.msg,
@@ -87,23 +175,7 @@ Page({
       }
     })
 
-
   },
-  /**
-   * 确认地址
-   */
-  bindRegionSure: function(e) {
-    console.log(e);
-    var selectIndex = e.detail.value;
-    var region = this.data.region;
-    this.setData({
-      selectIndex: selectIndex,
-      province_code: region[0][sureIndex[0]]['code'],
-      city_code: region[1][sureIndex[1]]['code'],
-      district_code: region[2][sureIndex[2]]['code'],
-    });
-  },
-
   /**
    * 设置默认
    */
@@ -118,58 +190,6 @@ Page({
         is_default: 0
       })
     }
-  },
-
-  bindMultiPickerColumnChange: function(e) {
-    console.log(e);
-    var that = this;
-    var region = this.data.region;
-    var column = e.detail.column;
-    var value = e.detail.value;
-    var sureIndex = this.data.sureIndex;
-    switch (column) {
-      case 0:
-        var data = {
-          parent_id: region[0][value]['id'],
-        };
-        app.getData('Address/getNextRegion', that, data, function(data) {
-          region[1] = data.data.list;
-          region[2] = data.data.list_next;
-          sureIndex[0] = value;
-          sureIndex[1] = 0;
-          sureIndex[2] = 0;
-          that.setData({
-            region: region,
-            sureIndex: sureIndex
-          })
-        });
-        break;
-      case 1:
-        var data = {
-          parent_id: region[1][value]['id'],
-        };
-        app.getData('Address/getNextRegion', that, data, function(data) {
-          region[2] = data.data.list;
-          sureIndex[1] = value;
-          sureIndex[2] = 0;
-          that.setData({
-            region: region,
-            sureIndex: sureIndex
-          })
-        });
-        break;
-        case 2:
-        sureIndex[2] = value;
-        that.setData({
-          sureIndex: sureIndex
-        })
-        break;
-    }
-  },
-  bindRegionChange: function(e) {
-    this.setData({
-      region: e.detail.value
-    })
   },
   getphone: function(e) {
     this.setData({
@@ -201,20 +221,14 @@ Page({
     var region = this.data.region;
     app.getData('Address/addressInfo', that, data, function(data) {
       console.log(data);
-      region[0] = data.data.province;
-      region[1] = data.data.city;
-      region[2] = data.data.district;
       var is_default=0;
       if (data.data.addressInfo){
         is_default = data.data.addressInfo.is_default;
       }
       that.setData({
-        region: region,
-        province_code: region[0][0]['code'],
-        city_code: region[1][0]['code'],
-        district_code: region[2][0]['code'],
         is_default: is_default,
-      })
+      });
+      initCity(that);
     })
   },
 
@@ -257,6 +271,64 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
   }
+
 })
+
+function initCity(that) {
+  tcity.init(that); 
+  var cityData = that.data.cityData;
+  const provinces = [];
+  const citys = [];
+  const countys = [];
+  var values = [0, 0, 0];
+  var value = [0, 0, 0];
+  var addressInfo = that.data.addressInfo;
+  if(addressInfo){
+    var province_code=addressInfo.province_code;
+    var city_code = addressInfo.city_code;
+    var district_code = addressInfo.district_code;
+  }else{
+    var province_code = 0;
+    var city_code = 0;
+    var district_code = 0;
+  }
+  for (let i = 0; i < cityData.length; i++) {
+    provinces.push(cityData[i].name);
+    if (province_code == cityData[i].code) {
+      values[0] = i;
+      value[0] = i;
+    }
+  }
+  console.log('省份完成');
+  for (let i = 0; i < cityData[values[0]].sub.length; i++) {
+    citys.push(cityData[values[0]].sub[i].name);
+    if (city_code == cityData[values[0]].sub[i].code) {
+      values[1] = i;
+      value[1] = i;
+    }
+  }
+  console.log('city完成');
+  for (let i = 0; i < cityData[values[0]].sub[values[1]].sub.length; i++) {
+    countys.push(cityData[values[0]].sub[values[1]].sub[i].name);
+    if (district_code == cityData[values[0]].sub[values[1]].sub[i].code) {
+      values[2] = i;
+      value[2] = i;
+    }
+  }
+  console.log(values);
+  console.log(provinces);
+  console.log(citys);
+  console.log(countys);
+  that.setData({
+    'provinces': provinces,
+    'citys': citys,
+    'countys': countys,
+    'province': cityData[values[0]].name,
+    'city': cityData[values[0]].sub[values[1]].name,
+    'county': cityData[values[0]].sub[values[1]].sub[values[2]].name,
+    value: value,
+    values: values,
+  })
+  console.log('初始化完成');
+}

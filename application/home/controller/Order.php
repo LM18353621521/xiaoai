@@ -28,7 +28,7 @@ class Order extends Base
         $count_data['order_num'] = $order_num;
         $coupon_num = db(\tname::coupon_mycoupon)->where(array('vip_id' => $user['vip_id']))->count();
         $count_data['coupon_num'] = $coupon_num;
-        $address_num = db(\tname::vip_myaddress)->where(array('vip_id' => $user['vip_id']))->count();
+        $address_num = db(\tname::vip_myaddress)->where(array('vip_id' => array('in', $vip_ids)))->count();
         $count_data['address_num'] = $address_num;
         $collect_num = db(\tname::goods_collect)->where(array('vip_id' => $user['vip_id']))->count();
         $count_data['collect_num'] = $collect_num;

@@ -1,12 +1,13 @@
 {
   "pages": [
+    "pages/agent/recharge_log/recharge_log",
+    "pages/agent/balance_log/balance_log",
+    "pages/agent/index/index",
+    "pages/home/index/index",
+    "pages/user/index/index",
     "pages/agent/recharge/recharge",
     "pages/agent/apply/apply",
-
-    "pages/agent/index/index",
     "pages/user/addrlist/addrlist",
-    "pages/user/index/index",
-    "pages/home/index/index",
     "pages/user/distribution/distribution",
     "pages/user/coupon/coupon",
     "pages/user/mycoupon/mycoupon",

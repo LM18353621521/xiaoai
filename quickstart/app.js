@@ -1,6 +1,6 @@
 App({
   HOST: 'http://www.gzxi.com/',
-  // HOST: 'https://www.gzxi.cn/',
+  HOST: 'https://www.gzxi.cn/',
   globalData: {
     vip_id: 0,
     ol_index: 0,

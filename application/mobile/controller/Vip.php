@@ -408,7 +408,7 @@ class Vip extends Base
     public function addrlist()
     {
         $user = session('userinfo');
-        $vip_ids = session('vip_ids');
+        $vip_ids = getVipIds($user['id'],$user);
         $where['vip_id'] = array('in', $vip_ids);
         $myadressList = db(\tname::vip_myaddress)->where($where)->order('is_default desc')->select();
         $type = input('param.type', '');
@@ -423,8 +423,8 @@ class Vip extends Base
      */
     public function addressdefault()
     {
-        $userinfo = session('userinfo');
-
+        $user = session('userinfo');
+        $vip_ids = getVipIds($user['id'],$user);
         db()->startTrans();
         $data = array(
             'id' => input('post.myaddress_id'),
@@ -435,10 +435,13 @@ class Vip extends Base
             db()->rollback();
             return ajaxFalse('1');
         }
-
-        $myaddressList = db(\tname::vip_myaddress)->where(array('uid' => WID, 'openid' => $userinfo['openid'], 'id' => array('neq', $data['id'])))->find();
+        $where = array(
+            'id' => array('neq', $data['id']),
+            'vip_id' => array('in',$vip_ids),
+        );
+        $myaddressList = db(\tname::vip_myaddress)->where($where)->find();
         if (!empty($myaddressList)) {
-            $res2 = db(\tname::vip_myaddress)->where(array('uid' => WID, 'openid' => $userinfo['openid'], 'id' => array('neq', $data['id'])))->update(array('is_default' => 0));
+            $res2 = db(\tname::vip_myaddress)->where($where)->update(array('is_default' => 0));
             if ($res2 === false) {
                 db()->rollback();
                 return ajaxFalse();
@@ -491,7 +494,8 @@ class Vip extends Base
             }
             $data['id'] ? $curid = $data['id'] : $curid = $res;
             if ($data['is_default']) {
-                db(\tname::vip_myaddress)->where(array('uid' => WID, 'vip_id' => $user['vip_id'], 'id' => array('neq', $curid)))->update(array('is_default' => 0));
+                $addressLogic = new \app\common\logic\AddressLogic();
+                $result =$addressLogic->addressdefault($user['vip_id'],$curid);
             }
             return ajaxSuccess('', '保存成功', url('Vip/addrlist'), array('id' => $curid));
         } else {
