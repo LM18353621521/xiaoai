@@ -12,7 +12,7 @@
     <view class='leftq'>所在区域</view>
     <picker  class="rightq" mode="multiSelector" bindchange="bindRegionSure" bindcolumnchange="bindMultiPickerColumnChange"  range="{{region}}" range-key='name'>
       <view class="picker">
-        {{region[0][sureIndex[0]]['name']}} {{region[1][sureIndex[1]]['name']}} {{region[2][sureIndex[2]]['name']}}
+        {{region[0][selectIndex[0]]['name']}} {{region[1][selectIndex[1]]['name']}} {{region[2][selectIndex[2]]['name']}}
       </view>
     </picker>
     <image mode='widthFix' src="../../../images/right.png" />

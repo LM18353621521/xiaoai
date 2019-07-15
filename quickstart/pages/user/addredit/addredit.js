@@ -93,9 +93,11 @@ Page({
    * 确认地址
    */
   bindRegionSure: function(e) {
-    var sureIndex = e.detail.value;
+    console.log(e);
+    var selectIndex = e.detail.value;
     var region = this.data.region;
     this.setData({
+      selectIndex: selectIndex,
       province_code: region[0][sureIndex[0]]['code'],
       city_code: region[1][sureIndex[1]]['code'],
       district_code: region[2][sureIndex[2]]['code'],
@@ -119,6 +121,7 @@ Page({
   },
 
   bindMultiPickerColumnChange: function(e) {
+    console.log(e);
     var that = this;
     var region = this.data.region;
     var column = e.detail.column;
@@ -132,6 +135,7 @@ Page({
         app.getData('Address/getNextRegion', that, data, function(data) {
           region[1] = data.data.list;
           region[2] = data.data.list_next;
+          sureIndex[0] = value;
           sureIndex[1] = 0;
           sureIndex[2] = 0;
           that.setData({
@@ -146,12 +150,19 @@ Page({
         };
         app.getData('Address/getNextRegion', that, data, function(data) {
           region[2] = data.data.list;
+          sureIndex[1] = value;
           sureIndex[2] = 0;
           that.setData({
             region: region,
             sureIndex: sureIndex
           })
         });
+        break;
+        case 2:
+        sureIndex[2] = value;
+        that.setData({
+          sureIndex: sureIndex
+        })
         break;
     }
   },
@@ -189,6 +200,7 @@ Page({
     }
     var region = this.data.region;
     app.getData('Address/addressInfo', that, data, function(data) {
+      console.log(data);
       region[0] = data.data.province;
       region[1] = data.data.city;
       region[2] = data.data.district;

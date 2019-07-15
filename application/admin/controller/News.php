@@ -118,6 +118,56 @@ class News extends Member
         }
     }
 
+    //专题列表
+    public function topic()
+    {
+        if (request()->isPost()) {
+            $search = input('post.');
+            $where = [
+                'is_hidden'=>0,
+            ];
+
+            if($search['time']){
+                $search['time'] = explode('-',$search['time']);
+                $where['a.create_time'] = ['between time', [$search['time'][0], $search['time'][1]]];
+            }
+
+            if ($search['keyword']) {
+                $where['a.title|c.name'] = ['like', '%' . $search['keyword'] . '%'];
+            }
+
+            $dataList = db(\tname::topic)
+                ->where($where)->order('id desc')->paginate(30, false, ['page' => $search['page']]);
+            $this->assign('dataList', $dataList);
+
+            $html = $this->fetch('news/form');
+            $attach =[
+                'page' => $dataList->render()
+            ];
+            return ajaxSuccess($html, '', '', $attach);
+        }
+        return $this->fetch();
+    }
+
+    //添加专题
+    public function topicadd()
+    {
+        if (request()->isPost()) {
+            $data = input('post.');
+            $res = dataUpdate(\tname::topic, $data);
+            if (!$res) {
+                return ajaxFalse();
+            }
+            return ajaxSuccess();
+        } else {
+            $id = input('param.id', 0);
+            $data = db(\tname::topic)->find($id);
+            $this->assign('data', $data);
+            return $this->fetch();
+        }
+    }
+
+
     //新闻评价 2017-10-15
     public function review()
     {

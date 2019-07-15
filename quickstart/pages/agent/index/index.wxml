@@ -1,0 +1,57 @@
+<!--pages/agent/index/index.wxml-->
+<view class='header'>
+  <view class='left'>
+    <image src='../../../images/logo.jpg'></image>
+  </view>
+  <view class='right'>
+    <view class='row name'>
+      <text>不吃鱼的猫</text>
+      <text class='edit'>修改个人资料</text>
+    </view>
+    <view class='row vip' wx-if="{{agent_status==1}}">
+      <view class='vip_left'>
+        <image src='../../../images/zuanshi.png'></image>
+        <text>金牌VIP</text>
+      </view>
+      <view class='vip_r'>
+        <view class='progress_box'>
+          <view class='progress' style='width:50%;'></view>
+        </view>
+        <view class='progress_num'>
+          100/5000
+          <text>钻石VIP</text>
+        </view>
+      </view>
+    </view>
+    <view class='row vip not_vip' wx-if="{{agent_status==0}}">
+      您还不是VIP代理 <text>立即申请</text>
+    </view>
+    <view class='row'>
+      <text> 130****0000</text>
+    </view>
+  </view>
+</view>
+<view class='money'>
+  <view class='row left'>
+    <view class='num'>
+      <text>1000.00</text>
+      <button>充值</button>
+    </view>
+    <view class='text'>当前余额</view>
+    <view class='see-list'>
+      <text>余额详情</text>
+    </view>
+  </view>
+  <view class='row right'>
+    <view class='num'>
+      <text>1000.00</text>
+    </view>
+    <view class='text'>累计充值</view>
+    <view class='see-list'>
+      <text>充值记录</text>
+    </view>
+  </view>
+</view>
+<view class="desc">
+  <rich-text nodes="{{desc}}" bindtap="tap"></rich-text>
+</view>

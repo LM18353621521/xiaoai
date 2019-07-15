@@ -1,0 +1,318 @@
+/* pages/agent/index/index.wxss */
+
+.header {
+  display: -webkit-flex;
+  display: flex;
+  align-items: center; /*纵轴方向上的对齐方式设置为居中*/
+  width: 100%;
+  padding: 60rpx 0 10%;
+  height: 182rpx;
+  background: linear-gradient(to bottom, #e5308a, #943ef1);
+}
+
+.header .left {
+  width: 28%;
+  height: 180rpx;
+  padding: 5rpx 0rpx 0rpx 12%;
+}
+
+.header .left image {
+  width: 170rpx;
+  height: 170rpx;
+  border: 2rpx solid #fff;
+  border-radius: 50%;
+  background: #999;
+}
+
+.header .right {
+  max-width: 72%;
+  text-align: left;
+  height: 185rpx;
+  color: #fff;
+  font-size: 27rpx;
+}
+
+.header .right .edit {
+  font-size: 20rpx;
+  margin: 0 0 0 20rpx;
+}
+
+.header .right .row {
+  height: 45rpx;
+  line-height: 45rpx;
+  padding: 5rpx 0;
+    font-size: 27rpx;
+}
+
+.header .right .vip {
+  padding: 20rpx 0;
+  display: flex;
+}
+
+.not_vip text {
+  background: linear-gradient(to right, #ff6000, #e74193);
+  border-radius: 30rpx;
+  padding: 0 10rpx;
+  margin-left: 20rpx;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  height: 40rpx;
+}
+
+.vip_left {
+  display: flex;
+  min-width: 130rpx;
+  height: 35rpx;
+  background: linear-gradient(to right, #d8a653, #fffbd3);
+  border-radius: 20rpx;
+  color: #fff;
+  justify-content: center;
+}
+
+.vip_left image {
+  margin: 0;
+  width: 31rpx;
+  height: 31rpx;
+}
+
+.vip_left text {
+  display: inline-block;
+  line-height: 35rpx;
+  font-size: 20rpx;
+}
+
+/**进度*/
+
+.vip_r {
+  padding: 0 0 0 20rpx;
+}
+
+.progress_box {
+  width: 180rpx;
+  height: 8rpx;
+  border-radius: 8rpx;
+  background: #000;
+}
+
+.progress_box .progress {
+  height: 8rpx;
+  border-radius: 8rpx;
+  background: #fff;
+}
+
+.progress_num {
+  font-size: 20rpx;
+}
+
+.progress_num text {
+  background: linear-gradient(to right, #d8a653, #fffbd3);
+  border-radius: 30rpx;
+  padding: 1rpx 10rpx;
+}
+
+.money {
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 250rpx;
+}
+
+.money .row {
+  width: 100%;
+  height: 180rpx;
+  text-align: center;
+  color: #333;
+  padding: 60rpx 0 0;
+  border-bottom: 3rpx solid #d6d6d6;
+}
+
+.money .row .num {
+  line-height: 45rpx;
+  font-size: 32rpx;
+}
+
+.money .row .num button {
+  display: inline-block;
+  line-height: 32rpx;
+  font-size: 32rpx;
+  background: #e5308a;
+  color: #fff;
+  margin-left: 30rpx;
+  padding: 2rpx 15rpx;
+  border-radius: 10rpx;
+}
+
+.money .row .text {
+  line-height: 45rpx;
+  font-size: 27rpx;
+  padding: 6rpx 0 10rpx;
+}
+
+.money .row .see-list {
+  width: auto;
+  line-height: 30rpx;
+  color: #999;
+  font-size: 23rpx;
+}
+
+.money .row .see-list text {
+  display: inline-block;
+  border-bottom: 1rpx solid #999;
+}
+
+/**充值**/
+
+.recharge {
+  width: 86%;
+  padding: 0 5%;
+  margin:10rpx auto;
+  background-color: transparent;
+  background-color: rgba(157, 61, 229, 0.2);
+  box-shadow: 6rpx 6rpx 5rpx rgba(4, 0, 0, 0.2);
+  border-radius: 10rpx;
+}
+
+.recharge .title {
+  text-align: center;
+  padding: 24rpx 0;
+  font-size: 32rpx;
+}
+
+.recharge .item {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.recharge .sub-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 29.333%;
+  margin: 10rpx 1.5%;
+  height: 100rpx;
+  text-align: center;
+  border: 1rpx solid #9d3de5;
+  color: #9d3de5;
+  background: #fff;
+  border-radius: 8rpx;
+  font-size: 27rpx;
+}
+
+.recharge .money-sel {
+  background: #9d3de5;
+  color: #fff;
+}
+
+.recharge .input-money {
+  display: flex;
+  align-items: center;
+}
+
+.recharge .input-money input {
+  border: 1rpx solid #9d3de5;
+  display: inline-block;
+  color: #9d3de5;
+  background: #fff;
+  border-radius: 8rpx;
+  width: 80%;
+  margin: 10rpx 1.5%;
+}
+
+.recharge .input-money text {
+  display: inline-block;
+  height: 53rpx;
+  line-height: 53rpx;
+}
+
+.pay {
+  display: flex;
+  width: 100%;
+  height: 40rpx;
+  align-items: center;
+  padding: 30rpx 10rpx 35rpx;
+}
+
+.pay .pay-tip {
+  width: 200rpx;
+  font-size: 27rpx;
+  align-items: center;
+}
+
+.pay .pay-item {
+  display: flex;
+  min-width: 180rpx;
+  font-size: 27rpx;
+  line-height: 32rpx;
+  align-items: center;
+}
+
+.pay-item text {
+  margin: 0 10rpx;
+}
+
+.pay .icon-pay {
+  width: 32rpx;
+  height: 32rpx;
+  vertical-align: middle;
+}
+
+.pay .icon-sel {
+  width: 32rpx;
+  height: 32rpx;
+  vertical-align: middle;
+}
+
+.pay-btn {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pay-btn button {
+  width: 40%;
+  font-size: 27rpx;
+  border-radius: 8rpx;
+}
+
+.pay-btn .pay-cancel {
+  background: #b4b4b4;
+  color: #fff;
+}
+
+.pay-btn .pay-sure {
+  background: #9e3de5;
+  color: #fff;
+}
+
+.pay-desc {
+  width: 98%;
+  margin: 20rpx auto;
+  overflow: hidden;
+   padding: 0 10rpx;
+}
+
+.pay-desc .title {
+  text-align: left;
+  font-size: 27rpx; 
+  padding: 10rpx 0 5rpx;
+}
+
+.desc {
+  width: 100%;
+  margin: 10rpx auto;
+}
+
+rich-text {
+  background: none;
+  font-size: 20rpx;
+  border: none;
+}
+
+rich-text .img_w {
+  width: 100%;
+  height: auto;
+  vertical-align: bottom||top||text-bottom;
+  display: block;
+}

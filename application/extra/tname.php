@@ -108,6 +108,8 @@ class tname
 	const news = 'news';
 	//新闻评价
 	const news_review = 'news_review';
+    //专题
+    const topic = 'topic';
 	
 	//商城分类
 	const mall_category = 'mall_category';

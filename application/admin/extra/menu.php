@@ -278,6 +278,10 @@ return [
                 'name' => '文章列表',
                 '_child' => ['news', 'newsadd']
             ],
+            [
+                'name' => '专题列表',
+                '_child' => ['topic', 'topicdd']
+            ],
 //            [
 //                'name' => '评价列表',
 //                '_child' => ['review']

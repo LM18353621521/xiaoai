@@ -1,9 +1,14 @@
 {
   "pages": [
+    "pages/agent/recharge/recharge",
+    "pages/agent/apply/apply",
+
+    "pages/agent/index/index",
+    "pages/user/addrlist/addrlist",
+    "pages/user/index/index",
     "pages/home/index/index",
     "pages/user/distribution/distribution",
     "pages/user/coupon/coupon",
-    "pages/user/index/index",
     "pages/user/mycoupon/mycoupon",
     "pages/order/wuliu/wuliu",
     "pages/home/detail/detail",
@@ -20,7 +25,6 @@
     "pages/user/withdrawlist/withdrawlist",
     "pages/user/myqrcode/myqrcode",
     "pages/user/addredit/addredit",
-    "pages/user/addrlist/addrlist",
     "pages/user/moneydetail/moneydetail",
     "pages/user/mysubordinate/mysubordinate",
     "pages/order/orderdetail/orderdetail",

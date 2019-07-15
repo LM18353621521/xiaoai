@@ -1,0 +1,161 @@
+/* pages/agent/index/index.wxss */
+
+.header {
+  display: -webkit-flex;
+  display: flex;
+    align-items: center;  /*纵轴方向上的对齐方式设置为居中*/
+  width: 100%;
+  padding: 60rpx 0  10%;
+  height: 182rpx;
+  background: linear-gradient(to bottom, #e5308a, #943ef1);
+}
+
+.header .left {
+  width: 28%;
+  height: 180rpx;
+  padding: 5rpx 0rpx 0rpx 12%;
+}
+
+.header .left image {
+  width: 170rpx;
+  height: 170rpx;
+  border: 2rpx solid #fff;
+  border-radius: 50%;
+  background: #999;
+}
+
+.header .right {
+  max-width: 72%;
+  text-align: left;
+  height: 185rpx;
+  color: #fff;
+}
+
+.header .right .edit {
+  font-size: 20rpx;
+  margin: 0 0 0 20rpx;
+}
+
+.header .right .row {
+  height: 45rpx;
+  line-height: 45rpx;
+  padding: 5rpx 0;
+}
+.header .right .vip{
+  padding: 20rpx 0;
+  display: flex
+}
+.not_vip text{
+  background: linear-gradient(to right,#FF6000,#E74193);
+  border-radius: 30rpx;
+  padding: 0 10rpx;
+  margin-left: 20rpx;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  height: 40rpx;
+}
+.vip_left{
+  display: flex;
+  min-width: 130rpx;
+  height: 35rpx;
+  background: linear-gradient(to right, #D8A653,#FFFBD3);
+  border-radius: 20rpx;
+  color: #FFF;
+  justify-content:center;
+}
+.vip_left image{
+  margin: 0;
+  width: 31rpx;
+  height: 31rpx;
+}
+.vip_left text{
+  display: inline-block;
+  line-height: 35rpx;
+  font-size: 20rpx
+}
+/**进度*/
+.vip_r{
+  padding: 0 0 0 20rpx;
+}
+.progress_box{
+  width: 180rpx;
+  height: 8rpx;
+  border-radius: 8rpx;
+  background: #000;
+}
+.progress_box .progress{
+  height: 8rpx;
+  border-radius: 8rpx;
+  background: #fff;
+}
+.progress_num{
+ font-size: 20rpx;
+}
+.progress_num text{
+  background: linear-gradient(to right,#D8A653,#FFFBD3);
+  border-radius: 30rpx;
+  padding: 1rpx 10rpx; 
+}
+
+
+.money {
+  display: -webkit-flex;
+  display: flex;
+  width: 100%;
+  height: 250rpx;
+}
+
+.money .row {
+  width: 100%;
+  height: 200rpx;
+  text-align: center;
+  color: #333;
+  padding: 60rpx 0 0;
+  border-bottom: 3rpx solid #d6d6d6;
+}
+
+.money .row .num {
+  line-height: 45rpx;
+  font-size: 32rpx;
+}
+
+.money .row .num button {
+  display: inline-block;
+  line-height: 32rpx;
+  font-size: 32rpx;
+  background: #e5308a;
+  color: #fff;
+  margin-left: 30rpx;
+  padding: 2rpx 15rpx;
+  border-radius: 10rpx;
+}
+
+.money .row .text {
+  line-height: 45rpx;
+  font-size: 32rpx;
+  padding: 6rpx 0 25rpx;
+}
+
+.money .row .see-list {
+  width: auto;
+  line-height: 30rpx;
+  color: #999;
+  font-size: 23rpx;
+}
+
+.money .row .see-list text {
+  display: inline-block;
+  border-bottom: 1rpx solid #999;
+}
+
+.desc {
+  width: 96%;
+  margin: auto;
+}
+
+rich-text .img_w {
+  width: 100%;
+  height: auto;
+  vertical-align: bottom||top||text-bottom;
+  display: block;
+}

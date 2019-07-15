@@ -80,3 +80,22 @@
 </tr>
 {/volist}
 {/if}
+
+{if condition ="strtolower(request()->action()) == 'topic'"}
+{volist name="dataList" id="vo"}
+<tr>
+    <td>{$vo.id}</td>
+    <td>{$vo.title}</td>
+    <td>{$vo.create_time|date="Y-m-d H:i",###}</td>
+    <td data-pid="{$vo.id}">
+        <a href="{:url('News/topicadd',array('id'=>$vo['id']))}">
+            <button class="btn btn-primary btn-xs" title="编辑"><i class="icon-pencil"></i></button>
+        </a>
+        <a href="#deal" data-url="{:url('Member/updatefield')}" data-tablename="news" data-fieldname="is_hidden" data-value="1"
+           data-text="确定删除吗？删除后将不可恢复">
+            <button class="btn btn-danger btn-xs" title="删除"><i class="icon-trash"></i></button>
+        </a>
+    </td>
+</tr>
+{/volist}
+{/if}
