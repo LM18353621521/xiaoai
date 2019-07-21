@@ -1,6 +1,8 @@
 <?php
 namespace app\admin\controller;
 
+use think\Db;
+
 class Agent extends Member
 {
     //用户列表    2017-10-15
@@ -68,7 +70,7 @@ class Agent extends Member
         return $this->fetch();
     }
 
-    //修改意见反馈    2017-10-15
+    //修改等级    2017-10-15
     public function edit_level()
     {
         if (request()->isPost()) {
@@ -95,14 +97,105 @@ class Agent extends Member
         }
     }
 
-    /**
-     * 充值列表
-     */
-    public function recharge()
+    //申请列表
+    public function apply_list()
     {
+        $statusList = array(
+            '0'=>'待审核',
+            '1'=>'审核通过',
+            '2'=>'审核不通过'
+        );
+        $this->assign('statusList', $statusList);
         if (request()->isPost()) {
             $search = input('post.');
             $where = [];
+            if ($search['stime'] && $search['etime']) {
+                $where['a.create_time'] = array('between time', [$search['stime'], $search['etime']]);
+            }
+            if ($search['keyword']) {
+                $where['a.real_name|a.mobile'] = ['like', '%' . $search['keyword'] . '%'];
+            }
+            if ($search['status'] != null && $search['status'] != "") {
+                $where['a.status'] = $search['status'];
+            }
+            session('where', $where);
+            $dataList = db(\tname::agent_apply)->alias('a')
+                ->join('vip v','a.vip_id=v.id')
+                ->field('a.*,v.nickname')
+                ->where($where)->order('a.id desc')->paginate(30, false, ['page' => $search['page']]);
+            $this->assign('dataList', $dataList);
+            $html = $this->fetch('agent/form');
+            $attach = [
+                'page' => $dataList->render()
+            ];
+            return ajaxSuccess($html, '', '', $attach);
+        }
+        return $this->fetch();
+    }
+    /**
+     * 申请审核
+     */
+    public function applyHandle(){
+        if (request()->isPost()) {
+            $_post = input('post.');
+            $apply = db(\tname::agent_apply)->where(array('id'=>$_post['id']))->find();
+            if(empty($apply)){
+                return ajaxFalse('抱歉，参数错误，请联系管理员');
+            }
+            $user = db(\tname::vip)->where(array('id'=>$apply['vip_id']))->find();
+            if($apply['status']!=0){
+                return ajaxFalse('该记录已审核，请勿重复操作');
+            }
+            $updateData =array(
+                'id'=>$_post['id'],
+                'status'=>$_post['afterchange'],
+                'check_time'=>time()
+            );
+            Db::startTrans();
+            if($_post['afterchange']==1){
+                $agent = db(\tname::agent_user)->where(array('mobile' => $apply['mobile']))->find();
+                if(empty($agent)==false){
+                    return ajaxFalse("审核失败，手机号[{$apply['mobile']}]已存在代理");
+                }
+                $agentData = array(
+                    'vip_id'=>$apply['vip_id'],
+                    'real_name'=>$apply['real_name'],
+                    'birthday'=>$apply['birthday'],
+                    'wechat'=>$apply['wechat'],
+                    'mobile'=>$user['mobile'],
+                    'level_id'=>1,
+                    'status'=>1,
+                );
+                $res1 = dataUpdate(\tname::agent_apply,$updateData);
+                if(empty($res1)){
+                    Db::rollback();
+                    return ajaxFalse('操作失败，请联系管理员');
+                }
+                $res2 = dataUpdate(\tname::agent_user,$agentData);
+                if(empty($res2)){
+                    Db::rollback();
+                    return ajaxFalse('操作失败，写入代理信息失败，请联系管理员');
+                }
+            }else{
+                $res1 = dataUpdate(\tname::agent_apply,$updateData);
+                if(empty($res1)){
+                    Db::rollback();
+                    return ajaxFalse('操作失败，请联系管理员');
+                }
+            }
+            Db::commit();
+            return ajaxSuccess('', '');
+        }
+    }
+
+    /**
+     * 充值列表
+     */
+    public function recharge_list()
+    {
+        if (request()->isPost()) {
+            $search = input('post.');
+            $where['a.status'] = 1;
             if ($search['time']) {
                 $search['time'] = explode('-', $search['time']);
                 $where['a.create_time'] = array('between time', [$search['time'][0], $search['time'][1]]);
@@ -110,13 +203,19 @@ class Agent extends Member
             if ($search['keyword'] !== null && $search['keyword'] !== '') {
                 $where['v.real_name|a.order_sn'] = array('like', '%' . $search['keyword'] . '%');
             }
-            $dataList = db(\tname::money_order)->alias('a')
-                ->join('xa_' . \tname::vip . ' v', 'a.openid=v.openid', 'left')
-                ->field('a.*,v.nickname nickname')
+            $dataList = db(\tname::agent_recharge)->alias('a')
+                ->join('xa_' . \tname::agent_user . ' v', 'a.agent_id=v.id', 'left')
+                ->field('a.*,v.real_name')
                 ->where($where)->order('a.id desc')->paginate(50, false, array('page' => $search['page']));
 
+            $statusList =array(
+                '0'=>'未支付',
+                '1'=>'充值成功',
+                '2'=>'充值失败',
+            );
+            $this->assign('statusList', $statusList);
             $this->assign('dataList', $dataList);
-            $html = $this->fetch('money/form');
+            $html = $this->fetch('agent/form');
             $attach = array(
                 'page' => $dataList->render()
             );
@@ -125,5 +224,38 @@ class Agent extends Member
 
         return $this->fetch();
     }
+
+    //余额明细    2018-11-05
+    public function balance_log()
+    {
+        if (request()->isPost()) {
+            $search = input('post.');
+            $where = array(
+                'a.uid' => UID,
+                'a.classify'=>'agentMoney'
+            );
+            if ($search['stime']&&$search['etime']) {
+                $where['a.create_time'] = array('between time', [$search['stime'], $search['etime']]);
+            }
+            if ($search['keyword'] !== null && $search['keyword'] !== '') {
+                $where['v1.nickname|v2.nickname|o.order_number'] = array('like', '%' . $search['keyword'] . '%');
+            }
+
+            $dataList = db(\tname::data_changelog)->alias('a')
+                ->join('xa_' . \tname::agent_user . ' v', 'a.main_id = v.id', 'left')
+                ->field('a.*,v.real_name')
+                ->where($where)->order('a.id desc')->paginate(30, false, array('page' => $search['page']));
+
+            $this->assign('dataList', $dataList);
+            $html = $this->fetch('agent/form');
+            $attach = array(
+                'page' => $dataList->render()
+            );
+            return ajaxSuccess($html, '', '', $attach);
+        }
+
+        return $this->fetch();
+    }
+
 
 }

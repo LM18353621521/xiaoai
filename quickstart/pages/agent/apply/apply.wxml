@@ -1,55 +1,72 @@
 <!--pages/agent/apply/apply.wxml-->
-<view class='page'>
-
-
+<view class='page' style="backgroud:url('../../../images/bg-01.png')">
+  <image class='bg' src='{{config.agent_apply_bg}}'></image>
   <view class='bd'>
-    <form>
-      <view class='info'>
-        <view class='title'>代理申请</view>
-        <view class='item'>
-          <label>手机号码</label>
-          <input />
-        </view>
-        <view class='item sms-code'>
-          <label>验证码</label>
-          <input />
-          <text>获取验证码</text>
-        </view>
-        <view class='item'>
-          <label>姓名</label>
-          <input />
-        </view>
-        <view class='item'>
-          <label>微信号</label>
-          <input />
-        </view>
-        <view class='item'>
-          <label for='date'>生日</label>
-          <picker id="date" aria-haspopup="true" mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
-            <view class="picker">
-              {{date}}
+    <view class='con-box'>
+      <form bindsubmit="formSubmit" bindreset="formReset">
+        <view class='info'>
+          <view class='title'>代理申请</view>
+          <view class='item'>
+            <label>手机号码</label>
+            <input name="mobile" value="{{user.mobile}}" disabled='true' placeholder='请输入手机' />
+          </view>
+          <view class='item sms-code'>
+            <label>验证码</label>
+            <input name="code" value="" placeholder='请输入验证码' />
+            <text class="get_code {{code_btn_show==1?'':'hidden'}}" bindtap='getcode' data-type='7'>获取验证码</text>
+            <text class="second {{code_btn_show==0?'':'hidden'}}" >{{second}}s</text>            
+          </view>
+          <view class='item'>
+            <label>姓名</label>
+            <input name="real_name" value="" placeholder='请输入姓名' />
+          </view>
+          <view class='item'>
+            <label>微信号</label>
+            <input name="wechat" value="" placeholder='请输入微信号' />
+          </view>
+          <view class='item'>
+            <label for='date'>生日</label>
+            <picker id="date" aria-haspopup="true" mode="date" value="{{birthday}}"  bindchange="bindDateChange">
+              <view class="picker">
+                {{birthday}}
+              </view>
+            </picker>
+          </view>
+          <view class='xieyi'>
+            <image bindtap='xy_select' src="{{xy_sel==1?'../../../images/sel_yes.png':'../../../images/sel-no.png'}}"></image>
+            <view>
+              同意
+              <text class='xy_title' bindtap='xy_open'>{{xieyi.title}}</text>
+              <text class='xy_tip'>此申请将在提交申请后24小时内审核</text>
             </view>
-          </picker>
-        </view>
-        <view class='item'>
-          <label>微信号</label>
-          <input />
-        </view>
-        <view class='xieyi'>
-          <image src='../../../images/sel_yes.png'></image>
-          <view>
-          同意 <text class='xy_title'>代理协议</text> <text class='xy_tip'>此申请将在提交申请后24小时内审核</text>
           </view>
         </view>
-      </view>
-      <view class='btns'>
-        <button>取消</button>
-        <button>提交申请</button>
-      </view>
-    </form>
+        <view class='btns'>
+          <button form-type='reset'>取消</button>
+          <button form-type='submit'>提交申请</button>
+        </view>
+      </form>
+    </view>
   </view>
   <view class='logo_box'>
-    <image src='../../../images/logo.jpg'></image>
-    <view>晓爱，让天下没哟难做的爱</view>
+    <image src='{{config.logo}}'></image>
+    <view>{{config.slogen}}</view>
   </view>
+</view>
+
+<!-- 协议浮层 -->
+<view class='layer' wx-if='{{layer_switch==1}}'>
+  <view class='xieyi-box'>
+    <view class='hd'>
+      <view class='back' bindtap='xy_close'>
+        <image src='../../../images/close-01.png'></image>关闭</view>
+      <view class='title'>代理协议</view>
+    </view>
+    <view class='xy-bd'>
+      <view class='xy-con'>
+        <rich-text nodes="{{xieyi.content}}"></rich-text>
+      </view>
+    </view>
+  </view>
+
 </view>

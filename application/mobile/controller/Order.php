@@ -271,7 +271,7 @@ class Order extends Base
         //$data['out_trade_no'] = '201711142845';
         $order = db(\tname::mall_order)->where('order_number', $data['out_trade_no'])->find();
         $OrderLogic = new OrderLogic();
-        $OrderLogic->order_pay_sucsess($order);
+        $OrderLogic->order_pay_sucsess($order,'wxpay',$data['transaction_id']);
     }
 
 

@@ -1,104 +1,219 @@
 /* pages/agent/apply/apply.wxss */
-page{
+
+page {
   height: 100%;
 }
-.page{ 
-  padding-top:1rpx; 
+
+.page {
+  padding: 0rpx;
+  margin: 0rpx;
   width: 100%;
   height: 100%;
-  background: linear-gradient( to bottom, #e5308a,#9431f1)
 }
-.page .bd{
+
+.page .bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
+.page .bd {
   width: 88%;
-  margin: 120rpx auto;
-  padding: 20rpx 20rpx 0;
-  background-color: transparent;
-background-coloe:rgba(157,61,229,0.35);
+  margin: 0 auto;
+  padding: 120rpx 20rpx 0;
+  color: #fff;
+}
+
+.page .con-box {
+  background: linear-gradient(0deg, rgba(139, 60, 128, 1), rgba(72, 28, 81, 0.4));
   border-radius: 13rpx;
-  color: #FFF;
 }
-.title{
+
+.title {
   text-align: center;
-  font-size: 36rpx;
-  margin: 40rpx 0 35rpx;
+  font-size: 41rpx;
+  padding: 40rpx 0 35rpx;
 }
-.info{
+
+.info {
   font-size: 28rpx;
   padding: 0 50rpx;
+  background: linear-gradient(0deg, rgba(139, 60, 128, 1), rgba(72, 28, 81, 0.4));
 }
-.info .item{
+
+.info .item {
   display: flex;
   align-items: center;
-  margin: 30rpx 0;
+  margin: 20rpx 0;
 }
-.info label{
+
+.info label {
   display: inline-block;
   width: 200rpx;
   line-height: 40rpx;
 }
-.info input{
+
+.info input {
   display: inline-block;
   width: 300rpx;
   height: 40rpx !important;
-  background: #FFF;
-  color: #999;
-  padding: 0 5rpx;
-}
-.info picker{
-  display: inline-block;
-  width: 300rpx;
-  height: 53rpx;
-  line-height: 53rpx;
-  background: #FFF;
+  background: #fff;
   color: #999;
   padding: 0 5rpx;
 }
 
-.info .sms-code input{
-  width:160rpx; 
+.info picker {
+  display: inline-block;
+  width: 290rpx;
+  height: 53rpx;
+  line-height: 53rpx;
+  background: #fff;
+  color: #999;
+  padding: 0 10rpx;
 }
-.info .sms-code text{
-  padding: 0 20rpx;
+
+.info .sms-code input {
+  width: 160rpx;
+  margin: 0 10rpx 0 0;
+}
+
+.info .sms-code text {
+  width: 120rpx;
+  text-align: center;
+  padding: 0 5rpx;
+  font-size: 22rpx;
+  line-height: 50rpx;
+}
+.sms-code .get_code{
+  border: 1rpx solid #fff;
+}
+.sms-code .second{
+  border: 1rpx solid #BFBFBF;
+  color: #BFBFBF;
+}
+.xieyi {
+  display: flex;
+  padding: 20rpx 0;
   font-size: 22rpx;
 }
-.xieyi{
-  display: flex;
-  padding:20rpx 0;
-}
-.xieyi image{
+
+.xieyi image {
   width: 36rpx;
   height: 36rpx;
   margin: 0 10rpx;
 }
-.xieyi .xy_title{
+
+.xieyi .xy_title {
   border-bottom: 1rpx solid #fff;
 }
-.xieyi .xy_tip{
+
+.xieyi .xy_tip {
   padding: 0 0 0 20rpx;
-  font-size: 18rpx;
+  font-size: 20rpx;
 }
-.btns{
-  width: 97%;
+
+.btns {
+  width: 96%;
   margin: auto;
   border-top: 1px solid #999;
 }
-.btns button{
+
+.btns button {
   position: none;
   display: inline-block;
   width: 50%;
   background: none;
   border: none;
   border-radius: 0;
-  color: #FFF;
+  color: #fff;
+  font-size: 32rpx;
 }
-button::after{ border: none; }
-.logo_box{
+
+button::after {
+  border: none;
+}
+
+.logo_box {
   text-align: center;
   color: #fff;
   font-size: 26rpx;
+  margin: 40rpx auto;
 }
-.logo_box image{
+
+.logo_box image {
   width: 128rpx;
   height: 128rpx;
   margin: 10rpx 0;
+}
+
+/* 协议弹层 */
+
+.layer {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background: rgba(132, 132, 132, 0.5);
+}
+
+.xieyi-box {
+  width: 98%;
+  margin: 0 auto;
+  height: 90%;
+  background: #983eed;
+  box-shadow: 0px 0px 59px 0px rgba(0, 0, 0, 0.75);
+}
+
+.layer .hd {
+  position: relative;
+  width: 100%;
+  height: 66rpx;
+  padding: 0rpx 0rpx;
+  color: #fff;
+}
+
+.layer .hd .back {
+  width: 166rpx;
+  height: 66rpx;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  margin: 0 10rpx;
+  font-size: 26rpx;
+}
+.layer .hd image {
+  width: 32rpx;
+  height: 32rpx;
+}
+.layer .hd .title {
+  text-align: center;
+  line-height: 66rpx;
+  font-size: 26rpx;
+  padding: 0;
+}
+
+.xy-bd {
+  width: 90%;
+  height: 83%;
+  margin: 0 auto;
+  padding: 30rpx 3% 30rpx;
+  background: #8e60e5;
+  border-radius: 10rpx;
+}
+.xy-con{
+   width: 100%;
+  height: 100%;
+    margin: 0 auto;
+  overflow-y:scroll;
+}
+
+rich-text {
+  border: 0;
+  font-size: 26rpx;
+  line-height: 35rpx;
 }

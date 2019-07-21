@@ -43,7 +43,12 @@ class Order extends Applet
         //生成订单
         $OrderLogic = new \app\common\logic\OrderLogic();
         $pdata['order_source']='applet';
-        $result = $OrderLogic->orderAdd($pdata);
+
+        //获取代理信息
+        $AgentLogic = new \app\common\logic\AgentLogic();
+        $agent =$AgentLogic->getAgentInfo($pdata['vip_id']);
+
+        $result = $OrderLogic->orderAdd($pdata,'applet',$agent);
         if($result['status']!=1){
             return json(ajaxFalse($result['msg']));
         }
@@ -224,7 +229,7 @@ class Order extends Applet
         //$data['out_trade_no'] = '201711142845';
         $order = db(\tname::mall_order)->where('order_number', $data['out_trade_no'])->find();
         $OrderLogic = new OrderLogic();
-        $OrderLogic->order_pay_sucsess($order,$data['transaction_id']);
+        $OrderLogic->order_pay_sucsess($order,'wxpay',$data['transaction_id']);
     }
 
 

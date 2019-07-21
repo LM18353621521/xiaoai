@@ -65,19 +65,10 @@
   </view>
 </view>
 
-
-
-<!-- <view class='view-input'>
-  <view class='view-input-left'>买家留言</view>
-  <input class="view-input-right" type="text" placeholder="买家请留言" placeholder-style="color:#ccc;" />
-</view> -->
 <view class='view-input'>
   <view class='view-input-left'>买家留言</view>
   <view class='view-input-right'>{{order.remark}}</view>
 </view>
-
-
-
 <view class='order-box'>
   <view class='order-left small-fontSize'>共{{order.total_number}}件商品 合计</view>
   <view class='order-right'>￥{{order.goods_price}}</view>

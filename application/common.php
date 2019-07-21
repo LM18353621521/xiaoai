@@ -785,11 +785,32 @@ function incomeRefund($order,$psy_type)
         $user = db(\tname::vip)->where(array('mobile'=>$user['mobile'],'source'=>2))->find();
     }
     if(empty($user)){
-        return [0, '参数错误'];
+        return [0, '参数错误，请联系管理员'];
     }
-    $res = dataChangeLog(2, 'income', 'distribution', $user['id'], $order['pay_money'], $order['order_id'], '订单退款');
-    if ($res) {
-        return [0, '退款失败'];
+    $res = dataChangeLog(2, 'income', 'distribution', $user['id'], $order['pay_money'], $order['id'], '订单退款');
+    if (empty($res[0])) {
+        return [0, '退款失败，佣金回退错误'];
+    }
+    return [1, '退款成功'];
+
+}
+/**
+ * 余额支付-退款
+ */
+function balanceRefund($order,$psy_type)
+{
+    $user = db(\tname::vip)->where(array('id'=>$order['vip_id']))->find();
+    $AgentLogic = new \app\common\logic\AgentLogic();
+    $agent = $AgentLogic->agentInfo($user);
+    if(empty($user)){
+        return [0, '参数错误，请联系管理员'];
+    }
+    if(empty($agent)){
+        return [0, '参数错误，请联系管理员'];
+    }
+    $res = dataChangeLog(2, 'agentMoney', 'refund', $agent['id'], $order['pay_money'], $order['id'], '订单退款');
+    if (empty($res[0])) {
+        return [0, '退款失败，余额回退错误'];
     }
     return [1, '退款成功'];
 
@@ -831,6 +852,7 @@ function sendSmsjh($mobile, $content = null, $code = null, $type = 1)
         '4' => 166131,//模板ID
         '5' => 166131,//模板ID
         '6' => 166131,//模板ID
+        '7' => 166131,//模板ID
     );
     $tpl_values = array(
         '1' => '#code#=' . $code . "&#company#={$config['signName']}",
@@ -839,6 +861,7 @@ function sendSmsjh($mobile, $content = null, $code = null, $type = 1)
         '4' => '#code#=' . $code . "&#company#={$config['signName']}",
         '5' => '#code#=' . $code . "&#company#={$config['signName']}",
         '6' => '#code#=' . $code . "&#company#={$config['signName']}",
+        '7' => '#code#=' . $code . "&#company#={$config['signName']}",
     );
     $tpl_id = $tpl_ids[$type];
     $tpl_value = $tpl_values[$type];
@@ -1192,7 +1215,6 @@ function dataChangeLog($uid, $classify, $type, $main_id, $number = 0, $info_id, 
 
     $otherParam = DATA_CHANGE_PARAM[$classify];
     $where = [
-        'uid' => $uid,
         $otherParam['operate_where'] => $main_id
     ];
     if ($number > 0) {
@@ -1201,7 +1223,6 @@ function dataChangeLog($uid, $classify, $type, $main_id, $number = 0, $info_id, 
         $change = '-';
         $number = -$number;
     }
-
     $data_before = db($otherParam['operate_table'])->where($where)->find();
     if ($change == '-' && $data_before[$otherParam['operate_field']] < $number) {
         return [0, '您现在只有' . $data_before[$otherParam['operate_field']]];
@@ -2077,7 +2098,7 @@ function hidtel($phone)
     if ($IsWhat == 1) {
         return preg_replace('/(0[0-9]{2,3}[\-]?[2-9])[0-9]{3,4}([0-9]{3}[\-]?[0-9]?)/i', '$1****$2', $phone);
     } else {
-        return preg_replace('/(1[358]{1}[0-9])[0-9]{4}([0-9]{4})/i', '$1****$2', $phone);
+        return preg_replace('/(1[0-9]{1}[0-9])[0-9]{4}([0-9]{4})/i', '$1****$2', $phone);
     }
 }
 

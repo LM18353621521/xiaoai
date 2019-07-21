@@ -902,7 +902,7 @@ page {
 }
 
 .pay-item {
-  width: 40%;
+  width: 33.3333%;
   float: left;
   overflow: hidden;
   height: 50rpx;

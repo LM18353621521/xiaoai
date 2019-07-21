@@ -212,6 +212,7 @@ page{
   min-width:65%;
   padding:10rpx 5%;
   margin-top:5rpx;
+  height: 40rpx;
   line-height: 40rpx;
   font-size: var(--fontSize);
   color: #4c4c4c;

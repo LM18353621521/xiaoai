@@ -23,6 +23,10 @@ class Api extends Applet
                 return json(ajaxFalse('该手机号码已被使用，请重新输入'));
             }
         }
+        //申请代理验证手机号码
+        if($type==7){
+
+        }
         //判断是否存在验证码
         $data = db(\tname::data_message)->where(array('mobile' => $mobile,'error_code' => 0,'type'=>$type))->order('id DESC')->find();
         $sms_time_out = 60;

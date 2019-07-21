@@ -1,0 +1,167 @@
+      html,body{
+        height: 100%;
+        background: #f1f1f1;
+      }
+      body{
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0 10px;
+      }
+      input::-webkit-input-placeholder{
+            color:#000;
+        }
+        input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+            color:#000;
+        }
+        input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+            color:#000;
+        }
+        input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+            color:#000;
+        }
+      .tit{
+        width: 100%;
+        padding-top: 2vh;
+        padding-bottom: 3vh;
+        font-size: 11px;
+        color: #7b7b7b;
+        text-indent: 20px;
+      }
+      .inbox{
+        width: 100%;
+        background: #fff;
+        overflow: hidden;
+      }
+      .sbox{
+        float: left;
+        width: 100%;
+        padding: 1.5vh 5vw;
+        border-bottom: 1px solid #e6e6e6;
+        box-sizing: border-box;
+        padding-left: 40px;
+      }
+      .stit{
+        float: left;
+        height: 34px;
+        line-height: 34px;
+        font-size: 14px;
+      }
+      .imgb{
+        float: right;
+        width: 34px;
+        height: 34px;
+      }
+      .weui-uploader__input-box{
+        width: 34px;
+        height: 34px;
+      }
+      .weui-cell{
+        padding: 0;
+      }
+      .weui-uploader__bd{
+        width: 34px!important;
+        height: 34px!important;
+      }
+      .weui-cells{
+        margin-top: 0;
+      }
+      .weui-uploader__file{
+        width: 34px;
+        height: 34px;
+        overflow: hidden;
+        border-radius: 50%;
+      }
+      .ri{
+        height: 34px;
+        float: right;
+        font-size: 20px;
+        line-height: 34px;
+        width: 24px;
+        background: url(../../common/images/ri.png) no-repeat;
+        background-size: 12px 16px;
+        background-position: 100% 50%;
+      }
+      .intext{
+        float: right;
+        height: 34px;
+        line-height: 34px;
+        font-size: 14px;
+        border: 0;
+        background: transparent!important;
+        text-align: right;
+      }
+      .zhe{
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.4);
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 1000;
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
+      .zhebox{
+        position: relative;
+        z-index: 1001;
+        width: 290px;
+        border-radius: 5px;
+        background: #fff;
+        padding: 0 5px;
+        box-sizing: border-box;
+        overflow-y: hidden;
+        box-shadow: 3px 3px #5a5a5a;
+        display: none;
+      }
+      .zhebox p{
+        width: 100%;
+        text-align: center;
+        font-size: 13px;
+        padding: 15px 0;
+        float: left;
+      }
+      .in{
+        border: 1px solid #e8e8e8;
+        background: #fff;
+        font-size: 13px;
+        height: 20px;
+        line-height: 18px;
+        background: #fbfbfb;
+        padding: 0 5px;
+        width: 80%;
+        display: block;
+        margin: 0 10%;
+        margin-bottom: 18px;
+        float: left;
+      }
+      .qu{
+        float: left;
+        width: 50%;
+        text-align: center;
+        border-top: 1px solid #d9d9d9;
+        font-size: 14px;
+        height: 34px;
+        line-height: 34px;
+        box-sizing: border-box;
+      }
+      .que{
+        float: left;
+        width: calc(50% - 1px);
+        text-align: center;
+        border-top: 1px solid #d9d9d9;
+        font-size: 14px;
+        height: 34px;
+        line-height: 34px;
+        box-sizing: border-box;
+        color: #983eec;
+      }
+      .xing{
+        float: left;
+        width: 100%;
+        border-bottom: 1px solid #c8c8c8;
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        font-size: 14px;
+      }

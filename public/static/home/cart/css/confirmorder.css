@@ -10,7 +10,6 @@ body{
 }
 .wrap-content{
 	width: 1200px;
-	height: 940px;
 	margin: 0 auto;
 	overflow: hidden;
 }
@@ -20,7 +19,7 @@ body{
 	overflow: hidden;
 }
 .logo-link>img{
-	width: 116.px;
+	width: 116px;
 	height: 23px;
 	float: left;
 	margin-top: 20px;

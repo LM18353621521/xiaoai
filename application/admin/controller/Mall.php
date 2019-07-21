@@ -791,6 +791,7 @@ class Mall extends Member
             $data = input('post.');
             $data['uid'] = UID;
             $order = db(\tname::mall_order)->where(array('id' => $data['id']))->find();
+            $vip = db(\tname::vip)->where(array('id' => $order['vip_id']))->find();
             if ($order['status'] != -2) {
                 return ajaxFalse('该订单不允许执行此操作');
             }
@@ -806,8 +807,10 @@ class Mall extends Member
                     $result = aliRefund($order['trade_no'], $order['pay_money'], $order['pay_money'], $type = 'alipay');
                 }
                 if ($order['pay_type'] == 'income') {
-                    $vip = db(\tname::vip)->where(array('id' => $order['vip_id']))->find();
                     $result = incomeRefund($order, $type = 'alipay');
+                }
+                if ($order['pay_type'] == 'balance') {
+                    $result = balanceRefund($order, $type = 'alipay');
                 }
                 if (!$result[0]) {
                     return ajaxFalse("操作失败，[".$result[1]."]");

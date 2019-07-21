@@ -279,7 +279,6 @@ class Vip extends Applet
         }
         return json(ajaxSuccess($dataList));
     }
-
     /**
      * 检查收藏商品是否下架
      * @return \think\response\Json

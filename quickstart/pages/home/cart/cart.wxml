@@ -1,6 +1,7 @@
 <form bindsubmit='cart_submit' report-submit="true">
   <block wx:for="{{cartList}}">
     <view bindtap='detail_do' data-id='{{item.goods_id}}' class="lists {{item.number==0?'hidden':''}}">
+            <image catchtap='confirmDel' data-index='{{index}}' class='del_icon' src="../../../images/del.png"/>
       <image src="{{item.selected==1?'../../../images/yes.png':'../../../images/no.png'}}" data-index="{{index}}" catchtap='sele' class="sele" />
       <image src="{{item.coverimg}}" class="listsleft" />
       <view class="listsright">

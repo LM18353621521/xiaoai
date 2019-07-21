@@ -1,0 +1,26 @@
+{if condition ="strtolower(request()->controller()) == 'agent' && strtolower(request()->action()) == 'recharge_log'"}
+<!--我的关注-->
+{volist name="dataList" id="vo"}
+<div class="list">
+    <span class="t1">余额充值 （充值单号:{$vo.order_sn}）</span>
+    <span class="t2">+{$vo.pay_money}</span>
+    <span class="t3"> {$vo._create_time}</span>
+    <span class="t4">余额  {$vo.after_money}</span>
+</div>
+{/volist}
+{/if}
+{if condition ="strtolower(request()->controller()) == 'agent' && strtolower(request()->action()) == 'balance_log'"}
+<!--余额明细-->
+{volist name="dataList" id="vo"}
+<div class="list">
+    <span class="t1">{$vo.remark}</span>
+    <span class="t2">+{$vo.number}</span>
+    <span class="t3"> {$vo._create_time}</span>
+    <span class="t4">余额  {$vo.after}</span>
+</div>
+{/volist}
+{/if}
+
+
+
+

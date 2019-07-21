@@ -290,12 +290,16 @@ return [
     ],
     [
         'group' => 'agent',
-        'name' => '代理商管理',
+        'name' => '代理管理',
         'icon' => 'icon-user',
         '_child' => [
             [
                 'name' => '代理商列表',
                 '_child' => ['index','detail']
+            ],
+            [
+                'name' => '申请列表',
+                '_child' => ['apply_list','detail']
             ],
             [
                 'name' => '代理商等级',
@@ -304,6 +308,10 @@ return [
             [
                 'name' => '充值记录',
                 '_child' => ['recharge_list']
+            ],
+            [
+                'name' => '余额明细',
+                '_child' => ['balance_log']
             ],
         ]
     ],

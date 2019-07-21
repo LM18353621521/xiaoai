@@ -54,10 +54,56 @@ Page({
    * 去详情
    */
   detail_do:function(e){
+    var _this = this;
     var id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '/pages/home/detail/detail?id='+id,
     });
+  },
+  /**确认删除 */
+  confirmDel:function(e){
+    var _this = this;
+    var index = e.currentTarget.dataset.index;
+    if (_this.data.can_cliak == 0) {
+      return false
+    }
+    _this.setData({
+      can_click: 0,
+    })
+    var list = _this.data.cartList;
+    var id = list[index].id;
+    wx.showModal({
+      title: '提示',
+      content: '是否删除该商品吗？',
+      showCancel: true, //是否显示取消按钮
+      cancelText: "否", //默认是“取消”
+      cancelColor: 'grey', //取消文字的颜色
+      confirmText: "是", //默认是“确定”
+      success: function (res) {
+        if (res.confirm) {
+          app.operation('Cart/cart_del', {
+            id: id
+          }, function (res) {
+            if (res.ret == 1) {
+              list.splice(index, 1);
+              wx.showToast({
+                title: res.msg,
+              })
+              _this.setData({
+                cartList: list,
+                can_click: 1,
+              });
+                countCartPrice(_this, list);
+            } else {
+              app.alert(res.msg);
+              _this.setData({
+                can_click: 1,
+              })
+            }
+          })
+        }
+      }
+    })
   },
 
   /**

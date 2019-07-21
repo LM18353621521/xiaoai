@@ -2,7 +2,6 @@
 
 page {
   background: #f2f2f2;
-  padding-top: 200rpx;
   font-family: "黑体";
 }
 .top-head {

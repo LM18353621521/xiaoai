@@ -63,11 +63,6 @@ class Vip extends Base
     public function index()
     {
         $user = session('userinfo');
-        if(!empty($user)){
-            $AgentLogic = new \app\common\logic\AgentLogic();
-            $AgentLogic->createAgent($user['mobile']);
-        }
-        $pdata = input('post.');
         $vip = db(\tname::vip)->where(['uid' => WID, 'id' => $user['vip_id']])->find();
         if ($vip) {
             $vip['headimg'] = $vip['headimgurl'];

@@ -1,0 +1,160 @@
+{extend name="public/base"/ }
+{block name="body"}
+<body>
+
+<div class="tit">基本信息</div>
+<div class="inbox">
+    <div class="sbox">
+        <span class="stit">头像</span>
+        <span class="ri"></span>
+        <div class="imgb">
+            <div class="weui-gallery" id="gallery">
+                <span class="weui-gallery__img" id="galleryImg"></span>
+                <div class="weui-gallery__opr">
+                    <a href="javascript:" rel="external nofollow" class="weui-gallery__del">
+                        <i class="weui-icon-delete weui-icon_gallery-delete"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sbox">
+        <span class="stit">昵称</span>
+        <span class="ri"></span>
+        <span class="intext intextnc">请填写</span>
+    </div>
+
+    <div class="sbox">
+        <span class="stit">姓名</span>
+        <span class="ri"></span>
+        <span class="intext intextxm">请填写</span>
+    </div>
+
+    <div class="sbox">
+        <span class="stit">手机号</span>
+        <span class="ri"></span>
+        <span class="intext intextphone">请填写</span>
+    </div>
+
+    <div class="sbox">
+        <span class="stit">性别</span>
+        <span class="ri"></span>
+        <span class="intext intextxing">男</span>
+    </div>
+
+    <div class="sbox">
+        <span class="stit">生日</span>
+        <span class="ri"></span>
+        <!-- <input class="intext" id='datetime-picker' type="date" value="请选择" placeholder="请选择"> -->
+    </div>
+
+    <div class="sbox">
+        <span class="stit">地区</span>
+        <span class="ri"></span>
+        <input class="intext" id='city-picker' placeholder="请选择">
+    </div>
+
+    <div class="sbox">
+        <span class="stit">微信号</span>
+        <span class="ri"></span>
+        <span class="intext intextwx">请填写</span>
+    </div>
+
+    <div class="sbox">
+        <span class="stit">收货地址</span>
+        <span class="ri"></span>
+        <span class="intext"></span>
+    </div>
+
+</div>
+
+<div class="zhe">
+
+    <div class="zhebox zhebox1">
+        <p class="edit_tip">修改昵称</p>
+        <input class="in in1" type="text" name="edit_value">
+        <div class="qu">取消</div>
+        <div style="height: 24px;border-right: 1px solid #d9d9d9;margin-top: 3px;float: left;"></div>
+        <div class="que">确定</div>
+    </div>
+
+    <div class="zhebox zhebox5">
+        <span class="xing">保密</span>
+        <span class="xing">男</span>
+        <span class="xing">女</span>
+    </div>
+
+</div>
+
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
+
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/swiper.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/city-picker.min.js"></script>
+
+<script>
+
+    $(function () {
+
+        function click() {
+            $('.intextnc').on('click', function () {
+                $('.zhe').css('display', 'flex');
+                $('.zhebox1').show();
+            })
+
+            $('.intextxing').on('click', function () {
+                $('.zhe').css('display', 'flex');
+                $('.zhebox5').show();
+            })
+            $('.qu').on('click', function () {
+                $('.zhe').hide();
+                $('.zhebox').hide();
+            })
+
+            $(".que").on('click', function () {
+
+                var text = $(this).siblings('.in').val();
+                if ($(this).siblings('.in').hasClass('in1')) {
+                    $('.intextnc').text(text)
+                }
+                if ($(this).siblings('.in').hasClass('in2')) {
+                    $('.intextwx').text(text)
+                }
+                if ($(this).siblings('.in').hasClass('in3')) {
+                    $('.intextxm').text(text)
+                }
+                if ($(this).siblings('.in').hasClass('in4')) {
+                    $('.intextphone').text(text)
+                }
+                $('.zhe').hide();
+                $('.zhebox').hide();
+
+            })
+
+            $('.xing').on('click', function () {
+                var text = $(this).text();
+                $('.intextxing').text(text);
+                $('.zhe').hide();
+                $('.zhebox').hide();
+            })
+        }
+
+        click();
+        var tmpl = '<li class="weui-uploader__file"><img style="border:1px solid #000;box-sizing:border-box;width:32px;height:32px;display:block!important;border-radius: 50%;" src="#url#"/></li>',
+            $gallery = $("#gallery"),
+            $galleryImg = $("#galleryImg"),
+            $uploaderInput = $("#uploaderInput"),
+            $uploaderFiles = $("#uploaderFiles");
+
+        $("#city-picker").cityPicker({
+            title: "请选择地区"
+        });
+
+    })
+
+</script>
+
+{/block}

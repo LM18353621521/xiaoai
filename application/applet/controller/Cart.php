@@ -7,7 +7,10 @@ class Cart extends Applet
     public function cart(){
         $pdata =input('');
         $CartLogic = new CartLogic();
-        $result = $CartLogic->getCartList($pdata);
+        //获取代理信息
+        $AgentLogic = new \app\common\logic\AgentLogic();
+        $agent =$AgentLogic->getAgentInfo($pdata['vip_id']);
+        $result = $CartLogic->getCartList($pdata,$agent);
         $returndata = array(
             'cartList' => $result['cartList'],
             'total_count' => $result['total_count'],
@@ -57,6 +60,18 @@ class Cart extends Applet
             return json(ajaxFalse("！操作失败，请稍后重试"));
         }
         return json(ajaxSuccess("","操作成功！"));
+    }
+
+    /**
+     * 删除购物车
+     */
+    public function cart_del(){
+        $pdata = input('post.');
+        $res = db(\tname::mall_cart)->where(array('id' => $pdata['id']))->delete();
+        if (!$res) {
+            return json(ajaxFalse('！操作失败，请稍后重试'));
+        }
+        return json(ajaxSuccess("",'删除成功'));
     }
 
 }

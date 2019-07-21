@@ -5,6 +5,7 @@
  * Date: 2018/9/9
  * Time: 23:37
  */
+
 namespace app\applet\controller;
 
 use app\common\logic\GoodsLogic;
@@ -76,16 +77,16 @@ class Home extends Applet
 
         $config = tpCache('web');
         $applet_check_switch = tpCache('base.applet_check_switch');
-        $config['happly_switch']=$applet_check_switch;
-        $config['logo'] = imgurlToAbsolute( $config['logo']);
+        $config['happly_switch'] = $applet_check_switch;
+        $config['logo'] = imgurlToAbsolute($config['logo']);
 
         $returndata = array(
             'carousel' => $carousel,
             'dataList' => $dataList,
             'has_coupon' => $has_coupon,
             'categoryList' => $categoryList,
-            'config'=>$config,
-            'show_coupon'=>0,
+            'config' => $config,
+            'show_coupon' => 0,
         );
         return json(ajaxSuccess($returndata));
     }
@@ -173,8 +174,8 @@ class Home extends Applet
     {
 
         $applet_check_switch = tpCache('base.applet_check_switch');
-        $config['share_tips']="保存至相册可以分享到朋友圈";
-        $config['share_btn_switch']=$applet_check_switch;
+        $config['share_tips'] = "保存至相册可以分享到朋友圈";
+        $config['share_btn_switch'] = $applet_check_switch;
         $returndata = array(
             'config' => $config,
         );
@@ -258,7 +259,7 @@ class Home extends Applet
         $bg_img = $config['goods_poster_bg'];
         $result = create_goods_poster($goodsInfo['id'], $pdata['vip_id'], $bg_img, $imgInfo, $textInfo);
 
-        $poster_img =imgurlToAbsolute($result);
+        $poster_img = imgurlToAbsolute($result);
         $returndata = array(
             'poster_img' => $poster_img,
         );
@@ -300,7 +301,19 @@ class Home extends Applet
         $GoodsLogic = new GoodsLogic();
         $pdata = input('post.');
 
+        //获取代理信息
+        $AgentLogic = new \app\common\logic\AgentLogic();
+        $agent =$AgentLogic->getAgentInfo($pdata['vip_id']);
+
         $goodsInfo = $GoodsLogic->getGoodsInfo($pdata['goods_id']);
+
+        if(empty($agent)==false&&$goodsInfo['agent_less']){
+            $agentLess = serializeMysql($goodsInfo['agent_less'],1);//代理优惠价格
+            $goodsInfo['is_agent']=1;
+            $goodsInfo['price']=bcsub($goodsInfo['price'],$agentLess[$agent['level_id']],2);
+        }else{
+            $goodsInfo['is_agent']=0;
+        }
         //规格
         $filter_spec = $GoodsLogic->get_spec($pdata['goods_id']);
         foreach ($filter_spec as $key => $spec) {
@@ -317,8 +330,8 @@ class Home extends Applet
         $goods_spec_price = db(\tname::goods_spec_price)
             ->where("goods_id", $pdata['goods_id'])
             ->column("key,key_name,spec_img,price,store_count,item_id");
-        foreach ($goods_spec_price as &$val){
-            $val['spec_img']=$val['spec_img']?imgurlToAbsolute($val['spec_img']):'';
+        foreach ($goods_spec_price as &$val) {
+            $val['spec_img'] = $val['spec_img'] ? imgurlToAbsolute($val['spec_img']) : '';
         }
 
         //收藏人数
@@ -350,11 +363,9 @@ class Home extends Applet
         //差评
         $comment[3] = db(\tname::mall_comment)->where(array('product_id' => $pdata['goods_id'], 'is_show' => 1, 'star' => ['lt', 3]))->count();
 
-
-        $config['share_tips']="保存至相册可以分享到朋友圈";
+        $config['share_tips'] = "保存至相册可以分享到朋友圈";
         $applet_check_switch = tpCache('base.applet_check_switch');
-        $config['share_btn_switch']=$applet_check_switch;
-
+        $config['share_btn_switch'] = $applet_check_switch;
         $goodsInfo['description'] = str_replace("<img ", "<img class='img_w' ", $goodsInfo['description']);
 
 
@@ -434,18 +445,21 @@ class Home extends Applet
         $cart_ids = $pdata['cart_ids'];
         $vip_id = $pdata['vip_id'];
         $vip_ids = $pdata['vip_ids'];
-//        dump($pdata);
 
+        //获取代理信息
+        $AgentLogic = new \app\common\logic\AgentLogic();
+        $agent =$AgentLogic->getAgentInfo($pdata['vip_id']);
 
         $cartLogic = new \app\common\logic\CartLogic();
         if ($action == 'buy_now') {
-            $result = $cartLogic->buy_now($goods_id, $item_id, $buy_num);
+            $result = $cartLogic->buy_now($goods_id, $item_id, $buy_num,'applet',$agent);
         } else {
-            $result = $cartLogic->buy_cart($vip_id);
+            $result = $cartLogic->buy_cart($vip_id,'applet',$agent);
         }
         if ($result['status'] == !1) {
             return json(ajaxFalse($result['msg']));
         }
+
 
         $cartList = $result['cartList'];
         $total_count = $result['total_count'];
@@ -453,14 +467,15 @@ class Home extends Applet
         //获取我的优惠券
         $couponLogic = new \app\common\logic\CouponLogic();
         $couponList = $couponLogic->getMyCoupon($vip_id, 'free', $status = 0, $limit = $total_count['goods_price'], $sort = 'money', $asc = 'desc', true);
-        if ($couponList) {
-            $not_coupon = array(
-                'id' => 0,
-                'name' => "不使用优惠券",
-                'money' => 0.00,
-            );
-            array_unshift($couponList, $not_coupon);
+        foreach ($couponList as &$coupon){
+            $coupon['name'] =$coupon['name']."(满{$coupon['limit']}减{$coupon['money']})";
         }
+        $not_coupon = array(
+            'id' => 0,
+            'name' => "不使用优惠券",
+            'money' => 0.00,
+        );
+        array_unshift($couponList, $not_coupon);
 
         //获取我的地址
         $AddressLogic = new \app\common\logic\AddressLogic();
@@ -544,13 +559,13 @@ class Home extends Applet
         $pdata = input('post.');
         $pdata['type'] = 'free';
         $funLogic = new \app\common\logic\CouponLogic();
-        $list = $funLogic->getCouponList($pdata['type'], $pdata['sort'], $pdata['asc'],$pdata['page']);
-        $mycoupon = db(\tname::coupon_mycoupon)->where(array('vip_id'=>$pdata['vip_id']))->column('coupon_id');
-        foreach ($list as &$val){
-            if(!empty($mycoupon)&&in_array($val['id'],$mycoupon)){
-                $val['has']=1;
-            }else{
-                $val['has']=0;
+        $list = $funLogic->getCouponList($pdata['type'], $pdata['sort'], $pdata['asc'], $pdata['page']);
+        $mycoupon = db(\tname::coupon_mycoupon)->where(array('vip_id' => $pdata['vip_id']))->column('coupon_id');
+        foreach ($list as &$val) {
+            if (!empty($mycoupon) && in_array($val['id'], $mycoupon)) {
+                $val['has'] = 1;
+            } else {
+                $val['has'] = 0;
             }
 
         }

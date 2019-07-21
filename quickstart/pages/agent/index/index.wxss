@@ -3,9 +3,9 @@
 .header {
   display: -webkit-flex;
   display: flex;
-    align-items: center;  /*纵轴方向上的对齐方式设置为居中*/
+  align-items: center; /*纵轴方向上的对齐方式设置为居中*/
   width: 100%;
-  padding: 60rpx 0  10%;
+  padding: 60rpx 0 10%;
   height: 182rpx;
   background: linear-gradient(to bottom, #e5308a, #943ef1);
 }
@@ -19,6 +19,7 @@
 .header .left image {
   width: 170rpx;
   height: 170rpx;
+  margin: 0;
   border: 2rpx solid #fff;
   border-radius: 50%;
   background: #999;
@@ -41,12 +42,18 @@
   line-height: 45rpx;
   padding: 5rpx 0;
 }
-.header .right .vip{
+
+.header .right .vip {
   padding: 20rpx 0;
-  display: flex
+  display: flex;
 }
-.not_vip text{
-  background: linear-gradient(to right,#FF6000,#E74193);
+
+.not_vip {
+  font-size: 25rpx;
+}
+
+.not_vip text {
+  background: linear-gradient(to right, #ff6000, #e74193);
   border-radius: 30rpx;
   padding: 0 10rpx;
   margin-left: 20rpx;
@@ -54,63 +61,71 @@
   line-height: 40rpx;
   height: 40rpx;
 }
-.vip_left{
+
+.vip_left {
   display: flex;
+  align-items: center;
   min-width: 130rpx;
   height: 35rpx;
-  background: linear-gradient(to right, #D8A653,#FFFBD3);
+  background: linear-gradient(to right, #E05B76, #EE79A4);
   border-radius: 20rpx;
-  color: #FFF;
-  justify-content:center;
+  color: #fff;
+  text-align: left;
 }
-.vip_left image{
-  margin: 0;
+
+.vip_left image {
+  margin: 2rpx 8rpx;
   width: 31rpx;
   height: 31rpx;
 }
-.vip_left text{
+
+.vip_left text {
   display: inline-block;
   line-height: 35rpx;
-  font-size: 20rpx
+  font-size: 20rpx;
 }
+
 /**进度*/
-.vip_r{
+
+.vip_r {
   padding: 0 0 0 20rpx;
 }
-.progress_box{
+
+.progress_box {
   width: 180rpx;
   height: 8rpx;
   border-radius: 8rpx;
   background: #000;
 }
-.progress_box .progress{
+
+.progress_box .progress {
   height: 8rpx;
   border-radius: 8rpx;
-  background: #fff;
-}
-.progress_num{
- font-size: 20rpx;
-}
-.progress_num text{
-  background: linear-gradient(to right,#D8A653,#FFFBD3);
-  border-radius: 30rpx;
-  padding: 1rpx 10rpx; 
+  background: #DC6731;
 }
 
+.progress_num {
+  font-size: 20rpx;
+}
+
+.progress_num text {
+  background: linear-gradient(to right, #E05B76, #EE79A4);
+  border-radius: 30rpx;
+  padding: 1rpx 10rpx;
+}
 
 .money {
   display: -webkit-flex;
   display: flex;
   width: 100%;
-  height: 250rpx;
 }
 
 .money .row {
   width: 100%;
-  height: 200rpx;
+  height: 185rpx;
   text-align: center;
   color: #333;
-  padding: 60rpx 0 0;
+  padding: 50rpx 0 0;
   border-bottom: 3rpx solid #d6d6d6;
 }
 
@@ -131,6 +146,7 @@
 }
 
 .money .row .text {
+  display: block;
   line-height: 45rpx;
   font-size: 32rpx;
   padding: 6rpx 0 25rpx;
@@ -150,7 +166,8 @@
 
 .desc {
   width: 96%;
-  margin: auto;
+  margin: 0 auto;
+  padding: 0 0 20rpx;
 }
 
 rich-text .img_w {
@@ -158,4 +175,238 @@ rich-text .img_w {
   height: auto;
   vertical-align: bottom||top||text-bottom;
   display: block;
+}
+
+/**浮层**/
+
+.baibga {
+  width: 90%;
+  position: fixed;
+  left: 5%;
+  top: 15%;
+  background: #fff;
+  max-height: 60%;
+  overflow: hidden;
+  z-index: 20000;
+  border-radius: 5px;
+}
+
+.login-title {
+  background: #e5308a;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  font-size: var(--fontSize);
+  color: #fff;
+  position: relative;
+}
+
+.login-title image {
+  position: absolute;
+  right: 3%;
+  top: 25rpx;
+  width: 30rpx;
+  height: 23rpx;
+}
+
+.box {
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  border-bottom: 1px solid #f8f8f8;
+}
+
+.boxa {
+  width: 30%;
+  margin: 0 10%;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: #4c4c4c;
+  font-size: 28rpx;
+  text-align: center;
+  overflow: hidden;
+  float: left;
+}
+
+.boxsel {
+  border-bottom: 2px solid #e5308a;
+}
+
+.login-leftright {
+  width: 80%;
+  margin: 0 auto;
+  height: 100rpx;
+  overflow: hidden;
+  border-bottom: 1px solid #f8f8f8;
+  position: relative;
+}
+
+.login-left {
+  width: 20%;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 28rpx;
+  color: #4c4c4c;
+  overflow: hidden;
+  float: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.login-right {
+  max-width: 80%;
+  min-width: 80%;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 28rpx;
+  color: #4c4c4c;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  float: left;
+}
+
+.eye {
+  position: absolute;
+  right: 0;
+  top: 28rpx;
+  width: 45rpx;
+  height: 34rpx;
+}
+
+.set-leftright {
+  width: 80%;
+  margin: 0 auto;
+  height: 100rpx;
+  overflow: hidden;
+}
+
+.set-left {
+  width: 50%;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  color: #4c4c4c;
+  overflow: hidden;
+  float: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.set-right {
+  width: 50%;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  color: #4c4c4c;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  float: left;
+  text-align: right;
+}
+
+.set-left image {
+  width: 19rpx;
+  height: 30rpx;
+  margin-top: -1%;
+  vertical-align: middle;
+  margin-right: 3%;
+}
+
+.set-right image {
+  width: 16rpx;
+  height: 27rpx;
+  margin-top: -2%;
+  vertical-align: middle;
+  margin-right: 3%;
+}
+
+.btnbtn {
+  overflow: hidden;
+  background: #eee;
+  width: 50%;
+  margin: 0 auto;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 30rpx;
+  text-align: center;
+  color: #999;
+  border-radius: 5px;
+}
+
+.btnbtna {
+  overflow: hidden;
+  background: var(--pinkcolor);
+  width: 50%;
+  margin: 40rpx auto 0;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 30rpx;
+  text-align: center;
+  color: #fff;
+  border-radius: 1px;
+}
+
+.phone-bg {
+  background: #f8f8f8;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+
+.box1 {
+  width: 80%;
+  margin: 0 auto;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  color: #4c4c4c;
+  border: 1px solid #f2f2f2;
+  border-radius: 3px;
+  margin-bottom: 15rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.box1 input {
+  min-width: 100%;
+  max-width: 100%;
+  display: block;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  color: #4c4c4c;
+  padding: 0 0;
+  padding-left: 3%;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.box1 input.code-yan {
+  min-width: 62%;
+  max-width: 62%;
+  float: left;
+  display: block;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  color: #4c4c4c;
+  padding: 0 0;
+  padding-left: 3%;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.box1 .get {
+  width: 32%;
+  margin-left: 3%;
+  float: left;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  text-align: center;
+  color: #e5308a;
+  background: #fff;
+  border: 1px solid var(--pinkcolor);
+  box-sizing: border-box;
 }

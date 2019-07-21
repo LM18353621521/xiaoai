@@ -77,6 +77,12 @@
         <view class="tabbd">分销中心</view>
       </navigator>
     </view>
+        <view class="tabd">
+      <navigator url='/pages/agent/index/index' hover-class='none'>
+        <image class="tabad" src="../../../images/icon11.png" />
+        <view class="tabbd">代理中心</view>
+      </navigator>
+    </view>
     <view class="tabd">
       <button open-type='contact' hover-class='none'>
         <image class="tabad" src="../../../images/icon10.png" />

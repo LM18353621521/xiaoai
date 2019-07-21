@@ -133,7 +133,11 @@
 
       <view class="len">
         <view class="lenleft">所在地区</view>
-        <input class="lenright" placeholder="选择" disabled='true' value="{{province}}-{{city}}-{{county}}" focus="{{focus}}" bindtap="open" />
+
+        <input wx-if="{{province_code>0}}" class="lenright" placeholder="请选择区域" disabled='true' value="{{province}}-{{city}}-{{county}}" focus="{{focus}}" bindtap="open" />
+        <input wx-if="{{province_code==''}}" class="lenright" placeholder="请选择区域" disabled='true' value="" focus="{{focus}}" bindtap="open" />
+
+
       </view>
       <view class="len">
         <view class="lenleft">详细地址</view>

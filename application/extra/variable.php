@@ -40,4 +40,9 @@ define('DATA_CHANGE_PARAM',
         'operate_field' => 'integral',
         'operate_where' => 'id',
     ],
+    'agentMoney' => [
+        'operate_table' => \tname::agent_user,
+        'operate_field' => 'money',
+        'operate_where' => 'id',
+    ],
 ]);

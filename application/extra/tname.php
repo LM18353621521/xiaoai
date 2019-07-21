@@ -164,5 +164,9 @@ class tname
     const agent_user="agent_user";
     //代理商等级
     const agent_level="agent_level";
+    //申请列表
+    const agent_apply="agent_apply";
+    //申请列表
+    const agent_recharge="agent_recharge";
 	
 }

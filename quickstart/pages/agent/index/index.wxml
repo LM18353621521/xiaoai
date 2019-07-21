@@ -1,57 +1,85 @@
 <!--pages/agent/index/index.wxml-->
 <view class='header'>
   <view class='left'>
-    <image src='../../../images/logo.jpg'></image>
+    <image src='{{user.headimgurl}}'></image>
   </view>
   <view class='right'>
     <view class='row name'>
-      <text>不吃鱼的猫</text>
-      <text class='edit'>修改个人资料</text>
+      <text>{{user.nickname}}</text>
+      <text class='edit' wx-if="{{agent._status==1}}" bindtap='navigator_do' data-url='/pages/agent/userinfo/userinfo' >修改个人资料</text>
     </view>
-    <view class='row vip' wx-if="{{agent_status==1}}">
+    <view class='row vip' wx-if="{{agent._status==1}}">
       <view class='vip_left'>
         <image src='../../../images/zuanshi.png'></image>
-        <text>金牌VIP</text>
+        <text>{{agent.level_name}}</text>
       </view>
       <view class='vip_r'>
         <view class='progress_box'>
-          <view class='progress' style='width:50%;'></view>
+          <view class='progress' style='width:{{agent.percent}}%;'></view>
         </view>
         <view class='progress_num'>
-          100/5000
-          <text>钻石VIP</text>
+          {{agent.total_money*1}}/{{agent.next_level_money*1}}
+          <text>{{agent.next_level_name}}</text>
         </view>
       </view>
     </view>
-    <view class='row vip not_vip' wx-if="{{agent_status==0}}">
-      您还不是VIP代理 <text>立即申请</text>
+    <view class='row vip not_vip' wx-if="{{agent._status==0}}">
+      您还不是VIP代理
+      <text bindtap='apply_do'>立即申请</text>
+    </view>
+    <view class='row vip not_vip' wx-if="{{agent._status==2}}">
+      您已提交VIP代理申请，正在审核中...
     </view>
     <view class='row'>
-      <text> 130****0000</text>
+      <text>{{user._mobile}}</text>
     </view>
   </view>
 </view>
-<view class='money'>
+<view class='money' wx-if="{{agent._status==1}}">
   <view class='row left'>
     <view class='num'>
-      <text>1000.00</text>
-      <button>充值</button>
+      <text>{{agent.money}}</text>
+      <button bindtap='navigator_do' data-url='/pages/agent/recharge/recharge'>充值</button>
     </view>
     <view class='text'>当前余额</view>
     <view class='see-list'>
-      <text>余额详情</text>
+      <text bindtap='navigator_do' data-url='/pages/agent/balance_log/balance_log'>余额详情</text>
     </view>
   </view>
   <view class='row right'>
     <view class='num'>
-      <text>1000.00</text>
+      <text>{{agent.total_money}}</text>
     </view>
     <view class='text'>累计充值</view>
     <view class='see-list'>
-      <text>充值记录</text>
+      <text bindtap='navigator_do' data-url='/pages/agent/recharge_log/recharge_log'>充值记录</text>
     </view>
   </view>
 </view>
 <view class="desc">
-  <rich-text nodes="{{desc}}" bindtap="tap"></rich-text>
+  <rich-text nodes="{{article.content}}"></rich-text>
+</view>
+
+
+<!-- 绑定浮层 -->
+<view class='fuceng {{f4==0?"hidden":""}}'>
+  <view class="fuer" bindtap="hidef4"></view>
+  <view class='baibga'>
+    <view class='login-title'>绑定手机
+      <image bindtap="hidef4" src="../../../images/my-close.jpg" />
+    </view>
+    <view class="formbox">
+      <view class="form1 phone-bg">
+        <view class="box1">
+          <input type="number" value='{{mobile}}' bindinput='input_mobile' maxlength='11' placeholder="请输入您的手机号" placeholder-style="color:#ccc;font-size:26rpx;" />
+        </view>
+        <view class="box1">
+          <input class='code-yan' value='{{code}}' type="number" bindinput='input_code' maxlength='6' placeholder="请输入验证码" placeholder-style="color:#ccc;font-size:26rpx;" />
+          <view class="get {{code_btn_show==1?'':'hidden'}}" data-type='1' bindtap='getcode'>发送验证码</view>
+          <view class="get {{code_btn_show==0?'':'hidden'}}">{{second}}s</view>
+        </view>
+        <view class="btnbtna" bindtap="bind_mobile_do">绑定</view>
+      </view>
+    </view>
+  </view>
 </view>

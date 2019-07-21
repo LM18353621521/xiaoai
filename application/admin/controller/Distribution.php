@@ -131,7 +131,8 @@ class Distribution extends Member
         if (request()->isPost()) {
             $search = input('post.');
             $where = array(
-                'a.uid' => UID
+                'a.uid' => UID,
+                'a.classify'=>'income'
             );
             if ($search['stime']&&$search['etime']) {
                 $where['a.create_time'] = array('between time', [$search['stime'], $search['etime']]);

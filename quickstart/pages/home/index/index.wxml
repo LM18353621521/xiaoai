@@ -61,7 +61,7 @@
         <view class="ight1w">
           <view class="ight12w">{{item.name}}</view>
           <view class="ightw">
-            <view class="ightw1">￥{{item.price}}
+            <view class="ightw1">¥{{item.price}}
               <text>{{item.sales}}人付款</text>
             </view>
           </view>
@@ -79,7 +79,7 @@
     <navigator url='/pages/user/coupon/coupon' hover-class='none'>
       <image class='coupon-bg' src="../../../images/coupon.png" />
       <view class="a11">
-        <view class="a01">￥{{has_coupon.money}}</view>
+        <view class="a01">¥{{has_coupon.money}}</view>
         <view class="a02">使用期限</view>
         <view class="a02">{{has_coupon.use_stime}}-{{has_coupon.use_etime}}</view>
       </view>

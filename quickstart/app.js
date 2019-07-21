@@ -6,7 +6,6 @@ App({
     ol_index: 0,
     cartList: [],
   },
-
   onLaunch: function(options) {
     if (typeof(options.query.share_id) != "undefined") {
       wx.setStorageSync("share_id", options.query.share_id);
@@ -167,10 +166,6 @@ App({
       callback(data);
     }
   },
-
-
-
-
   //操作处理
   operation: function(url, data, callback) {
     console.log(url);

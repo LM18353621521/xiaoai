@@ -1,92 +1,75 @@
-<!--pages/agent/index/index.wxml-->
 <view class='header'>
   <view class='left'>
-    <image src='../../../images/logo.jpg'></image>
+    <image src='{{user.headimgurl}}'></image>
   </view>
   <view class='right'>
     <view class='row name'>
-      <text>不吃鱼的猫</text>
-      <text class='edit'>修改个人资料</text>
+      <text>{{user.nickname}}</text>
     </view>
-    <view class='row vip' wx-if="{{agent_status==1}}">
+    <view class='row vip' wx-if="{{agent._status==1}}">
       <view class='vip_left'>
         <image src='../../../images/zuanshi.png'></image>
-        <text>金牌VIP</text>
+        <text>{{agent.level_name}}</text>
       </view>
       <view class='vip_r'>
         <view class='progress_box'>
-          <view class='progress' style='width:50%;'></view>
+          <view class='progress' style='width:{{agent.percent}}%;'></view>
         </view>
         <view class='progress_num'>
-          100/5000
-          <text>钻石VIP</text>
+          {{agent.total_money*1}}/{{agent.next_level_money*1}}
+          <text>{{agent.next_level_name}}</text>
         </view>
       </view>
     </view>
-    <view class='row vip not_vip' wx-if="{{agent_status==0}}">
+    <view class='row vip not_vip' wx-if="{{agent._status==0}}">
       您还不是VIP代理
       <text>立即申请</text>
     </view>
     <view class='row'>
-      <text> 130****0000</text>
+      <text>{{agent._mobile}}</text>
     </view>
   </view>
 </view>
 <view class='money'>
   <view class='row left'>
     <view class='num'>
-      <text>1000.00</text>
+      <text>{{agent.money}}</text>
     </view>
     <view class='text'>当前余额</view>
     <view class='see-list'>
-      <text>余额详情</text>
+      <text bindtap='navigator_do' data-url='/pages/agent/balance_log/balance_log'>余额详情</text>
     </view>
   </view>
   <view class='row right'>
     <view class='num'>
-      <text>1000.00</text>
+      <text>{{agent.total_money}}</text>
     </view>
     <view class='text'>累计充值</view>
     <view class='see-list'>
-      <text>充值记录</text>
+      <text bindtap='navigator_do' data-url='/pages/agent/recharge_log/recharge_log'>充值记录</text>
     </view>
   </view>
 </view>
 <view class='recharge'>
   <view class='title'>充值金额</view>
   <view class='item'>
-    <view class='sub-item money-sel'>1000</view>
-    <view class='sub-item'>1000</view>
-    <view class='sub-item'>1000</view>
-    <view class='sub-item'>1000</view>
-    <view class='sub-item'>1000</view>
-    <view class='sub-item'>1000</view>
+    <block wx:for="{{moneyList}}">
+      <view bindtap='selectMoney' data-mindex='{{index}}' data-money='{{item.money}}' class="sub-item {{index==mIndex?'money-sel':''}}">充值{{item.money}}元</view>
+    </block>
   </view>
   <view class='input-money'>
-    <input name="money" value='{{money}}' />
+    <input bindinput='setMoney' type='number'  maxlength='5' data-mindex='{{index}}' name="money" value='{{money}}' />
     <label>元</label>
   </view>
-  <view class='pay'>
-    <view class='pay-tip'>请选择支付方式:</view>
-    <view class='pay-item'>
-      <image class='icon-pay' src='../../../images/zuanshi.png'></image>
-      <text>微信</text>
-      <image class='icon-sel' src='../../../images/zuanshi.png'></image>
-    </view>
-    <view class='pay-item'>
-      <image class='icon-pay' src='../../../images/zuanshi.png'></image>
-      <text>微信</text>
-      <image class='icon-sel' src='../../../images/zuanshi.png'> </image>
-    </view>
-  </view>
   <view class='pay-btn'>
-    <button class='pay-cancel'>取消充值</button>
-    <button class='pay-sure'>确定充值</button>
+  
+    <button class='pay-cancel' bindtap='navigateBack' date-delta='1'>取消充值</button>
+    <button class='pay-sure' bindtap='surePay'>确定充值</button>
   </view>
   <view class='pay-desc'>
-    <view class='title'>余额说明</view>
+    <view class='title'>余额说明：</view>
     <view class="desc">
-      <rich-text nodes="{{desc}}" bindtap="tap"></rich-text>
+      <rich-text nodes="{{article.content}}"></rich-text>
     </view>
   </view>
 </view>

@@ -20,7 +20,7 @@ class Special extends Controller
         if($params['trade_status']=='TRADE_SUCCESS'){
             $order = db(\tname::mall_order)->where('order_number', $params['out_trade_no'])->find();
             $OrderLogic = new OrderLogic();
-            $OrderLogic->order_pay_sucsess($order,$params['trade_no']);
+            $OrderLogic->order_pay_sucsess($order,'alipay',$params['trade_no']);
         }
         //$data['out_trade_no'] = '201711142845';
     }
@@ -57,7 +57,7 @@ class Special extends Controller
         //$data['out_trade_no'] = '201711142845';
         $order = db(\tname::mall_order)->where('order_number', $data['out_trade_no'])->find();
         $OrderLogic = new OrderLogic();
-        $OrderLogic->order_pay_sucsess($order,$data['transaction_id']);
+        $OrderLogic->order_pay_sucsess($order,'wxpay',$data['transaction_id']);
     }
     
     /**

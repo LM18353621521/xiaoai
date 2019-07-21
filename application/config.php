@@ -250,6 +250,7 @@ return [
     'pay_type' =>[
         'wxpay'=>'微信支付',
         'alipay'=>'支付宝支付',
-        'income' =>'佣金支付'
+        'income' =>'佣金支付',
+        'balance' =>'余额支付'
     ],
 ];

@@ -1,0 +1,137 @@
+{extend name="public/base"/ }
+{block name="body"}
+<body>
+<div class="topbox" style="display: flex;justify-content: center;align-items: center;">
+    <div style="width: 100%;overflow-y: hidden;">
+        <img class="bg" src="__STATIC__/mobile/common/images/paybg.png" alt="">
+        <div style="overflow: hidden;position: relative;z-index: 1;">
+            <img class="userimg" src="{$user.headimgurl|default=''}" alt="">
+            <div class="usertext">
+                <div class="userson" style="margin-bottom: 5px;">
+                    <span class="username">{$user.nickname}</span>
+                    {if condition="$agent._status eq 1"}
+                    <a class="gochange" href="{:url('Agent/userinfo')}">修改个人资料</a>
+                    {/if}
+                </div>
+                {if condition="$agent._status eq 0"}
+                <div class="userson">
+                    <span class="username">您还不是代理</span>
+                    <a class="gobutton apply_do">立即申请</a>
+                </div>
+                {elseif condition="$agent._status eq 1"}
+                <div class="userson">
+                    <span class="viplevel">{$agent.level_name}</span>
+                    <div class="levelbox">
+                        <div class="tiao">
+                            <div class="tiao2"></div>
+                        </div>
+                        <span style="color: #fff;font-size: 11px;float: left;height: 16px;line-height: 14px;display: inline-block;">{$agent.total_money*1}/{$agent.next_level_money*1}</span>
+                        <span class="level">{$agent.next_level_name}</span>
+                    </div>
+                </div>
+                {elseif condition="$agent._status eq 2"}
+                <div class="userson">
+                    <span class="username">您已提交VIP代理申请，正在审核中...</span>
+                </div>
+                {/if}
+                <div class="userson" style="margin-bottom: 0;">
+                    <span class="username" style="font-size: 13px;">{$user._mobile}</span>
+                    <!--<a class="gobutton" href="">更换号码</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mbox">
+    <div class="m">
+        <div class="mtit">
+            <span class="msp">{$agent.money}</span>
+        </div>
+        <div class="mtit">当前余额(元)</div>
+        <a class="goother" href="{:url('Agent/balance_log')}">余额详情</a>
+    </div>
+    <div class="m">
+        <div class="mtit">
+            <span class="msp">{$agent.total_money}</span>
+        </div>
+        <div class="mtit">累计充值(元)</div>
+        <a class="goother" href="{:url('Agent/recharge_log')}">充值记录</a>
+    </div>
+</div>
+
+<div class="paybox">
+    <p class="paytit">充值金额</p>
+
+    <form id="data-form">
+
+    <div class="paylist">
+        {foreach name="moneyList" item="vo"}
+        <div class="payson" data-money="{$vo.money}">充值{$vo.money}元</div>
+        {/foreach}
+    </div>
+    <input class="otherpay" type="number" name="money" value="{$moneyList[0]['money']}" placeholder="请输入金额" notnull notice="请选择充值金额">元
+    <div class="payfunction">
+        <input type="hidden" name="pay_type" value="alipay" notnull notice="请选择支付方式">
+        <span class="pftit">支付方式：</span>
+        <!--<span class="cfun "><img class="littleimg" src="__STATIC__/mobile/common/images/wx.png" alt="">微信<img class="cstate"src="__STATIC__/mobile/common/images/pay-yes.png"  alt=""></span>-->
+        <span class="cfun cfunx" data-pay_type="alipay"><img class="littleimg" src="__STATIC__/mobile/common/images/zfb.png" alt="">支付宝<img class="cstate" src="__STATIC__/mobile/common/images/pay-yes.png"alt=""></span>
+    </div>
+
+    <a class="goback" href="javascript:history.go(-1);">取消充值</a>
+    <button class="yespay">确定充值</button>
+    </form>
+    <p style="font-size: 14px;float: left;width: 100%;">余额说明</p>
+    <!-- 富文本 -->
+    <div class="fu">
+        {$article.content}
+    </div>
+</div>
+<input type="hidden" id="do_action" value="{:url('Agent/orderadd')}">
+
+<script>
+    $(document).ready(function () {
+        agent_obj.recharge();
+    });
+    $(function () {
+        // 进度条
+        function level() {
+            // 总值
+            var levelall = 5000;
+            // 实际值
+            var levelother = 2300;
+            var allwidth = $('.tiao').width();
+            var bi = allwidth - (levelother / levelall * allwidth);
+            $('.tiao2').css('left', bi * (-1) + 'px');
+            $('.tiao2').css('top', 0 + 'px');
+        }
+
+        level();
+
+        //选充值数额
+        function choosepay() {
+            $('.payson').eq(0).addClass('paysonx')
+            $('.payson').on('click', function () {
+                var money =$(this).data('money');
+                $('input[name=money]').val(money);
+                $('.payson').removeClass('paysonx');
+                $(this).addClass('paysonx');
+            })
+        }
+        choosepay();
+
+        //选支付方式
+        function choosefunction() {
+            $('.payson').eq(0).addClass('paysonx')
+            $('.cfun').on('click', function () {
+                $('.cfun').removeClass('cfunx');
+                $(this).addClass('cfunx');
+                $('.cstate').attr('src', '__STATIC__/mobile/common/images/pay-no.png');
+                $(this).find('.cstate').attr('src', '__STATIC__/mobile/common/images/pay-yes.png');
+            })
+        }
+        choosefunction();
+    })
+</script>
+
+{/block}

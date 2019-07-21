@@ -20,7 +20,12 @@
 <script type="text/javascript" src="__STATIC__/common/js/larea/LArea.js"></script>
 <!-- 省市区插件 -->
 <script type="text/javascript" src="__STATIC__/common/js/jqweui/city-picker.js"></script>
-
+<script type="text/javascript" src="__STATIC__/mobile/common/js/fastclick.js"></script>
+<script>
+    $(function() {
+        FastClick.attach(document.body);
+    });
+</script>
 <body>
 <form id="data-form">
     <div class="div10">
@@ -48,7 +53,6 @@
     <div class="div10">
         <input type="text"  name="address" value="{$data.address}" class="addr" placeholder="详细地址：如门牌号、小区等" notnull notice="请输入您的详细地址">
     </div>
-
      <div class="title">
         <div class="title11">设为默认地址</div>
          <input type="hidden" name="is_default" value="{$data.is_default}">

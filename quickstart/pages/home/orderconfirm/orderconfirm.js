@@ -48,7 +48,7 @@ Page({
     pay_money: '0.00', //实付
 
     //优惠券
-    coupon_sel_name: "",
+    coupon_sel_name: "选择优惠券",
     coupon_id: 0,
     coupon_money: '0.00',
 
@@ -63,8 +63,12 @@ Page({
       },
       {
         pay_type: "income",
-        icon: "",
+        icon: "../../../images/income.png",
         name: "佣金支付"
+      },{
+        pay_type:'balance',
+        icon:'../../../images/balance.png',
+        name:"余额支付",
       }
     ],
     condition: false,
@@ -179,7 +183,7 @@ Page({
     app.operation('Order/orderadd', data, function(data) {      
       var order = data.data;
       if (data.ret == 1) {
-        if (order.pay_type == "income") {
+        if (order.pay_type == "income"||order.pay_type=='balance') {
           wx.showToast({
             title: data.msg,
             success: function(e) {
@@ -275,11 +279,11 @@ Page({
     })
   },
 
-
   /**
    * 保存地址
    */
   address_save: function(e) {
+    console.log(e);
     var that = this;
     var id = that.data.address_id;
     var data = {
@@ -356,49 +360,6 @@ Page({
         is_default: 0
       })
     }
-  },
-
-  bindMultiPickerColumnChange: function(e) {
-    var that = this;
-    var region = this.data.region;
-    var column = e.detail.column;
-    var value = e.detail.value;
-    var sureIndex = this.data.sureIndex;
-    switch (column) {
-      case 0:
-        var data = {
-          parent_id: region[0][value]['id'],
-        };
-        app.getData('Address/getNextRegion', that, data, function(data) {
-          region[1] = data.data.list;
-          region[2] = data.data.list_next;
-          sureIndex[1] = 0;
-          sureIndex[2] = 0;
-          that.setData({
-            region: region,
-            sureIndex: sureIndex
-          })
-        });
-        break;
-      case 1:
-        var data = {
-          parent_id: region[1][value]['id'],
-        };
-        app.getData('Address/getNextRegion', that, data, function(data) {
-          region[2] = data.data.list;
-          sureIndex[2] = 0;
-          that.setData({
-            region: region,
-            sureIndex: sureIndex
-          })
-        });
-        break;
-    }
-  },
-  bindMultiPickerChange: function(e) {
-    this.setData({
-      multiIndex: e.detail.value
-    })
   },
   startplace: function(e) {
     this.setData({
@@ -577,9 +538,9 @@ Page({
   },
 
   onLoad: function(options) {
-    // options.action = 'buy_cart';
-    // options.goods_id = 18;
-    // options.item_id = 381;
+    // options.action = 'buy_now';
+    // options.goods_id = 72;
+    // options.item_id = 0;
     // options.buy_num = 2;
     this.setData(options);
   },

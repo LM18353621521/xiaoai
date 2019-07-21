@@ -1,0 +1,29 @@
+{extend name="public/base"/ }
+{block name="body"}
+<body>
+
+<div class="tit">
+    充值记录
+    <a class="goback" href="javascript:history.go(-1);">< 返回</a>
+</div>
+
+<div class="listbox lists">
+    <div class="hidden">
+        <input type="hidden" name="page" value="1"/>
+        <input type="hidden" name="url" value="{:url('Agent/recharge_log')}"/>
+    </div>
+    <div class="content">
+
+    </div>
+    <form id="form_ajax">
+        <input type="hidden" name="keyword" value=""/>
+        <input type="hidden" name="sort" value="create_time"/>
+        <input type="hidden" name="asc" value="asc"/>
+    </form>
+    {assign name="nodata" value="nothing_img"}
+    {include file="public/nodata"/ text="亲，你还没有相关数据~"}
+</div>
+<script type="text/javascript">
+    $(document).ready(agent_obj.recharge_log);
+</script>
+{/block}

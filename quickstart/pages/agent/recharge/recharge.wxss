@@ -61,16 +61,16 @@
 
 .vip_left {
   display: flex;
+  align-items: center;
   min-width: 130rpx;
   height: 35rpx;
-  background: linear-gradient(to right, #d8a653, #fffbd3);
+  background: linear-gradient(to right, #E05B76, #EE79A4);
   border-radius: 20rpx;
   color: #fff;
-  justify-content: center;
 }
 
 .vip_left image {
-  margin: 0;
+  margin: 2rpx 8rpx;
   width: 31rpx;
   height: 31rpx;
 }
@@ -97,7 +97,7 @@
 .progress_box .progress {
   height: 8rpx;
   border-radius: 8rpx;
-  background: #fff;
+  background: #DC6731;
 }
 
 .progress_num {
@@ -105,7 +105,7 @@
 }
 
 .progress_num text {
-  background: linear-gradient(to right, #d8a653, #fffbd3);
+  background: linear-gradient(to right, #E05B76, #EE79A4);
   border-radius: 30rpx;
   padding: 1rpx 10rpx;
 }
@@ -115,15 +115,14 @@
   display: flex;
   align-items: center;
   width: 100%;
-  height: 250rpx;
 }
 
 .money .row {
   width: 100%;
-  height: 180rpx;
+  height: 185rpx;
   text-align: center;
   color: #333;
-  padding: 60rpx 0 0;
+  padding: 50rpx 0 0;
   border-bottom: 3rpx solid #d6d6d6;
 }
 
@@ -207,6 +206,7 @@
 .recharge .input-money {
   display: flex;
   align-items: center;
+  color: #9e3de5;
 }
 
 .recharge .input-money input {
@@ -217,6 +217,7 @@
   border-radius: 8rpx;
   width: 80%;
   margin: 10rpx 1.5%;
+  padding: 1rpx 10rpx;
 }
 
 .recharge .input-money text {
@@ -268,6 +269,7 @@
   width: 100%;
   align-items: center;
   justify-content: space-between;
+  margin: 25rpx auto 0;
 }
 
 .pay-btn button {

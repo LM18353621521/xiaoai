@@ -1,0 +1,85 @@
+{extend name="public/base"/ }
+{block name="body"}
+<body>
+<div class="topbox" style="display: flex;justify-content: center;align-items: center;">
+    <div style="width: 100%;overflow-y: hidden;">
+        <img class="bg" src="__STATIC__/mobile/common/images/paybg.png" alt="">
+        <div style="overflow: hidden;position: relative;z-index: 1;">
+            <img class="userimg" src="{$user.headimgurl|default=''}" alt="">
+            <div class="usertext">
+                <div class="userson" style="margin-bottom: 5px;">
+                    <span class="username">{$user.nickname}</span>
+                    {if condition="$agent._status eq 1"}
+                    <a class="gochange" href="{:url('Agent/userinfo')}">修改个人资料</a>
+                    {/if}
+                </div>
+                {if condition="$agent._status eq 0"}
+                <div class="userson">
+                    <span class="username">您还不是代理</span>
+                    <a class="gobutton apply_do">立即申请</a>
+                </div>
+                {elseif condition="$agent._status eq 1"}
+                <div class="userson">
+                    <span class="viplevel">{$agent.level_name}</span>
+                    <div class="levelbox">
+                        <div class="tiao">
+                            <div class="tiao2"></div>
+                        </div>
+                        <span style="color: #fff;font-size: 11px;float: left;height: 16px;line-height: 14px;display: inline-block;">{$agent.total_money*1}/{$agent.next_level_money*1}</span>
+                        <span class="level">{$agent.next_level_name}</span>
+                    </div>
+                </div>
+                {elseif condition="$agent._status eq 2"}
+                <div class="userson">
+                    <span class="username">您已提交VIP代理申请，正在审核中...</span>
+                </div>
+                {/if}
+                <div class="userson" style="margin-bottom: 0;">
+                    <span class="username" style="font-size: 13px;">{$user._mobile}</span>
+                    <!--<a class="gobutton" href="">更换号码</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{if condition="$agent._status eq 1"}
+<div class="mbox">
+    <div class="m">
+        <div class="mtit">
+            <span class="msp">{$agent.money}</span>
+            <a class="pay" href="{:url('Agent/recharge')}">充值</a>
+        </div>
+        <div class="mtit">当前余额(元)</div>
+        <a class="goother" href="{:url('Agent/balance_log')}">余额详情</a>
+    </div>
+    <div class="m">
+        <div class="mtit">
+            <span class="msp">{$agent.total_money}</span>
+        </div>
+        <div class="mtit">累计充值(元)</div>
+        <a class="goother" href="{:url('Agent/recharge_log')}">充值记录</a>
+    </div>
+</div>
+{/if}
+<!-- 富文本 -->
+<div class="fu">
+    {$article.content}
+</div>
+
+<!--登录浮层   s-->
+{include file="public/login_layer"/}
+
+<script>
+    $(document).ready(function () {
+         mobile = "{$user.mobile}";
+        agent_obj.index();
+    });
+</script>
+<script>
+    $(function () {
+
+    })
+</script>
+
+{/block}
