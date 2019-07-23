@@ -19,6 +19,7 @@ class Agent extends Applet
         $user['_mobile']=hidtel($user['mobile']);
 
         $config = tpCache('base');
+        $config['agent_head_bg'] = imgurlToAbsolute($config['agent_head_bg']);
         $webConfig = tpCache('web');
         $config['logo'] = imgurlToAbsolute($webConfig['logo']);
         $config['slogen'] = $webConfig['slogen'];
@@ -120,12 +121,17 @@ class Agent extends Applet
             array('money' => 3000),
             array('money' => 5000),
         );
+
+        $config = tpCache('base');
+        $config['agent_head_bg'] = imgurlToAbsolute($config['agent_head_bg']);
+
         $ajaxdata = [
             'user' => $user,
             'agent' => $agent,
             'article' => $article,
             'money' => $moneyList[0]['money'],
             'moneyList' => $moneyList,
+            'config'=>$config,
         ];
         return json(ajaxSuccess($ajaxdata));
     }

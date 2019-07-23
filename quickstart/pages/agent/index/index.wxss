@@ -5,10 +5,19 @@
   display: flex;
   align-items: center; /*纵轴方向上的对齐方式设置为居中*/
   width: 100%;
-  padding: 60rpx 0 10%;
+  padding: 60rpx 0 30rpx;
   height: 182rpx;
-  background: linear-gradient(to bottom, #e5308a, #943ef1);
+  overflow: hidden;
 }
+.hd-bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height:272rpx;
+  z-index: -1;
+}
+
 
 .header .left {
   width: 28%;
@@ -133,16 +142,15 @@
   line-height: 45rpx;
   font-size: 32rpx;
 }
-
 .money .row .num button {
   display: inline-block;
-  line-height: 32rpx;
-  font-size: 32rpx;
-  background: #e5308a;
+  background:linear-gradient(to right,rgba(255,96,0,1),rgba(231,65,147,1));
   color: #fff;
   margin-left: 30rpx;
-  padding: 2rpx 15rpx;
-  border-radius: 10rpx;
+  padding: 2rpx 20rpx;
+  border-radius: 30rpx;
+  font-size: 22rpx;
+  line-height: 30rpx
 }
 
 .money .row .text {

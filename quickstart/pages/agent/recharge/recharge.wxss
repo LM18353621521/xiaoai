@@ -5,9 +5,16 @@
   display: flex;
   align-items: center; /*纵轴方向上的对齐方式设置为居中*/
   width: 100%;
-  padding: 60rpx 0 10%;
+  padding: 60rpx 0 30rpx;
   height: 182rpx;
-  background: linear-gradient(to bottom, #e5308a, #943ef1);
+}
+.hd-bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height:272rpx;
+  z-index: -1;
 }
 
 .header .left {

@@ -54,7 +54,7 @@
                                         <div class="col-lg-10 col-lg-offset-2 img">
                                             {if condition="$data.routine_qrcode"}
                                             <a href="{$data.routine_qrcode}" target="_blank">
-                                                <img src="{$data.routine_qrcode}">
+                                                <img  src="{$data.routine_qrcode}">
                                             </a>
                                             {/if}
                                         </div>
@@ -71,7 +71,7 @@
                                         <div class="col-lg-10 col-lg-offset-2 img">
                                             {if condition="$data.goods_poster_bg"}
                                             <a href="{$data.goods_poster_bg}" target="_blank">
-                                                <img src="{$data.goods_poster_bg}">
+                                                <img style="width: 350px;height: auto;" src="{$data.goods_poster_bg}">
                                             </a>
                                             {/if}
                                         </div>
@@ -81,15 +81,29 @@
                                         <label class="control-label col-lg-2">个人海报背景图</label>
                                         <div class="col-lg-10">
                                             <div id="picker4" class="webuploader-picker">选择文件</div>
-                                            <input type="hidden" name="user_poster_bg" value="{$data.user_poster_bg}"
-                                                   notnull
-                                                   placeholder="请上传个人海报背景图">
+                                            <input type="hidden" name="user_poster_bg" value="{$data.user_poster_bg}" notnull placeholder="请上传个人海报背景图">
                                         </div>
 
                                         <div class="col-lg-10 col-lg-offset-2 img">
                                             {if condition="$data.user_poster_bg"}
                                             <a href="{$data.user_poster_bg}" target="_blank">
-                                                <img src="{$data.user_poster_bg}">
+                                                <img style="width: 350px;height: auto;" src="{$data.user_poster_bg}">
+                                            </a>
+                                            {/if}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group one-img">
+                                        <label class="control-label col-lg-2">代理中心背景图</label>
+                                        <div class="col-lg-10">
+                                            <div id="picker6" class="webuploader-picker">选择文件</div>
+                                            <span class="help-block">* 建议尺寸750*300</span>
+                                            <input type="hidden" name="agent_head_bg" value="{$data.agent_head_bg}" notnull placeholder="请上传代理中心背景图">
+                                        </div>
+                                        <div class="col-lg-10 col-lg-offset-2 img">
+                                            {if condition="$data.agent_head_bg"}
+                                            <a href="{$data.agent_head_bg}" target="_blank">
+                                                <img style="width: 350px;height: auto;"  src="{$data.agent_head_bg}">
                                             </a>
                                             {/if}
                                         </div>
@@ -101,9 +115,7 @@
                                         <div class="col-lg-10">
                                             <div id="picker5" class="webuploader-picker">选择文件</div>
                                             <span class="help-block">* 建议尺寸750*1266</span>
-                                            <input type="hidden" name="agent_apply_bg" value="{$data.agent_apply_bg}"
-                                                   notnull
-                                                   placeholder="请上传个人海报背景图">
+                                            <input type="hidden" name="agent_apply_bg" value="{$data.agent_apply_bg}" notnull placeholder="请上传个人海报背景图">
                                         </div>
 
                                         <div class="col-lg-10 col-lg-offset-2 img">

@@ -247,6 +247,20 @@ class Api extends Controller
             session('codeinfo', $ajaxdata);
             return json(ajaxSuccess($ajaxdata, "验证码已发送至：" . $mobile . "，请注意查收"));
         }
+        if($type==7){
+            $code = createverifycode(6);
+            $content = "";
+            $result = sendSmsjh($mobile, $content, $code,$type);//发送短信
+            if ($result['error_code']) {
+                return json(ajaxFalse('验证码发送失败，请稍后重试'));
+            }
+            $ajaxdata = [
+                'check_mobile' => $mobile,
+                'check_code' => $code
+            ];
+            session('codeinfo', $ajaxdata);
+            return json(ajaxSuccess($ajaxdata, "验证码已发送至：" . $mobile . "，请注意查收"));
+        }
     }
 
     /**

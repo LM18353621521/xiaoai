@@ -7,6 +7,29 @@
         box-sizing: border-box;
         padding: 10vh 7vw;
     }
+    .weui-picker-modal{
+        height: 20.5rem;
+    }
+    .toolbar{
+        font-size: 1.7rem;
+    }
+    .toolbar .toolbar-inner {
+        height: 3.3rem;
+    }
+    .toolbar .picker-button {
+        line-height:3.3rem;
+        font-size: 1.7rem;
+    }
+    .toolbar .title{
+        line-height:3.3rem;
+        font-size: 1.7rem;
+    }
+    .weui-picker-modal .picker-modal-inner{
+        height: 16.6rem;
+    }
+    .weui-picker-modal .picker-items{
+        font-size: 1.5rem;
+    }
 </style>
 <body>
 <div class="inbox">
@@ -14,12 +37,12 @@
         <p class="tit">代理申请</p>
         <div style="padding: 0 3%;width: 84%;margin: 0 auto;overflow: hidden;margin-bottom: 10px;">
             <span class="stit">手机号码</span>
-            <input class="in" type="number" name="mobile" value="{$user.mobile}" placeholder="请输入手机号码" notnull notice="请输入收货人">
+            <input class="in" type="number" id="apply_mobile" name="mobile" value="{$user.mobile}" placeholder="请输入手机号码" notnull notice="请输入收货人">
         </div>
         <div style="padding: 0 3%;width: 84%;margin: 0 auto;overflow: hidden;margin-bottom: 10px;">
             <span class="stit">验证码</span>
-            <input class="in" style="width: calc(100% - 150px)" type="number" name="code" placeholder="请输入验证码" notnull notice="请输入验证码">
-            <span class="havenum">获取验证码</span>
+            <input class="in code_in"  type="number" name="code" placeholder="请输入验证码" notnull notice="请输入验证码">
+            <span class="havenum"  id="get_apply_code">获取验证码</span>
         </div>
         <div style="padding: 0 3%;width: 84%;margin: 0 auto;overflow: hidden;margin-bottom: 10px;">
             <span class="stit">姓名</span>
@@ -31,10 +54,10 @@
         </div>
         <div style="padding: 0 3%;width: 84%;margin: 0 auto;overflow: hidden;margin-bottom: 10px;">
             <span class="stit">生日</span>
-            <input class="in date" type="text" name="birthday" placeholder="请选择生日" notnull notice="请选择生日">
+            <input class="in date" type="text" id="birthday" name="birthday" placeholder="请选择生日" notnull notice="请选择生日">
         </div>
 
-        <div style="padding: 3% 1%;width: 94%;margin: 0 auto;overflow: hidden;border-bottom: 1px solid #fff;">
+        <div class="xy-box">
             <div class="choosexie"></div>
             <span class="ty" style="margin-right: 2px;">同意<span class="ty tyx">  {$xieyi.title}</span></span>
             <span class="ty2">此申请将在提交申请后24小时内审核</span>
@@ -47,11 +70,16 @@
     <input type="hidden" id="do_action" value="{:url('Agent/apply_do')}">
 </div>
 
+<div class="logo-box">
+    <img src="{$config.logo}" alt="">
+    <p>{$config.slogen}</p>
+</div>
+
 <!-- 富文本 -->
 <div class="fubox">
     <div style="width: 100%;text-align: center;overflow: hidden;">
         {$xieyi.title}
-        <span class="go"><  关闭</span>
+        <span class="go"><img src="__STATIC__/mobile/common/images/close.png" alt="">  关闭</span>
     </div>
 
     <div class="fu">
@@ -64,26 +92,90 @@
         mobile = "{$user.mobile}";
         agent_obj.apply();
     });
+    can_get_code=1;
+    //获取验证码
+    $("#get_apply_code").click(function () {
+        var that =$(this);
+        var mobile = $("#apply_mobile").val();
+        if (mobile == '') {
+            $.toptip('请输入手机号码','error');
+            return false;
+        }
+        if (!(/^1(3|4|5|7|8|9)\d{9}$/.test(mobile))) {
+            $.toptip('手机号码有误，请重新输入','error');
+            return false;
+        }
+        if (can_get_code != 1) {
+            return false;
+        }
+        can_get_code = 0;
+        $.post('/Home/Api/sendSmsCode', {mobile: mobile, type: 7}, function (data) {
+            if (data.ret == 1) {
+                $.toast(data.msg, 'text');
+                //发送成功
+                time = 60;//秒
+                countdown = time;
+                var setSmsTime = function () {
+                    if (countdown == 0) {
+                        can_get_code = 1;
+                        that.removeClass('second').text('发送验证码');
+                        countdown = time;
+                        clearInterval(aa);
+                    } else {
+                        that.addClass('second').text(countdown + 's');
+                        countdown--;
+                    }
+                }
+                var aa = setInterval(function () {
+                    setSmsTime()
+                }, 1000);
+            } else {
+                can_get_code = 1;
+                $.toptip(data.msg,'error');
+                return false;
+            }
+        }, 'json');
+    });
 
     $(function () {
+        let allTime = '';
+        let myDate = new Date();
+        let dxy = myDate.getFullYear();
+        let dxm = myDate.getMonth()+1;
+        let dxd = myDate.getDate();
+        if(dxm<10){
+          dxm='0'+dxm
+        }else{
 
-        // // 时间插件
-        // $(".date").mobiscroll().datetime({
-        //         theme: "android-holo-light",
-        //         lang: "zh",
-        //         cancelText: null,
-        //         dateFormat: 'yy-mm-dd', //返回结果格式化为年月格式
-        //         dateOrder: 'yymmdd',
-        //         display: 'bottom',
-        //         weekDays:'short',
-        //         // wheels:[], //设置此属性可以只显示年月，此处演示，就用下面的onBeforeShow方法,另外也可以用treelist去实现
-        //         onBeforeShow: function (inst) { inst.settings.wheels[0].length>3?inst.settings.wheels[0].pop():null; }, //弹掉"日"滚轮
-        //         headerText: function (valueText) { //自定义弹出框头部格式
-        //             array = valueText.split('月');
-        //             return  array[0];
-        //             //return  array[0] + "月"+array[1]+"";
-        //         }
-        // })
+        }
+        if(dxd<10){
+          dxd='0'+dxd
+        }else{
+
+        }
+        let maxdate=dxy+'-'+dxm+'-'+dxd;
+        $("#birthday").datetimePicker({
+            times: function () {
+                return [
+                ];
+            },
+            title: '请选择生日',
+            min: "1900-01-01",
+            max: maxdate,
+            onChange: function(picker, values, displayValues) {
+                var value =picker.value;
+                console.log(value);
+                var birthday = value[0]+'-'+value[1]+'-'+value[2];
+                console.log(birthday);
+                $('#birthday').val(birthday);
+            },
+            onClose: function(picker) {
+                var value =picker.value;
+                console.log(value);
+                var birthday = value[0]+'-'+value[1]+'-'+value[2];
+                $('#birthday').val(birthday);
+            },
+        });
 
         //同意协议
         function chooseyes() {
@@ -98,13 +190,10 @@
                 }
             })
         }
-
         chooseyes();
-
         $('.go').on('click', function () {
             $('.fubox').hide();
         })
-
         $('.tyx').on('click', function () {
             $('.fubox').show();
         })

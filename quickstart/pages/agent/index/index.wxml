@@ -1,5 +1,6 @@
 <!--pages/agent/index/index.wxml-->
 <view class='header'>
+  <image class='hd-bg' src='{{config.agent_head_bg}}'></image>
   <view class='left'>
     <image src='{{user.headimgurl}}'></image>
   </view>

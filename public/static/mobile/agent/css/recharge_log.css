@@ -3,7 +3,7 @@ html,body{
 	overflow-y: hidden;
 }
 
-.tit{
+.tit {
 	width: 100%;
 	margin: 0px auto;
 	position: relative;
@@ -14,13 +14,12 @@ html,body{
 	font-size: 15px;
 }
 
-.goback{
+.goback {
 	position: absolute;
 	left: 10px;
 	top: 0;
-	height: 30px;
-	line-height: 30px;
 	font-size: 15px;
+	color: #000;
 }
 
 .listbox{

@@ -1,152 +1,188 @@
-html,body{
-	width: 100%;
-	height: 100%;
+html, body {
+    width: 100%;
+    height: 100%;
 }
 
-body{
-	background-size: 100% 100%;
-	box-sizing: border-box;
-	padding: 10vh 7vw;
+body {
+    background-size: 100% 100%;
+    box-sizing: border-box;
+    padding: 10vh 7vw;
 }
 
-.inbox{
-	width: 100%;
-	background: rgba(0,0,0,0.5);
-	border-radius: 5px;
-	overflow: hidden;
+.inbox {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    overflow: hidden;
+}
+.inbox input{
+    padding: 0.2rem 0.2rem;
 }
 
-.tit{
-	width: 100%;
-	text-align: center;
-	color: #fff;
-	font-size: 18px;
-	padding: 15px 0;
-	float: left;
+.tit {
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    padding: 15px 0;
+    float: left;
 }
 
-.stit{
-	color: #fff;
-	width: 80px;
-	font-size: 14px;
-	height: 20px;
-	line-height: 20px;
-	float: left;
+.stit {
+    color: #fff;
+    width: 80px;
+    font-size: 14px;
+    float: left;
 }
 
-.in{
-	width: calc(100% - 80px);
-	background: #fff;
-	border: 0;
-	font-size: 14px;
-	height: 20px;
-	line-height: 20px;
-	float: left;
+.in {
+    width: calc(100% - 80px);
+    background: #fff;
+    border: 0;
+    font-size: 14px;
+    float: left;
+}
+.code_in{
+    width: calc(100% - 155px);
 }
 
-.havenum{
-	color: #fff;
-	border: 0;
-	font-size: 11px;
-	height: 20px;
-	line-height: 20px;
-	float: left;
-	margin-left: 5px;
+.havenum {
+    width: 5.8rem;
+    color: #fff;
+    border: 1px solid #FFF;
+    font-size: 11px;
+    float: left;
+    margin-left: 5px;
+    padding: 0.1rem 0.3rem;
+    text-align: center;
+}
+.second{
+    border: 1px solid #999;
+    color: #999;
 }
 
-.choosexie{
-	width: 14px;
-	height: 14px;
-	border: 1px solid #fff;
-	float: left;
-	margin-left: 5px;
-	box-sizing: border-box;
-	margin-right: 5px;
-	position: relative;
-	top: 2px;
+.choosexie {
+    width: 14px;
+    height: 14px;
+    border: 1px solid #fff;
+    float: left;
+    margin-left: 5px;
+    box-sizing: border-box;
+    margin-right: 5px;
+    position: relative;
+    top: 2px;
 }
 
-.choosexiex{
-	background: url(../../common/images/true.png) no-repeat;
-	background-size: 100% 100%;
+.choosexiex {
+    background: url(../../common/images/true.png) no-repeat;
+    background-size: 100% 100%;
 }
 
-.ty{
-	font-size: 12px;
-	color: #fff;
+.ty {
+    font-size: 12px;
+    color: #fff;
 }
 
-.tyx{
-	border-bottom: 1px solid #fff;
+.tyx {
+    border-bottom: 1px solid #fff;
 }
 
-.ty2{
-	font-size: 11px;
-	color: #fff;
+.ty2 {
+    font-size: 11px;
+    color: #fff;
 }
 
-.goback{
-	float: left;
-	width: 50%;
-	text-align: center;
-	color: #fff;
-	height: 50px;
-	line-height: 50px;
-	font-size: 16px;
+.goback {
+    float: left;
+    width: 50%;
+    text-align: center;
+    color: #fff;
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
 }
 
-.formbtn{
-	float: left;
-	width: 50%;
-	text-align: center;
-	color: #fff;
-	height: 50px;
-	line-height: 50px;
-	font-size: 16px;
-	border: none;
-	background: none;
+.xy-box {
+    padding: 3% 1%;
+    width: 94%;
+    margin: 0 auto;
+    overflow: hidden;
+    border-bottom: 1px solid #fff;
+    display: flex;
 }
 
-.fubox{
-	width: calc(100% - 20px);
-	margin: 10px;
-	box-sizing: border-box;
-	overflow: hidden;
-	background: #983eed;
-	height: calc(100% - 20px);
-	position: fixed;
-	left: 0;
-	top: 0;
-	padding: 7px;
-	font-size: 15px;
-	color: #fff;
-	display: none;
-	box-shadow: 0px 0px 5px #97205b;
+.formbtn {
+    float: left;
+    width: 50%;
+    text-align: center;
+    color: #fff;
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    border: none;
+    background: none;
 }
 
-.go{
-	position: absolute;
-	left: 10px;
-	top: 7px;
-	color: #fff;
-	font-size: 15px;
+.logo-box{
+    width: 100%;
+    text-align: center;
+    padding: 30px 0;
+}
+.logo-box img{
+    width: 100px;
+    height: 100px;
+}
+.logo-box p{
+    color: #FFF;
+    font-size: 18px;
 }
 
-.fu{
-	color: #fff;
-	overflow: hidden;
-	border-radius: 5px;
-	width: 100%;
-	padding: 5px 15px;
-	box-sizing: border-box;
-	background: #a05ce1;
-	margin-top: 10px;
-	height: calc(100% - 40px);
-	overflow: hidden;
-	overflow-y: auto;
-	word-wrap: break-word;
+.fubox {
+    width: calc(100% - 20px);
+    margin: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: #983eed;
+    height: calc(100% - 20px);
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 7px;
+    font-size: 15px;
+    color: #fff;
+    display: none;
+    box-shadow: 0px 0px 5px #97205b;
 }
 
-.fu img{
-	max-width: 100%;
+.go {
+    position: absolute;
+    left: 10px;
+    top: 7px;
+    color: #fff;
+    font-size: 15px;
+    display: flex;
+}
+.go img{
+    width: 2rem;
+    height: 2rem;
+    margin: 0 0.5rem 0 0;
+}
+
+.fu {
+    color: #fff;
+    overflow: hidden;
+    border-radius: 5px;
+    width: 100%;
+    padding: 5px 15px;
+    box-sizing: border-box;
+    background: #a05ce1;
+    margin-top: 10px;
+    height: calc(100% - 40px);
+    overflow: hidden;
+    overflow-y: auto;
+    word-wrap: break-word;
+}
+
+.fu img {
+    max-width: 100%;
 }

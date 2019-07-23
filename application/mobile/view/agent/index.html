@@ -1,10 +1,10 @@
-{extend name="public/base"/ }
+{extend name="public/base"/  title="代理中心"}
 {block name="body"}
 <body>
 <div class="topbox" style="display: flex;justify-content: center;align-items: center;">
     <div style="width: 100%;overflow-y: hidden;">
-        <img class="bg" src="__STATIC__/mobile/common/images/paybg.png" alt="">
-        <div style="overflow: hidden;position: relative;z-index: 1;">
+        <img class="bg" src="{$config.agent_head_bg}" alt="">
+        <div class="hd-box">
             <img class="userimg" src="{$user.headimgurl|default=''}" alt="">
             <div class="usertext">
                 <div class="userson" style="margin-bottom: 5px;">
@@ -20,12 +20,12 @@
                 </div>
                 {elseif condition="$agent._status eq 1"}
                 <div class="userson">
-                    <span class="viplevel">{$agent.level_name}</span>
+                    <span class="viplevel"> <img src="__STATIC__/mobile/common/images/zuanshi.png" alt=""> {$agent.level_name}</span>
                     <div class="levelbox">
                         <div class="tiao">
-                            <div class="tiao2"></div>
+                            <div class="tiao2" style="width: {$agent.percent}%"></div>
                         </div>
-                        <span style="color: #fff;font-size: 11px;float: left;height: 16px;line-height: 14px;display: inline-block;">{$agent.total_money*1}/{$agent.next_level_money*1}</span>
+                        <span class="level_money">{$agent.total_money*1}/{$agent.next_level_money*1}</span>
                         <span class="level">{$agent.next_level_name}</span>
                     </div>
                 </div>

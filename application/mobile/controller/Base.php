@@ -23,29 +23,29 @@ class Base extends Controller
         define('SESSION_ID',$this->session_id); //将当前的session_id保存为常量，供其它方法调用
 
         //测试环境手动配置
-        $userinfo = array(
-            'vip_id'=>118,
-            'openid' => 'C4031E3A9AC944CF4B0889E887A852C8',
-            'mobile'=>17695514618,
-            'source'=>3,
-            'nickname' => 'PC端测试账号',
-            'sex' => 1,
-            'province' => '天津',        //省份
-            'city' => '南开',        //城市
-            'country' => '中国',        //国家
-            'language' => 'zh_CN',
-            'headimgurl' => 'http://wx.qlogo.cn/mmopen/IcgOoUqN7GwSjlHLJ52VmWLNrNiaEBRYhdpyWAuceAiaCkgGGnLKToUJIiaoXE1YTeUVjEpiaiajVoCFIKictpMJkfM2k6lgKkxMIH/0',
-            'unionid' => 'uniontest',    //一般无用
-        );
-        if($userinfo['mobile']){
-            $ids = db(\tname::vip)->where(array('mobile'=>$userinfo['mobile']))->column('id');
-        }else{
-            $ids=[$userinfo['vip_id']];
-        }
-        $vip_ids = implode(',',$ids);
-        session('vip_id',$userinfo['vip_id']);
-        session('vip_ids',$vip_ids);
-        session('userinfo', $userinfo);
+//        $userinfo = array(
+//            'vip_id'=>118,
+//            'openid' => 'C4031E3A9AC944CF4B0889E887A852C8',
+//            'mobile'=>17695514618,
+//            'source'=>3,
+//            'nickname' => 'PC端测试账号',
+//            'sex' => 1,
+//            'province' => '天津',        //省份
+//            'city' => '南开',        //城市
+//            'country' => '中国',        //国家
+//            'language' => 'zh_CN',
+//            'headimgurl' => 'http://wx.qlogo.cn/mmopen/IcgOoUqN7GwSjlHLJ52VmWLNrNiaEBRYhdpyWAuceAiaCkgGGnLKToUJIiaoXE1YTeUVjEpiaiajVoCFIKictpMJkfM2k6lgKkxMIH/0',
+//            'unionid' => 'uniontest',    //一般无用
+//        );
+//        if($userinfo['mobile']){
+//            $ids = db(\tname::vip)->where(array('mobile'=>$userinfo['mobile']))->column('id');
+//        }else{
+//            $ids=[$userinfo['vip_id']];
+//        }
+//        $vip_ids = implode(',',$ids);
+//        session('vip_id',$userinfo['vip_id']);
+//        session('vip_ids',$vip_ids);
+//        session('userinfo', $userinfo);
         //获取参数配置
         $wxconfig = db(\tname::weixin_config)->where(['uid' => WID,'type'=>'wechat'])->find();
         $actionname = request()->action();

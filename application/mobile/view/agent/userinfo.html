@@ -1,160 +1,200 @@
 {extend name="public/base"/ }
 {block name="body"}
+<style>
+    .weui-picker-modal{
+        height: 20.5rem;
+    }
+    .toolbar{
+        font-size: 1.7rem;
+    }
+    .toolbar .toolbar-inner {
+        height: 3.3rem;
+    }
+    .toolbar .picker-button {
+        line-height:3.3rem;
+        font-size: 1.7rem;
+    }
+    .toolbar .title{
+        line-height:3.3rem;
+        font-size: 1.7rem;
+    }
+    .weui-picker-modal .picker-modal-inner{
+        height: 16.6rem;
+    }
+    .weui-picker-modal .picker-items{
+        font-size: 1.5rem;
+    }
+</style>
 <body>
-
-<div class="tit">基本信息</div>
+<div class="hd">
+    <a href="javascript:history.go(-1);">
+        <div class="back"><img src="__STATIC__/mobile/common/images/back.png" alt=""> 返回</div>
+    </a>
+    <div>基本信息</div>
+</div>
 <div class="inbox">
     <div class="sbox">
-        <span class="stit">头像</span>
-        <span class="ri"></span>
-        <div class="imgb">
-            <div class="weui-gallery" id="gallery">
-                <span class="weui-gallery__img" id="galleryImg"></span>
-                <div class="weui-gallery__opr">
-                    <a href="javascript:" rel="external nofollow" class="weui-gallery__del">
-                        <i class="weui-icon-delete weui-icon_gallery-delete"></i>
-                    </a>
-                </div>
-            </div>
+        <div class="item-l">头像</div>
+        <div class="item-r " data-type="head" data-item="headimgurl" data-item_text="头像">
+            <img class="head" src="{$user.headimgurl}" alt="">
+        </div>
+    </div>
+    <div class="sbox">
+        <div class="item-l">昵称</div>
+        <div class="item-r  icon-edit" data-type="input" data-item="nickname" data-item_text="昵称">
+            <input type="text" name="nickname" value="{$user.nickname}" readonly placeholder="请输入">
+        </div>
+    </div>
+    <div class="sbox">
+        <div class="item-l">姓名</div>
+        <div class="item-r  icon-edit" data-type="input" data-item="real_name" data-item_text="姓名">
+            <input type="text" name="real_name" value="{$agent.real_name}" readonly placeholder="请输入">
         </div>
     </div>
 
     <div class="sbox">
-        <span class="stit">昵称</span>
-        <span class="ri"></span>
-        <span class="intext intextnc">请填写</span>
+        <div class="item-l">手机号码</div>
+        <div class="item-r" data-type="input" data-item="real_name" data-item_text="姓名">
+            <input type="text" name="real_name" value="{$agent.mobile}" readonly placeholder="请输入">
+        </div>
     </div>
 
     <div class="sbox">
-        <span class="stit">姓名</span>
-        <span class="ri"></span>
-        <span class="intext intextxm">请填写</span>
+        <div class="item-l">性别</div>
+        <div class="item-r  icon-edit" data-type="sex" data-item="sex" data-item_text="性别">
+            <input type="text" name="sex" value="{$sexList[$agent.sex]}" readonly placeholder="请输入">
+        </div>
     </div>
 
     <div class="sbox">
-        <span class="stit">手机号</span>
-        <span class="ri"></span>
-        <span class="intext intextphone">请填写</span>
+        <div class="item-l">生日</div>
+        <div class="item-r  icon-edit" data-type="birthday" data-item="birthday" data-item_text="生日">
+            <input type="text" name="birthday" value="{$agent.birthday}" readonly placeholder="请输入">
+        </div>
     </div>
 
     <div class="sbox">
-        <span class="stit">性别</span>
-        <span class="ri"></span>
-        <span class="intext intextxing">男</span>
+        <div class="item-l">微信号</div>
+        <div class="item-r  icon-edit" data-type="input" data-item="wechat" data-item_text="微信号">
+            <input type="text" name="wechat" value="{$agent.wechat}" readonly placeholder="请输入">
+        </div>
     </div>
-
-    <div class="sbox">
-        <span class="stit">生日</span>
-        <span class="ri"></span>
-        <!-- <input class="intext" id='datetime-picker' type="date" value="请选择" placeholder="请选择"> -->
-    </div>
-
-    <div class="sbox">
-        <span class="stit">地区</span>
-        <span class="ri"></span>
-        <input class="intext" id='city-picker' placeholder="请选择">
-    </div>
-
-    <div class="sbox">
-        <span class="stit">微信号</span>
-        <span class="ri"></span>
-        <span class="intext intextwx">请填写</span>
-    </div>
-
-    <div class="sbox">
-        <span class="stit">收货地址</span>
-        <span class="ri"></span>
-        <span class="intext"></span>
-    </div>
-
 </div>
 
 <div class="zhe">
-
-    <div class="zhebox zhebox1">
-        <p class="edit_tip">修改昵称</p>
-        <input class="in in1" type="text" name="edit_value">
-        <div class="qu">取消</div>
-        <div style="height: 24px;border-right: 1px solid #d9d9d9;margin-top: 3px;float: left;"></div>
-        <div class="que">确定</div>
-    </div>
-
+    <form id="data-form">
+        <div class="zhebox zhebox1">
+            <p class="edit_tip">修改<span id="edit_text">昵称</span></p>
+            <input class="in in1 edit-con" type="text" name="value" value="" placeholder="请输入" notnull notice="">
+            <div class="sex-sel edit-con">
+                <div class="sex-item">
+                    {foreach name="sexList" item="vo" key="k"}
+                    <label data-value="{$k}">
+                        <img src="__STATIC__/mobile/common/images/pay-no.png" alt="">{$vo}
+                    </label>
+                    {/foreach}
+                </div>
+            </div>
+            <div class="edit-con birthday">
+                <input class="in in1 " type="text" id="birthday" value="" placeholder="请输入">
+            </div>
+            <div class="edit-btn">
+                <div class="qu cancel">取消</div>
+                <div style="height: 24px;border-right: 1px solid #d9d9d9;margin-top: 3px;float: left;"></div>
+                <input type="hidden" name="edit_item" value="">
+                <button class="que" type="submit">确定</button>
+            </div>
+        </div>
+    </form>
+    <input type="hidden" id="do_action" value="{:url('Agent/editInfo')}">
     <div class="zhebox zhebox5">
         <span class="xing">保密</span>
         <span class="xing">男</span>
         <span class="xing">女</span>
     </div>
-
 </div>
-
 </div>
-
-<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
-
-<script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/swiper.min.js"></script>
-<script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/city-picker.min.js"></script>
 
 <script>
-
+    $(document).ready(function () {
+        agent_obj.userinfo();
+    });
+    var type,item,item_text;
     $(function () {
-
-        function click() {
-            $('.intextnc').on('click', function () {
-                $('.zhe').css('display', 'flex');
-                $('.zhebox1').show();
-            })
-
-            $('.intextxing').on('click', function () {
-                $('.zhe').css('display', 'flex');
-                $('.zhebox5').show();
-            })
-            $('.qu').on('click', function () {
-                $('.zhe').hide();
-                $('.zhebox').hide();
-            })
-
-            $(".que").on('click', function () {
-
-                var text = $(this).siblings('.in').val();
-                if ($(this).siblings('.in').hasClass('in1')) {
-                    $('.intextnc').text(text)
-                }
-                if ($(this).siblings('.in').hasClass('in2')) {
-                    $('.intextwx').text(text)
-                }
-                if ($(this).siblings('.in').hasClass('in3')) {
-                    $('.intextxm').text(text)
-                }
-                if ($(this).siblings('.in').hasClass('in4')) {
-                    $('.intextphone').text(text)
-                }
-                $('.zhe').hide();
-                $('.zhebox').hide();
-
-            })
-
-            $('.xing').on('click', function () {
-                var text = $(this).text();
-                $('.intextxing').text(text);
-                $('.zhe').hide();
-                $('.zhebox').hide();
-            })
-        }
-
-        click();
-        var tmpl = '<li class="weui-uploader__file"><img style="border:1px solid #000;box-sizing:border-box;width:32px;height:32px;display:block!important;border-radius: 50%;" src="#url#"/></li>',
-            $gallery = $("#gallery"),
-            $galleryImg = $("#galleryImg"),
-            $uploaderInput = $("#uploaderInput"),
-            $uploaderFiles = $("#uploaderFiles");
-
-        $("#city-picker").cityPicker({
-            title: "请选择地区"
+        $('.icon-edit').on('click', function (e) {
+             type = $(this).data('type');
+             item = $(this).data('item');
+             item_text = $(this).data('item_text');
+            $('input[name=edit_item]').val(item);
+            $('#edit_text').text(item_text);
+            $('.edit-con').hide();
+            if (type == 'input') {
+                $('input[name=value]').attr('notice','请输入'+item_text).val('').show();
+            }else if(type == 'sex'){
+                $('input[name=value]').attr('notice','请选择'+item_text).val('').hide();
+                $('.sex-sel').show();
+            }else if(type == 'birthday'){
+                $('input[name=value]').attr('notice','请选择'+item_text).val('').hide();
+                $('.birthday').show();
+            }
+            $('.zhe').css('display', 'flex');
+            $('.zhebox1').show();
+        });
+        //性别选择
+        $('.sex-item label').on('click',function () {
+            $('.sex-item label').find('img').attr('src','__STATIC__/mobile/common/images/pay-no.png');
+            $(this).find('img').attr('src','__STATIC__/mobile/common/images/pay-yes.png');
+            var sel_value  =$(this).data('value');
+            $('input[name=value]').val(sel_value);
         });
 
-    })
+        let allTime = '';
+        let myDate = new Date();
+        let dxy = myDate.getFullYear();
+        let dxm = myDate.getMonth()+1;
+        let dxd = myDate.getDate();
+        if(dxm<10){
+            dxm='0'+dxm
+        }else{
 
+        }
+        if(dxd<10){
+            dxd='0'+dxd
+        }else{
+
+        }
+        let maxdate=dxy+'-'+dxm+'-'+dxd;
+        $("#birthday").datetimePicker({
+            times: function () {
+                return [
+                ];
+            },
+            title: '请选择生日',
+            min: "1900-01-01",
+            max: maxdate,
+            onChange: function(picker, values, displayValues) {
+                var value =picker.value;
+                console.log(value);
+                var birthday = value[0]+'-'+value[1]+'-'+value[2];
+                $('input[name=value]').val(birthday);
+                $('#birthday').val(birthday);
+            },
+            onClose: function(picker) {
+                var value =picker.value;
+                console.log(value);
+                var birthday = value[0]+'-'+value[1]+'-'+value[2];
+                $('input[name=value]').val(birthday);
+                $('#birthday').val(birthday);
+            },
+        });
+
+
+        /**取消修改**/
+        $('.qu').on('click', function () {
+            $('.zhe').hide();
+            $('.zhebox').hide();
+        })
+    })
 </script>
 
 {/block}

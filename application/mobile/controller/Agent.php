@@ -54,6 +54,13 @@ class Agent extends Base
         //代理信息
         $AgentLogic = new AgentLogic();
         $agent = $AgentLogic->agentInfo($user);
+
+        $sexList =array(
+            '1'=>'男',
+            '2'=>'女',
+            '0'=>'保密',
+        );
+        $this->assign('sexList',$sexList);
         $this->assign('user',$user);
         $this->assign('agent',$agent);
         return $this->fetch();
@@ -62,8 +69,9 @@ class Agent extends Base
      * 执行修改
      */
     public function  editInfo(){
+        $user = session('userinfo');
+        $user = db(\tname::vip)->where(['uid' => WID, 'id' => $user['vip_id']])->find();
         $pdata = input('post.');
-        $user = db(\tname::vip)->where(['id' => $pdata['vip_id']])->find();
         $AgentLogic = new AgentLogic();
         $result = $AgentLogic->editInfo($user,$pdata);
         return json($result);
@@ -99,6 +107,16 @@ class Agent extends Base
         $user = session('userinfo');
         $pdata = input('post.');
         $AgentLogic = new AgentLogic();
+        $mobile = $pdata['mobile'];
+        $code = $pdata['code'];
+        //验证码信息
+        $codeinfo = session('codeinfo');
+        if ($codeinfo['check_mobile'] != $mobile) {
+            return ajaxFalse('请输入正确的手机号码');
+        }
+        if ($codeinfo['check_code'] != $code) {
+            return ajaxFalse('请输入正确的验证码');
+        }
         $result = $AgentLogic->agentApply($user['vip_id'], $pdata);
         return json($result);
     }
@@ -126,13 +144,8 @@ class Agent extends Base
             array('money' => 3000),
             array('money' => 5000),
         );
-        $ajaxdata = [
-            'user' => $user,
-            'agent' => $agent,
-            'article' => $article,
-            'money' => $moneyList[0]['money'],
-            'moneyList' => $moneyList,
-        ];
+        $config = tpCache('base');
+        $this->assign('config',$config);
         $this->assign('user',$user);
         $this->assign('agent',$agent);
         $this->assign('article',$article);
@@ -215,7 +228,7 @@ class Agent extends Base
                 $val['_create_time'] = date('Y-m-d H:i:s', $val['create_time']);
             }
             $this->assign('dataList', $dataList);
-            $html = $this->fetch('vip/ajaxdata');
+            $html = $this->fetch('agent/ajaxdata');
             $attach = array(
                 'total' => '',
                 'page_size' => 20,
@@ -244,7 +257,7 @@ class Agent extends Base
                 $val['_create_time']=date('Y-m-d H:i:s',$val['create_time']);
             }
             $this->assign('dataList', $dataList);
-            $html = $this->fetch('vip/ajaxdata');
+            $html = $this->fetch('agent/ajaxdata');
             $attach = array(
                 'total' => '',
                 'page_size' => 20,

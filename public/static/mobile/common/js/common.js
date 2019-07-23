@@ -37,7 +37,7 @@ var load_obj = {
                         $(".load").hide();
                     }else if(page>=1&&count<page_size){//已加载完
                         obj.find('.content').append(data.data);
-                        $(".load").text('人家是有底线的~').show();
+                        $(".load").text('没有更多啦，我也是有底线的~').show();
                     }else{//继续加载
                         obj.find('input[name=page]').val(parseInt(page) + 1);
                         obj.find('.content').append(data.data);
@@ -70,11 +70,9 @@ var form_obj = {
             }
             can_click = 0;
             $.post($("#do_action").val(), $('#data-form').serialize(), function (data) {
-                console.log(data);
-                if (data.ret == 1) {
+                if (data.ret == 1||data.status==1) {
                     if (data.msg) {
                         $.toast(data.msg,1500);
-                        //$.alert(data.msg);
                     }
                     if (callback) {
                         callback(data);
